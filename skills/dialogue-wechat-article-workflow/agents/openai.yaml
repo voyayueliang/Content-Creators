@@ -1,0 +1,7 @@
+interface:
+  display_name: "对谈转公众号工作流"
+  short_description: "把直播、播客、访谈和圆桌整理成适合公众号发布的对谈稿，并支持人机协作式改稿。"
+  default_prompt: "Use $dialogue-wechat-article-workflow to turn this conversation transcript into a WeChat-ready article through source mapping, account voice calibration, sectioned dialogue drafting, human-AI revision, and final quality checks."
+
+policy:
+  allow_implicit_invocation: true
