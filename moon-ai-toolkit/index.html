@@ -182,6 +182,32 @@
       font-size: 13px;
     }
 
+    .fit-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .fit-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 254, 251, 0.78);
+    }
+
+    .fit-card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .fit-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
     .section-head {
       display: grid;
       grid-template-columns: 0.72fr 1fr;
@@ -273,6 +299,11 @@
       padding: 12px;
       border-radius: 8px;
       background: var(--paper-deep);
+    }
+
+    .line.sample {
+      background: #fff9eb;
+      border: 1px solid rgba(193, 147, 66, 0.28);
     }
 
     .line strong {
@@ -371,6 +402,7 @@
     @media (max-width: 900px) {
       .hero,
       .section-head,
+      .fit-grid,
       .grid,
       .gate {
         grid-template-columns: 1fr;
@@ -413,7 +445,7 @@
       <div>
         <p class="eyebrow">Reusable AI workflows for content work</p>
         <h1>把真实材料放进去，跑出能交付、能校对、能复用的内容稿。</h1>
-        <p class="lead">这是月亮沉淀出来的一组内容工作流。页面只保留最重要的判断：适合什么场景，解决什么痛点，准备什么材料，怎么部署并开始用。</p>
+        <p class="lead">这是月亮沉淀出来的一组内容工作流。它适合有真实材料、真实发布压力、真实审核风险的人：先把材料理清，再生成草稿，最后过事实校对和去 AI 味。</p>
         <div class="hero-actions">
           <a class="button" href="#workflows">选择工作流</a>
           <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">查看 GitHub</a>
@@ -421,14 +453,39 @@
       </div>
       <aside class="hero-card">
         <img src="assets/03-bilingual-lockup.svg" alt="Moon toolkit lockup">
-        <h2>使用方式</h2>
+        <h2>3 分钟开始</h2>
         <ol class="steps">
           <li><b>1</b><span>选一个最接近的内容场景。</span></li>
-          <li><b>2</b><span>按说明准备材料和边界。</span></li>
-          <li><b>3</b><span>打开 GitHub 部署包，装进 Codex 或复制启动句试跑。</span></li>
-          <li><b>4</b><span>交付前过事实校对和去 AI 味两扇门。</span></li>
+          <li><b>2</b><span>把材料、发布目的和不能公开的边界放进去。</span></li>
+          <li><b>3</b><span>先让工作流做材料地图和缺口检查。</span></li>
+          <li><b>4</b><span>再写稿，最后过事实校对和去 AI 味。</span></li>
         </ol>
       </aside>
+    </section>
+
+    <section class="wrap">
+      <div class="section-head">
+        <h2>适合谁</h2>
+        <p>这个工具箱不是给空白写作准备的，它更适合已经有材料、但缺少整理、判断和交付流程的人。</p>
+      </div>
+      <div class="fit-grid">
+        <article class="fit-card">
+          <h3>社区运营 / 活动主办方</h3>
+          <p>需要把活动资料、嘉宾议程和合作方口径变成能发布的传播稿。</p>
+        </article>
+        <article class="fit-card">
+          <h3>播客 / 直播主理人</h3>
+          <p>有录音、回放或逐字稿，想做二次分发，又不想只得到一份摘要。</p>
+        </article>
+        <article class="fit-card">
+          <h3>内容实习生 / 编辑</h3>
+          <p>要承接小型内容需求，但又必须控制事实、授权、口径和 AI 味风险。</p>
+        </article>
+        <article class="fit-card">
+          <h3>独立创作者 / 研究者</h3>
+          <p>想把公开资料、观察和项目经验，沉淀成可复用的内容资产。</p>
+        </article>
+      </div>
     </section>
 
     <section class="wrap" id="workflows">
@@ -458,6 +515,10 @@
                 <li>补充合作方价值和不能公开的信息。</li>
                 <li>先做事实缺口检查，再进入草稿。</li>
               </ol>
+            </section>
+            <section class="line sample">
+              <strong>输入 / 输出样例</strong>
+              <p>输入：活动策划案、议程、嘉宾信息、合作方口径。<br>输出：公众号草稿、标题备选、事实待确认清单。</p>
             </section>
           </div>
           <div class="actions">
@@ -496,6 +557,10 @@
                 <li>先生成素材地图，再判断写报道还是传播包。</li>
               </ol>
             </section>
+            <section class="line sample">
+              <strong>输入 / 输出样例</strong>
+              <p>输入：复盘录音、现场照片、群聊反馈、伙伴记录。<br>输出：会后报道、图片占位说明、社区记忆素材包。</p>
+            </section>
           </div>
           <div class="actions">
             <a class="button" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
@@ -532,6 +597,10 @@
                 <li>说明说话人身份、发布平台和授权边界。</li>
                 <li>先判断内容形态，再决定长文、对谈稿还是短观察。</li>
               </ol>
+            </section>
+            <section class="line sample">
+              <strong>输入 / 输出样例</strong>
+              <p>输入：播客逐字稿、直播摘要、嘉宾信息、公开边界。<br>输出：公众号文章、对谈稿、短观察或素材卡。</p>
             </section>
           </div>
           <div class="actions">
@@ -570,6 +639,10 @@
                 <li>说明发布渠道、读者和不能推断的边界。</li>
                 <li>先做资料查看台和文章角度选择，再写逐节草稿。</li>
               </ol>
+            </section>
+            <section class="line sample">
+              <strong>输入 / 输出样例</strong>
+              <p>输入：人物姓名、公开访谈、播客、演讲、文章链接。<br>输出：资料查看台、文章角度、逐节人物稿和引用核查表。</p>
             </section>
           </div>
           <div class="actions">
@@ -624,6 +697,10 @@
               <li>先标问题，不急着整篇重写。</li>
               <li>逐句改掉空泛、漂亮但不稳的表达。</li>
             </ol>
+          </section>
+          <section class="line sample">
+            <strong>输入 / 输出样例</strong>
+            <p>输入：AI 初稿、原始材料、编辑反馈或合作方要求。<br>输出：不像人的句子、问题原因、改写建议和最终可发版本。</p>
           </section>
         </div>
       </section>
