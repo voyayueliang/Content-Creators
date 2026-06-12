@@ -1,0 +1,4 @@
+interface:
+  display_name: "播客音视频转公众号文章"
+  short_description: "把播客、录音、视频回放、直播和访谈内容整理成公众号文章"
+  default_prompt: "Use $audio-to-wechat-article to turn this podcast, audio, video replay, or livestream transcript into a WeChat article draft."

@@ -1,0 +1,7 @@
+interface:
+  display_name: "公众人物深度报道"
+  short_description: "基于公开资料生成有事实约束的人物深度报道。"
+  default_prompt: "打开公众人物深度报道工作台。对象：[人物姓名]。已有素材：[链接或文件]。请先做资料查看台和事实边界检查，再提出文章框架。"
+
+policy:
+  allow_implicit_invocation: true

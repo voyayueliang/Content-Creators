@@ -23,13 +23,17 @@ https://voyayueliang.github.io/Content-Creators/
 
 Current entries include:
 
-- Moon Content OS Lite
 - Community event content workbench
 - Event recap to WeChat Markdown workflow
-- Dialogue-to-WeChat article workflow
 - Audio/video-to-WeChat article workflow
-- Public profile lab for deep人物侧写 based on public materials
+- Public profile deep report workflow
 - QA gates for de-AI-tone review and fact/boundary checks
+
+Deployable skills live under `skills/`:
+
+- `skills/dialogue-wechat-article-workflow/`
+- `skills/audio-to-wechat-article/`
+- `skills/public-profile-deep-report-workflow/`
 
 Open `moon-ai-toolkit/index.html` locally, or browse the product cards under `moon-ai-toolkit/product-library/`.
 
