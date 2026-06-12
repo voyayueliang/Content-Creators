@@ -1,0 +1,55 @@
+{
+  "name": "Moon AI Toolkit",
+  "title": "月亮的 AI 工具箱",
+  "tagline": "把真实的人、现场、对话和项目材料，转译成可以被理解、传播、复用和继续生长的内容资产。",
+  "sections": [
+    {
+      "id": "methods",
+      "title": "方法",
+      "description": "AI 协作原则、去 AI 味、活动报道方法、对谈整理方法、商业合作审核门。",
+      "folder": "01_方法"
+    },
+    {
+      "id": "channels",
+      "title": "频道",
+      "description": "公众号、视频号、播客、直播、社群和 newsletter 候选。",
+      "folder": "02_频道"
+    },
+    {
+      "id": "skills",
+      "title": "Skills",
+      "description": "可复用的 Codex skills 和内容工作流。",
+      "folder": "03_Skills"
+    },
+    {
+      "id": "products",
+      "title": "产品",
+      "description": "已经产品化、可试点或可展示的工作流与服务包。",
+      "folder": "04_产品",
+      "source": "products-public.json"
+    },
+    {
+      "id": "stories",
+      "title": "故事与经历",
+      "description": "个人路径、田野、项目现场、社区经验和关系网络。",
+      "folder": "05_故事与经历"
+    },
+    {
+      "id": "cases",
+      "title": "案例与证据",
+      "description": "真实项目、最终发布版本、反馈、复盘和方法验证。",
+      "folder": "06_案例与证据"
+    }
+  ],
+  "primaryProducts": [
+    "moon-content-os",
+    "community-event-content-workbench",
+    "event-recap-to-wechat-md"
+  ],
+  "nextBuild": [
+    "为首页写 20 秒内能看懂的自我介绍",
+    "把 Moon Content OS 作为母产品放到首页",
+    "整理 3-5 条月亮的 AI 工具箱方法原则",
+    "补 2 个真实案例页"
+  ]
+}

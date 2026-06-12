@@ -13,6 +13,22 @@ It works with:
 
 This is not a one-shot AI writing prompt. It is a human-AI editorial workflow for conversation-based publishing.
 
+## Moon AI Toolkit
+
+This repository also includes `moon-ai-toolkit/`, a public toolkit for Moon's reusable content workflows and productized writing systems.
+
+Current entries include:
+
+- Moon Content OS Lite
+- Community event content workbench
+- Event recap to WeChat Markdown workflow
+- Dialogue-to-WeChat article workflow
+- Audio/video-to-WeChat article workflow
+- Public profile lab for deep人物侧写 based on public materials
+- QA gates for de-AI-tone review and fact/boundary checks
+
+Open `moon-ai-toolkit/index.html` locally, or browse the product cards under `moon-ai-toolkit/product-library/`.
+
 ## What It Helps With
 
 The skill helps an editor or creator:

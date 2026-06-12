@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>月亮的 AI 工具箱｜工具使用页</title>
+  <meta name="description" content="月亮的 AI 工具箱使用页：按任务选择工作流，准备材料，复制启动句，开始试跑。">
+  <link rel="icon" href="assets/04-moon-gate-avatar-mark.svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=JetBrains+Mono:wght@500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;650;750&display=swap');
+
+    :root {
+      --ink: #090a08;
+      --paper: #fffdf5;
+      --soft: #f1f6ed;
+      --line: #182018;
+      --muted: #5d5a51;
+      --green: #78ef6f;
+      --coral: #de8069;
+      --max: 1060px;
+      --sans: "Work Sans", "Noto Serif SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, serif;
+      --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.62;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 253, 245, .94);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner,
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand img {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--line);
+      background: var(--green);
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .links a {
+      text-decoration: none;
+    }
+
+    .hero {
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(rgba(255, 253, 245, .94), rgba(255, 253, 245, .98)),
+        repeating-linear-gradient(90deg, rgba(24, 32, 24, .06) 0 1px, transparent 1px 76px);
+    }
+
+    .hero .wrap {
+      padding: 70px 0 46px;
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 36px;
+      align-items: end;
+    }
+
+    .eyebrow,
+    .tag {
+      color: var(--coral);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 12px 0 0;
+      max-width: 760px;
+      font-family: var(--serif);
+      font-size: clamp(48px, 8vw, 96px);
+      line-height: .95;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 22px 0 0;
+      max-width: 680px;
+      color: #33352c;
+      font-size: clamp(18px, 2vw, 23px);
+    }
+
+    .creator-note {
+      margin: 18px 0 0;
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .quick {
+      border: 1px solid var(--line);
+      background: var(--soft);
+      padding: 18px;
+    }
+
+    .quick h2 {
+      margin: 0 0 12px;
+      font-family: var(--serif);
+      font-size: 28px;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .quick a {
+      display: block;
+      padding: 9px 0;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .scenes {
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .scenes .wrap {
+      padding: 36px 0;
+    }
+
+    .scene-head {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 14px;
+    }
+
+    .scene-head h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: .98;
+      font-weight: 600;
+    }
+
+    .scene-head p {
+      margin: 0;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .scene-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      border: 1px solid var(--line);
+      border-right: 0;
+    }
+
+    .scene-card {
+      min-height: 230px;
+      padding: 16px;
+      border-right: 1px solid var(--line);
+      background: var(--soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .scene-card:nth-child(even) {
+      background: var(--paper);
+    }
+
+    .scene-card h3 {
+      margin: 8px 0 0;
+      font-family: var(--serif);
+      font-size: 25px;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .scene-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .scene-card a {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .tools {
+      padding: 42px 0 66px;
+    }
+
+    .tool {
+      scroll-margin-top: 72px;
+      border: 1px solid var(--line);
+      margin-top: 16px;
+      background: var(--paper);
+      display: grid;
+      grid-template-columns: minmax(260px, .7fr) minmax(0, 1.3fr);
+    }
+
+    .tool:first-child {
+      margin-top: 0;
+    }
+
+    .tool-title {
+      padding: 24px;
+      border-right: 1px solid var(--line);
+      background: var(--soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 300px;
+    }
+
+    .tool-title.dark {
+      background: var(--ink);
+      color: white;
+    }
+
+    .tool-title.dark .tag,
+    .tool-title.dark p {
+      color: rgba(255, 255, 255, .72);
+    }
+
+    .tool-title h2 {
+      margin: 10px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: .98;
+      font-weight: 600;
+    }
+
+    .tool-title p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .tool-body {
+      padding: 24px;
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      padding: 14px;
+      min-height: 172px;
+      background: #fffefa;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: 25px;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .panel ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .start {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      background: var(--ink);
+      color: white;
+      padding: 16px;
+    }
+
+    .start h3 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: 26px;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .prompt {
+      margin: 0;
+      padding: 14px;
+      background: rgba(255, 255, 255, .08);
+      color: rgba(255, 255, 255, .88);
+      white-space: pre-wrap;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    .copy-button {
+      min-height: 36px;
+      margin-top: 10px;
+      padding: 7px 11px;
+      border: 1px solid rgba(255, 255, 255, .62);
+      background: var(--green);
+      color: var(--ink);
+      font: inherit;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .button {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border: 2px solid var(--ink);
+      background: var(--green);
+      color: var(--ink);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: var(--paper);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 22px 0 30px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 880px) {
+      .hero .wrap,
+      .tool,
+      .scene-head {
+        grid-template-columns: 1fr;
+      }
+
+      .tool-title {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        min-height: auto;
+      }
+
+      .cols {
+        grid-template-columns: 1fr;
+      }
+
+      .scene-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      .links {
+        justify-content: flex-start;
+      }
+
+      .hero .wrap {
+        padding-top: 42px;
+      }
+
+      .scene-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scene-card {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/04-moon-gate-avatar-mark.svg" alt="月亮的 AI 工具箱">
+        月亮的 AI 工具箱
+      </a>
+      <nav class="links" aria-label="工具导航">
+        <a href="index.html">首页</a>
+        <a href="#scenes">场景</a>
+        <a href="#event">活动</a>
+        <a href="#profile">人物</a>
+        <a href="#dialogue">音视频</a>
+        <a href="#qa">校对</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Moon AI Toolkit</span>
+          <h1>不是文档列表，是可以直接选用的工作流。</h1>
+          <p class="lead">
+            每个工具都从真实项目里沉淀出来。选一个入口，准备对应材料，复制启动句，就可以开始跑。
+          </p>
+          <p class="creator-note">
+            月亮是一个深度内容创作者，长期做访谈、活动报道、播客/直播整理和社区现场写作。这个工作台从她自己的交付过程里长出来：很多项目有录音、策划案、会议纪要和编辑反馈，却缺少一套能判断内容形态、保留人的声音、控制事实风险并复用素材的方法。
+          </p>
+        </div>
+        <aside class="quick" aria-label="快速选择">
+          <h2>快速选择</h2>
+          <a href="#content-os">搭个人内容工作台</a>
+          <a href="#event">做活动报道 / 预告 / 复盘</a>
+          <a href="#profile">写公开资料人物侧写</a>
+          <a href="#dialogue">整理播客、音频或视频回放</a>
+          <a href="#qa">发布前校对和去 AI 味</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="scenes" id="scenes">
+      <div class="wrap">
+        <div class="scene-head">
+          <h2>按场景选</h2>
+          <p>先看你手上有什么，再选对应工作流。每个入口都保留了启动句，方便直接复制给 AI 开始协作。</p>
+        </div>
+        <div class="scene-grid" aria-label="按场景选择工具">
+          <article class="scene-card">
+            <div>
+              <span class="tag">Podcast / Video</span>
+              <h3>有一段播客、录音或视频回放</h3>
+              <p>先判断它适合长文、对谈稿、短观察、口播脚本，还是只做素材卡。</p>
+            </div>
+            <a href="#dialogue">用音视频工作流</a>
+          </article>
+          <article class="scene-card">
+            <div>
+              <span class="tag">Event Before</span>
+              <h3>活动快开始，需要预告或介绍</h3>
+              <p>把策划案、议程、嘉宾信息和合作方口径，整理成能发给编辑看的稿子。</p>
+            </div>
+            <a href="#event">用活动传播工作台</a>
+          </article>
+          <article class="scene-card">
+            <div>
+              <span class="tag">Event After</span>
+              <h3>活动结束，材料散在各处</h3>
+              <p>把复盘口述、照片、群聊、公开报道和伙伴记录，收成会后传播包。</p>
+            </div>
+            <a href="#recap">用活动复盘工作流</a>
+          </article>
+          <article class="scene-card">
+            <div>
+              <span class="tag">Public Profile</span>
+              <h3>想写一个人的公开侧写</h3>
+              <p>用公开访谈、文章、演讲和社媒材料，先做资料查看台，再进入人物稿。</p>
+            </div>
+            <a href="#profile">用人物侧写工作流</a>
+          </article>
+          <article class="scene-card">
+            <div>
+              <span class="tag">Draft QA</span>
+              <h3>一篇稿子快要发布</h3>
+              <p>检查事实、口径、授权、边界和 AI 味，减少商业合作和公开发布风险。</p>
+            </div>
+            <a href="#qa">用发布前校对门</a>
+          </article>
+          <article class="scene-card">
+            <div>
+              <span class="tag">Content System</span>
+              <h3>素材很多，想搭自己的内容系统</h3>
+              <p>先建收件箱、素材卡、选题池和反馈回收表，让内容不再发完就散。</p>
+            </div>
+            <a href="#content-os">用 Content OS Lite</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools">
+      <div class="wrap">
+        <article class="tool" id="content-os">
+          <div class="tool-title dark">
+            <div>
+              <span class="tag">Mother Product</span>
+              <h2>Moon Content OS Lite</h2>
+              <p>给创作者、研究者、主理人和小团队用的个人内容工作台。</p>
+            </div>
+            <a class="button" href="product-library/00_moon-content-os/lite-template/00_使用说明.md">查看模板源文件</a>
+          </div>
+          <div class="tool-body">
+            <div class="cols">
+              <section class="panel">
+                <h3>适合</h3>
+                <ul>
+                  <li>素材很多但不知道先处理什么</li>
+                  <li>想建立稳定内容系统</li>
+                  <li>希望把项目回收成案例和产品</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>准备</h3>
+                <ul>
+                  <li>一份真实素材</li>
+                  <li>你想发布的平台</li>
+                  <li>需要避开的公开边界</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>产出</h3>
+                <ul>
+                  <li>内容查看台</li>
+                  <li>发布队列</li>
+                  <li>反馈与产品化回收表</li>
+                </ul>
+              </section>
+            </div>
+            <div class="start">
+              <h3>启动句</h3>
+              <pre class="prompt">打开 Moon Content OS Lite，处理这份素材。
+
+素材在这里：[粘贴内容或文件路径]
+我现在最想要：[公众号 / 视频号 / 朋友圈 / 作品集 / 不确定]
+
+请先不要直接写稿。先帮我判断这份素材适合变成什么，并给出下一步。</pre>
+              <button class="copy-button" type="button">复制启动句</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tool" id="event">
+          <div class="tool-title">
+            <div>
+              <span class="tag">Community Event</span>
+              <h2>社区活动内容传播工作台</h2>
+              <p>把活动材料、策划案、会议纪要和合作方口径，转成可审核内容。</p>
+            </div>
+            <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill">GitHub Skill</a>
+          </div>
+          <div class="tool-body">
+            <div class="cols">
+              <section class="panel">
+                <h3>适合</h3>
+                <ul>
+                  <li>活动预告</li>
+                  <li>会后报道</li>
+                  <li>分论坛介绍</li>
+                  <li>商业合作稿</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>准备</h3>
+                <ul>
+                  <li>活动基本信息</li>
+                  <li>策划案 / 会议纪要</li>
+                  <li>嘉宾与议程</li>
+                  <li>不能公开的信息</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>产出</h3>
+                <ul>
+                  <li>公众号草稿</li>
+                  <li>发布前确认清单</li>
+                  <li>事实与口径校对</li>
+                  <li>发布后复盘卡</li>
+                </ul>
+              </section>
+            </div>
+            <div class="start">
+              <h3>启动句</h3>
+              <pre class="prompt">打开社区活动内容传播工作台。
+
+活动类型：[会前预告 / 会后报道 / 分论坛介绍 / 商业合作稿]
+材料在这里：[粘贴策划案、会议纪要、嘉宾信息或文件路径]
+发布平台：[公众号 / 官网 / 社群 / 其他]
+
+请先做需求收口和事实缺口检查，再决定文章结构。</pre>
+              <button class="copy-button" type="button">复制启动句</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tool" id="recap">
+          <div class="tool-title">
+            <div>
+              <span class="tag">Event Recap</span>
+              <h2>活动复盘转公众号</h2>
+              <p>把活动结束后的口述复盘、公开报道、群聊记录和图片，整理成会后传播包。</p>
+            </div>
+            <a class="button secondary" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill">GitHub Skill</a>
+          </div>
+          <div class="tool-body">
+            <div class="cols">
+              <section class="panel">
+                <h3>适合</h3>
+                <ul>
+                  <li>活动结束后 24-72 小时</li>
+                  <li>材料散在群聊和照片里</li>
+                  <li>想留下社区记忆和伙伴 proof</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>准备</h3>
+                <ul>
+                  <li>活动复盘口述</li>
+                  <li>现场照片或图片说明</li>
+                  <li>公开报道链接</li>
+                  <li>参与方授权边界</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>产出</h3>
+                <ul>
+                  <li>公众号 Markdown</li>
+                  <li>会后传播包</li>
+                  <li>社区记忆资产</li>
+                </ul>
+              </section>
+            </div>
+            <div class="start">
+              <h3>启动句</h3>
+              <pre class="prompt">打开活动复盘转公众号工作流。
+
+活动已经结束，复盘材料在这里：[粘贴或给路径]
+同场公开报道 / 伙伴记录：[链接或说明]
+图片边界：[可公开 / 需确认 / 不可公开]
+
+请先整理素材地图，再判断适合写成报道、观察稿还是传播包。</pre>
+              <button class="copy-button" type="button">复制启动句</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tool" id="dialogue">
+          <div class="tool-title">
+            <div>
+              <span class="tag">Podcast / Audio / Video</span>
+              <h2>播客音视频转公众号</h2>
+              <p>适合播客主理人、直播栏目、活动主办方和长视频创作者，把播客、录音、直播回放、视频回放、访谈和圆桌逐字稿，转成公众号文章或内容资产包。</p>
+            </div>
+            <a class="button secondary" href="https://github.com/voyayueliang/audio-to-wechat-article-skill">打开 GitHub 工具包</a>
+          </div>
+          <div class="tool-body">
+            <div class="cols">
+              <section class="panel">
+                <h3>适合</h3>
+                <ul>
+                  <li>播客 / 录音</li>
+                  <li>直播 / 视频回放</li>
+                  <li>人物访谈</li>
+                  <li>圆桌逐字稿</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>准备</h3>
+                <ul>
+                  <li>逐字稿、摘要或关键片段</li>
+                  <li>说话人信息</li>
+                  <li>音视频来源和发布平台</li>
+                  <li>公开边界和授权情况</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>产出</h3>
+                <ul>
+                  <li>内容形态判断卡</li>
+                  <li>公众号文章 / 对谈稿</li>
+                  <li>短观察 / 口播脚本</li>
+                  <li>事实与 AI 味检查</li>
+                </ul>
+              </section>
+            </div>
+            <div class="start">
+              <h3>启动句</h3>
+              <pre class="prompt">打开播客音视频转公众号文章工作流。
+
+素材类型：[播客 / 录音 / 视频回放 / 直播 / 访谈 / 圆桌]
+素材、逐字稿或摘要在这里：[粘贴内容、链接或文件路径]
+我希望输出：[公众号文章 / 对谈稿 / 短观察 / 口播脚本 / 素材卡 / 不确定]
+公开边界：[可公开 / 需匿名 / 需确认 / 不外发]
+
+请先判断内容形态，不要直接写成长文。</pre>
+              <button class="copy-button" type="button">复制启动句</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tool" id="profile">
+          <div class="tool-title">
+            <div>
+              <span class="tag">Profile Writing</span>
+              <h2>公开资料人物深度侧写</h2>
+              <p>把公开访谈、播客、演讲、文章和社媒材料，转成有事实约束和人类判断的人物稿。</p>
+            </div>
+            <a class="button secondary" href="product-library/06_public-profile-lab/产品卡.md">查看产品卡</a>
+          </div>
+          <div class="tool-body">
+            <div class="cols">
+              <section class="panel">
+                <h3>适合</h3>
+                <ul>
+                  <li>公开资料研究型人物稿</li>
+                  <li>Founder / builder profile</li>
+                  <li>作品集样稿</li>
+                  <li>人物故事工作坊</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>准备</h3>
+                <ul>
+                  <li>人物姓名</li>
+                  <li>播客、访谈、演讲或文章链接</li>
+                  <li>目标读者和发布渠道</li>
+                  <li>不能推断或不能公开的边界</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>产出</h3>
+                <ul>
+                  <li>人物资料查看台</li>
+                  <li>阅读透镜和文章框架</li>
+                  <li>逐节草稿</li>
+                  <li>引用核查与双门检查</li>
+                </ul>
+              </section>
+            </div>
+            <div class="start">
+              <h3>启动句</h3>
+              <pre class="prompt">打开公开资料人物深度侧写工作流。
+
+对象：[人物姓名]
+模式：[第三方无采访 / 当事人自述 / 三方协作]
+已有素材：[链接 / 文件 / 暂无，请帮我搜集]
+发布渠道：[公众号 / Substack / 作品集 / 机构投稿 / 不确定]
+大致字数：[比如 3000-6000 字 / 先做框架]
+
+要求：
+先不要写完整长文。
+请先做人物资料查看台和素材解剖，然后用短问题问我阅读透镜、读者画像和框架判断。
+最终交付前请过去 AI 味门和信息校对 / 防幻觉门。</pre>
+              <button class="copy-button" type="button">复制启动句</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tool" id="qa">
+          <div class="tool-title">
+            <div>
+              <span class="tag">QA Gate</span>
+              <h2>去 AI 味与事实校对</h2>
+              <p>发布前最后一扇门：检查事实、边界、授权、幻觉和不像人的表达。</p>
+            </div>
+            <a class="button secondary" href="product-library/00_moon-content-os/lite-template/08_事实与边界校对清单.md">查看校对清单</a>
+          </div>
+          <div class="tool-body">
+            <div class="cols">
+              <section class="panel">
+                <h3>适合</h3>
+                <ul>
+                  <li>公众号发布前</li>
+                  <li>商业合作稿</li>
+                  <li>活动传播稿</li>
+                  <li>AI 初稿改稿</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>准备</h3>
+                <ul>
+                  <li>当前稿</li>
+                  <li>原始材料</li>
+                  <li>不能公开的信息</li>
+                  <li>编辑或合作方反馈</li>
+                </ul>
+              </section>
+              <section class="panel">
+                <h3>产出</h3>
+                <ul>
+                  <li>必须修改项</li>
+                  <li>事实待确认清单</li>
+                  <li>去 AI 味建议</li>
+                  <li>可发版本</li>
+                </ul>
+              </section>
+            </div>
+            <div class="start">
+              <h3>启动句</h3>
+              <pre class="prompt">打开发布前校对门。
+
+当前稿在这里：[粘贴稿件]
+原始材料在这里：[粘贴材料或文件路径]
+请分两轮检查：
+1. 事实、口径、授权和边界是否准确
+2. 哪些地方有 AI 味，为什么像 AI，怎么改得更像人</pre>
+              <button class="copy-button" type="button">复制启动句</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>月亮的 AI 工具箱 · Tools · 2026</span>
+      <span>Use page, not internal notes</span>
+    </div>
+  </footer>
+  <script>
+    document.querySelectorAll(".copy-button").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const prompt = button.previousElementSibling?.innerText || "";
+        try {
+          await navigator.clipboard.writeText(prompt);
+          button.textContent = "已复制";
+        } catch (error) {
+          const range = document.createRange();
+          range.selectNodeContents(button.previousElementSibling);
+          const selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          button.textContent = "已选中，可复制";
+        }
+        window.setTimeout(() => {
+          button.textContent = "复制启动句";
+        }, 1600);
+      });
+    });
+  </script>
+</body>
+</html>

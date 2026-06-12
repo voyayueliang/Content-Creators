@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>月亮的 AI 工具箱</title>
+  <meta name="description" content="月亮的 AI 工具箱：按任务选择内容工作流，放入真实材料，产出可发布、可复用、可回收的内容资产。">
+  <link rel="icon" href="assets/04-moon-gate-avatar-mark.svg">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=JetBrains+Mono:wght@500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;650;750&display=swap');
+
+    :root {
+      --ink: #090a08;
+      --paper: #fffdf5;
+      --soft: #f1f6ed;
+      --line: #182018;
+      --muted: #5d5a51;
+      --green: #78ef6f;
+      --coral: #de8069;
+      --max: 1040px;
+      --sans: "Work Sans", "Noto Serif SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, serif;
+      --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.62;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 253, 245, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-inner {
+      width: min(var(--max), calc(100% - 32px));
+      min-height: 56px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .brand img {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--line);
+      background: var(--green);
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .links a {
+      text-decoration: none;
+    }
+
+    .hero {
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(rgba(255, 253, 245, .95), rgba(255, 253, 245, .98)),
+        repeating-linear-gradient(90deg, rgba(24, 32, 24, .06) 0 1px, transparent 1px 76px);
+    }
+
+    .hero-inner {
+      width: min(var(--max), calc(100% - 32px));
+      min-height: 78vh;
+      margin: 0 auto;
+      padding: 70px 0 42px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, .85fr);
+      gap: 38px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--coral);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(54px, 8vw, 112px);
+      line-height: .94;
+      font-weight: 500;
+      letter-spacing: 0;
+      max-width: 800px;
+    }
+
+    .lead {
+      margin: 26px 0 0;
+      max-width: 660px;
+      font-size: clamp(19px, 2vw, 25px);
+      line-height: 1.52;
+      color: #37352d;
+    }
+
+    .sublead {
+      margin: 16px 0 0;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border: 2px solid var(--ink);
+      background: var(--ink);
+      color: white;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    .snapshot {
+      border: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .snapshot-logo {
+      min-height: 210px;
+      display: grid;
+      place-items: center;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(120, 239, 111, .22), transparent 45%),
+        var(--soft);
+      padding: 28px;
+    }
+
+    .snapshot-logo img {
+      width: min(270px, 78%);
+      object-fit: contain;
+    }
+
+    .snapshot-rows {
+      display: grid;
+    }
+
+    .snapshot-row {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .snapshot-row:last-child {
+      border-bottom: 0;
+    }
+
+    .snapshot-row strong {
+      font-family: var(--mono);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .snapshot-row span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-inner {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 58px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(36px, 5.4vw, 68px);
+      line-height: .98;
+      font-weight: 500;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 620px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .box {
+      min-height: 176px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .box.green {
+      background: var(--soft);
+    }
+
+    .box.dark {
+      background: var(--ink);
+      color: white;
+    }
+
+    .box.dark p,
+    .box.dark .tag {
+      color: rgba(255, 255, 255, .74);
+    }
+
+    .tag {
+      color: var(--coral);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .box h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 30px;
+      line-height: 1.02;
+      font-weight: 600;
+    }
+
+    .box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .box .actions {
+      margin-top: 0;
+    }
+
+    .box .button {
+      min-height: 36px;
+      padding: 7px 10px;
+      border-width: 1px;
+      font-size: 13px;
+    }
+
+    .steps {
+      display: grid;
+      border: 1px solid var(--line);
+      border-bottom: 0;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 18px;
+      padding: 22px;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .step:nth-child(even) {
+      background: var(--soft);
+    }
+
+    .step-number {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--coral);
+      font-weight: 700;
+    }
+
+    .step h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 30px;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .step p {
+      margin: 8px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+    }
+
+    .templates {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .template {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 18px;
+    }
+
+    .template h3 {
+      margin: 0 0 10px;
+      font-family: var(--serif);
+      font-size: 29px;
+      line-height: 1.05;
+      font-weight: 600;
+    }
+
+    .template ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .case {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      border: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .case-title {
+      padding: 24px;
+      border-right: 1px solid var(--line);
+      background: var(--ink);
+      color: white;
+    }
+
+    .case-title h3 {
+      margin: 12px 0 0;
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: .98;
+      font-weight: 500;
+    }
+
+    .case-body {
+      padding: 24px;
+    }
+
+    .case-body p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .mini-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .mini-list span {
+      border: 1px solid var(--line);
+      padding: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      background: var(--soft);
+    }
+
+    .cta {
+      background: var(--ink);
+      color: white;
+      border-bottom: 0;
+    }
+
+    .cta .section-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 48px 0;
+    }
+
+    .cta h2 {
+      max-width: 740px;
+    }
+
+    .cta p {
+      margin: 16px 0 0;
+      max-width: 680px;
+      color: rgba(255, 255, 255, .76);
+    }
+
+    .cta .button {
+      background: var(--green);
+      border-color: var(--green);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    footer {
+      padding: 20px 0 28px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 860px) {
+      .hero-inner,
+      .section-head,
+      .case,
+      .cta .section-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .case-title {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .grid-3,
+      .grid-4,
+      .templates {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav-inner {
+        min-height: auto;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px 0;
+      }
+
+      .links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .hero-inner {
+        min-height: auto;
+        padding: 42px 0 32px;
+      }
+
+      h1 {
+        font-size: clamp(44px, 15vw, 68px);
+      }
+
+      .lead {
+        font-size: 18px;
+      }
+
+      .grid-3,
+      .grid-4,
+      .templates,
+      .mini-list {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .snapshot-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <img src="assets/04-moon-gate-avatar-mark.svg" alt="月亮的 AI 工具箱">
+        月亮的 AI 工具箱
+      </a>
+      <nav class="links" aria-label="页面导航">
+        <a href="#use">选入口</a>
+        <a href="#how">怎么用</a>
+        <a href="#tools">工具箱</a>
+        <a href="#case">案例</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Moon Content OS</p>
+          <h1>你手上的材料，可以交给这些工作流。</h1>
+          <p class="lead">
+            给创作者、社区主理人、研究者和小团队使用的内容工作流工具箱。
+          </p>
+          <p class="sublead">
+            选择一个入口，复制启动句，放入你的真实材料。它会帮你判断素材适合变成什么，并把内容、反馈和项目经验回收成资产。
+          </p>
+          <div class="actions">
+            <a class="button" href="#use">按材料选入口</a>
+            <a class="button secondary" href="tools.html">打开工具使用页</a>
+          </div>
+        </div>
+
+        <aside class="snapshot" aria-label="产品快照">
+          <div class="snapshot-logo">
+            <img src="assets/03-bilingual-lockup.svg" alt="月亮的 AI 工具箱标识">
+          </div>
+          <div class="snapshot-rows">
+            <div class="snapshot-row">
+              <strong>Step 1</strong>
+              <span>选一个工作流</span>
+            </div>
+            <div class="snapshot-row">
+              <strong>Step 2</strong>
+              <span>复制启动句，粘贴材料</span>
+            </div>
+            <div class="snapshot-row">
+              <strong>Step 3</strong>
+              <span>拿到输出，再回收反馈</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="use">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>你手上现在有什么？</h2>
+          <p>不用先理解整套系统。看你手上的材料，直接选对应入口。</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="box green">
+            <span class="tag">Personal OS</span>
+            <h3>一堆素材，不知道怎么整理</h3>
+            <p>用 Moon Content OS Lite，把素材放进收件箱，再判断适合变成什么。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#content-os">选这个</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Event</span>
+            <h3>活动材料、策划案、会议纪要</h3>
+            <p>用社区活动内容传播工作台，做预告、报道、分论坛介绍或复盘。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#event">选这个</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Dialogue</span>
+            <h3>播客、音频、视频回放</h3>
+            <p>用播客音视频转公众号 Skill，先判断适合长文、对谈稿、短观察、口播还是素材卡。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#dialogue">选这个</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Profile</span>
+            <h3>一个已有公开资料的人物</h3>
+            <p>用公开资料人物深度侧写工作流，把访谈、播客、演讲和文章转成研究型人物稿。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#profile">选这个</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Review</span>
+            <h3>一篇快要发布的草稿</h3>
+            <p>用发布前校对门，检查事实、边界、授权、AI 味和语病。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#qa">选这个</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Archive</span>
+            <h3>一个做完的项目</h3>
+            <p>用产品化回收表，把项目沉淀成案例、方法、offer 或下一版产品。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#content-os">选这个</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Not Sure</span>
+            <h3>我也不知道该选哪个</h3>
+            <p>先打开工具使用页，按“适合 / 准备 / 产出”看一遍。</p>
+            <div class="actions">
+              <a class="button" href="tools.html">去工具页</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>怎么用</h2>
+          <p>每个工具都可以用同一种方式启动。你不用先学完整方法论。</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">01</div>
+            <div>
+              <h3>把素材放进来</h3>
+              <p>聊天记录、访谈、录音、会议纪要、灵感、项目文件都可以作为输入。</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">02</div>
+            <div>
+              <h3>先判断它适合变成什么</h3>
+              <p>先判断它适合做文章、短视频、朋友圈、案例、发布队列，还是暂时只入库。</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">03</div>
+            <div>
+              <h3>发布前过两扇门</h3>
+              <p>事实与边界检查一遍，AI 味和个人声音再检查一遍。</p>
+            </div>
+          </article>
+          <article class="step">
+            <div class="step-number">04</div>
+            <div>
+              <h3>发布后回收资产</h3>
+              <p>把评论、私信、合作线索和自己的判断，回收到下一次内容、案例或产品里。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>工具货架</h2>
+          <p>首页只放目录。真正的使用说明、启动句和材料清单，都在工具使用页里。</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="box dark">
+            <span class="tag">Mother Product</span>
+            <h3>Moon Content OS Lite</h3>
+            <p>个人内容工作台模板包。从素材收件箱到发布后反馈回收，跑完整个最小闭环。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#content-os">怎么用</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Community Event</span>
+            <h3>社区活动内容传播工作台</h3>
+            <p>处理策划案、会议纪要、活动背景和合作方口径，生成可审核活动稿。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#event">怎么用</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Event Recap</span>
+            <h3>活动复盘转公众号 Skill</h3>
+            <p>把活动复盘、公开报道和现场材料整理成公众号 Markdown 与会后传播包。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#recap">怎么用</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Dialogue</span>
+            <h3>通用对谈转公众号工作流</h3>
+            <p>把播客、直播、访谈、圆桌逐字稿转成公众号对谈稿或内容资产。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#dialogue">怎么用</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Audio</span>
+            <h3>播客音视频转公众号文章 Skill</h3>
+            <p>把播客、录音、直播回放、视频回放和圆桌逐字稿，转成公众号文章或内容资产包。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#dialogue">怎么用</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">Profile</span>
+            <h3>公开资料人物深度侧写</h3>
+            <p>把公开访谈、播客、演讲、文章和社媒材料，转成有事实约束的人物稿。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#profile">怎么用</a>
+            </div>
+          </article>
+          <article class="box">
+            <span class="tag">QA Gate</span>
+            <h3>去 AI 味与事实校对</h3>
+            <p>发布前检查空话、套话、幻觉、事实错误、授权和公开边界。</p>
+            <div class="actions">
+              <a class="button" href="tools.html#qa">怎么用</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="case">
+      <div class="section-inner">
+        <div class="section-head">
+          <h2>第一个应用</h2>
+          <p>Moon Content OS 的第一个垂直应用，是社区活动内容传播工作台。</p>
+        </div>
+
+        <div class="case">
+          <div class="case-title">
+            <span class="tag">Datawhale · AIEC 2026</span>
+            <h3>社区活动内容传播工作台</h3>
+          </div>
+          <div class="case-body">
+            <p>
+              用于处理策划案、会议纪要、论坛信息、合作方口径和编辑反馈，产出可审核的公众号稿、发布前确认和发布后复盘。
+            </p>
+            <p>
+              这个案例证明：工作台不是只能给 Moon 自己用，也可以被配置到社区、活动和 DevRel 场景里。
+            </p>
+            <div class="mini-list">
+              <span>会前传播</span>
+              <span>分论坛介绍</span>
+              <span>商业合作校对</span>
+            </div>
+            <div class="actions">
+              <a class="button" href="tools.html#event">看这个应用</a>
+              <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill">GitHub Skill</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="section-inner">
+        <div>
+          <h2>先拿一份真实素材试跑。</h2>
+          <p>不知道选哪个，就先打开 Lite 模板。把一份真实素材放进去，跑一遍最小闭环。</p>
+        </div>
+        <a class="button" href="tools.html#content-os">打开 Lite 模板</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>月亮的 AI 工具箱 · 2026</span>
+      <span>Content OS / Lite Template / Community Event Workbench</span>
+    </div>
+  </footer>
+</body>
+</html>
