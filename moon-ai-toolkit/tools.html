@@ -307,6 +307,85 @@
       gap: 8px;
     }
 
+    .finder {
+      display: grid;
+      gap: 10px;
+      margin: 0 0 14px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: var(--mint);
+    }
+
+    .finder label {
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .finder-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+    }
+
+    .finder input {
+      width: 100%;
+      min-height: 42px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 15px;
+      padding: 8px 10px;
+    }
+
+    .finder input:focus-visible,
+    .button:focus-visible,
+    .repo:focus-visible,
+    .route-card a:focus-visible,
+    summary:focus-visible,
+    .copy-prompt:focus-visible {
+      outline: 3px solid var(--poster-green);
+      outline-offset: 3px;
+    }
+
+    .mini-button,
+    .copy-prompt {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .mini-button:hover,
+    .copy-prompt:hover {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .finder p,
+    .no-results {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     .route-card {
       display: grid;
       grid-template-columns: minmax(210px, .72fr) minmax(0, 1fr) auto;
@@ -353,6 +432,10 @@
     .route-card a:hover {
       background: var(--ink);
       color: #fff;
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     .section-head {
@@ -566,6 +649,11 @@
       line-height: 1.55;
     }
 
+    .copy-prompt {
+      margin-top: 10px;
+      background: var(--mint);
+    }
+
     .gate {
       display: grid;
       scroll-margin-top: 82px;
@@ -743,6 +831,10 @@
         width: auto;
       }
 
+      .finder-row {
+        grid-template-columns: 1fr;
+      }
+
       .card,
       .gate,
       .fit-card,
@@ -796,28 +888,36 @@
         <h2>从你的任务开始</h2>
         <p>不用先理解每个 skill 的名字。先看你现在手里要交付什么，再进入对应工作流。上手时只需要准备三类信息：已有材料、发布目的、不能公开的边界。</p>
       </div>
+      <div class="finder" data-workflow-finder>
+        <label for="workflowSearch">快速找入口</label>
+        <div class="finder-row">
+          <input id="workflowSearch" type="search" autocomplete="off" placeholder="试试输入：活动预告 / 播客 / 人物 / 去 AI 味">
+          <button class="mini-button" type="button" data-clear-search>查看全部</button>
+        </div>
+        <p data-search-help>输入你的任务关键词，下面会只保留相关入口；不确定时直接从列表里选。</p>
+      </div>
       <div class="route-list">
-        <article class="route-card">
+        <article class="route-card" data-route-card>
           <strong>我要发布活动预告或论坛介绍</strong>
           <p>准备策划案、议程、嘉宾信息、合作方口径。适合会前传播、分论坛介绍和商业合作稿。</p>
           <a href="#workflow-event">进入</a>
         </article>
-        <article class="route-card">
+        <article class="route-card" data-route-card>
           <strong>活动刚结束，想做会后报道</strong>
           <p>准备复盘口述、照片说明、群聊反馈、公开报道链接。先整理现场材料，再决定写报道还是传播包。</p>
           <a href="#workflow-recap">进入</a>
         </article>
-        <article class="route-card">
+        <article class="route-card" data-route-card>
           <strong>我有播客、直播或视频回放</strong>
           <p>准备逐字稿、摘要或关键片段。先判断它适合长文、对谈稿、短观察，还是素材卡。</p>
           <a href="#workflow-audio">进入</a>
         </article>
-        <article class="route-card">
+        <article class="route-card" data-route-card>
           <strong>我要写人物或创始人深度稿</strong>
           <p>准备公开访谈、播客、演讲、文章和社媒链接。先做资料查看台，再选择文章角度。</p>
           <a href="#workflow-profile">进入</a>
         </article>
-        <article class="route-card">
+        <article class="route-card" data-route-card>
           <strong>我已经有一版 AI 初稿</strong>
           <p>把草稿和原始材料一起放进去，先标出不像人的地方，再做事实校对和去 AI 味。</p>
           <a href="#workflow-voice">进入</a>
@@ -832,7 +932,7 @@
       </div>
 
       <div class="grid">
-        <article class="card" id="workflow-event">
+        <article class="card" id="workflow-event" data-workflow-card>
           <span class="tag">活动预告 / 分论坛介绍 / 商业合作稿</span>
           <h3>社区活动内容传播工作台</h3>
           <p class="summary">把策划案、会议纪要、议程和合作方口径，整理成可审核的活动传播稿。</p>
@@ -869,7 +969,7 @@
           </div>
         </article>
 
-        <article class="card" id="workflow-recap">
+        <article class="card" id="workflow-recap" data-workflow-card>
           <span class="tag">会后报道 / 活动复盘 / 社区记忆</span>
           <h3>活动复盘转公众号</h3>
           <p class="summary">把照片、群聊反馈、口述复盘、公开报道和伙伴记录，整理成会后传播包。</p>
@@ -906,7 +1006,7 @@
           </div>
         </article>
 
-        <article class="card" id="workflow-audio">
+        <article class="card" id="workflow-audio" data-workflow-card>
           <span class="tag">播客 / 录音 / 视频回放 / 直播</span>
           <h3>播客音视频转公众号</h3>
           <p class="summary">把音视频内容转成公众号文章、对谈稿、短观察或可继续复用的素材资产。</p>
@@ -944,7 +1044,7 @@
           </div>
         </article>
 
-        <article class="card" id="workflow-profile">
+        <article class="card" id="workflow-profile" data-workflow-card>
           <span class="tag">公众人物 / 创始人 / Builder Profile</span>
           <h3>公众人物深度报道工作台</h3>
           <p class="summary">基于公开访谈、播客、演讲、文章和社媒资料，写有事实约束的人物深度报道。</p>
@@ -982,8 +1082,9 @@
           </div>
         </article>
       </div>
+      <p class="no-results" data-no-results hidden>没有找到完全匹配的入口。可以换一个关键词，或先从“社区活动内容传播工作台”开始试。</p>
 
-      <section class="gate" id="workflow-voice">
+      <section class="gate" id="workflow-voice" data-workflow-card>
         <div>
           <span class="tag">Final Gate</span>
           <h2>去 AI 味与声音守门</h2>
@@ -1027,5 +1128,145 @@
   <footer>
     <div class="wrap">月亮的 AI 工作台 · 公开使用页 · 2026</div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0/dist/fuse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+  <script>
+    (function () {
+      const routeCards = Array.from(document.querySelectorAll("[data-route-card]"));
+      const workflowCards = Array.from(document.querySelectorAll("[data-workflow-card]"));
+      const searchInput = document.querySelector("#workflowSearch");
+      const clearButton = document.querySelector("[data-clear-search]");
+      const searchHelp = document.querySelector("[data-search-help]");
+      const noResults = document.querySelector("[data-no-results]");
+
+      const workflows = routeCards.map((route) => {
+        const link = route.querySelector("a[href^='#']");
+        const id = link ? link.getAttribute("href").slice(1) : "";
+        const card = document.getElementById(id);
+        const text = `${route.textContent || ""} ${card ? card.textContent || "" : ""}`.trim();
+        return {
+          id,
+          route,
+          card,
+          title: route.querySelector("strong")?.textContent || "",
+          text,
+          compactText: text.replace(/\s+/g, "").toLowerCase()
+        };
+      });
+
+      const fuse = window.Fuse ? new Fuse(workflows, {
+        keys: ["title", "text", "compactText"],
+        threshold: 0.34,
+        ignoreLocation: true,
+        minMatchCharLength: 1
+      }) : null;
+
+      function setVisibility(ids) {
+        workflows.forEach((item) => {
+          const visible = ids.has(item.id);
+          item.route.hidden = !visible;
+          if (item.card) item.card.hidden = !visible;
+        });
+      }
+
+      function showAll() {
+        setVisibility(new Set(workflows.map((item) => item.id)));
+        if (noResults) noResults.hidden = true;
+        if (searchHelp) searchHelp.textContent = "输入你的任务关键词，下面会只保留相关入口；不确定时直接从列表里选。";
+      }
+
+      function applySearch(value) {
+        const query = value.trim();
+        const compactQuery = query.replace(/\s+/g, "").toLowerCase();
+        if (!query) {
+          showAll();
+          return;
+        }
+
+        let matched = [];
+        if (fuse) {
+          matched = fuse.search(query).map((result) => result.item);
+        }
+
+        if (!matched.length) {
+          matched = workflows.filter((item) =>
+            item.compactText.includes(compactQuery) ||
+            item.text.toLowerCase().includes(query.toLowerCase())
+          );
+        }
+
+        const ids = new Set(matched.map((item) => item.id));
+        setVisibility(ids);
+        if (noResults) noResults.hidden = ids.size > 0;
+        if (searchHelp) {
+          searchHelp.textContent = ids.size > 0
+            ? `找到 ${ids.size} 个相关入口。可以点“进入”，也可以继续换关键词。`
+            : "暂时没有匹配入口。试试输入：活动、播客、人物、去 AI 味。";
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener("input", (event) => applySearch(event.target.value));
+      }
+
+      if (clearButton) {
+        clearButton.addEventListener("click", () => {
+          if (searchInput) {
+            searchInput.value = "";
+            searchInput.focus();
+          }
+          showAll();
+        });
+      }
+
+      document.querySelectorAll("details pre").forEach((pre, index) => {
+        if (!pre.id) pre.id = `workflow-prompt-${index + 1}`;
+        const copyButton = document.createElement("button");
+        copyButton.className = "copy-prompt";
+        copyButton.type = "button";
+        copyButton.textContent = "复制启动句";
+        copyButton.setAttribute("data-clipboard-target", `#${pre.id}`);
+        copyButton.setAttribute("aria-label", "复制这个工作流的启动句");
+        pre.insertAdjacentElement("beforebegin", copyButton);
+      });
+
+      function markCopied(button, ok) {
+        const original = "复制启动句";
+        button.textContent = ok ? "已复制" : "请手动复制";
+        window.setTimeout(() => {
+          button.textContent = original;
+        }, 1600);
+      }
+
+      async function copyWithNative(button) {
+        const target = document.querySelector(button.getAttribute("data-clipboard-target"));
+        if (!target || !navigator.clipboard) {
+          markCopied(button, false);
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(target.innerText);
+          markCopied(button, true);
+        } catch (error) {
+          markCopied(button, false);
+        }
+      }
+
+      if (window.ClipboardJS) {
+        const clipboard = new ClipboardJS(".copy-prompt");
+        clipboard.on("success", (event) => {
+          markCopied(event.trigger, true);
+          event.clearSelection();
+        });
+        clipboard.on("error", (event) => copyWithNative(event.trigger));
+      } else {
+        document.querySelectorAll(".copy-prompt").forEach((button) => {
+          button.addEventListener("click", () => copyWithNative(button));
+        });
+      }
+
+      showAll();
+    })();
+  </script>
 </body>
 </html>
