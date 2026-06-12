@@ -34,6 +34,7 @@ Deployable skills live under `skills/`:
 - `skills/dialogue-wechat-article-workflow/`
 - `skills/audio-to-wechat-article/`
 - `skills/public-profile-deep-report-workflow/`
+- `skills/creator-voice-guardian/`
 
 Open `moon-ai-toolkit/index.html` locally, or browse the product cards under `moon-ai-toolkit/product-library/`.
 
