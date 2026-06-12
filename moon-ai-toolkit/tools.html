@@ -302,6 +302,59 @@
       font-size: 13px;
     }
 
+    .route-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .route-card {
+      display: grid;
+      grid-template-columns: minmax(210px, .72fr) minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+    }
+
+    .route-card:nth-child(even) {
+      background: var(--mint);
+    }
+
+    .route-card strong {
+      color: var(--teal);
+      font-family: var(--serif);
+      font-size: 23px;
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    .route-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .route-card a {
+      min-height: 34px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .route-card a:hover {
+      background: var(--ink);
+      color: #fff;
+    }
+
     .section-head {
       display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -363,6 +416,7 @@
 
     .card {
       position: relative;
+      scroll-margin-top: 82px;
       min-height: 100%;
       display: grid;
       grid-template-columns: minmax(260px, .74fr) minmax(0, 1.26fr);
@@ -484,6 +538,10 @@
       font-size: 14px;
     }
 
+    .actions details {
+      order: -1;
+    }
+
     summary {
       cursor: pointer;
       color: var(--ink);
@@ -510,6 +568,7 @@
 
     .gate {
       display: grid;
+      scroll-margin-top: 82px;
       grid-template-columns: minmax(260px, .74fr) minmax(0, 1.26fr);
       gap: 16px;
       margin-top: 12px;
@@ -559,6 +618,11 @@
       font-size: 14px;
     }
 
+    #start,
+    #workflows {
+      scroll-margin-top: 82px;
+    }
+
     @media (max-width: 900px) {
       .hero,
       .section-head,
@@ -598,7 +662,8 @@
       }
 
       .fit-grid,
-      .info {
+      .info,
+      .route-card {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -613,8 +678,14 @@
       }
 
       .top {
-        align-items: flex-start;
-        flex-direction: column;
+        align-items: center;
+        flex-direction: row;
+        gap: 8px;
+      }
+
+      .brand {
+        gap: 7px;
+        font-size: 11px;
       }
 
       .hero {
@@ -632,8 +703,12 @@
 
       .fit-grid,
       .info,
-      .steps {
+      .route-card {
         grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .section-head h2,
@@ -656,6 +731,12 @@
       .button,
       .repo {
         width: 100%;
+      }
+
+      .top .repo {
+        width: auto;
+        padding-inline: 8px;
+        font-size: 10px;
       }
 
       .hero-actions .button {
@@ -694,13 +775,13 @@
         <h1>月亮的 AI 工作台</h1>
         <p class="lead">为内容创作者、深度社区活动组织者打造的个性化内容工作流。它把材料、目的、边界和审核放进同一套流程，在每次交付里积累判断力。不只是 human in the loop，更是 humanity in the loop。</p>
         <div class="hero-actions">
-          <a class="button" href="#workflows">选择工作流</a>
-          <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">查看 GitHub</a>
+          <a class="button" href="#start">从任务开始</a>
+          <a class="button secondary" href="#workflows">查看工作流</a>
         </div>
       </div>
       <aside class="hero-card">
         <img src="assets/03-bilingual-lockup.svg" alt="Moon workbench lockup">
-        <h2>3 分钟开始</h2>
+        <h2>第一次使用</h2>
         <ol class="steps">
           <li><b>1</b><span>选场景</span></li>
           <li><b>2</b><span>放材料与边界</span></li>
@@ -710,27 +791,36 @@
       </aside>
     </section>
 
-    <section class="wrap">
+    <section class="wrap" id="start">
       <div class="section-head">
-        <h2>适合谁</h2>
-        <p>这个工作台不是给空白写作准备的，它更适合已经有材料、但缺少整理、判断和交付流程的人。</p>
+        <h2>从你的任务开始</h2>
+        <p>不用先理解每个 skill 的名字。先看你现在手里要交付什么，再进入对应工作流。上手时只需要准备三类信息：已有材料、发布目的、不能公开的边界。</p>
       </div>
-      <div class="fit-grid">
-        <article class="fit-card">
-          <h3>社区运营 / 活动主办方</h3>
-          <p>需要把活动资料、嘉宾议程和合作方口径变成能发布的传播稿。</p>
+      <div class="route-list">
+        <article class="route-card">
+          <strong>我要发布活动预告或论坛介绍</strong>
+          <p>准备策划案、议程、嘉宾信息、合作方口径。适合会前传播、分论坛介绍和商业合作稿。</p>
+          <a href="#workflow-event">进入</a>
         </article>
-        <article class="fit-card">
-          <h3>播客 / 直播主理人</h3>
-          <p>有录音、回放或逐字稿，想做二次分发，又不想只得到一份摘要。</p>
+        <article class="route-card">
+          <strong>活动刚结束，想做会后报道</strong>
+          <p>准备复盘口述、照片说明、群聊反馈、公开报道链接。先整理现场材料，再决定写报道还是传播包。</p>
+          <a href="#workflow-recap">进入</a>
         </article>
-        <article class="fit-card">
-          <h3>内容实习生 / 编辑</h3>
-          <p>要承接小型内容需求，但又必须控制事实、授权、口径和 AI 味风险。</p>
+        <article class="route-card">
+          <strong>我有播客、直播或视频回放</strong>
+          <p>准备逐字稿、摘要或关键片段。先判断它适合长文、对谈稿、短观察，还是素材卡。</p>
+          <a href="#workflow-audio">进入</a>
         </article>
-        <article class="fit-card">
-          <h3>独立创作者 / 研究者</h3>
-          <p>想把公开资料、观察和项目经验，沉淀成可复用的内容资产。</p>
+        <article class="route-card">
+          <strong>我要写人物或创始人深度稿</strong>
+          <p>准备公开访谈、播客、演讲、文章和社媒链接。先做资料查看台，再选择文章角度。</p>
+          <a href="#workflow-profile">进入</a>
+        </article>
+        <article class="route-card">
+          <strong>我已经有一版 AI 初稿</strong>
+          <p>把草稿和原始材料一起放进去，先标出不像人的地方，再做事实校对和去 AI 味。</p>
+          <a href="#workflow-voice">进入</a>
         </article>
       </div>
     </section>
@@ -738,11 +828,11 @@
     <section class="wrap" id="workflows">
       <div class="section-head">
         <h2>四个内容生产场景</h2>
-        <p>先解决一个具体任务，再慢慢沉淀成自己的内容系统。每个入口都保留部署包和启动句，但页面默认只展示判断信息。</p>
+        <p>先解决一个具体任务，再慢慢沉淀成自己的内容系统。第一次使用时，建议先点“查看启动句”，把材料和边界放进对话里跑通一遍；熟悉之后，再打开 GitHub 部署包。</p>
       </div>
 
       <div class="grid">
-        <article class="card">
+        <article class="card" id="workflow-event">
           <span class="tag">活动预告 / 分论坛介绍 / 商业合作稿</span>
           <h3>社区活动内容传播工作台</h3>
           <p class="summary">把策划案、会议纪要、议程和合作方口径，整理成可审核的活动传播稿。</p>
@@ -779,7 +869,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" id="workflow-recap">
           <span class="tag">会后报道 / 活动复盘 / 社区记忆</span>
           <h3>活动复盘转公众号</h3>
           <p class="summary">把照片、群聊反馈、口述复盘、公开报道和伙伴记录，整理成会后传播包。</p>
@@ -816,7 +906,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" id="workflow-audio">
           <span class="tag">播客 / 录音 / 视频回放 / 直播</span>
           <h3>播客音视频转公众号</h3>
           <p class="summary">把音视频内容转成公众号文章、对谈稿、短观察或可继续复用的素材资产。</p>
@@ -854,7 +944,7 @@
           </div>
         </article>
 
-        <article class="card">
+        <article class="card" id="workflow-profile">
           <span class="tag">公众人物 / 创始人 / Builder Profile</span>
           <h3>公众人物深度报道工作台</h3>
           <p class="summary">基于公开访谈、播客、演讲、文章和社媒资料，写有事实约束的人物深度报道。</p>
@@ -893,7 +983,7 @@
         </article>
       </div>
 
-      <section class="gate">
+      <section class="gate" id="workflow-voice">
         <div>
           <span class="tag">Final Gate</span>
           <h2>去 AI 味与声音守门</h2>
