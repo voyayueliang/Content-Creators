@@ -1,6 +1,6 @@
 {
-  "name": "Moon AI Toolkit",
-  "title": "月亮的 AI 工具箱",
+  "name": "Moon AI Workbench",
+  "title": "月亮的 AI 工作台",
   "tagline": "把真实的人、现场、对话和项目材料，转译成可以被理解、传播、复用和继续生长的内容资产。",
   "sections": [
     {
@@ -49,7 +49,7 @@
   "nextBuild": [
     "为首页写 20 秒内能看懂的自我介绍",
     "把 Moon Content OS 作为母产品放到首页",
-    "整理 3-5 条月亮的 AI 工具箱方法原则",
+    "整理 3-5 条月亮的 AI 工作台方法原则",
     "补 2 个真实案例页"
   ]
 }
