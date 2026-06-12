@@ -24,7 +24,7 @@
       --poster-black: #050505;
       --poster-green: #72ef75;
       --charcoal: #06110a;
-      --max: 1320px;
+      --max: 1120px;
       --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
       --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, "Times New Roman", "Songti SC", "STSong", serif;
       --sans: "Work Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -56,8 +56,8 @@
       content: "";
       position: fixed;
       inset: 0;
-      border: 6px solid var(--poster-green);
-      box-shadow: inset -8px -8px 0 var(--line);
+      border: 4px solid var(--poster-green);
+      box-shadow: inset -5px -5px 0 var(--line);
       pointer-events: none;
       z-index: 80;
     }
@@ -68,7 +68,7 @@
     }
 
     .wrap {
-      width: min(var(--max), calc(100% - 40px));
+      width: min(var(--max), calc(100% - 32px));
       margin: 0 auto;
     }
 
@@ -141,16 +141,16 @@
     }
 
     main {
-      padding: 0 0 58px;
+      padding: 0 0 44px;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 18px;
-      align-items: center;
-      min-height: 86vh;
-      padding: 82px 0 58px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items: start;
+      min-height: auto;
+      padding: 34px 0 28px;
       border-bottom: 1px solid var(--line);
       background:
         linear-gradient(rgba(255, 254, 250, .92), rgba(255, 254, 250, .96)),
@@ -170,27 +170,27 @@
 
     h1 {
       margin: 0;
-      max-width: 940px;
+      max-width: 760px;
       font-family: var(--serif);
-      font-size: clamp(54px, 8.3vw, 126px);
+      font-size: clamp(36px, 6vw, 60px);
       font-weight: 500;
-      line-height: .88;
+      line-height: 1.02;
       letter-spacing: 0;
     }
 
     .lead {
-      max-width: 720px;
-      margin: 24px 0 0;
+      max-width: 860px;
+      margin: 16px 0 0;
       color: var(--muted);
-      font-size: clamp(17px, 1.7vw, 23px);
-      line-height: 1.58;
+      font-size: clamp(15px, 1.4vw, 18px);
+      line-height: 1.68;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 24px;
+      margin-top: 20px;
     }
 
     .button.secondary {
@@ -199,50 +199,46 @@
     }
 
     .hero > div {
-      grid-column: 1 / span 8;
-      align-self: end;
+      align-self: start;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      padding: 28px 0 32px;
+      padding: 20px 0 22px;
     }
 
     .hero-card {
-      grid-column: 9 / span 4;
-      align-self: stretch;
-      min-height: 560px;
-      padding: 24px;
+      align-self: start;
+      min-height: auto;
+      padding: 12px;
       border: 1px solid var(--line);
       border-radius: 0;
-      background: var(--poster-black);
-      color: var(--paper);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      background: var(--mint);
+      color: var(--ink);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: center;
     }
 
     .hero-card img {
-      width: min(260px, 100%);
-      max-width: 100%;
-      display: block;
-      margin-bottom: 24px;
-      padding: 18px;
-      border: 1px solid rgba(114, 239, 117, .68);
-      background: rgba(114, 239, 117, .08);
+      display: none;
     }
 
     .hero-card h2 {
-      margin: 0 0 12px;
-      color: var(--poster-green);
-      font-family: var(--serif);
-      font-size: clamp(40px, 4.5vw, 68px);
-      font-weight: 500;
-      line-height: .9;
-      letter-spacing: 0;
+      margin: 0;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 760;
+      line-height: 1;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .steps {
       display: grid;
-      gap: 9px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -250,20 +246,22 @@
 
     .steps li {
       display: grid;
-      grid-template-columns: 26px 1fr;
-      gap: 10px;
-      color: rgba(255, 255, 255, .82);
+      grid-template-columns: 24px 1fr;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
     }
 
     .steps b {
-      width: 26px;
-      height: 26px;
-      border: 1px solid var(--poster-green);
-      background: rgba(114, 239, 117, .12);
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--teal);
+      background: rgba(23, 63, 31, .08);
       text-align: center;
-      line-height: 26px;
-      font-size: 13px;
-      color: var(--poster-green);
+      line-height: 23px;
+      font-size: 12px;
+      color: var(--teal);
     }
 
     .fit-grid {
@@ -276,8 +274,8 @@
     }
 
     .fit-card {
-      min-height: 172px;
-      padding: 20px;
+      min-height: 108px;
+      padding: 14px;
       border: 0;
       border-radius: 0;
       background: var(--paper-2);
@@ -292,7 +290,7 @@
       margin: 0 0 6px;
       color: var(--teal);
       font-family: var(--serif);
-      font-size: 28px;
+      font-size: 20px;
       font-weight: 500;
       line-height: 1.02;
       letter-spacing: 0;
@@ -301,7 +299,7 @@
     .fit-card p {
       margin: 0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
     }
 
     .section-head {
@@ -309,17 +307,17 @@
       grid-template-columns: repeat(12, minmax(0, 1fr));
       gap: 18px;
       align-items: start;
-      margin: 0 0 38px;
-      padding-top: 18px;
+      margin: 0 0 24px;
+      padding-top: 16px;
       border-top: 1px solid var(--line);
     }
 
     .section-head h2 {
-      grid-column: 1 / span 5;
+      grid-column: 1 / span 4;
       margin: 0;
       color: var(--teal);
       font-family: var(--serif);
-      font-size: clamp(42px, 6vw, 88px);
+      font-size: clamp(28px, 3.8vw, 40px);
       font-weight: 500;
       letter-spacing: 0;
       line-height: .92;
@@ -328,22 +326,22 @@
     .section-head h2::after {
       content: "";
       display: block;
-      width: 76px;
+      width: 54px;
       height: 1px;
       margin-top: 14px;
       background: var(--line);
     }
 
     .section-head p {
-      grid-column: 6 / span 7;
+      grid-column: 5 / span 8;
       margin: 0;
       color: var(--muted);
       max-width: 760px;
-      font-size: 16px;
+      font-size: 15px;
     }
 
     .wrap:not(.hero) {
-      padding: 96px 0 0;
+      padding: 44px 0 0;
     }
 
     .wrap + .wrap {
@@ -357,17 +355,21 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1px;
-      border: 1px solid var(--line);
-      background: var(--line);
+      grid-template-columns: 1fr;
+      gap: 12px;
+      border: 0;
+      background: transparent;
     }
 
     .card {
       position: relative;
       min-height: 100%;
-      padding: 24px;
-      border: 0;
+      display: grid;
+      grid-template-columns: minmax(260px, .74fr) minmax(0, 1.26fr);
+      gap: 16px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid var(--line);
       border-radius: 0;
       background: var(--paper-2);
       box-shadow: none;
@@ -376,7 +378,7 @@
 
     .card:nth-child(2),
     .card:nth-child(3) {
-      background: var(--mint);
+      background: var(--paper-2);
     }
 
     .card::before {
@@ -387,7 +389,7 @@
     .tag {
       display: inline-flex;
       width: fit-content;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
       padding: 4px 8px;
       border: 1px solid currentColor;
       color: var(--teal);
@@ -408,24 +410,35 @@
 
     .card h3 {
       max-width: 560px;
-      font-size: clamp(32px, 4vw, 58px);
-      line-height: .98;
+      font-size: clamp(24px, 2.7vw, 34px);
+      line-height: 1.04;
     }
 
     .summary {
-      margin: 12px 0 20px;
+      margin: 9px 0 14px;
       color: var(--muted);
+      font-size: 14px;
     }
 
     .info {
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1px;
       border: 1px solid var(--line);
       background: var(--line);
+      grid-column: 2;
+      grid-row: 1 / span 5;
+    }
+
+    .card > .tag,
+    .card > h3,
+    .card > .summary,
+    .card > .actions {
+      grid-column: 1;
     }
 
     .line {
-      min-height: 88px;
+      min-height: 0;
       padding: 12px;
       border-radius: 0;
       background: rgba(255, 254, 250, .9);
@@ -441,7 +454,7 @@
       margin-bottom: 4px;
       color: var(--teal);
       font-family: var(--mono);
-      font-size: 14px;
+      font-size: 11px;
       letter-spacing: .04em;
       text-transform: uppercase;
     }
@@ -450,7 +463,8 @@
     .line ol {
       margin: 0;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 13px;
+      line-height: 1.58;
     }
 
     .line ol {
@@ -462,7 +476,7 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 10px;
-      margin-top: 16px;
+      margin-top: 14px;
     }
 
     details {
@@ -496,10 +510,10 @@
 
     .gate {
       display: grid;
-      grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr);
-      gap: 1px;
-      margin-top: 1px;
-      padding: 24px;
+      grid-template-columns: minmax(260px, .74fr) minmax(0, 1.26fr);
+      gap: 16px;
+      margin-top: 12px;
+      padding: 16px;
       border: 1px solid var(--line);
       border-radius: 0;
       background: var(--poster-black);
@@ -519,8 +533,8 @@
 
     .gate h2 {
       color: var(--poster-green);
-      font-size: clamp(42px, 5vw, 76px);
-      line-height: .92;
+      font-size: clamp(28px, 3.8vw, 42px);
+      line-height: 1;
     }
 
     .gate .line {
@@ -548,8 +562,7 @@
     @media (max-width: 900px) {
       .hero,
       .section-head,
-      .fit-grid,
-      .grid,
+      .card,
       .gate {
         grid-template-columns: 1fr;
       }
@@ -557,8 +570,14 @@
       .hero > div,
       .hero-card,
       .section-head h2,
-      .section-head p {
+      .section-head p,
+      .card > .tag,
+      .card > h3,
+      .card > .summary,
+      .card > .actions,
+      .info {
         grid-column: auto;
+        grid-row: auto;
       }
 
       .hero {
@@ -567,16 +586,30 @@
 
       .hero-card {
         min-height: auto;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card img {
+        display: none;
       }
 
       h1 {
-        font-size: clamp(46px, 11vw, 82px);
+        font-size: clamp(36px, 8.5vw, 56px);
+      }
+
+      .fit-grid,
+      .info {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
     @media (max-width: 560px) {
       .wrap {
-        width: min(100% - 28px, var(--max));
+        width: min(100% - 24px, var(--max));
       }
 
       .top {
@@ -585,17 +618,27 @@
       }
 
       .hero {
-        padding: 48px 0 42px;
+        padding: 24px 0 22px;
       }
 
       h1 {
-        font-size: clamp(38px, 12vw, 54px);
-        line-height: .94;
+        font-size: clamp(32px, 9.2vw, 42px);
+        line-height: 1.02;
+      }
+
+      .lead {
+        font-size: 15px;
+      }
+
+      .fit-grid,
+      .info,
+      .steps {
+        grid-template-columns: 1fr;
       }
 
       .section-head h2,
       .gate h2 {
-        font-size: clamp(34px, 10vw, 46px);
+        font-size: clamp(28px, 8vw, 36px);
         line-height: 1;
       }
 
@@ -605,21 +648,31 @@
         align-items: stretch;
       }
 
+      .hero-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .button,
       .repo {
         width: 100%;
+      }
+
+      .hero-actions .button {
+        width: auto;
       }
 
       .card,
       .gate,
       .fit-card,
       .hero-card {
-        padding: 18px;
+        padding: 13px;
       }
 
       .wrap:not(.hero) {
-        padding-top: 60px;
+        padding-top: 34px;
       }
+
     }
   </style>
 </head>
@@ -639,7 +692,7 @@
       <div>
         <p class="eyebrow">Humanity in the loop</p>
         <h1>月亮的 AI 工作台</h1>
-        <p class="lead">为内容创作者、深度社区活动组织者等打造的个性化内容工作流。我们洞察场景需求，设定人机协作的边界，在一次次交付中积累判断力。这里不只是 human in the loop，更是 humanity in the loop。</p>
+        <p class="lead">为内容创作者、深度社区活动组织者打造的个性化内容工作流。它把材料、目的、边界和审核放进同一套流程，在每次交付里积累判断力。不只是 human in the loop，更是 humanity in the loop。</p>
         <div class="hero-actions">
           <a class="button" href="#workflows">选择工作流</a>
           <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">查看 GitHub</a>
@@ -649,10 +702,10 @@
         <img src="assets/03-bilingual-lockup.svg" alt="Moon workbench lockup">
         <h2>3 分钟开始</h2>
         <ol class="steps">
-          <li><b>1</b><span>选一个最接近的内容场景。</span></li>
-          <li><b>2</b><span>把材料、发布目的和不能公开的边界放进去。</span></li>
-          <li><b>3</b><span>先让工作流做材料地图和缺口检查。</span></li>
-          <li><b>4</b><span>再写稿，最后过事实校对和去 AI 味。</span></li>
+          <li><b>1</b><span>选场景</span></li>
+          <li><b>2</b><span>放材料与边界</span></li>
+          <li><b>3</b><span>查缺口</span></li>
+          <li><b>4</b><span>校对去 AI 味</span></li>
         </ol>
       </aside>
     </section>
@@ -710,10 +763,6 @@
                 <li>先做事实缺口检查，再进入草稿。</li>
               </ol>
             </section>
-            <section class="line sample">
-              <strong>输入 / 输出样例</strong>
-              <p>输入：活动策划案、议程、嘉宾信息、合作方口径。<br>输出：公众号草稿、标题备选、事实待确认清单。</p>
-            </section>
           </div>
           <div class="actions">
             <a class="button" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
@@ -750,10 +799,6 @@
                 <li>标注哪些图片、名字和评价可以公开。</li>
                 <li>先生成素材地图，再判断写报道还是传播包。</li>
               </ol>
-            </section>
-            <section class="line sample">
-              <strong>输入 / 输出样例</strong>
-              <p>输入：复盘录音、现场照片、群聊反馈、伙伴记录。<br>输出：会后报道、图片占位说明、社区记忆素材包。</p>
             </section>
           </div>
           <div class="actions">
@@ -792,10 +837,6 @@
                 <li>先判断内容形态，再决定长文、对谈稿还是短观察。</li>
               </ol>
             </section>
-            <section class="line sample">
-              <strong>输入 / 输出样例</strong>
-              <p>输入：播客逐字稿、直播摘要、嘉宾信息、公开边界。<br>输出：公众号文章、对谈稿、短观察或素材卡。</p>
-            </section>
           </div>
           <div class="actions">
             <a class="button" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
@@ -833,10 +874,6 @@
                 <li>说明发布渠道、读者和不能推断的边界。</li>
                 <li>先做资料查看台和文章角度选择，再写逐节草稿。</li>
               </ol>
-            </section>
-            <section class="line sample">
-              <strong>输入 / 输出样例</strong>
-              <p>输入：人物姓名、公开访谈、播客、演讲、文章链接。<br>输出：资料查看台、文章角度、逐节人物稿和引用核查表。</p>
             </section>
           </div>
           <div class="actions">
@@ -891,10 +928,6 @@
               <li>先标问题，不急着整篇重写。</li>
               <li>逐句改掉空泛、漂亮但不稳的表达。</li>
             </ol>
-          </section>
-          <section class="line sample">
-            <strong>输入 / 输出样例</strong>
-            <p>输入：AI 初稿、原始材料、编辑反馈或合作方要求。<br>输出：不像人的句子、问题原因、改写建议和最终可发版本。</p>
           </section>
         </div>
       </section>
