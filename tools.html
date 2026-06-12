@@ -121,6 +121,7 @@
       font-size: 14px;
       font-weight: 720;
       white-space: nowrap;
+      cursor: pointer;
     }
 
     .repo {
@@ -196,6 +197,10 @@
     .button.secondary {
       background: transparent;
       color: var(--ink);
+    }
+
+    .button.secondary:hover {
+      background: var(--mint);
     }
 
     .hero > div {
@@ -705,6 +710,10 @@
       margin-top: 14px;
     }
 
+    .use-now {
+      min-width: 170px;
+    }
+
     details {
       color: var(--muted);
       font-size: 14px;
@@ -1062,8 +1071,8 @@
 
     <section class="wrap" id="workflows">
       <div class="section-head">
-        <h2>四个内容生产场景</h2>
-        <p>先解决一个具体任务，再慢慢沉淀成自己的内容系统。第一次使用时，建议先点“查看启动句”，把材料和边界放进对话里跑通一遍；熟悉之后，再打开 GitHub 部署包。</p>
+        <h2>五个直接使用入口</h2>
+        <p>先解决一个具体任务，再慢慢沉淀成自己的内容系统。第一次使用不用部署：复制启动句，粘到自己的 AI 对话里，再补充材料、目标和边界。GitHub 部署包适合之后想长期维护自己版本的人。</p>
       </div>
 
       <div class="grid">
@@ -1090,7 +1099,7 @@
             </section>
           </div>
           <div class="actions">
-            <a class="button" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-event">复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开社区活动内容传播工作台。
@@ -1101,6 +1110,7 @@
 
 请先做需求收口和事实缺口检查，再决定文章结构。</pre>
             </details>
+            <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">进阶：GitHub 部署包</a>
           </div>
         </article>
 
@@ -1127,7 +1137,7 @@
             </section>
           </div>
           <div class="actions">
-            <a class="button" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-recap">复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开活动复盘转公众号工作流。
@@ -1138,6 +1148,7 @@
 
 请先整理素材地图，再判断适合写成报道、观察稿还是传播包。</pre>
             </details>
+            <a class="button secondary" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">进阶：GitHub 部署包</a>
           </div>
         </article>
 
@@ -1164,7 +1175,7 @@
             </section>
           </div>
           <div class="actions">
-            <a class="button" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-audio">复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开播客音视频转公众号文章工作流。
@@ -1176,6 +1187,7 @@
 
 请先判断内容形态，不要直接写成长文。</pre>
             </details>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">进阶：GitHub 部署包</a>
           </div>
         </article>
 
@@ -1202,7 +1214,7 @@
             </section>
           </div>
           <div class="actions">
-            <a class="button" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/public-profile-deep-report-workflow" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-profile">复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开公众人物深度报道工作台。
@@ -1214,6 +1226,7 @@
 
 请先做人物资料查看台和素材解剖，不要直接写完整长文。</pre>
             </details>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/public-profile-deep-report-workflow" target="_blank" rel="noreferrer">进阶：GitHub 部署包</a>
           </div>
         </article>
       </div>
@@ -1225,7 +1238,7 @@
           <h2>去 AI 味与声音守门</h2>
           <p class="summary">发布前最后一轮：把 AI 初稿里过度顺滑、空泛判断、硬凑转折和不像人的表达挑出来，改回具体、克制、有边界的人的声音。</p>
           <div class="actions">
-            <a class="button" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-voice">复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开去 AI 味与声音守门工作流。
@@ -1236,6 +1249,7 @@
 请标出不像人的地方、为什么不稳，并给出更像我的改法。
 同时检查是否有空泛判断、硬凑转折、过度顺滑和没有材料支撑的漂亮话。</pre>
             </details>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">进阶：GitHub 部署包</a>
           </div>
         </div>
         <div class="info">
@@ -1404,6 +1418,12 @@
 
       document.querySelectorAll("details pre").forEach((pre, index) => {
         if (!pre.id) pre.id = `workflow-prompt-${index + 1}`;
+        const workflowCard = pre.closest("[data-workflow-card]");
+        const useNowButton = workflowCard?.querySelector("[data-copy-workflow]");
+        if (useNowButton) {
+          useNowButton.setAttribute("data-clipboard-target", `#${pre.id}`);
+          useNowButton.setAttribute("aria-label", "复制这个工作流的启动句直接使用");
+        }
         const copyButton = document.createElement("button");
         copyButton.className = "copy-prompt";
         copyButton.type = "button";
@@ -1414,7 +1434,8 @@
       });
 
       function markCopied(button, ok) {
-        const original = "复制启动句";
+        const original = button.dataset.originalLabel || button.textContent;
+        button.dataset.originalLabel = original;
         button.textContent = ok ? "已复制" : "请手动复制";
         window.setTimeout(() => {
           button.textContent = original;
@@ -1436,14 +1457,19 @@
       }
 
       if (window.ClipboardJS) {
-        const clipboard = new ClipboardJS(".copy-prompt");
+        const clipboard = new ClipboardJS(".copy-prompt, [data-copy-workflow]", {
+          text: (trigger) => {
+            const target = document.querySelector(trigger.getAttribute("data-clipboard-target"));
+            return target ? target.innerText : "";
+          }
+        });
         clipboard.on("success", (event) => {
           markCopied(event.trigger, true);
           event.clearSelection();
         });
         clipboard.on("error", (event) => copyWithNative(event.trigger));
       } else {
-        document.querySelectorAll(".copy-prompt").forEach((button) => {
+        document.querySelectorAll(".copy-prompt, [data-copy-workflow]").forEach((button) => {
           button.addEventListener("click", () => copyWithNative(button));
         });
       }
