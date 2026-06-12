@@ -307,13 +307,100 @@
       gap: 8px;
     }
 
+    .choice-panel {
+      display: grid;
+      gap: 12px;
+      margin: 0 0 14px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: var(--mint);
+    }
+
+    .choice-panel > div:first-child {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: end;
+    }
+
+    .choice-panel h3 {
+      margin: 0;
+      color: var(--teal);
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    .choice-panel p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .choice-button {
+      display: grid;
+      gap: 6px;
+      min-height: 116px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      background: var(--paper);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .choice-button:hover,
+    .choice-button[aria-pressed="true"] {
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .choice-button[aria-pressed="true"] {
+      box-shadow: inset 0 -5px 0 var(--poster-green);
+    }
+
+    .choice-button strong {
+      font-family: var(--serif);
+      font-size: 21px;
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    .choice-button span {
+      color: inherit;
+      font-size: 12px;
+      line-height: 1.45;
+      opacity: .78;
+    }
+
     .finder {
       display: grid;
       gap: 10px;
-      margin: 0 0 14px;
-      padding: 12px;
+      margin: 0;
+      padding: 10px 0 0;
       border: 1px solid var(--line);
-      background: var(--mint);
+      border-width: 1px 0 0;
+      background: transparent;
+    }
+
+    .finder > summary {
+      width: fit-content;
+      padding: 6px 0;
+      color: var(--teal);
+    }
+
+    .finder[open] {
+      padding-bottom: 2px;
     }
 
     .finder label {
@@ -346,6 +433,7 @@
     .finder input:focus-visible,
     .button:focus-visible,
     .repo:focus-visible,
+    .choice-button:focus-visible,
     .route-card a:focus-visible,
     summary:focus-visible,
     .copy-prompt:focus-visible {
@@ -380,6 +468,7 @@
     }
 
     .finder p,
+    .choice-feedback,
     .no-results {
       margin: 0;
       color: var(--muted);
@@ -755,6 +844,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .choice-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .steps {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -793,6 +886,15 @@
       .info,
       .route-card {
         grid-template-columns: 1fr;
+      }
+
+      .choice-panel > div:first-child,
+      .choice-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .choice-button {
+        min-height: auto;
       }
 
       .steps {
@@ -888,13 +990,46 @@
         <h2>从你的任务开始</h2>
         <p>不用先理解每个 skill 的名字。先看你现在手里要交付什么，再进入对应工作流。上手时只需要准备三类信息：已有材料、发布目的、不能公开的边界。</p>
       </div>
-      <div class="finder" data-workflow-finder>
-        <label for="workflowSearch">快速找入口</label>
-        <div class="finder-row">
-          <input id="workflowSearch" type="search" autocomplete="off" placeholder="试试输入：活动预告 / 播客 / 人物 / 去 AI 味">
-          <button class="mini-button" type="button" data-clear-search>查看全部</button>
+      <div class="choice-panel" data-choice-panel>
+        <div>
+          <div>
+            <h3>你现在想完成什么？</h3>
+            <p>点一个最接近的任务，下面会只保留对应入口；不确定就直接看全部。</p>
+          </div>
+          <button class="mini-button" type="button" data-show-all>查看全部</button>
         </div>
-        <p data-search-help>输入你的任务关键词，下面会只保留相关入口；不确定时直接从列表里选。</p>
+        <div class="choice-grid" aria-label="选择你的内容任务">
+          <button class="choice-button" type="button" data-choice-target="workflow-event" aria-pressed="false">
+            <strong>活动预告</strong>
+            <span>会前传播、分论坛介绍、商业合作稿</span>
+          </button>
+          <button class="choice-button" type="button" data-choice-target="workflow-recap" aria-pressed="false">
+            <strong>会后报道</strong>
+            <span>活动复盘、照片反馈、社区记忆</span>
+          </button>
+          <button class="choice-button" type="button" data-choice-target="workflow-audio" aria-pressed="false">
+            <strong>音视频转文章</strong>
+            <span>播客、直播、访谈、圆桌逐字稿</span>
+          </button>
+          <button class="choice-button" type="button" data-choice-target="workflow-profile" aria-pressed="false">
+            <strong>人物深度稿</strong>
+            <span>公开访谈、创始人、Builder Profile</span>
+          </button>
+          <button class="choice-button" type="button" data-choice-target="workflow-voice" aria-pressed="false">
+            <strong>去 AI 味</strong>
+            <span>已有初稿，做声音守门和事实校对</span>
+          </button>
+        </div>
+        <p class="choice-feedback" data-choice-feedback>建议先从上面的任务按钮进入；搜索只是备用路径。</p>
+        <details class="finder" data-workflow-finder>
+          <summary>我知道关键词，展开搜索</summary>
+          <label for="workflowSearch">关键词搜索</label>
+          <div class="finder-row">
+            <input id="workflowSearch" type="search" autocomplete="off" placeholder="试试输入：活动预告 / 播客 / 人物 / 去 AI 味">
+            <button class="mini-button" type="button" data-clear-search>清空搜索</button>
+          </div>
+          <p data-search-help>输入你的任务关键词，下面会只保留相关入口。</p>
+        </details>
       </div>
       <div class="route-list">
         <article class="route-card" data-route-card>
@@ -1136,6 +1271,9 @@
       const workflowCards = Array.from(document.querySelectorAll("[data-workflow-card]"));
       const searchInput = document.querySelector("#workflowSearch");
       const clearButton = document.querySelector("[data-clear-search]");
+      const showAllButton = document.querySelector("[data-show-all]");
+      const choiceButtons = Array.from(document.querySelectorAll("[data-choice-target]"));
+      const choiceFeedback = document.querySelector("[data-choice-feedback]");
       const searchHelp = document.querySelector("[data-search-help]");
       const noResults = document.querySelector("[data-no-results]");
 
@@ -1169,10 +1307,38 @@
         });
       }
 
-      function showAll() {
+      function clearChoiceState() {
+        choiceButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", "false");
+        });
+      }
+
+      function showAll(isInitial) {
         setVisibility(new Set(workflows.map((item) => item.id)));
+        clearChoiceState();
         if (noResults) noResults.hidden = true;
-        if (searchHelp) searchHelp.textContent = "输入你的任务关键词，下面会只保留相关入口；不确定时直接从列表里选。";
+        if (choiceFeedback) {
+          choiceFeedback.textContent = isInitial
+            ? "建议先从上面的任务按钮进入；搜索只是备用路径。"
+            : "已显示全部入口。你也可以重新选择一个更接近的任务。";
+        }
+        if (searchHelp) searchHelp.textContent = "输入你的任务关键词，下面会只保留相关入口。";
+      }
+
+      function chooseWorkflow(id) {
+        const target = workflows.find((item) => item.id === id);
+        if (!target) return;
+
+        setVisibility(new Set([id]));
+        choiceButtons.forEach((button) => {
+          button.setAttribute("aria-pressed", button.dataset.choiceTarget === id ? "true" : "false");
+        });
+        if (searchInput) searchInput.value = "";
+        if (noResults) noResults.hidden = true;
+        if (choiceFeedback) {
+          choiceFeedback.textContent = `已为你选出：${target.title}。可以点下面的“进入”，也可以直接往下看对应工作流。`;
+        }
+        if (searchHelp) searchHelp.textContent = "搜索已清空。可以继续换关键词，或点“查看全部”。";
       }
 
       function applySearch(value) {
@@ -1197,7 +1363,13 @@
 
         const ids = new Set(matched.map((item) => item.id));
         setVisibility(ids);
+        clearChoiceState();
         if (noResults) noResults.hidden = ids.size > 0;
+        if (choiceFeedback) {
+          choiceFeedback.textContent = ids.size > 0
+            ? "已按关键词筛选。搜索适合熟悉页面后快速定位。"
+            : "没有找到完全匹配的入口，可以换个词，或点“查看全部”。";
+        }
         if (searchHelp) {
           searchHelp.textContent = ids.size > 0
             ? `找到 ${ids.size} 个相关入口。可以点“进入”，也可以继续换关键词。`
@@ -1207,6 +1379,17 @@
 
       if (searchInput) {
         searchInput.addEventListener("input", (event) => applySearch(event.target.value));
+      }
+
+      choiceButtons.forEach((button) => {
+        button.addEventListener("click", () => chooseWorkflow(button.dataset.choiceTarget));
+      });
+
+      if (showAllButton) {
+        showAllButton.addEventListener("click", () => {
+          if (searchInput) searchInput.value = "";
+          showAll();
+        });
       }
 
       if (clearButton) {
@@ -1265,7 +1448,7 @@
         });
       }
 
-      showAll();
+      showAll(true);
     })();
   </script>
 </body>
