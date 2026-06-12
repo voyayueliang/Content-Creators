@@ -1,0 +1,60 @@
+[
+  {
+    "id": "moon-content-os",
+    "title": "Moon Content OS Lite",
+    "type": "母产品 / 内容工作台",
+    "useWhen": "素材很多、内容方向不清、需要把项目和反馈沉淀成可持续资产",
+    "entry": "tools.html#content-os",
+    "localFolder": "product-library/00_moon-content-os"
+  },
+  {
+    "id": "community-event-content-workbench",
+    "title": "社区活动内容传播工作台",
+    "type": "活动传播 / DevRel 内容工作台",
+    "useWhen": "需要把活动策划案、会议纪要、嘉宾信息和合作方口径变成可审核稿件",
+    "entry": "tools.html#event",
+    "github": "https://github.com/voyayueliang/datawhale-content-producer-agent-skill",
+    "localFolder": "product-library/01_community-event-content-workbench"
+  },
+  {
+    "id": "event-recap-to-wechat-md",
+    "title": "活动复盘转公众号 Markdown Skill",
+    "type": "会后报道 / 活动复盘",
+    "useWhen": "活动结束后，需要从复盘口述、照片、群聊和公开报道中整理会后传播包",
+    "entry": "tools.html#recap",
+    "github": "https://github.com/voyayueliang/event-recap-to-wechat-md-skill",
+    "localFolder": "product-library/02_event-recap-to-wechat-md"
+  },
+  {
+    "id": "dialogue-wechat-article-workflow",
+    "title": "通用对谈转公众号工作流",
+    "type": "访谈 / 播客 / 直播内容整理",
+    "useWhen": "需要把对谈、直播、圆桌逐字稿整理成公众号稿、观察稿或素材卡",
+    "entry": "tools.html#dialogue",
+    "localFolder": "product-library/03_dialogue-wechat-article-workflow"
+  },
+  {
+    "id": "audio-to-wechat-article",
+    "title": "播客音视频转公众号文章 Skill",
+    "type": "播客 / 音频 / 视频回放转公众号",
+    "useWhen": "需要把播客、录音、直播回放、视频回放、访谈或圆桌逐字稿转成可发布公众号内容，并避免流水账和 AI 味",
+    "entry": "tools.html#dialogue",
+    "localFolder": "product-library/05_audio-to-wechat-article"
+  },
+  {
+    "id": "public-profile-lab",
+    "title": "公开资料人物深度侧写工作流",
+    "type": "人物报道 / 公开资料研究型写作",
+    "useWhen": "需要把一个已有播客、访谈、演讲、文章或社媒公开材料的人物，写成有事实约束和人类判断的深度人物侧写",
+    "entry": "tools.html#profile",
+    "localFolder": "product-library/06_public-profile-lab"
+  },
+  {
+    "id": "qa-gates",
+    "title": "去 AI 味与事实校对门",
+    "type": "发布前审核 / 风格守门",
+    "useWhen": "发布前需要检查事实、口径、授权、边界和不像人的表达",
+    "entry": "tools.html#qa",
+    "localFolder": "product-library/00_moon-content-os/lite-template"
+  }
+]
