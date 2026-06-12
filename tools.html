@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>月亮的 AI 工具箱</title>
-  <meta name="description" content="月亮的 AI 工具箱：把活动、音视频、人物公开资料等内容需求，变成可部署、可复用的 AI 工作流。">
+  <meta name="description" content="月亮的 AI 工具箱：把活动、音视频和人物报道等内容任务，变成可部署、可复用的 AI 工作流。">
   <style>
     :root {
-      --ink: #20201d;
-      --muted: #68645b;
-      --line: #ded8ca;
-      --paper: #fbfaf6;
-      --panel: #ffffff;
-      --soft: #f1ede3;
-      --green: #496b5a;
-      --rust: #a8583d;
-      --gold: #c6923a;
-      --shadow: 0 18px 50px rgba(42, 35, 24, 0.09);
+      --ink: #1f201c;
+      --muted: #6d675c;
+      --paper: #fbfaf5;
+      --paper-deep: #f0ebdf;
+      --panel: #fffefb;
+      --line: #ddd4c3;
+      --green: #3f6655;
+      --rust: #a45b40;
+      --gold: #c19342;
+      --shadow: 0 22px 60px rgba(43, 34, 21, 0.11);
     }
 
     * {
@@ -25,8 +25,10 @@
 
     body {
       margin: 0;
-      background: var(--paper);
       color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(255, 254, 250, 0.92), rgba(247, 243, 234, 0.94)),
+        var(--paper);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
       line-height: 1.65;
     }
@@ -37,20 +39,20 @@
     }
 
     .wrap {
-      width: min(1080px, calc(100% - 40px));
+      width: min(1040px, calc(100% - 40px));
       margin: 0 auto;
     }
 
-    header {
+    .topbar {
       border-bottom: 1px solid var(--line);
-      background: rgba(251, 250, 246, 0.92);
+      background: rgba(251, 250, 245, 0.9);
     }
 
     .top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
       padding: 18px 0;
     }
 
@@ -58,28 +60,28 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-weight: 700;
-      letter-spacing: 0;
+      font-weight: 800;
     }
 
     .brand img {
       width: 34px;
       height: 34px;
       display: block;
+      border-radius: 8px;
     }
 
-    .repo-link {
+    .repo {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 38px;
       padding: 8px 14px;
-      border: 1px solid var(--ink);
       border-radius: 8px;
-      font-size: 14px;
-      font-weight: 700;
       background: var(--ink);
       color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
     }
 
     main {
@@ -88,9 +90,9 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.45fr 0.8fr;
-      gap: 28px;
-      align-items: start;
+      grid-template-columns: 1.2fr 0.72fr;
+      gap: 34px;
+      align-items: stretch;
       padding-bottom: 34px;
       border-bottom: 1px solid var(--line);
     }
@@ -99,77 +101,112 @@
       margin: 0 0 12px;
       color: var(--rust);
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     h1 {
       margin: 0;
-      max-width: 820px;
+      max-width: 760px;
       font-size: 42px;
-      line-height: 1.15;
+      line-height: 1.16;
       letter-spacing: 0;
     }
 
     .lead {
-      max-width: 760px;
+      max-width: 720px;
       margin: 18px 0 0;
       color: var(--muted);
       font-size: 18px;
     }
 
-    .use-box {
-      padding: 20px;
+    .hero-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+      padding: 22px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
       box-shadow: var(--shadow);
     }
 
-    .use-box h2,
-    .section-head h2,
-    .workflow h2 {
-      margin: 0;
+    .hero-card img {
+      width: min(210px, 100%);
+      display: block;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
       letter-spacing: 0;
     }
 
-    .use-box ol {
-      margin: 14px 0 0;
+    .hero-card ol {
+      margin: 0;
       padding-left: 20px;
       color: var(--muted);
     }
 
-    .use-box li + li {
+    .hero-card li + li {
       margin-top: 8px;
     }
 
     .section-head {
-      margin: 38px 0 18px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 18px;
+      margin: 40px 0 18px;
+      display: grid;
+      grid-template-columns: 0.7fr 1fr;
+      gap: 20px;
+      align-items: end;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0;
     }
 
     .section-head p {
       margin: 0;
-      max-width: 560px;
       color: var(--muted);
     }
 
-    .workflow-list {
+    .workflows {
       display: grid;
       gap: 16px;
     }
 
     .workflow {
+      position: relative;
       display: grid;
-      grid-template-columns: 1fr 1.35fr;
+      grid-template-columns: 0.72fr 1fr;
       gap: 22px;
       padding: 22px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
-      box-shadow: 0 10px 28px rgba(42, 35, 24, 0.06);
+      box-shadow: 0 12px 32px rgba(43, 34, 21, 0.07);
+      overflow: hidden;
+    }
+
+    .workflow::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 5px;
+      background: var(--green);
+    }
+
+    .workflow:nth-child(2)::before {
+      background: var(--gold);
+    }
+
+    .workflow:nth-child(3)::before {
+      background: var(--rust);
+    }
+
+    .workflow:nth-child(4)::before {
+      background: #2f4e68;
     }
 
     .tag {
@@ -177,53 +214,58 @@
       margin-bottom: 10px;
       color: var(--green);
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .workflow h2 {
+      margin: 0;
       font-size: 24px;
-      line-height: 1.25;
+      line-height: 1.28;
+      letter-spacing: 0;
     }
 
-    .workflow .summary {
+    .summary {
       margin: 12px 0 0;
       color: var(--muted);
     }
 
-    .details {
+    .content {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
       gap: 14px;
-    }
-
-    .detail {
-      padding: 14px;
+      padding: 13px 14px;
       border-radius: 8px;
-      background: var(--soft);
+      background: var(--paper-deep);
     }
 
-    .detail h3 {
-      margin: 0 0 6px;
+    .row h3 {
+      margin: 0;
       font-size: 15px;
       letter-spacing: 0;
     }
 
-    .detail p,
-    .detail ol {
+    .row p,
+    .row ol {
       margin: 0;
       color: var(--muted);
       font-size: 15px;
     }
 
-    .detail ol {
+    .row ol {
       padding-left: 18px;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 2px;
     }
 
     .button {
@@ -232,40 +274,44 @@
       justify-content: center;
       min-height: 40px;
       padding: 8px 14px;
-      border-radius: 8px;
       border: 1px solid var(--ink);
-      font-size: 14px;
-      font-weight: 800;
+      border-radius: 8px;
       background: var(--ink);
       color: #fff;
+      font-size: 14px;
+      font-weight: 900;
     }
 
-    .button.secondary {
-      background: transparent;
+    details {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    summary {
+      cursor: pointer;
       color: var(--ink);
+      font-weight: 800;
     }
 
-    .prompt {
-      width: 100%;
-      margin: 14px 0 0;
-      padding: 14px;
+    pre {
+      margin: 10px 0 0;
+      padding: 12px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
-      color: #2c2a25;
-      overflow: auto;
+      color: #2b2924;
       white-space: pre-wrap;
+      overflow: auto;
       font-family: "SFMono-Regular", Consolas, monospace;
       font-size: 13px;
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     .gate {
       margin-top: 22px;
       padding: 22px;
-      border: 1px solid var(--line);
       border-radius: 8px;
-      background: #26251f;
+      background: #24231e;
       color: #fff;
     }
 
@@ -276,7 +322,7 @@
 
     .gate p {
       margin: 10px 0 0;
-      color: #e2dccd;
+      color: #e6dfd1;
     }
 
     footer {
@@ -286,96 +332,114 @@
       font-size: 14px;
     }
 
-    @media (max-width: 820px) {
-      .top,
-      .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
+    @media (max-width: 860px) {
       .hero,
-      .workflow,
-      .details {
+      .section-head,
+      .workflow {
         grid-template-columns: 1fr;
       }
 
       h1 {
         font-size: 32px;
       }
+    }
 
+    @media (max-width: 560px) {
       .wrap {
-        width: min(100% - 28px, 1080px);
+        width: min(100% - 28px, 1040px);
+      }
+
+      .top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      main {
+        padding-top: 30px;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 6px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
+  <header class="topbar">
     <div class="wrap top">
       <a class="brand" href="index.html">
         <img src="assets/04-moon-gate-avatar-mark.svg" alt="月亮的 AI 工具箱">
         月亮的 AI 工具箱
       </a>
-      <a class="repo-link" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">GitHub 总仓库</a>
+      <a class="repo" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">GitHub 总仓库</a>
     </div>
   </header>
 
   <main>
     <section class="wrap hero">
       <div>
-        <p class="eyebrow">给内容创作者、社区和小团队的可复用工作流</p>
+        <p class="eyebrow">Reusable AI workflows for content work</p>
         <h1>把真实材料放进去，跑出能交付、能校对、能复用的内容稿。</h1>
-        <p class="lead">这里不是提示词合集，也不是作品陈列页。它只回答一件事：你现在遇到什么内容任务，应该用哪个工作流，准备什么材料，怎样部署并开始用。</p>
+        <p class="lead">这是月亮沉淀出来的一组内容工作流。它不展示复杂方法论，只告诉你：适合什么场景，解决什么痛点，准备什么材料，怎么部署并开始用。</p>
       </div>
-      <aside class="use-box">
-        <h2>怎么用</h2>
-        <ol>
-          <li>先从下面选一个最接近的场景。</li>
-          <li>按卡片准备材料：策划案、录音、逐字稿、公开资料或草稿。</li>
-          <li>打开 GitHub 部署包，装进 Codex，或直接复制启动句试跑。</li>
-          <li>交付前过事实校对和去 AI 味两扇门。</li>
-        </ol>
+      <aside class="hero-card">
+        <img src="assets/03-bilingual-lockup.svg" alt="Moon toolkit lockup">
+        <div>
+          <h2>使用方式</h2>
+          <ol>
+            <li>选一个最接近的内容场景。</li>
+            <li>按说明准备材料和边界。</li>
+            <li>打开 GitHub 部署包，装进 Codex 或复制启动句试跑。</li>
+            <li>交付前过事实校对和去 AI 味两扇门。</li>
+          </ol>
+        </div>
       </aside>
     </section>
 
     <section class="wrap">
       <div class="section-head">
-        <h2>选择你的场景</h2>
-        <p>每个工作流都来自真实内容交付。先解决一个具体任务，再慢慢沉淀成自己的内容系统。</p>
+        <h2>四个可复用场景</h2>
+        <p>先解决一个具体任务，再慢慢沉淀成自己的内容系统。下面每个入口都尽量保持简单：场景、痛点、怎么用，以及可部署的 GitHub 包。</p>
       </div>
 
-      <div class="workflow-list">
+      <div class="workflows">
         <article class="workflow">
           <div>
             <span class="tag">活动预告 / 分论坛介绍 / 商业合作稿</span>
             <h2>社区活动内容传播工作台</h2>
-            <p class="summary">适合社区、活动主办方和生态伙伴，把策划案、会议纪要、议程和合作方口径整理成可审核的公众号稿。</p>
+            <p class="summary">把策划案、会议纪要、议程和合作方口径，整理成可审核的活动传播稿。</p>
+          </div>
+          <div class="content">
+            <section class="row">
+              <h3>应用场景</h3>
+              <p>社区活动预告、论坛介绍、合作方发布稿、商业合作内容交付。</p>
+            </section>
+            <section class="row">
+              <h3>痛点</h3>
+              <p>活动信息很多，但传播稿容易写成资料堆砌；商业合作又不能出错，需要把事实、口径和战略价值分清楚。</p>
+            </section>
+            <section class="row">
+              <h3>怎么用</h3>
+              <ol>
+                <li>准备活动基本信息、策划案和嘉宾议程。</li>
+                <li>补充合作方希望传达的价值和不能公开的信息。</li>
+                <li>先做事实缺口检查，再进入草稿。</li>
+              </ol>
+            </section>
             <div class="actions">
               <a class="button" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
-            </div>
-          </div>
-          <div>
-            <div class="details">
-              <section class="detail">
-                <h3>解决的痛点</h3>
-                <p>活动信息很多，但传播稿容易写成资料堆砌；商业合作又不能出错，需要把事实、口径和战略价值分清楚。</p>
-              </section>
-              <section class="detail">
-                <h3>如何使用</h3>
-                <ol>
-                  <li>准备活动基本信息、策划案和嘉宾议程。</li>
-                  <li>补充合作方希望传达的价值和不能公开的信息。</li>
-                  <li>先让工作流做事实缺口检查，再进入草稿。</li>
-                </ol>
-              </section>
-            </div>
-            <pre class="prompt">打开社区活动内容传播工作台。
+              <details>
+                <summary>查看启动句</summary>
+                <pre>打开社区活动内容传播工作台。
 
 活动类型：[会前预告 / 分论坛介绍 / 商业合作稿]
 材料在这里：[粘贴策划案、会议纪要、嘉宾信息或文件路径]
 发布平台：[公众号 / 官网 / 社群]
 
 请先做需求收口和事实缺口检查，再决定文章结构。</pre>
+              </details>
+            </div>
           </div>
         </article>
 
@@ -383,33 +447,38 @@
           <div>
             <span class="tag">会后报道 / 活动复盘 / 社区记忆</span>
             <h2>活动复盘转公众号</h2>
-            <p class="summary">适合活动结束后，把现场照片、群聊反馈、口述复盘、公开报道和伙伴记录，整理成会后传播包。</p>
+            <p class="summary">把现场照片、群聊反馈、口述复盘、公开报道和伙伴记录，整理成会后传播包。</p>
+          </div>
+          <div class="content">
+            <section class="row">
+              <h3>应用场景</h3>
+              <p>活动结束后 24-72 小时内的报道、复盘、伙伴 proof 和社区记忆整理。</p>
+            </section>
+            <section class="row">
+              <h3>痛点</h3>
+              <p>活动结束后材料很散，热度很快过去；如果不及时整理，现场价值和伙伴反馈都会流失。</p>
+            </section>
+            <section class="row">
+              <h3>怎么用</h3>
+              <ol>
+                <li>准备复盘口述、照片说明和公开报道链接。</li>
+                <li>标注哪些图片、名字和评价可以公开。</li>
+                <li>先生成素材地图，再判断写报道、观察稿还是传播包。</li>
+              </ol>
+            </section>
             <div class="actions">
               <a class="button" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
-            </div>
-          </div>
-          <div>
-            <div class="details">
-              <section class="detail">
-                <h3>解决的痛点</h3>
-                <p>活动结束后材料很散，热度很快过去；如果不及时整理，现场价值、伙伴 proof 和社区记忆都会流失。</p>
-              </section>
-              <section class="detail">
-                <h3>如何使用</h3>
-                <ol>
-                  <li>准备复盘口述、照片说明和公开报道链接。</li>
-                  <li>标注哪些图片、名字和评价可以公开。</li>
-                  <li>先生成素材地图，再判断写报道、观察稿还是传播包。</li>
-                </ol>
-              </section>
-            </div>
-            <pre class="prompt">打开活动复盘转公众号工作流。
+              <details>
+                <summary>查看启动句</summary>
+                <pre>打开活动复盘转公众号工作流。
 
 活动已经结束，复盘材料在这里：[粘贴或给路径]
 同场公开报道 / 伙伴记录：[链接或说明]
 图片边界：[可公开 / 需确认 / 不可公开]
 
 请先整理素材地图，再判断适合写成报道、观察稿还是传播包。</pre>
+              </details>
+            </div>
           </div>
         </article>
 
@@ -417,27 +486,30 @@
           <div>
             <span class="tag">播客 / 录音 / 视频回放 / 直播</span>
             <h2>播客音视频转公众号</h2>
-            <p class="summary">适合播客主理人、直播栏目、活动主办方和长视频创作者，把音视频内容转成公众号文章、对谈稿或素材资产。</p>
+            <p class="summary">把音视频内容转成公众号文章、对谈稿、短观察或可继续复用的素材资产。</p>
+          </div>
+          <div class="content">
+            <section class="row">
+              <h3>应用场景</h3>
+              <p>播客、访谈、直播回放、圆桌逐字稿、长视频内容再分发。</p>
+            </section>
+            <section class="row">
+              <h3>痛点</h3>
+              <p>音视频信息密度高，但很难直接变成可读文章；如果只做总结，又会丢掉说话人的语气、关系和现场感。</p>
+            </section>
+            <section class="row">
+              <h3>怎么用</h3>
+              <ol>
+                <li>准备逐字稿、摘要或关键片段。</li>
+                <li>说明说话人身份、发布平台和授权边界。</li>
+                <li>先判断内容形态，再决定长文、对谈稿还是短观察。</li>
+              </ol>
+            </section>
             <div class="actions">
               <a class="button" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
-            </div>
-          </div>
-          <div>
-            <div class="details">
-              <section class="detail">
-                <h3>解决的痛点</h3>
-                <p>音视频信息密度高，但很难直接变成可读文章；如果只做总结，又会丢掉说话人的语气、关系和现场感。</p>
-              </section>
-              <section class="detail">
-                <h3>如何使用</h3>
-                <ol>
-                  <li>准备逐字稿、摘要或关键片段。</li>
-                  <li>说明说话人身份、发布平台和授权边界。</li>
-                  <li>先判断内容形态，再决定写长文、对谈稿还是短观察。</li>
-                </ol>
-              </section>
-            </div>
-            <pre class="prompt">打开播客音视频转公众号文章工作流。
+              <details>
+                <summary>查看启动句</summary>
+                <pre>打开播客音视频转公众号文章工作流。
 
 素材类型：[播客 / 录音 / 视频回放 / 直播 / 访谈 / 圆桌]
 素材、逐字稿或摘要在这里：[粘贴内容、链接或文件路径]
@@ -445,6 +517,8 @@
 公开边界：[可公开 / 需匿名 / 需确认 / 不外发]
 
 请先判断内容形态，不要直接写成长文。</pre>
+              </details>
+            </div>
           </div>
         </article>
 
@@ -452,27 +526,30 @@
           <div>
             <span class="tag">公众人物 / 创始人 / Builder Profile</span>
             <h2>公众人物深度报道工作台</h2>
-            <p class="summary">适合基于公开访谈、播客、演讲、文章和社媒资料，写出有事实约束、有阅读透镜的人物深度报道。</p>
+            <p class="summary">基于公开访谈、播客、演讲、文章和社媒资料，写有事实约束的人物深度报道。</p>
+          </div>
+          <div class="content">
+            <section class="row">
+              <h3>应用场景</h3>
+              <p>公众人物、创始人、开发者、创作者、行业人物的资料研究型长文。</p>
+            </section>
+            <section class="row">
+              <h3>痛点</h3>
+              <p>公开资料很多，但容易写成百科、PR 稿或主观判断；这个工作流先把事实、引用、推断和边界分开。</p>
+            </section>
+            <section class="row">
+              <h3>怎么用</h3>
+              <ol>
+                <li>给出人物姓名和公开材料链接。</li>
+                <li>说明发布渠道、读者和不能推断的边界。</li>
+                <li>先做资料查看台和文章角度选择，再写逐节草稿。</li>
+              </ol>
+            </section>
             <div class="actions">
               <a class="button" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/public-profile-deep-report-workflow" target="_blank" rel="noreferrer">打开 GitHub 部署包</a>
-            </div>
-          </div>
-          <div>
-            <div class="details">
-              <section class="detail">
-                <h3>解决的痛点</h3>
-                <p>公开资料很多，但容易写成百科、PR 稿或主观判断；这个工作流先做资料查看台，把事实、引用、推断和边界分开。</p>
-              </section>
-              <section class="detail">
-                <h3>如何使用</h3>
-                <ol>
-                  <li>给出人物姓名和公开材料链接。</li>
-                  <li>说明发布渠道、读者和不能推断的边界。</li>
-                  <li>先做资料查看台和文章角度选择，再写逐节草稿。</li>
-                </ol>
-              </section>
-            </div>
-            <pre class="prompt">打开公众人物深度报道工作台。
+              <details>
+                <summary>查看启动句</summary>
+                <pre>打开公众人物深度报道工作台。
 
 对象：[人物姓名]
 模式：[第三方无采访 / 当事人自述 / 三方协作]
@@ -480,13 +557,15 @@
 发布渠道：[公众号 / Substack / 作品集 / 机构投稿 / 不确定]
 
 请先做人物资料查看台和素材解剖，不要直接写完整长文。</pre>
+              </details>
+            </div>
           </div>
         </article>
       </div>
 
       <section class="gate">
-        <h2>所有工作流最后都要过两扇门</h2>
-        <p>第一扇是事实校对门：名称、日期、身份、引用、授权、商业口径都要对得上材料。第二扇是去 AI 味门：删掉空泛判断、硬凑转折、过度顺滑和没有来源支撑的漂亮话。</p>
+        <h2>最后都要过两扇门</h2>
+        <p>事实校对门：名称、日期、身份、引用、授权、商业口径都要对得上材料。去 AI 味门：删掉空泛判断、硬凑转折、过度顺滑和没有来源支撑的漂亮话。</p>
       </section>
     </section>
   </main>
