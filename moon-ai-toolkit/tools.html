@@ -89,6 +89,12 @@
       padding: 12px 0;
     }
 
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .brand {
       display: inline-flex;
       align-items: center;
@@ -269,6 +275,31 @@
       color: var(--teal);
     }
 
+    .status {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 7px;
+      border: 1px solid currentColor;
+      color: var(--teal);
+      background: rgba(114, 239, 117, .18);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .status.pilot {
+      background: var(--mint);
+    }
+
+    .status.soon {
+      color: var(--muted);
+      background: #fff;
+    }
+
     .fit-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -346,7 +377,7 @@
 
     .choice-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
       gap: 8px;
     }
 
@@ -386,6 +417,41 @@
       font-size: 12px;
       line-height: 1.45;
       opacity: .78;
+    }
+
+    .lane-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 16px 0 0;
+    }
+
+    .lane {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+    }
+
+    .lane:nth-child(2) {
+      background: var(--mint);
+    }
+
+    .lane h4 {
+      margin: 0;
+      color: var(--teal);
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    .lane p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     .finder {
@@ -494,6 +560,10 @@
       background: var(--mint);
     }
 
+    .route-card .status {
+      margin-bottom: 6px;
+    }
+
     .route-card strong {
       color: var(--teal);
       font-family: var(--serif);
@@ -589,6 +659,22 @@
       gap: 12px;
       border: 0;
       background: transparent;
+    }
+
+    .subsection-title {
+      margin: 30px 0 10px;
+      color: var(--teal);
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 500;
+      line-height: 1.05;
+    }
+
+    .subsection-note {
+      margin: -2px 0 14px;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .card {
@@ -712,6 +798,50 @@
 
     .use-now {
       min-width: 170px;
+    }
+
+    .button-icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 7px;
+      flex: 0 0 auto;
+      pointer-events: none;
+    }
+
+    .radar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .radar-item {
+      min-height: 118px;
+      display: grid;
+      align-content: start;
+      gap: 7px;
+      padding: 12px;
+      background: var(--paper-2);
+    }
+
+    .radar-item:nth-child(3n + 2) {
+      background: var(--mint);
+    }
+
+    .radar-item strong {
+      color: var(--teal);
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 500;
+      line-height: 1.08;
+    }
+
+    .radar-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.48;
     }
 
     details {
@@ -849,7 +979,9 @@
 
       .fit-grid,
       .info,
-      .route-card {
+      .route-card,
+      .lane-grid,
+      .radar-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -879,21 +1011,29 @@
       }
 
       .hero {
-        padding: 24px 0 22px;
+        padding: 18px 0 16px;
+      }
+
+      .hero > div {
+        padding: 14px 0 16px;
       }
 
       h1 {
-        font-size: clamp(32px, 9.2vw, 42px);
+        font-size: clamp(30px, 8.6vw, 40px);
         line-height: 1.02;
       }
 
       .lead {
         font-size: 15px;
+        line-height: 1.55;
+        margin-top: 12px;
       }
 
       .fit-grid,
       .info,
-      .route-card {
+      .route-card,
+      .lane-grid,
+      .radar-grid {
         grid-template-columns: 1fr;
       }
 
@@ -904,6 +1044,7 @@
 
       .choice-button {
         min-height: auto;
+        padding: 10px;
       }
 
       .steps {
@@ -925,6 +1066,7 @@
       .hero-actions {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 16px;
       }
 
       .button,
@@ -950,11 +1092,20 @@
       .gate,
       .fit-card,
       .hero-card {
-        padding: 13px;
+        padding: 12px;
       }
 
       .wrap:not(.hero) {
-        padding-top: 34px;
+        padding-top: 26px;
+      }
+
+      .section-head {
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+
+      .choice-panel {
+        padding: 12px;
       }
 
     }
@@ -967,7 +1118,10 @@
         <img src="assets/04-moon-gate-avatar-mark.svg" alt="月亮的 AI 工作台">
         月亮的 AI 工作台
       </a>
-      <a class="repo" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">GitHub 总仓库</a>
+      <div class="top-actions">
+        <a class="repo" href="#workflows">工具入口</a>
+        <a class="repo" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
     </div>
   </header>
 
@@ -976,10 +1130,11 @@
       <div>
         <p class="eyebrow">Humanity in the loop</p>
         <h1>月亮的 AI 工作台</h1>
-        <p class="lead">为内容创作者、深度社区活动组织者打造的个性化内容工作流。它把材料、目的、边界和审核放进同一套流程，在每次交付里积累判断力。不只是 human in the loop，更是 humanity in the loop。</p>
+        <p class="lead">为内容创作者、深度社区活动组织者和小团队准备的个性化内容工作流。先选场景，复制启动句，把材料、目标和边界交给 AI；人的判断、事实校对和发布责任始终留在流程里。不只是 human in the loop，更是 humanity in the loop。</p>
         <div class="hero-actions">
           <a class="button" href="#start">从任务开始</a>
           <a class="button secondary" href="#workflows">查看工作流</a>
+          <a class="button secondary" href="#radar">完整清单</a>
         </div>
       </div>
       <aside class="hero-card">
@@ -987,9 +1142,9 @@
         <h2>第一次使用</h2>
         <ol class="steps">
           <li><b>1</b><span>选场景</span></li>
-          <li><b>2</b><span>放材料与边界</span></li>
-          <li><b>3</b><span>查缺口</span></li>
-          <li><b>4</b><span>校对去 AI 味</span></li>
+          <li><b>2</b><span>复制启动句</span></li>
+          <li><b>3</b><span>补材料与边界</span></li>
+          <li><b>4</b><span>人来确认</span></li>
         </ol>
       </aside>
     </section>
@@ -997,7 +1152,7 @@
     <section class="wrap" id="start">
       <div class="section-head">
         <h2>从你的任务开始</h2>
-        <p>不用先理解每个 skill 的名字。先看你现在手里要交付什么，再进入对应工作流。上手时只需要准备三类信息：已有材料、发布目的、不能公开的边界。</p>
+        <p>不用先理解每个 skill 的名字，也不用先打开 GitHub。先看你现在手里要交付什么，再进入对应工作流。上手时只需要准备三类信息：已有材料、发布目的、不能公开的边界。</p>
       </div>
       <div class="choice-panel" data-choice-panel>
         <div>
@@ -1008,6 +1163,10 @@
           <button class="mini-button" type="button" data-show-all>查看全部</button>
         </div>
         <div class="choice-grid" aria-label="选择你的内容任务">
+          <button class="choice-button" type="button" data-choice-target="workflow-content-os" aria-pressed="false">
+            <strong>搭内容工作台</strong>
+            <span>素材、选题、发布、反馈和资产回收</span>
+          </button>
           <button class="choice-button" type="button" data-choice-target="workflow-event" aria-pressed="false">
             <strong>活动预告</strong>
             <span>会前传播、分论坛介绍、商业合作稿</span>
@@ -1025,7 +1184,7 @@
             <span>公开访谈、创始人、Builder Profile</span>
           </button>
           <button class="choice-button" type="button" data-choice-target="workflow-voice" aria-pressed="false">
-            <strong>去 AI 味</strong>
+            <strong>发布前检查</strong>
             <span>已有初稿，做声音守门和事实校对</span>
           </button>
         </div>
@@ -1040,42 +1199,166 @@
           <p data-search-help>输入你的任务关键词，下面会只保留相关入口。</p>
         </details>
       </div>
+      <div class="lane-grid" aria-label="工具包场景分组">
+        <section class="lane">
+          <h4>从素材到内容</h4>
+          <p>活动、音视频、人物稿和内容工作台搭建，适合刚拿到材料的时候。</p>
+        </section>
+        <section class="lane">
+          <h4>从发布到复盘</h4>
+          <p>发布前检查、发布后反馈和内容分发路由，让内容发出去之后还能回流。</p>
+        </section>
+        <section class="lane">
+          <h4>高风险交付</h4>
+          <p>商业合作、连续系列稿、内部 brief 公开转译，适合不能出错的内容任务。</p>
+        </section>
+      </div>
       <div class="route-list">
-        <article class="route-card" data-route-card>
-          <strong>我要发布活动预告或论坛介绍</strong>
+        <article class="route-card" data-route-card data-status="pilot">
+          <div>
+            <span class="status pilot">可试点</span>
+            <strong>我要搭自己的内容工作台</strong>
+          </div>
+          <p>把素材入口、选题池、发布队列、去 AI 味、反馈回收和作品集回收搭成一套轻量系统。</p>
+          <a href="#workflow-content-os">进入</a>
+        </article>
+        <article class="route-card" data-route-card data-status="available">
+          <div>
+            <span class="status">可直接用</span>
+            <strong>我要发布活动预告或论坛介绍</strong>
+          </div>
           <p>准备策划案、议程、嘉宾信息、合作方口径。适合会前传播、分论坛介绍和商业合作稿。</p>
           <a href="#workflow-event">进入</a>
         </article>
-        <article class="route-card" data-route-card>
-          <strong>活动刚结束，想做会后报道</strong>
+        <article class="route-card" data-route-card data-status="available">
+          <div>
+            <span class="status">可直接用</span>
+            <strong>活动刚结束，想做会后报道</strong>
+          </div>
           <p>准备复盘口述、照片说明、群聊反馈、公开报道链接。先整理现场材料，再决定写报道还是传播包。</p>
           <a href="#workflow-recap">进入</a>
         </article>
-        <article class="route-card" data-route-card>
-          <strong>我有播客、直播或视频回放</strong>
+        <article class="route-card" data-route-card data-status="available">
+          <div>
+            <span class="status">可直接用</span>
+            <strong>我有播客、直播或视频回放</strong>
+          </div>
           <p>准备逐字稿、摘要或关键片段。先判断它适合长文、对谈稿、短观察，还是素材卡。</p>
           <a href="#workflow-audio">进入</a>
         </article>
-        <article class="route-card" data-route-card>
-          <strong>我要写人物或创始人深度稿</strong>
+        <article class="route-card" data-route-card data-status="pilot">
+          <div>
+            <span class="status pilot">可试点</span>
+            <strong>我要写人物或创始人深度稿</strong>
+          </div>
           <p>准备公开访谈、播客、演讲、文章和社媒链接。先做资料查看台，再选择文章角度。</p>
           <a href="#workflow-profile">进入</a>
         </article>
-        <article class="route-card" data-route-card>
-          <strong>我已经有一版 AI 初稿</strong>
+        <article class="route-card" data-route-card data-status="available">
+          <div>
+            <span class="status">可直接用</span>
+            <strong>我已经有一版 AI 初稿</strong>
+          </div>
           <p>把草稿和原始材料一起放进去，先标出不像人的地方，再做事实校对和去 AI 味。</p>
           <a href="#workflow-voice">进入</a>
+        </article>
+        <article class="route-card" data-route-card data-status="soon">
+          <div>
+            <span class="status soon">待上线</span>
+            <strong>我发完了，想看反馈有没有价值</strong>
+          </div>
+          <p>把评论、私信、数据和体感分成共鸣、关系、需求、合作、样本、产品和资产信号。</p>
+          <a href="#workflow-feedback">进入</a>
+        </article>
+        <article class="route-card" data-route-card data-status="pilot">
+          <div>
+            <span class="status pilot">可试点</span>
+            <strong>我有商业合作稿，不能出错</strong>
+          </div>
+          <p>发布前检查事实、口径、品牌称谓、合作边界、强承诺和必须确认的信息。</p>
+          <a href="#workflow-commercial">进入</a>
+        </article>
+        <article class="route-card" data-route-card data-status="soon">
+          <div>
+            <span class="status soon">待上线</span>
+            <strong>同一场活动要连续发多篇</strong>
+          </div>
+          <p>先拆系列关系，避免多篇稿重复背景、重复句式、重复 CTA。</p>
+          <a href="#workflow-series">进入</a>
+        </article>
+        <article class="route-card" data-route-card data-status="soon">
+          <div>
+            <span class="status soon">待上线</span>
+            <strong>我不知道这份素材该发哪里</strong>
+          </div>
+          <p>先判断表达轨或实验轨，再输出 1-3 个最值得发布的平台版本。</p>
+          <a href="#workflow-distribution">进入</a>
+        </article>
+        <article class="route-card" data-route-card data-status="soon">
+          <div>
+            <span class="status soon">待上线</span>
+            <strong>我想把项目变成作品集案例</strong>
+          </div>
+          <p>把项目材料转成案例页、能力证明、风险边界和下一步可复用资产。</p>
+          <a href="#workflow-portfolio">进入</a>
+        </article>
+        <article class="route-card" data-route-card data-status="pilot">
+          <div>
+            <span class="status pilot">可试点</span>
+            <strong>我想写 AI 技术现场研究文章</strong>
+          </div>
+          <p>先生成研究查看台，把现场、技术对象、人文问题、证据缺口和边界风险分清楚。</p>
+          <a href="#workflow-ai-field">进入</a>
         </article>
       </div>
     </section>
 
     <section class="wrap" id="workflows">
       <div class="section-head">
-        <h2>五个直接使用入口</h2>
+        <h2>核心入口：复制启动句直接用</h2>
         <p>先解决一个具体任务，再慢慢沉淀成自己的内容系统。第一次使用不用部署：复制启动句，粘到自己的 AI 对话里，再补充材料、目标和边界。GitHub 部署包适合之后想长期维护自己版本的人。</p>
       </div>
 
       <div class="grid">
+        <article class="card" id="workflow-content-os" data-workflow-card>
+          <span class="tag">母产品 / 内容工作台 / 可试点</span>
+          <h3>Moon Content OS Lite</h3>
+          <p class="summary">把素材、选题、发布、反馈和资产回收，搭成一套可以持续使用的个人内容工作台。</p>
+          <div class="info">
+            <section class="line">
+              <strong>应用场景</strong>
+              <p>素材很多、想法很多、项目很多，但不知道从哪里进入、发到哪里、怎么回收。</p>
+            </section>
+            <section class="line">
+              <strong>痛点</strong>
+              <p>内容不是没有，而是散在聊天、草稿、录音、文件和反馈里，最后没有变成长期资产。</p>
+            </section>
+            <section class="line">
+              <strong>怎么用</strong>
+              <ol>
+                <li>列出你已有的素材、项目和发布渠道。</li>
+                <li>先搭入口、选题池、发布队列和反馈表。</li>
+                <li>每完成一次项目，就回收到作品集或产品线。</li>
+              </ol>
+            </section>
+          </div>
+          <div class="actions">
+            <button class="button use-now" type="button" data-copy-workflow="workflow-content-os"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
+            <details>
+              <summary>查看启动句</summary>
+              <pre>打开 Moon Content OS Lite，帮我搭一个轻量内容工作台。
+
+我的身份/场景：[创作者 / 播客主理人 / 社区负责人 / 自由职业者 / 小团队]
+我现在已有的素材：[访谈、直播、草稿、活动、项目、反馈、文件路径或简单描述]
+我主要发布渠道：[公众号 / 小红书 / 视频号 / 朋友圈 / Substack / X / LinkedIn / 作品集]
+我最想解决的问题：[素材太散 / 不知道发什么 / AI 味 / 发布后无复盘 / 项目无法回收]
+
+请先不要写正文。请帮我建立：素材入口、内容查看台、选题池、发布队列、去 AI 味检查、反馈回收和资产回收路径。</pre>
+            </details>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/moon-ai-toolkit/product-library/00_moon-content-os" target="_blank" rel="noreferrer">进阶：模板包</a>
+          </div>
+        </article>
+
         <article class="card" id="workflow-event" data-workflow-card>
           <span class="tag">活动预告 / 分论坛介绍 / 商业合作稿</span>
           <h3>社区活动内容传播工作台</h3>
@@ -1099,7 +1382,7 @@
             </section>
           </div>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-event">复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-event"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开社区活动内容传播工作台。
@@ -1137,7 +1420,7 @@
             </section>
           </div>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-recap">复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-recap"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开活动复盘转公众号工作流。
@@ -1175,7 +1458,7 @@
             </section>
           </div>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-audio">复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-audio"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开播客音视频转公众号文章工作流。
@@ -1214,7 +1497,7 @@
             </section>
           </div>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-profile">复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-profile"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开公众人物深度报道工作台。
@@ -1238,7 +1521,7 @@
           <h2>去 AI 味与声音守门</h2>
           <p class="summary">发布前最后一轮：把 AI 初稿里过度顺滑、空泛判断、硬凑转折和不像人的表达挑出来，改回具体、克制、有边界的人的声音。</p>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-voice">复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-voice"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
             <details>
               <summary>查看启动句</summary>
               <pre>打开去 AI 味与声音守门工作流。
@@ -1271,6 +1554,259 @@
           </section>
         </div>
       </section>
+
+      <h3 class="subsection-title" id="soon">可试点 / 待上线</h3>
+      <p class="subsection-note">这些入口已经在真实项目里出现过产品信号，但还在继续验证。可以先复制启动句轻量试用，后续再沉淀成正式工具。</p>
+
+      <div class="grid">
+        <article class="card" id="workflow-feedback" data-workflow-card>
+          <span class="tag">发布后反馈 / 产品信号 / 待上线</span>
+          <h3>发布后反馈回收台</h3>
+          <p class="summary">把评论、私信、数据和体感，分成真正能指导下一步的反馈信号。</p>
+          <div class="info">
+            <section class="line">
+              <strong>应用场景</strong>
+              <p>文章、视频、活动页或社群内容发布 24-72 小时后，判断有没有真实信号。</p>
+            </section>
+            <section class="line">
+              <strong>痛点</strong>
+              <p>阅读量和点赞容易让人误判，真正有价值的常常是私信、转介绍、样本和合作线索。</p>
+            </section>
+            <section class="line">
+              <strong>怎么用</strong>
+              <ol>
+                <li>贴上发布内容、平台、数据和评论私信。</li>
+                <li>区分共鸣、关系、需求、合作、样本、产品。</li>
+                <li>决定下一篇、下一次访谈或下一步 offer。</li>
+              </ol>
+            </section>
+          </div>
+          <div class="actions">
+            <button class="button use-now" type="button" data-copy-workflow="workflow-feedback"><span class="button-icon" data-lucide="copy"></span>复制试点启动句</button>
+            <details>
+              <summary>查看启动句</summary>
+              <pre>打开发布后反馈回收台。
+
+发布内容：[标题 / 链接 / 平台 / 发布时间]
+基础数据：[阅读、播放、点赞、收藏、转发、评论、订阅或关注]
+反馈材料：[粘贴评论、私信、转介绍、合作询问、我的体感]
+
+请不要只看数据。请帮我区分：共鸣、关系、需求、合作、样本、产品、资产信号，并给出下一步最值得做的 1-3 件事。</pre>
+            </details>
+          </div>
+        </article>
+
+        <article class="card" id="workflow-commercial" data-workflow-card>
+          <span class="tag">商业合作 / 发布前审核 / 可试点</span>
+          <h3>商业合作内容审核包</h3>
+          <p class="summary">发布前检查事实、口径、品牌称谓、合作边界、强承诺和必须确认的信息。</p>
+          <div class="info">
+            <section class="line">
+              <strong>应用场景</strong>
+              <p>商业合作稿、品牌伙伴稿、活动合作稿、DevRel 合作内容发布前审核。</p>
+            </section>
+            <section class="line">
+              <strong>痛点</strong>
+              <p>合作内容不能只追求好看，事实、署名、项目名、票务规则和强承诺都可能出错。</p>
+            </section>
+            <section class="line">
+              <strong>怎么用</strong>
+              <ol>
+                <li>同时给出草稿和原始材料。</li>
+                <li>逐条检查事实、口径、边界和强承诺。</li>
+                <li>输出必须发给编辑或合作方确认的清单。</li>
+              </ol>
+            </section>
+          </div>
+          <div class="actions">
+            <button class="button use-now" type="button" data-copy-workflow="workflow-commercial"><span class="button-icon" data-lucide="copy"></span>复制试点启动句</button>
+            <details>
+              <summary>查看启动句</summary>
+              <pre>打开商业合作内容审核包。
+
+当前稿件：[粘贴正文或文件路径]
+原始材料：[策划案、合作方资料、会议纪要、官网链接、公开报道]
+发布主体：[公众号 / 官网 / 合作方 / 社群]
+最担心的风险：[事实错误 / 合作口径 / 品牌称谓 / 强承诺 / 授权边界]
+
+请输出：事实核验门、合作边界门、品牌口径门、强承诺检查和建议合作方确认清单。不要直接替我发布。</pre>
+            </details>
+          </div>
+        </article>
+
+        <article class="card" id="workflow-series" data-workflow-card>
+          <span class="tag">连续发布 / 系列稿 / 待上线</span>
+          <h3>系列稿拆分器</h3>
+          <p class="summary">同一活动或项目连续发多篇时，先拆清每篇任务，避免背景、句式和 CTA 重复。</p>
+          <div class="info">
+            <section class="line">
+              <strong>应用场景</strong>
+              <p>同一场大会、活动、论坛或合作项目，需要连续发布 2-5 篇内容。</p>
+            </section>
+            <section class="line">
+              <strong>痛点</strong>
+              <p>系列稿最容易每篇都重复大会背景、品牌价值和类似开头，读者会觉得疲惫。</p>
+            </section>
+            <section class="line">
+              <strong>怎么用</strong>
+              <ol>
+                <li>提供已发布稿和待写材料。</li>
+                <li>先出系列关系卡和每篇独立主线。</li>
+                <li>列出可重复、不可重复和必须延续的信息。</li>
+              </ol>
+            </section>
+          </div>
+          <div class="actions">
+            <button class="button use-now" type="button" data-copy-workflow="workflow-series"><span class="button-icon" data-lucide="copy"></span>复制试点启动句</button>
+            <details>
+              <summary>查看启动句</summary>
+              <pre>打开系列稿拆分器。
+
+已发布内容：[粘贴链接、正文或摘要]
+接下来要写的稿件数量：[2 篇 / 3 篇 / 更多]
+每篇已有材料：[逐篇粘贴策划案、议程、访谈或要点]
+发布平台和受众：[公众号 / DevRel / 社群 / 合作方]
+
+请先不要写正文。请输出系列稿关系卡：每篇任务、核心问题、读者收益、不能重复的内容、必须延续的口径和推荐主线。</pre>
+            </details>
+          </div>
+        </article>
+
+        <article class="card" id="workflow-distribution" data-workflow-card>
+          <span class="tag">内容分发 / 平台路由 / 待上线</span>
+          <h3>内容分发路由台</h3>
+          <p class="summary">输入一份真实素材，先判断表达轨或实验轨，再输出 1-3 个最值得发布的平台版本。</p>
+          <div class="info">
+            <section class="line">
+              <strong>应用场景</strong>
+              <p>你有访谈、直播、田野笔记、草稿或反馈，但不知道该发公众号、视频号、小红书还是海外平台。</p>
+            </section>
+            <section class="line">
+              <strong>痛点</strong>
+              <p>分发不是全平台复制，真正困难是判断这份素材值得在哪里、以什么形态出现。</p>
+            </section>
+            <section class="line">
+              <strong>怎么用</strong>
+              <ol>
+                <li>贴一份素材或摘要。</li>
+                <li>先判断表达轨或实验轨。</li>
+                <li>只输出最值得发的 1-3 个版本。</li>
+              </ol>
+            </section>
+          </div>
+          <div class="actions">
+            <button class="button use-now" type="button" data-copy-workflow="workflow-distribution"><span class="button-icon" data-lucide="copy"></span>复制试点启动句</button>
+            <details>
+              <summary>查看启动句</summary>
+              <pre>打开内容分发路由台。
+
+素材在这里：[粘贴访谈、直播、草稿、田野笔记、项目材料或摘要]
+我现在更想要：[完整表达 / 商业实验 / 不知道]
+可选平台：[公众号 / 小红书 / 视频号 / 朋友圈 / Substack / X / LinkedIn / 作品集]
+限制：[时间、公开边界、授权、不能写的人或事]
+
+请先判断这份素材适合表达轨还是实验轨，再给出 1-3 个最值得发布的版本，不要全平台复制。</pre>
+            </details>
+          </div>
+        </article>
+
+        <article class="card" id="workflow-portfolio" data-workflow-card>
+          <span class="tag">作品集 / 案例页 / 待上线</span>
+          <h3>作品集案例蒸馏器</h3>
+          <p class="summary">把已经做过的项目、活动、访谈或合作经历，变成别人能看懂的案例页和能力证明。</p>
+          <div class="info">
+            <section class="line">
+              <strong>应用场景</strong>
+              <p>做完一个项目后，需要放进作品集、个人网站、合作介绍或申请材料。</p>
+            </section>
+            <section class="line">
+              <strong>痛点</strong>
+              <p>很多人做过很多事，但讲不清自己做了什么、证明什么、适合放在哪里。</p>
+            </section>
+            <section class="line">
+              <strong>怎么用</strong>
+              <ol>
+                <li>提供项目背景、产出、过程和反馈。</li>
+                <li>提炼能力证明、证据和风险边界。</li>
+                <li>输出作品集案例结构和可公开版本。</li>
+              </ol>
+            </section>
+          </div>
+          <div class="actions">
+            <button class="button use-now" type="button" data-copy-workflow="workflow-portfolio"><span class="button-icon" data-lucide="copy"></span>复制试点启动句</button>
+            <details>
+              <summary>查看启动句</summary>
+              <pre>打开作品集案例蒸馏器。
+
+项目材料：[粘贴项目说明、产出链接、过程记录、反馈或文件路径]
+我想用于：[个人网站 / 作品集 / 求职申请 / 合作提案 / 社媒介绍]
+我想证明的能力：[采访 / 写作 / 活动组织 / 产品化 / 社区连接 / 研究 / 不确定]
+公开边界：[可公开 / 匿名 / 需确认 / 只能内部使用]
+
+请帮我整理成案例页结构：一句话定位、我做了什么、解决了什么问题、证据、风险边界、适合放在哪里、下一步可回收资产。</pre>
+            </details>
+          </div>
+        </article>
+
+        <article class="card" id="workflow-ai-field" data-workflow-card>
+          <span class="tag">AI 技术现场 / 研究写作 / 可试点</span>
+          <h3>AI 技术现场研究工作流</h3>
+          <p class="summary">用人文视角进入 AI 技术现场，先分清技术对象、真实场景、人文问题和证据边界。</p>
+          <div class="info">
+            <section class="line">
+              <strong>应用场景</strong>
+              <p>想把 AI 工具、模型、Agent、开源项目、教育现场或组织工作流写成研究文章。</p>
+            </section>
+            <section class="line">
+              <strong>痛点</strong>
+              <p>AI 内容容易变成趋势评论或工具测评，缺少真实现场、技术事实和人的处境。</p>
+            </section>
+            <section class="line">
+              <strong>怎么用</strong>
+              <ol>
+                <li>提供现场记录、访谈、链接或项目材料。</li>
+                <li>先输出研究查看台，不直接写长文。</li>
+                <li>确认事实、证据、伦理和发布端口后再写。</li>
+              </ol>
+            </section>
+          </div>
+          <div class="actions">
+            <button class="button use-now" type="button" data-copy-workflow="workflow-ai-field"><span class="button-icon" data-lucide="copy"></span>复制试点启动句</button>
+            <details>
+              <summary>查看启动句</summary>
+              <pre>打开 AI 技术现场研究文章工作流。
+
+素材在这里：[粘贴文字 / 文件路径 / 链接 / 访谈记录]
+这次更偏向：[选题孵化 / 素材入库 / 文章骨架 / 证据校准 / 发布队列 / 不知道]
+可能涉及的技术对象：[模型 / Agent / 应用 / 工作流 / repo / 论文 / 产品 / 不确定]
+公开边界：[可公开 / 需匿名 / 需确认 / 暂不公开]
+
+请先不要写完整长文。请先给我研究查看台：现场材料、技术对象、人文问题、核心张力、证据缺口、边界风险、下一步采样动作。</pre>
+            </details>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="subsection-title" id="radar">完整产品雷达</h3>
+      <p class="subsection-note">这里保留完整候选，不要求用户第一次都点开。前台优先做 6-9 个入口，其余作为案例、底层能力或下一轮产品化方向。</p>
+      <div class="radar-grid">
+        <article class="radar-item"><span class="status pilot">可试点</span><strong>Moon Content OS Lite</strong><p>个人内容工作台母产品。</p></article>
+        <article class="radar-item"><span class="status">可直接用</span><strong>社区活动内容传播</strong><p>活动预告、论坛介绍、合作发布。</p></article>
+        <article class="radar-item"><span class="status">可直接用</span><strong>会后 72 小时内容资产包</strong><p>会后报道、活动复盘、社区记忆。</p></article>
+        <article class="radar-item"><span class="status">可直接用</span><strong>音视频转公众号</strong><p>播客、直播、圆桌逐字稿再分发。</p></article>
+        <article class="radar-item"><span class="status pilot">可试点</span><strong>Public Profile Lab</strong><p>公开资料人物深度侧写。</p></article>
+        <article class="radar-item"><span class="status">可直接用</span><strong>去 AI 味与事实校对门</strong><p>发布前最后一轮质量守门。</p></article>
+        <article class="radar-item"><span class="status soon">待上线</span><strong>发布后反馈回收台</strong><p>从反馈里找真实信号。</p></article>
+        <article class="radar-item"><span class="status pilot">可试点</span><strong>商业合作内容审核包</strong><p>高风险合作稿发布前审核。</p></article>
+        <article class="radar-item"><span class="status soon">待上线</span><strong>系列稿拆分器</strong><p>连续发布防重复。</p></article>
+        <article class="radar-item"><span class="status soon">待上线</span><strong>内部 Brief 公开转译器</strong><p>把内部判断转成稳妥公开表达。</p></article>
+        <article class="radar-item"><span class="status pilot">可试点</span><strong>AI 技术现场研究</strong><p>技术对象、现场和人文问题共读。</p></article>
+        <article class="radar-item"><span class="status soon">待上线</span><strong>内容分发路由台</strong><p>判断素材最适合发哪里。</p></article>
+        <article class="radar-item"><span class="status pilot">可试点</span><strong>海外 Field Note</strong><p>中文现场转成海外读者能进入的问题。</p></article>
+        <article class="radar-item"><span class="status soon">待上线</span><strong>作品集案例蒸馏器</strong><p>项目经历变成案例页和能力证明。</p></article>
+        <article class="radar-item"><span class="status soon">待上线</span><strong>项目资产回收台</strong><p>项目结束后回收到方法、offer 和关系。</p></article>
+        <article class="radar-item"><span class="status soon">案例</span><strong>专属伙伴工作流</strong><p>Datawhale、超脑等专属案例，不作为通用入口。</p></article>
+      </div>
     </section>
   </main>
 
@@ -1279,6 +1815,7 @@
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0/dist/fuse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
     (function () {
       const routeCards = Array.from(document.querySelectorAll("[data-route-card]"));
@@ -1433,12 +1970,43 @@
         pre.insertAdjacentElement("beforebegin", copyButton);
       });
 
+      function getButtonLabel(button) {
+        const label = button.querySelector("[data-button-label]");
+        return label ? label.textContent : button.textContent;
+      }
+
+      function setButtonLabel(button, text) {
+        const label = button.querySelector("[data-button-label]");
+        if (label) {
+          label.textContent = text;
+          return;
+        }
+        button.textContent = text;
+      }
+
+      document.querySelectorAll("[data-copy-workflow]").forEach((button) => {
+        const icon = button.querySelector(".button-icon");
+        if (!icon || button.querySelector("[data-button-label]")) return;
+        const labelText = Array.from(button.childNodes)
+          .filter((node) => node.nodeType === Node.TEXT_NODE)
+          .map((node) => node.textContent)
+          .join("")
+          .trim();
+        Array.from(button.childNodes).forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) node.remove();
+        });
+        const label = document.createElement("span");
+        label.setAttribute("data-button-label", "");
+        label.textContent = labelText || button.textContent.trim();
+        button.appendChild(label);
+      });
+
       function markCopied(button, ok) {
-        const original = button.dataset.originalLabel || button.textContent;
+        const original = button.dataset.originalLabel || getButtonLabel(button);
         button.dataset.originalLabel = original;
-        button.textContent = ok ? "已复制" : "请手动复制";
+        setButtonLabel(button, ok ? "已复制" : "请手动复制");
         window.setTimeout(() => {
-          button.textContent = original;
+          setButtonLabel(button, original);
         }, 1600);
       }
 
@@ -1475,6 +2043,7 @@
       }
 
       showAll(true);
+      if (window.lucide) window.lucide.createIcons();
     })();
   </script>
 </body>
