@@ -9,6 +9,15 @@ Use this skill when Moon or another creator wants to turn spoken thinking into a
 
 The value is not only slide generation. The workflow captures the creator's live logic, helps AI ask clarifying questions, turns the result into a structured document, selects images, then generates a fixed-stage HTML deck that can be rehearsed, revised, shared, or exported.
 
+Moon's proven pattern is:
+
+1. start a recording and speak the whole argument before making slides
+2. use AI to question the logic, audience path, examples, and cuts
+3. move the refined structure into a Feishu / document staging area
+4. add images, screenshots, references, and visual cues
+5. choose a suitable HTML deck template or visual direction
+6. generate the HTML page, rehearse in browser, then revise
+
 ## Core Stance
 
 - Treat the speaker as the author of the argument, not a person filling a slide template.
@@ -18,7 +27,39 @@ The value is not only slide generation. The workflow captures the creator's live
 - Prefer speaker-led decks: one idea per slide, strong hierarchy, generous breathing room, and enough visual anchors for memory.
 - If the deck will be shared asynchronously as a reading file, explicitly switch to a higher-density mode.
 
+## Validation Level
+
+This is a `pilot` workflow, not a fully proven public product yet.
+
+Known validated parts:
+
+- Moon can prepare a talk faster by speaking first, then using AI to structure and question the material.
+- Feishu / document staging works well before HTML generation because it keeps structure, images, and speaker notes editable.
+- HTML decks are useful for creator-led talks because they are easier to share, rehearse, restyle, and deploy than traditional slide files.
+
+Needs further validation:
+
+- Run at least one complete real talk from recording to final HTML deck.
+- Record time spent at each phase: spoken capture, AI structure, Feishu outline, image selection, HTML build, QA, rehearsal revision.
+- Test whether another creator can follow the workflow without Moon present.
+- Keep one sanitized example outline and one final deck as proof of method.
+
+Do not present the workflow as mature until those validation steps are complete.
+
 ## Workflow
+
+### 0. Choose The Entry Mode
+
+Identify which state the user is in:
+
+| Mode | Use When | First Output |
+| --- | --- | --- |
+| `口述理清` | The user has an idea, recording, messy transcript, or rough talk energy. | Talk logic map |
+| `飞书整理` | The user already has a Feishu / doc draft and wants slide structure. | Slide outline |
+| `网页生成` | The outline, materials, and visual direction are ready. | HTML deck build brief |
+| `演讲修订` | The user already has an HTML deck or PPT and wants to improve it. | Revision audit |
+
+If the user is in `口述理清`, do not generate slides immediately.
 
 ### 1. Intake The Spoken Material
 
@@ -42,6 +83,8 @@ Extract:
 - audience tension or pain
 - speaker's main judgment
 - 3-5 movement beats
+- what the speaker can say live but should not put on screen
+- what needs one image, scene, screenshot, quote, or diagram to be remembered
 - examples, scenes, stories, data, or images that can carry each beat
 - parts that are still unclear and need the speaker's judgment
 
@@ -56,6 +99,8 @@ Help the user iterate through questions such as:
 - What examples or images make this concrete?
 - Where will the audience resist, get lost, or need a bridge?
 - What can be cut because it belongs in speaker notes, not on the slide?
+- Which sentence sounds like the speaker, and which sentence sounds like a polished AI summary?
+- Which part is still only a private intuition and should stay in `待演讲者判断`?
 
 After each loop, update the structure. Keep a section called `待月亮判断` or `待演讲者判断` for decisions AI should not make.
 
@@ -90,6 +135,8 @@ Each slide candidate should include:
 - source material / quote / image if applicable
 - risk or fact to verify
 
+Use the document as a staging area, not as the final deck. The document can carry nuance, notes, and rough logic; the screen should carry rhythm, memory, and visual anchors.
+
 ### 5. Design The HTML Deck
 
 When generating the final HTML deck, use the installed `frontend-slides` skill if available. Follow these invariants:
@@ -105,6 +152,18 @@ When generating the final HTML deck, use the installed `frontend-slides` skill i
 - optional presenter notes or comments
 
 If using `frontend-slides`, follow its fixed-stage rules and visual QA requirements.
+
+### 5.5 Rehearsal Revision
+
+After the first HTML deck exists, run a rehearsal pass:
+
+- read every slide aloud in sequence
+- mark slides where the speaker has too much to explain
+- mark slides where the screen says everything and leaves no room for speech
+- remove generic transition slides
+- split slides where one page tries to carry two thoughts
+- add speaker notes where the spoken bridge matters
+- keep a small `现场提醒` section for moments the speaker must remember
 
 ### 6. Verify Before Delivery
 
@@ -175,9 +234,19 @@ Use before generating the HTML presentation.
 - `素材门`: images and examples have source and permission.
 - `事实门`: names, dates, claims, citations, and logos are checked.
 - `视觉门`: each slide is readable at 1920 x 1080 and scaled viewport.
-- `去 AI 味门`: no generic slogans, over-neat conclusions, or empty framework language.
+- `去 AI 味门`: no generic slogans, over-neat conclusions, template-like talk openings, or empty framework language.
+
+## Anti AI-Taste Checks For Slides
+
+Watch for these patterns:
+
+- The deck starts with a generic promise like "今天我们一起探索..." instead of a real question, scene, or tension.
+- Slide titles are abstract nouns without a point of view.
+- Every slide follows the same title + three bullets pattern.
+- The deck explains the speaker's structure instead of giving the audience a path.
+- Images are decorative background mood, not evidence, memory, or contrast.
+- The ending is a slogan rather than a clear invitation, question, or next action.
 
 ## References
 
 Read `references/pipeline.md` when the task involves turning raw spoken notes into a full deck workflow, productizing this workflow, or creating a reusable brief for another person to use.
-
