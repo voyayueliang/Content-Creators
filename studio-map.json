@@ -50,6 +50,7 @@
   ],
   "primaryProducts": [
     "moon-content-os",
+    "human-ai-collaboration-boundary",
     "community-event-content-workbench",
     "event-recap-to-wechat-md",
     "qa-gates",
@@ -59,6 +60,7 @@
     "creator-work-system-builder"
   ],
   "nextBuild": [
+    "找 2 个外部创作者试跑人机协作边界卡",
     "用真实演讲完整验证口述转 HTML 演讲 PPT",
     "用 3 个音视频素材验证播客音视频转公众号文章 Skill",
     "整理去 AI 味与事实校对门的样本库",
