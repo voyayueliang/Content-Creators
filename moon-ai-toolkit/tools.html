@@ -747,6 +747,42 @@
       grid-row: 1 / span 5;
     }
 
+    .workflow-pack {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .workflow-step {
+      min-height: 118px;
+      padding: 12px;
+      background: var(--paper-2);
+    }
+
+    .workflow-step:nth-child(even) {
+      background: var(--mint);
+    }
+
+    .workflow-step strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .workflow-step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
     .card > .tag,
     .card > h3,
     .card > .summary,
@@ -881,6 +917,27 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
+    .gate .workflow-pack {
+      border-color: rgba(255, 255, 255, .22);
+      background: rgba(255, 255, 255, .18);
+    }
+
+    .gate .workflow-step {
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .gate .workflow-step:nth-child(even) {
+      background: rgba(114, 239, 117, .13);
+    }
+
+    .gate .workflow-step strong {
+      color: var(--poster-green);
+    }
+
+    .gate .workflow-step p {
+      color: rgba(255, 255, 255, .78);
+    }
+
     .gate summary {
       color: #fff;
     }
@@ -943,6 +1000,7 @@
 
       .fit-grid,
       .info,
+      .workflow-pack,
       .route-card,
       .lane-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -994,6 +1052,7 @@
 
       .fit-grid,
       .info,
+      .workflow-pack,
       .route-card,
       .lane-grid {
         grid-template-columns: 1fr;
@@ -1092,7 +1151,7 @@
       <div>
         <p class="eyebrow">Humanity in the loop</p>
         <h1>月亮的 AI 工作台</h1>
-        <p class="lead">为内容创作者和社区活动组织者准备的小型 AI 工作台。不用安装，不用先看 GitHub。选一个场景，复制启动句，补充材料和边界；AI 负责整理与起草，人负责判断、校对和发布。</p>
+        <p class="lead">为内容创作者和社区活动组织者准备的小型 AI 工作台。这里不是一组空泛模板，而是我在活动传播、会后报道、音视频转文章、人物深度稿里跑出来的工作流。你把真实材料放进去，AI 先整理素材、标出缺口、起草版本；人负责判断价值、校对事实、决定哪些能发布。</p>
         <div class="hero-actions">
           <a class="button" href="#start">从任务开始</a>
           <a class="button secondary" href="#workflows">查看工作流</a>
@@ -1103,9 +1162,9 @@
         <h2>第一次使用</h2>
         <ol class="steps">
           <li><b>1</b><span>选场景</span></li>
-          <li><b>2</b><span>复制启动句</span></li>
-          <li><b>3</b><span>补材料与边界</span></li>
-          <li><b>4</b><span>人来确认</span></li>
+          <li><b>2</b><span>复制工作流说明</span></li>
+          <li><b>3</b><span>补真实材料</span></li>
+          <li><b>4</b><span>人做判断</span></li>
         </ol>
       </aside>
     </section>
@@ -1113,7 +1172,7 @@
     <section class="wrap" id="start">
       <div class="section-head">
         <h2>从你的任务开始</h2>
-        <p>普通用户只需要做一件事：找到自己现在要交付的内容，然后复制对应启动句。GitHub 留给想部署或二次开发的人。</p>
+        <p>普通用户只需要做一件事：找到自己现在要交付的内容，然后复制对应的工作流说明。它会告诉 AI 先整理什么、追问什么、不能越过哪些边界。</p>
       </div>
       <div class="choice-panel" data-choice-panel>
         <div>
@@ -1149,28 +1208,28 @@
       </div>
       <div class="fit-grid" aria-label="普通用户使用方式">
         <section class="fit-card">
-          <h3>不用部署</h3>
-          <p>直接在网页里复制启动句，粘到你常用的 AI 对话里。</p>
+          <h3>选工作流</h3>
+          <p>先选最接近的任务：会前传播、会后报道、音视频转文、人物稿或发布前检查。</p>
         </section>
         <section class="fit-card">
-          <h3>补材料</h3>
-          <p>按提示放入策划案、逐字稿、照片说明、链接或初稿。</p>
+          <h3>放真实材料</h3>
+          <p>把策划案、逐字稿、照片说明、公开链接、初稿和合作方要求放进去。</p>
         </section>
         <section class="fit-card">
-          <h3>说边界</h3>
-          <p>注明受众、发布平台、不能公开的信息和需要确认的事实。</p>
+          <h3>让 AI 先整理</h3>
+          <p>先要材料地图、事实缺口、叙事角度和追问清单，不急着直接成稿。</p>
         </section>
         <section class="fit-card">
-          <h3>再校对</h3>
-          <p>最后用去 AI 味和事实校对门过一遍，再交付或发布。</p>
+          <h3>人来把关</h3>
+          <p>最后用事实校对、合作边界和去 AI 味三道门过一遍，再交付或发布。</p>
         </section>
       </div>
     </section>
 
     <section class="wrap" id="workflows">
       <div class="section-head">
-        <h2>核心入口：复制启动句直接用</h2>
-        <p>每个工具都按同一种方式使用：看自己是否适合，准备材料，复制启动句。下方的开发者入口只是进阶选项，不是普通用户的第一步。</p>
+        <h2>真实工作流包</h2>
+        <p>每个入口都按同一种方式使用：先看它跑过的场景，再准备材料，最后复制给 AI 的工作流说明。开发者入口只是进阶选项，不是普通用户的第一步。</p>
       </div>
 
       <div class="grid">
@@ -1196,17 +1255,42 @@
               </ol>
             </section>
           </div>
+          <div class="workflow-pack" aria-label="社区活动内容传播工作流">
+            <section class="workflow-step">
+              <strong>跑过的场景</strong>
+              <p>Datawhale 与 AIEC 分论坛预告、合作方活动稿、商业合作内容交付。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>AI 先做</strong>
+              <p>拆材料来源、整理公开信息、列事实缺口，先判断这篇稿要解决什么传播任务。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>人来判断</strong>
+              <p>活动真正想传递的战略价值、合作方语言风格、哪些信息需要编辑或伙伴确认。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>最后交付</strong>
+              <p>导读、正文、报名转化口径、事实校对清单和给编辑看的待确认项。</p>
+            </section>
+          </div>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-event"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-event"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
             <details>
-              <summary>查看启动句</summary>
-              <pre>打开社区活动内容传播工作台。
+              <summary>查看完整工作流说明</summary>
+              <pre>打开社区活动内容传播工作流。
 
 活动类型：[会前预告 / 分论坛介绍 / 商业合作稿]
 材料在这里：[粘贴策划案、会议纪要、嘉宾信息或文件路径]
 发布平台：[公众号 / 官网 / 社群]
+受众：[开发者 / 学习者 / 企业客户 / 社区伙伴 / 其他]
+合作边界：[哪些必须出现 / 哪些不能公开 / 哪些需要确认]
 
-请先做需求收口和事实缺口检查，再决定文章结构。</pre>
+请按这个顺序工作：
+1. 先做材料地图，区分确定事实、合作方口径、可引用信息、需要确认的信息。
+2. 再判断这篇稿的传播任务：召集报名、解释活动价值、呈现生态号召力，还是给合作方交付 proof。
+3. 如果已有前期报道、主办方报道、伙伴报道或公开讨论，请先整理可参考信息，但不要自动写入正文，判断权交给我。
+4. 先给我文章结构和信息缺口，不要直接写完整稿。
+5. 成稿前必须过两道门：事实校对门、去 AI 味与声音门。</pre>
             </details>
             <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">开发者入口</a>
           </div>
@@ -1234,17 +1318,41 @@
               </ol>
             </section>
           </div>
+          <div class="workflow-pack" aria-label="活动复盘转公众号工作流">
+            <section class="workflow-step">
+              <strong>跑过的场景</strong>
+              <p>2050 学习节会后报道、社区活动复盘、伙伴参与记录和照片反馈整理。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>AI 先做</strong>
+              <p>把录音、照片、群聊反馈、公开报道和伙伴材料整理成可追溯的素材地图。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>人来判断</strong>
+              <p>哪些是可公开事实，哪些只是现场感；哪些人、照片、评价需要授权或匿名。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>最后交付</strong>
+              <p>会后报道、现场观察、伙伴传播包、社区记忆包和下一次活动可复用素材。</p>
+            </section>
+          </div>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-recap"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-recap"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
             <details>
-              <summary>查看启动句</summary>
+              <summary>查看完整工作流说明</summary>
               <pre>打开活动复盘转公众号工作流。
 
 活动已经结束，复盘材料在这里：[粘贴或给路径]
 同场公开报道 / 伙伴记录：[链接或说明]
 图片边界：[可公开 / 需确认 / 不可公开]
+交付目标：[会后报道 / 现场观察 / 伙伴传播包 / 社区记忆包 / 不确定]
 
-请先整理素材地图，再判断适合写成报道、观察稿还是传播包。</pre>
+请按这个顺序工作：
+1. 先整理素材地图：时间线、人物、现场画面、关键反馈、公开报道、可引用素材。
+2. 标出每条素材的来源和可靠程度，不要把群聊感受写成确定事实。
+3. 先判断这次活动最值得被记住的是什么，再判断适合写成报道、观察稿还是传播包。
+4. 如果材料不足，先向我追问，不要用漂亮话补空。
+5. 成稿后做事实校对、图片公开边界检查和去 AI 味检查。</pre>
             </details>
             <a class="button secondary" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">开发者入口</a>
           </div>
@@ -1272,10 +1380,28 @@
               </ol>
             </section>
           </div>
+          <div class="workflow-pack" aria-label="播客音视频转公众号工作流">
+            <section class="workflow-step">
+              <strong>跑过的场景</strong>
+              <p>播客、直播、访谈、圆桌逐字稿和长视频内容，转成公众号或多平台内容。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>AI 先做</strong>
+              <p>先拆话题地图、说话人观点、可公开边界和原话片段，不急着压成标准长文。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>人来判断</strong>
+              <p>保留对话感还是改成文章；哪些观点不能替说话人下结论，哪些需要补上下文。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>最后交付</strong>
+              <p>公众号文章、对谈稿、短观察、标题组、摘要和可继续入库的素材卡。</p>
+            </section>
+          </div>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-audio"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-audio"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
             <details>
-              <summary>查看启动句</summary>
+              <summary>查看完整工作流说明</summary>
               <pre>打开播客音视频转公众号文章工作流。
 
 素材类型：[播客 / 录音 / 视频回放 / 直播 / 访谈 / 圆桌]
@@ -1283,7 +1409,12 @@
 我希望输出：[公众号文章 / 对谈稿 / 短观察 / 素材卡 / 不确定]
 公开边界：[可公开 / 需匿名 / 需确认 / 不外发]
 
-请先判断内容形态，不要直接写成长文。</pre>
+请按这个顺序工作：
+1. 先做话题地图和人物观点地图，保留有信息量的原话，不要过早改写。
+2. 判断最适合的输出形态：对谈稿、观察文、知识整理、人物稿、短内容素材，或组合包。
+3. 标出需要我确认的事实、身份、引用和敏感表达。
+4. 如果要写公众号文章，先给我结构和选题角度，再写正文。
+5. 成稿后检查：是否过度总结、是否替别人下结论、是否丢失现场语气。</pre>
             </details>
             <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">开发者入口</a>
           </div>
@@ -1311,10 +1442,28 @@
               </ol>
             </section>
           </div>
+          <div class="workflow-pack" aria-label="公众人物深度报道工作流">
+            <section class="workflow-step">
+              <strong>跑过的场景</strong>
+              <p>创始人、开发者、创作者、AI builder 等公开资料型人物报道和深度侧写。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>AI 先做</strong>
+              <p>搭资料查看台，把公开资料分成事实、引用、观点、时间线、推断和缺口。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>人来判断</strong>
+              <p>不能写成百科、PR 或心理揣测；没有采访时，要清楚标注公开资料边界。</p>
+            </section>
+            <section class="workflow-step">
+              <strong>最后交付</strong>
+              <p>资料地图、人物主线、文章角度、逐节草稿和不可越界的写作提醒。</p>
+            </section>
+          </div>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-profile"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-profile"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
             <details>
-              <summary>查看启动句</summary>
+              <summary>查看完整工作流说明</summary>
               <pre>打开公众人物深度报道工作台。
 
 对象：[人物姓名]
@@ -1322,7 +1471,12 @@
 已有素材：[链接 / 文件 / 暂无，请帮我搜集]
 发布渠道：[公众号 / Substack / 作品集 / 机构投稿 / 不确定]
 
-请先做人物资料查看台和素材解剖，不要直接写完整长文。</pre>
+请按这个顺序工作：
+1. 先建立人物资料查看台，列出资料来源、发布时间、信息类型和可信程度。
+2. 区分事实、原话、外部评价、我的判断、你的推断和材料缺口。
+3. 如果需要调研公开资料，先给我资料清单和可用性判断，不要把搜索结果直接写成结论。
+4. 先给人物主线和三个可能角度，由我选择后再进入成稿。
+5. 写作时避免百科腔、PR 腔和心理揣测；没有证据的地方必须留白或标注。</pre>
             </details>
             <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/public-profile-deep-report-workflow" target="_blank" rel="noreferrer">开发者入口</a>
           </div>
@@ -1336,16 +1490,22 @@
           <h2>去 AI 味与声音守门</h2>
           <p class="summary">发布前最后一轮：把 AI 初稿里过度顺滑、空泛判断、硬凑转折和不像人的表达挑出来，改回具体、克制、有边界的人的声音。</p>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-voice"><span class="button-icon" data-lucide="copy"></span>复制启动句直接用</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-voice"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
             <details>
-              <summary>查看启动句</summary>
+              <summary>查看完整工作流说明</summary>
               <pre>打开去 AI 味与声音守门工作流。
 
 当前稿在这里：[粘贴稿件]
 原始材料在这里：[粘贴材料或文件路径]
+发布平台：[公众号 / 小红书 / 视频号 / 作品集 / 商业交付]
+我最担心的问题：[事实错误 / 太像 AI / 太宣传 / 太啰嗦 / 边界不清]
 
 请标出不像人的地方、为什么不稳，并给出更像我的改法。
-同时检查是否有空泛判断、硬凑转折、过度顺滑和没有材料支撑的漂亮话。</pre>
+同时检查：
+1. 有没有空泛判断、硬凑转折、过度顺滑和没有材料支撑的漂亮话。
+2. 有没有事实、时间、身份、主办方、协办方、标题、地点、报名信息错误。
+3. 有没有把合作方想表达的战略价值说偏，或把读者不关心的内部视角写得太重。
+4. 请先给问题清单和修改建议，不要一上来整篇重写。</pre>
             </details>
             <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">开发者入口</a>
           </div>
@@ -1366,6 +1526,24 @@
               <li>事实和边界风险提醒。</li>
               <li>更像人的逐句改法。</li>
             </ol>
+          </section>
+        </div>
+        <div class="workflow-pack" aria-label="去 AI 味与声音守门工作流">
+          <section class="workflow-step">
+            <strong>跑过的场景</strong>
+            <p>Datawhale 活动稿、商业合作稿、人物稿、公众号初稿和 AI 生成草稿的最后一轮。</p>
+          </section>
+          <section class="workflow-step">
+            <strong>AI 先做</strong>
+            <p>逐段标出 AI 味、事实风险、边界风险和读者读起来不自然的句子。</p>
+          </section>
+          <section class="workflow-step">
+            <strong>人来判断</strong>
+            <p>哪些表达保留个人声音，哪些事实必须回到原材料，哪些合作口径需要确认。</p>
+          </section>
+          <section class="workflow-step">
+            <strong>最后交付</strong>
+            <p>问题清单、逐句改法、发布前确认项和更像人写的最终版本。</p>
           </section>
         </div>
       </section>
@@ -1432,7 +1610,7 @@
         });
         if (noResults) noResults.hidden = true;
         if (choiceFeedback) {
-          choiceFeedback.textContent = `已为你选出：${target.title}。可以直接往下看启动句。`;
+          choiceFeedback.textContent = `已为你选出：${target.title}。可以直接往下看工作流说明。`;
         }
       }
 
@@ -1447,19 +1625,19 @@
       }
 
       document.querySelectorAll("details pre").forEach((pre, index) => {
-        if (!pre.id) pre.id = `workflow-prompt-${index + 1}`;
+        if (!pre.id) pre.id = `workflow-instruction-${index + 1}`;
         const workflowCard = pre.closest("[data-workflow-card]");
         const useNowButton = workflowCard?.querySelector("[data-copy-workflow]");
         if (useNowButton) {
           useNowButton.setAttribute("data-clipboard-target", `#${pre.id}`);
-          useNowButton.setAttribute("aria-label", "复制这个工作流的启动句直接使用");
+          useNowButton.setAttribute("aria-label", "复制这个工作流说明给 AI 使用");
         }
         const copyButton = document.createElement("button");
         copyButton.className = "copy-prompt";
         copyButton.type = "button";
-        copyButton.textContent = "复制启动句";
+        copyButton.textContent = "复制工作流说明";
         copyButton.setAttribute("data-clipboard-target", `#${pre.id}`);
-        copyButton.setAttribute("aria-label", "复制这个工作流的启动句");
+        copyButton.setAttribute("aria-label", "复制这个工作流说明");
         pre.insertAdjacentElement("beforebegin", copyButton);
       });
 
