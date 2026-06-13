@@ -1,7 +1,7 @@
 {
-  "name": "Moon Content Workbench",
-  "title": "月亮的内容工作台",
-  "tagline": "把真实的人、现场、对话和项目材料收进工作台，再整理成可以被理解、传播、复盘和继续生长的内容资产。",
+  "name": "Moon AI Workbench",
+  "title": "月亮的 AI 工作台",
+  "tagline": "把真实的人、现场、对话和项目材料，转译成可以被理解、传播、复用和继续生长的内容资产。",
   "sections": [
     {
       "id": "methods",
@@ -26,7 +26,14 @@
       "title": "产品",
       "description": "已经产品化、可试点或可展示的工作流与服务包。",
       "folder": "04_产品",
-      "source": "products-public.json"
+      "source": "../../04_产品与工具/已产品化产品库/products.json"
+    },
+    {
+      "id": "workflow-radar",
+      "title": "工作流雷达",
+      "description": "从其他对话、项目文档和复盘中发现可封装候选，先进入队列，月亮确认后才上架。",
+      "folder": "workflow-radar",
+      "visibility": "internal"
     },
     {
       "id": "stories",
@@ -49,7 +56,7 @@
   "nextBuild": [
     "为首页写 20 秒内能看懂的自我介绍",
     "把 Moon Content OS 作为母产品放到首页",
-    "整理 3-5 条月亮的内容工作台方法原则",
+    "整理 3-5 条月亮的 AI 工作台方法原则",
     "补 2 个真实案例页"
   ]
 }
