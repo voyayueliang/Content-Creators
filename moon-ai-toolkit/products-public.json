@@ -12,7 +12,7 @@
     "title": "人机协作边界与内容判断方法",
     "type": "底层方法 / AI 协作边界",
     "useWhen": "开始任何内容工作流前，需要先分清 AI 可代劳的劳动、人必须保留的判断、事实和公开边界",
-    "entry": "index.html#workflow-human-ai",
+    "entry": "tools.html#workflow-human-ai",
     "localFolder": "product-library/09_human-ai-collaboration-boundary"
   },
   {
