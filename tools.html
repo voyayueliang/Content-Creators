@@ -338,6 +338,281 @@
       font-size: 13px;
     }
 
+    .truth-panel {
+      display: grid;
+      grid-template-columns: minmax(260px, .78fr) minmax(0, 1.22fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      background: var(--poster-black);
+      color: var(--paper);
+    }
+
+    .truth-panel > div {
+      padding: 18px;
+    }
+
+    .truth-panel h3 {
+      margin: 0 0 10px;
+      color: var(--poster-green);
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 500;
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    .truth-panel p {
+      margin: 0;
+      color: rgba(255, 255, 255, .78);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .truth-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      background: rgba(255, 255, 255, .18);
+    }
+
+    .truth-list section {
+      padding: 14px;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .truth-list strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--poster-green);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .truth-list span {
+      display: block;
+      color: rgba(255, 255, 255, .8);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .case-card {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 14px;
+      min-height: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+    }
+
+    .case-card:nth-child(3n),
+    .case-card:nth-child(4n) {
+      background: var(--mint);
+    }
+
+    .case-media {
+      min-height: 168px;
+      border: 1px solid var(--line);
+      background: var(--mint);
+      overflow: hidden;
+    }
+
+    .case-media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .case-mark {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      min-height: 168px;
+      padding: 12px;
+      background: var(--poster-black);
+      color: var(--poster-green);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 760;
+      line-height: 1.35;
+      letter-spacing: .06em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .case-body {
+      display: grid;
+      gap: 9px;
+      align-content: start;
+    }
+
+    .case-kicker {
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .case-card h3 {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: clamp(23px, 2.4vw, 31px);
+      font-weight: 500;
+      line-height: 1.02;
+    }
+
+    .case-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.58;
+    }
+
+    .case-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .case-points div {
+      padding: 10px;
+      background: rgba(255, 254, 250, .92);
+    }
+
+    .case-points strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .case-points span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .os-panel {
+      display: grid;
+      grid-template-columns: minmax(260px, .85fr) minmax(0, 1.15fr);
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .os-intro,
+    .os-map {
+      padding: 18px;
+      background: var(--paper-2);
+    }
+
+    .os-map {
+      background: var(--mint);
+    }
+
+    .os-intro h3 {
+      margin: 0 0 10px;
+      color: var(--teal);
+      font-family: var(--serif);
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 500;
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    .os-intro p,
+    .os-map p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .os-lanes {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .os-lane {
+      min-height: 124px;
+      padding: 12px;
+      background: var(--paper-2);
+    }
+
+    .os-lane:nth-child(even) {
+      background: var(--mint);
+    }
+
+    .os-lane strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .os-lane span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .operator-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .operator-list section {
+      padding: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255, 254, 250, .78);
+    }
+
+    .operator-list strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .operator-list span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
     .route-list {
       display: grid;
       gap: 8px;
@@ -1001,9 +1276,29 @@
       .fit-grid,
       .info,
       .workflow-pack,
+      .truth-list,
+      .case-grid,
       .route-card,
       .lane-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .truth-panel,
+      .case-card {
+        grid-template-columns: 1fr;
+      }
+
+      .os-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .os-lanes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .case-media,
+      .case-mark {
+        min-height: 190px;
       }
 
       .choice-grid {
@@ -1053,9 +1348,20 @@
       .fit-grid,
       .info,
       .workflow-pack,
+      .truth-list,
+      .case-grid,
+      .case-points,
+      .os-lanes,
       .route-card,
       .lane-grid {
         grid-template-columns: 1fr;
+      }
+
+      .truth-panel > div,
+      .os-intro,
+      .os-map,
+      .case-card {
+        padding: 12px;
       }
 
       .choice-panel > div:first-child,
@@ -1141,6 +1447,7 @@
       </a>
       <div class="top-actions">
         <a class="repo" href="#start">直接使用</a>
+        <a class="repo" href="#cases">真实案例</a>
         <a class="repo" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">开发者入口</a>
       </div>
     </div>
@@ -1151,10 +1458,10 @@
       <div>
         <p class="eyebrow">Humanity in the loop</p>
         <h1>月亮的 AI 工作台</h1>
-        <p class="lead">为内容创作者和社区活动组织者准备的小型 AI 工作台。这里不是一组空泛模板，而是我在活动传播、会后报道、音视频转文章、人物深度稿里跑出来的工作流。你把真实材料放进去，AI 先整理素材、标出缺口、起草版本；人负责判断价值、校对事实、决定哪些能发布。</p>
+        <p class="lead">为内容创作者和社区活动组织者准备的 AI 内容工作台。它不是“让 AI 帮你写一篇稿”，而是把我在真实项目里跑出来的编辑判断拆成流程：材料怎么收、价值怎么判断、AI 先做什么、人在哪一步把关、最后怎样交给编辑或伙伴审核。</p>
         <div class="hero-actions">
           <a class="button" href="#start">从任务开始</a>
-          <a class="button secondary" href="#workflows">查看工作流</a>
+          <a class="button secondary" href="#cases">看真实样本</a>
         </div>
       </div>
       <aside class="hero-card">
@@ -1223,6 +1530,183 @@
           <h3>人来把关</h3>
           <p>最后用事实校对、合作边界和去 AI 味三道门过一遍，再交付或发布。</p>
         </section>
+      </div>
+    </section>
+
+    <section class="wrap" id="cases">
+      <div class="section-head">
+        <h2>不是空模板，是从真实项目里长出来的</h2>
+        <p>这些工作流来自我已经跑过的活动传播、会后报道、直播转文章、人物深度稿和商业合作审核。页面上保留的是可迁移的方法，不暴露客户内部信息，但让你能看见它到底解决了什么问题。</p>
+      </div>
+      <div class="truth-panel">
+        <div>
+          <h3>真正可复用的，不是那篇稿子，而是判断流程。</h3>
+          <p>很多内容工具只交付一版“看起来还行”的文章。我的工作台更关心：材料是否可追溯，内部信息能不能公开，哪些事实必须确认，哪里像 AI，编辑最需要先看什么。</p>
+        </div>
+        <div class="truth-list" aria-label="月亮工作台的真实交付物">
+          <section>
+            <strong>材料入口</strong>
+            <span>策划案、会议纪要、录音、逐字稿、图片说明、公开报道、历史风格样本。</span>
+          </section>
+          <section>
+            <strong>判断过程</strong>
+            <span>需求收口、系列稿分工、内部信息公开转译、议程转链路、读者视角校准。</span>
+          </section>
+          <section>
+            <strong>交付结果</strong>
+            <span>可审核初稿、修改建议、事实待确认清单、去 AI 味门、编辑交接卡。</span>
+          </section>
+        </div>
+      </div>
+
+      <div class="case-grid">
+        <article class="case-card">
+          <div class="case-media">
+            <span class="case-mark">AIEC<br>Datawhale<br>Series</span>
+          </div>
+          <div class="case-body">
+            <span class="case-kicker">商业合作 / 连续发布</span>
+            <h3>AIEC 浪潮信息双分论坛稿</h3>
+            <p>用第一篇大会总稿、玉鑫策划案、会议录音和论坛议程，拆出两篇连续发布稿，避免三篇内容重复，也避免把内部战略判断直接写进公众号。</p>
+            <div class="case-points">
+              <div><strong>输入</strong><span>策划案、录音、议程、编辑反馈。</span></div>
+              <div><strong>判断</strong><span>系列稿分工、内部信息公开转译、议程转链路。</span></div>
+              <div><strong>结果</strong><span>两篇可发编辑审核稿 + 发布前确认清单。</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-media">
+            <img src="assets/case-2050-learning-festival.png" alt="2050 学习节案例封面">
+          </div>
+          <div class="case-body">
+            <span class="case-kicker">多对象采访 / 生态深度报道</span>
+            <h3>2050 学习节生态报道</h3>
+            <p>两周内采访多位召集者、社区伙伴和青年行动者，把一个活动从“现场很热闹”写成自组织学习生态如何长出来的故事。</p>
+            <div class="case-points">
+              <div><strong>输入</strong><span>多对象采访、现场观察、社区线索。</span></div>
+              <div><strong>判断</strong><span>从人物与关系里提炼生态机制。</span></div>
+              <div><strong>结果</strong><span>深度报道、活动记忆和后续传播资产。</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-media">
+            <img src="assets/case-amd-datawhale.webp" alt="AMD Datawhale 开发者生态现场报道封面">
+          </div>
+          <div class="case-body">
+            <span class="case-kicker">开发者生态 / 现场报道</span>
+            <h3>AMD / Datawhale 开发者生态现场</h3>
+            <p>把 AMD、ModelScope、Datawhale、ROCm、开源项目贡献者和青年开发者放在同一张现场地图里，写清算力、模型、工具和人如何共同构成生态。</p>
+            <div class="case-points">
+              <div><strong>输入</strong><span>现场观察、人物线索、技术生态材料。</span></div>
+              <div><strong>判断</strong><span>不只写大会，而是写“算力 × 模型 × 人”。</span></div>
+              <div><strong>结果</strong><span>开发者生态报道和可复用作品集案例。</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-media">
+            <span class="case-mark">Audio<br>To<br>Article</span>
+          </div>
+          <div class="case-body">
+            <span class="case-kicker">直播回放 / 公众号对谈稿</span>
+            <h3>AI 教育直播转内容资产</h3>
+            <p>从一场 AI 教育与创意表达直播里，拆出公众号对谈稿、素材卡、发布队列和多个平台方向，同时保留学生作品、家长反馈和未成年人公开边界。</p>
+            <div class="case-points">
+              <div><strong>输入</strong><span>直播回放、逐字稿、人物与案例线索。</span></div>
+              <div><strong>判断</strong><span>先保留对话和现场，再决定文章形态。</span></div>
+              <div><strong>结果</strong><span>公众号稿、视频号方向、素材卡和授权提醒。</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-media">
+            <span class="case-mark">Profile<br>Human<br>Gate</span>
+          </div>
+          <div class="case-body">
+            <span class="case-kicker">公开资料 / 人物深度稿</span>
+            <h3>葛小川 / AppLovin 人物侧写工作流</h3>
+            <p>不是让 AI 自动写人物包装，而是用公开资料、短问题和人类判断节点，拆出阅读透镜、读者画像、框架确认、引用核查和公开资料边界。</p>
+            <div class="case-points">
+              <div><strong>输入</strong><span>公开访谈、文章、演讲、资料索引。</span></div>
+              <div><strong>判断</strong><span>不推断心理，不把公开资料写成一手采访。</span></div>
+              <div><strong>结果</strong><span>人物稿、引用核查表和工作坊模板。</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <div class="case-media">
+            <span class="case-mark">Final<br>Quality<br>Gate</span>
+          </div>
+          <div class="case-body">
+            <span class="case-kicker">发布前质量门 / 去 AI 味</span>
+            <h3>去 AI 味与信息校对双门</h3>
+            <p>每次重要内容交付前都要过两道门：一门检查通用 AI 表达、过度完整和不像作者；一门核对时间、地点、人物、机构、合作关系和未确认事实。</p>
+            <div class="case-points">
+              <div><strong>输入</strong><span>当前稿、原始材料、编辑反馈。</span></div>
+              <div><strong>判断</strong><span>问题先标出，不急着整篇重写。</span></div>
+              <div><strong>结果</strong><span>问题清单、逐句改法、发布前确认项。</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap" id="creator-os">
+      <div class="section-head">
+        <h2>也可以把它当成内容创作中台</h2>
+        <p>如果你不是单纯写文章，而是在运营一个社区、活动、项目、播客、个人 IP 或生态关系网，这个工作台就不只是“写稿入口”，而是一套把真实发生的事情持续转成内容资产的中台。</p>
+      </div>
+      <div class="os-panel">
+        <div class="os-intro">
+          <h3>超级个体型内容创作者，真正缺的不是灵感，而是承接现场的系统。</h3>
+          <p>你每天会遇到聊天记录、活动材料、访谈录音、合作需求、读者反馈、项目复盘和临时灵感。问题不是没有内容，而是这些材料太碎、太私域、太依赖个人判断，最后很容易散掉。</p>
+          <div class="operator-list" aria-label="适合的内容创作者类型">
+            <section>
+              <strong>社区运营者</strong>
+              <span>把活动、共学、成员故事和社群反馈，转成可发布、可复盘、可沉淀的社区内容。</span>
+            </section>
+            <section>
+              <strong>生态运营者</strong>
+              <span>把伙伴、项目、论坛、开发者和行业现场，整理成对外能理解的生态叙事。</span>
+            </section>
+            <section>
+              <strong>独立内容主理人</strong>
+              <span>把播客、访谈、田野观察和个人判断，沉淀成文章、短内容、作品集和产品线索。</span>
+            </section>
+          </div>
+        </div>
+        <div class="os-map">
+          <p>它可以承担五层基础工作：先接住材料，再做判断分流，然后生成可审核版本，最后把发布后的反馈和项目经验回收成长期资产。</p>
+          <div class="os-lanes" aria-label="内容创作中台五层">
+            <section class="os-lane">
+              <strong>1 素材层</strong>
+              <span>活动策划案、逐字稿、照片、群聊、公开链接、会议纪要和反馈。</span>
+            </section>
+            <section class="os-lane">
+              <strong>2 判断层</strong>
+              <span>这份材料适合写文章、短帖、案例、作品集、客户稿，还是先留作素材。</span>
+            </section>
+            <section class="os-lane">
+              <strong>3 生产层</strong>
+              <span>输出草稿、标题、导读、平台版本、采访提纲、活动报道或复盘包。</span>
+            </section>
+            <section class="os-lane">
+              <strong>4 审核层</strong>
+              <span>过事实校对、去 AI 味、合作边界、授权公开和发布主体口吻。</span>
+            </section>
+            <section class="os-lane">
+              <strong>5 资产层</strong>
+              <span>回收成案例、方法论、模板、产品信号、合作线索和下一次选题。</span>
+            </section>
+          </div>
+        </div>
       </div>
     </section>
 
