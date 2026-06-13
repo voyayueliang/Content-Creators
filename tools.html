@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>月亮的 AI 工作台</title>
-  <meta name="description" content="月亮的 AI 工作台：为内容创作者、深度社区活动组织者等打造的个性化内容工作流。">
+  <meta name="description" content="月亮的 AI 工作台：给内容创作者、深度社区活动组织者使用的个性化内容工作流。">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;650;750&display=swap');
 
@@ -193,6 +193,14 @@
       line-height: 1.68;
     }
 
+    .hero-note {
+      max-width: 790px;
+      margin: 12px 0 0;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
@@ -298,6 +306,91 @@
     .status.soon {
       color: var(--muted);
       background: #fff;
+    }
+
+    .principle-panel,
+    .use-guide {
+      display: grid;
+      grid-template-columns: minmax(0, .86fr) minmax(280px, .44fr);
+      gap: 1px;
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .principle-main,
+    .principle-side,
+    .use-guide > section {
+      padding: 16px;
+      background: var(--paper-2);
+    }
+
+    .principle-side,
+    .use-guide > section:nth-child(2) {
+      background: var(--mint);
+    }
+
+    .principle-main h2,
+    .principle-side h3,
+    .use-guide h3 {
+      margin: 0 0 8px;
+      color: var(--teal);
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .principle-side h3,
+    .use-guide h3 {
+      font-size: 23px;
+    }
+
+    .principle-main p,
+    .principle-side p,
+    .use-guide p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.68;
+    }
+
+    .principle-main strong,
+    .use-guide strong {
+      color: var(--ink);
+    }
+
+    .principle-side ul,
+    .use-guide ol {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .principle-side li,
+    .use-guide li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .principle-side b,
+    .use-guide b {
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--line);
+      background: rgba(23, 63, 31, .08);
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 25px;
+      text-align: center;
     }
 
     .fit-grid {
@@ -907,7 +1000,9 @@
       .hero,
       .section-head,
       .card,
-      .gate {
+      .gate,
+      .principle-panel,
+      .use-guide {
         grid-template-columns: 1fr;
       }
 
@@ -915,6 +1010,9 @@
       .hero-card,
       .section-head h2,
       .section-head p,
+      .principle-main,
+      .principle-side,
+      .use-guide > section,
       .card > .tag,
       .card > h3,
       .card > .summary,
@@ -992,6 +1090,13 @@
         margin-top: 12px;
       }
 
+      .hero-note,
+      .principle-main p,
+      .principle-side p,
+      .use-guide p {
+        font-size: 13px;
+      }
+
       .fit-grid,
       .info,
       .route-card,
@@ -1053,7 +1158,10 @@
       .card,
       .gate,
       .fit-card,
-      .hero-card {
+      .hero-card,
+      .principle-main,
+      .principle-side,
+      .use-guide > section {
         padding: 12px;
       }
 
@@ -1092,7 +1200,8 @@
       <div>
         <p class="eyebrow">Humanity in the loop</p>
         <h1>月亮的 AI 工作台</h1>
-        <p class="lead">给内容创作者、社区运营者和活动组织者使用的 AI 内容工作台。选一个场景，放入真实材料，复制工作流说明；AI 先整理、追问和起草，人负责判断、校对和发布。</p>
+        <p class="lead">给深度内容创作者、社区运营者和活动组织者使用的 AI 内容工作台。选一个场景，放入真实材料，复制工作流说明；AI 先整理、追问、校对和起草，人负责判断、取舍、声音和发布。</p>
+        <p class="hero-note">它来自月亮长期做公众号、播客、活动报道、人物稿和社区内容交付时沉淀下来的流程。先把材料、判断和边界摆清楚，再让 AI 参与整理和起草，内容才会更稳、更像人，也更经得起审核。</p>
         <div class="hero-actions">
           <a class="button" href="#start">从任务开始</a>
           <a class="button secondary" href="#workflows">查看工作流</a>
@@ -1103,17 +1212,47 @@
         <h2>第一次使用</h2>
         <ol class="steps">
           <li><b>1</b><span>选场景</span></li>
-          <li><b>2</b><span>复制工作流说明</span></li>
-          <li><b>3</b><span>补真实材料</span></li>
-          <li><b>4</b><span>人做判断</span></li>
+          <li><b>2</b><span>复制到 AI 对话</span></li>
+          <li><b>3</b><span>填入真实材料</span></li>
+          <li><b>4</b><span>人工判断和发布</span></li>
         </ol>
       </aside>
     </section>
 
     <section class="wrap" id="start">
+      <div class="principle-panel" aria-label="工作台理念">
+        <section class="principle-main">
+          <h2>这是给深度内容创作者用的工作流</h2>
+          <p>很多内容需求散在策划案、会议纪要、录音、群聊和公开链接里。这个工作台先把材料整理成可判断的桌面，再进入写作。<strong>AI 负责整理、追问、对照和生成备选稿；人负责确认事实、理解关系、决定叙事重点和保留自己的声音。</strong></p>
+        </section>
+        <aside class="principle-side">
+          <h3>月亮的边界</h3>
+          <ul>
+            <li><b>01</b><span>先看材料来源，再给结论。</span></li>
+            <li><b>02</b><span>先问清交付对象，再决定写法。</span></li>
+            <li><b>03</b><span>先过事实和去 AI 味两道门，再发布。</span></li>
+          </ul>
+        </aside>
+      </div>
+
       <div class="section-head">
         <h2>从你的任务开始</h2>
-        <p>普通用户只需要做一件事：找到自己现在要交付的内容，然后复制对应的工作流说明。它会告诉 AI 先整理什么、追问什么、不能越过哪些边界。</p>
+        <p>普通用户先找到自己要交付的内容，再复制对应的工作流说明。它会告诉 AI 先整理什么、追问什么、哪些地方必须交回给人判断。</p>
+      </div>
+      <div class="use-guide" aria-label="使用说明">
+        <section>
+          <h3>这段说明发给谁？</h3>
+          <p>复制按钮里的内容，是发给你正在使用的 AI 对话框：ChatGPT、Claude、Kimi、豆包、通义，或者 Codex 都可以。你只需要把方括号里的内容替换成自己的材料；如果材料在本地文件里，用 Codex 时可以直接给文件路径。</p>
+        </section>
+        <section>
+          <h3>第一次怎么跑</h3>
+          <ol>
+            <li><b>1</b><span>先选最接近的任务，不用纠结名称是否完全一致。</span></li>
+            <li><b>2</b><span>复制工作流说明，把策划案、逐字稿、链接或初稿补进去。</span></li>
+            <li><b>3</b><span>先让 AI 输出材料地图、缺口和追问清单，再决定是否成稿。</span></li>
+            <li><b>4</b><span>发布前用事实校对和去 AI 味检查，把判断权收回来。</span></li>
+          </ol>
+        </section>
       </div>
       <div class="choice-panel" data-choice-panel>
         <div>
@@ -1170,7 +1309,7 @@
     <section class="wrap" id="workflows">
       <div class="section-head">
         <h2>选择一个工作流</h2>
-        <p>看用途，准备材料，复制给 AI 的工作流说明。开发者入口只是进阶选项，不是普通用户的第一步。</p>
+        <p>看用途，准备材料，复制给 AI 的工作流说明。普通用户先从复制说明开始；开发者入口留给需要部署和二次开发的人。</p>
       </div>
 
       <div class="grid">
