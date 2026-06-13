@@ -51,7 +51,7 @@ AI 时代个人内容工作台。
 关联位置：
 
 - `product-library/09_human-ai-collaboration-boundary/产品卡.md`
-- `index.html#workflow-human-ai`
+- `tools.html#workflow-human-ai`
 
 ### 社区活动内容传播工作台
 
