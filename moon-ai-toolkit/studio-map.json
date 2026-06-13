@@ -24,9 +24,9 @@
     {
       "id": "products",
       "title": "产品",
-      "description": "已经产品化、可试点或可展示的工作流与服务包。",
+      "description": "已经产品化、可试点或可展示的工作流、质检门与服务包。",
       "folder": "04_产品",
-      "source": "../../04_产品与工具/已产品化产品库/products.json"
+      "source": "product-library"
     },
     {
       "id": "workflow-radar",
@@ -51,12 +51,17 @@
   "primaryProducts": [
     "moon-content-os",
     "community-event-content-workbench",
-    "event-recap-to-wechat-md"
+    "event-recap-to-wechat-md",
+    "qa-gates",
+    "audio-to-wechat-article",
+    "public-profile-lab",
+    "spoken-to-html-deck",
+    "creator-work-system-builder"
   ],
   "nextBuild": [
-    "为首页写 20 秒内能看懂的自我介绍",
-    "把 Moon Content OS 作为母产品放到首页",
-    "整理 3-5 条月亮的 AI 工作台方法原则",
-    "补 2 个真实案例页"
+    "用真实演讲完整验证口述转 HTML 演讲 PPT",
+    "用 3 个音视频素材验证播客音视频转公众号文章 Skill",
+    "整理去 AI 味与事实校对门的样本库",
+    "找 3 个真实用户试点 Moon Content OS Lite"
   ]
 }
