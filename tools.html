@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>月亮的 AI 工作台</title>
   <meta name="description" content="月亮的 AI 工作台：给内容创作者、深度社区活动组织者使用的个性化内容工作流。">
+  <link rel="icon" href="assets/04-moon-gate-avatar-mark.svg" type="image/svg+xml">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;650;750&display=swap');
 
@@ -1186,6 +1187,384 @@
       }
 
     }
+
+    /* Task-first redesign: less cabinet, more workbench. */
+    .hero {
+      grid-template-columns: minmax(0, 1fr) minmax(290px, .36fr);
+      gap: 34px;
+      padding: 46px 0 34px;
+    }
+
+    .hero > div {
+      border: 0;
+      padding: 0;
+    }
+
+    .hero-card {
+      display: block;
+      min-height: 0;
+      padding: 6px 0 0 22px;
+      border: 0;
+      border-left: 1px solid var(--line);
+      background: transparent;
+    }
+
+    .hero-card h2 {
+      margin-bottom: 12px;
+    }
+
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .steps li {
+      min-height: 44px;
+      padding: 9px 0;
+      border-top: 1px solid var(--line-soft);
+      align-items: center;
+    }
+
+    .task-journey {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(320px, .56fr);
+      gap: 34px;
+      align-items: start;
+      margin-bottom: 28px;
+      padding: 24px 0 26px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .task-journey h3 {
+      margin: 12px 0 8px;
+      color: var(--teal);
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 500;
+      line-height: 1.04;
+    }
+
+    .task-journey p {
+      margin: 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.74;
+    }
+
+    .journey-steps {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .journey-steps li {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line-soft);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .journey-steps b {
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .choice-panel {
+      margin: 0 0 28px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .choice-panel > div:first-child {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .choice-panel h3 {
+      font-size: clamp(24px, 3vw, 36px);
+    }
+
+    .choice-grid {
+      counter-reset: task-choice;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .choice-button {
+      counter-increment: task-choice;
+      position: relative;
+      display: grid;
+      grid-template-columns: 46px minmax(150px, .52fr) minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      min-height: 0;
+      padding: 15px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line-soft);
+      background: transparent;
+    }
+
+    .choice-button:last-child {
+      border-bottom: 0;
+    }
+
+    .choice-button::before {
+      content: "0" counter(task-choice);
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: .08em;
+    }
+
+    .choice-button strong {
+      font-size: clamp(20px, 2vw, 26px);
+    }
+
+    .choice-button span {
+      max-width: 560px;
+      color: var(--muted);
+      opacity: 1;
+      font-size: 13px;
+    }
+
+    .choice-button:hover,
+    .choice-button[aria-pressed="true"] {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .choice-button:hover strong,
+    .choice-button[aria-pressed="true"] strong {
+      color: var(--teal);
+    }
+
+    .choice-button[aria-pressed="true"] {
+      box-shadow: inset 4px 0 0 var(--poster-green);
+      padding-left: 12px;
+    }
+
+    .choice-feedback {
+      margin-top: 10px;
+    }
+
+    .principle-panel {
+      grid-template-columns: minmax(0, .9fr) minmax(260px, .42fr);
+      gap: 32px;
+      margin-bottom: 0;
+      padding: 24px 0 0;
+      border: 0;
+      border-top: 1px solid var(--line);
+      background: transparent;
+    }
+
+    .principle-main,
+    .principle-side {
+      padding: 0;
+      background: transparent;
+    }
+
+    .principle-main h2 {
+      max-width: 660px;
+    }
+
+    .principle-main p {
+      max-width: 780px;
+      font-size: 15px;
+    }
+
+    .principle-side {
+      padding-left: 22px;
+      border-left: 1px solid var(--line-soft);
+    }
+
+    .principle-side ul {
+      gap: 0;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .principle-side li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .principle-side b {
+      border: 0;
+      background: transparent;
+      text-align: left;
+    }
+
+    .grid {
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .card {
+      grid-template-columns: minmax(250px, .48fr) minmax(0, 1fr);
+      gap: 28px;
+      padding: 24px 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+    }
+
+    .card:nth-child(2),
+    .card:nth-child(3),
+    .route-card:nth-child(even) {
+      background: transparent;
+    }
+
+    .card h3 {
+      max-width: 430px;
+    }
+
+    .summary {
+      max-width: 460px;
+      line-height: 1.65;
+    }
+
+    .info {
+      grid-template-columns: 1fr;
+      gap: 0;
+      border: 0;
+      border-top: 1px solid var(--line-soft);
+      background: transparent;
+    }
+
+    .line {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line-soft);
+      background: transparent;
+    }
+
+    .line strong {
+      margin-bottom: 3px;
+    }
+
+    .line p,
+    .line ol {
+      max-width: 680px;
+    }
+
+    .actions {
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .actions details {
+      flex-basis: 100%;
+      order: 3;
+    }
+
+    summary {
+      width: fit-content;
+      padding-bottom: 2px;
+      border-bottom: 1px solid currentColor;
+    }
+
+    .gate {
+      grid-template-columns: minmax(250px, .48fr) minmax(0, 1fr);
+      margin-top: 26px;
+      padding: 24px;
+      border: 0;
+      background:
+        linear-gradient(135deg, rgba(114, 239, 117, .12), transparent 32%),
+        var(--poster-black);
+    }
+
+    .gate .info {
+      border-top-color: rgba(255, 255, 255, .18);
+    }
+
+    .gate .line {
+      border-bottom-color: rgba(255, 255, 255, .14);
+      background: transparent;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .task-journey,
+      .principle-panel,
+      .card,
+      .gate {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card,
+      .principle-side {
+        padding-left: 0;
+        border-left: 0;
+      }
+
+      .choice-button {
+        grid-template-columns: 42px minmax(0, .62fr) minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      body::before {
+        border-width: 3px;
+        box-shadow: inset -3px -3px 0 var(--line);
+      }
+
+      .hero {
+        padding-top: 26px;
+      }
+
+      .hero-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .task-journey {
+        gap: 18px;
+        padding: 18px 0;
+      }
+
+      .choice-panel > div:first-child {
+        grid-template-columns: 1fr;
+      }
+
+      .choice-button {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 10px;
+        padding: 13px 0;
+      }
+
+      .choice-button span {
+        grid-column: 2;
+      }
+
+      .choice-button[aria-pressed="true"] {
+        padding-left: 9px;
+      }
+
+      .card,
+      .gate {
+        padding: 18px 0;
+      }
+
+      .gate {
+        padding-inline: 14px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1207,53 +1586,48 @@
       <div>
         <p class="eyebrow">Human in the loop · Humanity in the loop</p>
         <h1>月亮的 AI 工作台</h1>
-        <p class="lead">给深度内容创作者、社区运营者和活动组织者使用的 AI 内容工作台。把活动传播、会后报道、播客音视频、人物稿、简历作品集和发布前检查，整理成可以直接启动的工作流。</p>
-        <p class="hero-note">月亮把自己的内容判断力拆成一套可以给别人使用的工作流。页面里可以复制轻量版说明，马上放进 AI 对话里使用；GitHub 上保留完整 Skill 包，可以加入你自己的 AI 工具或内容工作台。</p>
+        <p class="lead">给深度内容创作者、社区运营者和活动组织者使用的内容工作台。你可以带着一场活动、一段录音、一篇初稿或一组个人经历进来，找到对应工作流，再交给 Claude Code 或 Codex 跑起来。</p>
+        <p class="hero-note">月亮把自己的内容判断力拆成一套可以给别人使用的工作流：先整理材料，再追问缺口，最后把价值判断、事实校对和声音分寸交回给人。</p>
         <div class="hero-actions">
-          <a class="button" href="#start">开始使用</a>
-          <a class="button secondary" href="#workflows">选择工作流</a>
+          <a class="button" href="#start">选择你的任务</a>
+          <a class="button secondary" href="#workflows">查看全部 Skill</a>
         </div>
       </div>
       <aside class="hero-card">
         <img src="assets/03-bilingual-lockup.svg" alt="Moon workbench lockup">
-        <h2>最快路径</h2>
+        <h2>怎么用</h2>
         <ol class="steps">
           <li><b>1</b><span>选场景</span></li>
-          <li><b>2</b><span>复制到 AI 对话</span></li>
-          <li><b>3</b><span>填入真实材料</span></li>
-          <li><b>4</b><span>人工判断和发布</span></li>
+          <li><b>2</b><span>放入材料</span></li>
+          <li><b>3</b><span>先看缺口</span></li>
+          <li><b>4</b><span>再交付</span></li>
         </ol>
       </aside>
     </section>
 
     <section class="wrap" id="start">
       <div class="section-head">
-        <h2>先选你手上的任务</h2>
-        <p>先找到你现在要交付的内容，再复制对应说明。它会告诉 AI 先整理什么、追问什么、哪些地方必须交回给人判断。</p>
+        <h2>从你手上的内容开始</h2>
+        <p>不用先理解整套系统。先看你现在要交付什么，选一条最接近的路径，复制说明，再把真实材料填进去。</p>
       </div>
-      <div class="use-guide" aria-label="使用说明">
-        <section>
-          <h3>临时使用</h3>
-          <p>点“复制给 AI 的工作流说明”，粘贴到 Claude Code 或 Codex。把方括号里的内容换成自己的策划案、逐字稿、链接、文件路径或初稿。</p>
-        </section>
-        <section>
-          <h3>跑起来</h3>
-          <ol>
-            <li><b>1</b><span>先让 AI 输出材料地图、事实缺口和追问清单。</span></li>
-            <li><b>2</b><span>你确认方向、删掉不稳的信息，再让它继续起草。</span></li>
-            <li><b>3</b><span>发布前做事实校对、边界检查和去 AI 味检查。</span></li>
-          </ol>
-        </section>
-        <section>
-          <h3>长期复用</h3>
-          <p>如果你想把这套流程放进自己的 AI 工具或内容工作台，点“获取完整 Skill”。GitHub 里是更完整的封装包，适合收藏、安装和继续沉淀。</p>
-        </section>
+      <div class="task-journey" aria-label="使用路线">
+        <div>
+          <span class="status">Start Here</span>
+          <h3>先让 AI 看材料，不要急着写稿</h3>
+          <p>这套工作台最有用的地方，是把“先整理、再判断、最后交付”的顺序固定下来。你把策划案、录音、初稿或作品材料放进去，它先帮你看清材料和缺口，再进入写作。</p>
+        </div>
+        <ol class="journey-steps">
+          <li><b>01</b><span>选一个最接近的任务。</span></li>
+          <li><b>02</b><span>复制工作流说明，粘贴到 Claude Code 或 Codex。</span></li>
+          <li><b>03</b><span>把方括号里的内容换成你的材料、链接或文件路径。</span></li>
+          <li><b>04</b><span>先看材料地图、事实缺口和追问清单，再决定要不要写。</span></li>
+        </ol>
       </div>
       <div class="choice-panel" data-choice-panel>
         <div>
           <div>
-            <h3>你手上是哪类内容？</h3>
-            <p>有活动就选活动，有录音或视频就选音视频，已有初稿就选发布前检查，整理自己就选简历作品集。拿不准就先看全部。</p>
+            <h3>你现在要处理哪件事？</h3>
+            <p>点一下最接近的场景，下面只保留对应工作流。拿不准，就先看全部。</p>
           </div>
           <button class="mini-button" type="button" data-show-all>查看全部</button>
         </div>
@@ -1283,48 +1657,28 @@
             <span>已有初稿，做声音守门和事实校对</span>
           </button>
         </div>
-        <p class="choice-feedback" data-choice-feedback>先选一个最接近的场景，下方会只保留对应工作流。</p>
+        <p class="choice-feedback" data-choice-feedback>选一个最接近的任务，页面会把对应工作流提出来。</p>
       </div>
 
       <div class="principle-panel" aria-label="工作台理念">
         <section class="principle-main">
           <h2>Human in the loop，也要 Humanity in the loop</h2>
-          <p>这个工作台先服务交付，再保留创作者的判断。Human in the loop 让人出现在流程里的关键节点：确认事实、选择角度、审核风险、决定发布。Humanity in the loop 则把人的经验、关系、语气、审美和责任感留在内容里。<strong>每个工作流都会追问：哪些部分可以流程化，哪些地方必须由创作者亲自判断。</strong></p>
+          <p>这里的 AI 负责把材料摊开，判断仍然留给人。事实、角度、关系分寸、最终声音，都要回到创作者手里。每个工作流都会追问：哪些环节可以交给流程，哪些地方必须由人亲自判断。</p>
         </section>
         <aside class="principle-side">
-          <h3>月亮的边界</h3>
+          <h3>两道门</h3>
           <ul>
-            <li><b>01</b><span>AI 可以整理材料、发现缺口、提出备选结构。</span></li>
-            <li><b>02</b><span>人要确认事实、理解场景、决定表达的分寸。</span></li>
-            <li><b>03</b><span>发布前必须经过事实校对和去 AI 味两道门。</span></li>
+            <li><b>01</b><span>事实校对：时间、身份、主办方、合作边界、引用来源。</span></li>
+            <li><b>02</b><span>声音守门：空话、套话、过度顺滑和不像人的表达。</span></li>
           </ul>
         </aside>
-      </div>
-
-      <div class="fit-grid" aria-label="工作台如何运转">
-        <section class="fit-card">
-          <h3>洞察场景</h3>
-          <p>先问清谁要用、交付给谁、什么信息不能错、哪些话不能替对方说。</p>
-        </section>
-        <section class="fit-card">
-          <h3>拆出流程</h3>
-          <p>把材料整理、事实校对、追问清单、结构建议和发布检查拆成稳定步骤。</p>
-        </section>
-        <section class="fit-card">
-          <h3>设定边界</h3>
-          <p>让 AI 做压缩、排序、对照和备选；把价值判断、关系判断和最终声音留给人。</p>
-        </section>
-        <section class="fit-card">
-          <h3>持续打磨</h3>
-          <p>每次交付都会回收经验：哪些环节可以规模化，哪些部分要保留创作者的独立性。</p>
-        </section>
       </div>
     </section>
 
     <section class="wrap" id="workflows">
       <div class="section-head">
-        <h2>选择一个工作流</h2>
-        <p>每个卡片都有两种用法：先复制轻量说明，马上让 AI 帮你整理；再获取完整 Skill，加入自己的 AI 工具或内容工作台里长期使用。</p>
+        <h2>工作流清单</h2>
+        <p>每条工作流都可以轻量使用，也可以进入 GitHub 获取完整 Skill。轻量使用适合马上跑一篇稿；完整 Skill 适合放进自己的 AI 工具和内容工作台里长期复用。</p>
       </div>
 
       <div class="grid">
@@ -1646,7 +2000,7 @@
         if (noResults) noResults.hidden = true;
         if (choiceFeedback) {
           choiceFeedback.textContent = isInitial
-            ? "先选一个最接近的场景。下面会只保留对应工作流。"
+            ? "选一个最接近的任务。下面会只保留对应工作流。"
             : "已显示全部工作流。你也可以重新选择一个更接近的场景。";
         }
       }
