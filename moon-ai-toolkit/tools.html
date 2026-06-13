@@ -311,11 +311,18 @@
     .principle-panel,
     .use-guide {
       display: grid;
-      grid-template-columns: minmax(0, .86fr) minmax(280px, .44fr);
       gap: 1px;
       margin-bottom: 14px;
       border: 1px solid var(--line);
       background: var(--line);
+    }
+
+    .principle-panel {
+      grid-template-columns: minmax(0, .86fr) minmax(280px, .44fr);
+    }
+
+    .use-guide {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .principle-main,
@@ -1201,7 +1208,7 @@
         <p class="eyebrow">Human in the loop · Humanity in the loop</p>
         <h1>月亮的 AI 工作台</h1>
         <p class="lead">给深度内容创作者、社区运营者和活动组织者使用的 AI 内容工作台。把活动传播、会后报道、播客音视频、人物稿、简历作品集和发布前检查，整理成可以直接启动的工作流。</p>
-        <p class="hero-note">页面里可以复制轻量版说明，马上放进 AI 对话里使用；GitHub 上保留完整 Skill 包，可以加入你自己的 AI 工具或内容工作台。</p>
+        <p class="hero-note">月亮把自己的内容判断力拆成一套可以给别人使用的工作流。页面里可以复制轻量版说明，马上放进 AI 对话里使用；GitHub 上保留完整 Skill 包，可以加入你自己的 AI 工具或内容工作台。</p>
         <div class="hero-actions">
           <a class="button" href="#start">开始使用</a>
           <a class="button secondary" href="#workflows">选择工作流</a>
@@ -1222,28 +1229,31 @@
     <section class="wrap" id="start">
       <div class="section-head">
         <h2>先选你手上的任务</h2>
-        <p>不需要先理解所有 Skill。先找到你现在要交付的内容，再复制对应说明。它会告诉 AI 先整理什么、追问什么、哪些地方必须交回给人判断。</p>
+        <p>先找到你现在要交付的内容，再复制对应说明。它会告诉 AI 先整理什么、追问什么、哪些地方必须交回给人判断。</p>
       </div>
       <div class="use-guide" aria-label="使用说明">
         <section>
-          <h3>复制后发到哪里？</h3>
-          <p>发到你正在使用的 AI 对话框：ChatGPT、Claude、Kimi、豆包、通义，或者 Codex 都可以。把方括号里的内容替换成自己的材料；如果材料在本地文件里，用 Codex 时可以直接给文件路径。</p>
+          <h3>临时使用</h3>
+          <p>点“复制给 AI 的工作流说明”，粘贴到 ChatGPT、Claude、Kimi、豆包、通义或 Codex。把方括号里的内容换成自己的策划案、逐字稿、链接、文件路径或初稿。</p>
         </section>
         <section>
-          <h3>跑起来的顺序</h3>
+          <h3>跑起来</h3>
           <ol>
-            <li><b>1</b><span>先选最接近的任务，不用纠结分类是否完全准确。</span></li>
-            <li><b>2</b><span>复制工作流说明，把策划案、逐字稿、链接或初稿补进去。</span></li>
-            <li><b>3</b><span>先让 AI 输出材料地图、缺口和追问清单，再决定是否成稿。</span></li>
-            <li><b>4</b><span>发布前用事实校对和去 AI 味检查，把判断权收回来。</span></li>
+            <li><b>1</b><span>先让 AI 输出材料地图、事实缺口和追问清单。</span></li>
+            <li><b>2</b><span>你确认方向、删掉不稳的信息，再让它继续起草。</span></li>
+            <li><b>3</b><span>发布前做事实校对、边界检查和去 AI 味检查。</span></li>
           </ol>
+        </section>
+        <section>
+          <h3>长期复用</h3>
+          <p>如果你想把这套流程放进自己的 AI 工具或内容工作台，点“获取完整 Skill”。GitHub 里是更完整的封装包，适合收藏、安装和继续沉淀。</p>
         </section>
       </div>
       <div class="choice-panel" data-choice-panel>
         <div>
           <div>
             <h3>你手上是哪类内容？</h3>
-            <p>点一个最接近的任务，下方会只保留对应工作流；拿不准就先看全部。</p>
+            <p>有活动就选活动，有录音或视频就选音视频，已有初稿就选发布前检查，整理自己就选简历作品集。拿不准就先看全部。</p>
           </div>
           <button class="mini-button" type="button" data-show-all>查看全部</button>
         </div>
