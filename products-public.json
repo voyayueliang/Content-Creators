@@ -42,6 +42,14 @@
     "localFolder": "product-library/05_audio-to-wechat-article"
   },
   {
+    "id": "qa-gates",
+    "title": "去 AI 味与事实校对门",
+    "type": "发布前审核 / 风格守门",
+    "useWhen": "发布前需要检查事实、口径、授权、边界和不像人的表达",
+    "entry": "tools.html#qa",
+    "localFolder": "product-library/04_qa-gates"
+  },
+  {
     "id": "spoken-to-html-deck",
     "title": "口述转 HTML 演讲 PPT Skill",
     "type": "演讲准备 / HTML 网页 PPT",
@@ -59,11 +67,12 @@
     "localFolder": "product-library/06_public-profile-lab"
   },
   {
-    "id": "qa-gates",
-    "title": "去 AI 味与事实校对门",
-    "type": "发布前审核 / 风格守门",
-    "useWhen": "发布前需要检查事实、口径、授权、边界和不像人的表达",
-    "entry": "tools.html#qa",
-    "localFolder": "product-library/00_moon-content-os/lite-template"
+    "id": "creator-work-system-builder",
+    "title": "创作者作品系统搭建 Skill",
+    "type": "简历 / 作品集 / 个人网站",
+    "useWhen": "需要把经历、项目、作品、证据和个人叙事整理成外部读者能看懂的作品系统",
+    "entry": "tools.html#creator-system",
+    "github": "https://github.com/voyayueliang/creator-work-system-builder",
+    "localFolder": "product-library/08_creator-work-system-builder"
   }
 ]
