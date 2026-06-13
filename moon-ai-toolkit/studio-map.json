@@ -26,7 +26,14 @@
       "title": "产品",
       "description": "已经产品化、可试点或可展示的工作流与服务包。",
       "folder": "04_产品",
-      "source": "products-public.json"
+      "source": "../../04_产品与工具/已产品化产品库/products.json"
+    },
+    {
+      "id": "workflow-radar",
+      "title": "工作流雷达",
+      "description": "从其他对话、项目文档和复盘中发现可封装候选，先进入队列，月亮确认后才上架。",
+      "folder": "workflow-radar",
+      "visibility": "internal"
     },
     {
       "id": "stories",
