@@ -63,6 +63,92 @@
       z-index: 80;
     }
 
+    body.is-locked {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    body.is-locked .topbar,
+    body.is-locked main,
+    body.is-locked footer {
+      display: none;
+    }
+
+    .password-gate {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        linear-gradient(rgba(255, 254, 250, .94), rgba(255, 254, 250, .98)),
+        repeating-linear-gradient(90deg, rgba(23, 63, 31, .05) 0 1px, transparent 1px 72px),
+        repeating-linear-gradient(0deg, rgba(23, 63, 31, .035) 0 1px, transparent 1px 72px);
+    }
+
+    body.is-locked .password-gate {
+      display: flex;
+    }
+
+    .password-panel {
+      width: min(100%, 520px);
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      box-shadow: 8px 8px 0 var(--poster-green);
+    }
+
+    .password-panel h1 {
+      max-width: none;
+      font-size: clamp(34px, 7vw, 54px);
+    }
+
+    .password-panel p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .password-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .password-form label {
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .password-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+    }
+
+    .password-row input {
+      width: 100%;
+      min-height: 42px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 15px;
+      padding: 8px 10px;
+    }
+
+    .password-error {
+      min-height: 20px;
+      color: #a3311f;
+      font-size: 13px;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -961,14 +1047,32 @@
       box-shadow: none;
     }
 
+    .gate.method-gate {
+      margin: 0 0 12px;
+      background: var(--mint);
+      color: var(--ink);
+    }
+
     .gate .tag {
       color: var(--poster-green);
+    }
+
+    .gate.method-gate .tag,
+    .gate.method-gate h2,
+    .gate.method-gate summary {
+      color: var(--teal);
     }
 
     .gate p,
     .gate .line p,
     .gate .line ol {
       color: rgba(255, 255, 255, .78);
+    }
+
+    .gate.method-gate p,
+    .gate.method-gate .line p,
+    .gate.method-gate .line ol {
+      color: var(--muted);
     }
 
     .gate h2 {
@@ -980,6 +1084,11 @@
     .gate .line {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .gate.method-gate .line {
+      background: rgba(255, 254, 250, .9);
+      border: 0;
     }
 
     .gate summary {
@@ -1567,7 +1676,22 @@
     }
   </style>
 </head>
-<body>
+<body class="is-locked">
+  <section class="password-gate" aria-label="内测访问">
+    <div class="password-panel">
+      <p class="eyebrow">Moon AI Workbench</p>
+      <h1>月亮的 AI 工作台</h1>
+      <p>这是一个小范围内测入口。输入访问口令后，可以查看月亮已经封装好的内容工作流和方法卡。</p>
+      <form class="password-form" data-password-form>
+        <label for="workbench-password">访问口令</label>
+        <div class="password-row">
+          <input id="workbench-password" name="password" type="password" autocomplete="current-password" placeholder="输入口令">
+          <button class="button" type="submit">进入</button>
+        </div>
+        <div class="password-error" data-password-error aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
   <header class="topbar">
     <div class="wrap top">
       <a class="brand" href="index.html">
@@ -1656,6 +1780,10 @@
             <strong>简历作品集</strong>
             <span>求职申请、个人网站、作品系统搭建</span>
           </button>
+          <button class="choice-button" type="button" data-choice-target="workflow-human-ai" aria-pressed="false">
+            <strong>人机协作方法</strong>
+            <span>先分清判断、边界、证据和 AI 可以代劳的部分</span>
+          </button>
           <button class="choice-button" type="button" data-choice-target="workflow-voice" aria-pressed="false">
             <strong>发布前检查</strong>
             <span>已有初稿，做声音守门和事实校对</span>
@@ -1666,14 +1794,16 @@
 
       <div class="principle-panel" aria-label="工作台理念">
         <section class="principle-main">
-          <h2>Human in the loop，也要 Humanity in the loop</h2>
-          <p>这里的 AI 负责把材料摊开，判断仍然留给人。事实、角度、关系分寸、最终声音，都要回到创作者手里。每个工作流都会追问：哪些环节可以交给流程，哪些地方必须由人亲自判断。</p>
+          <h2>先设边界，再让 AI 进入流程</h2>
+          <p>Human in the loop 解决“人要参与哪一步”，Humanity in the loop 继续追问：人的判断、关系分寸、现场感和最终责任怎样被保留下来。这里的 AI 负责把材料摊开、整理缺口、生成候选，事实、角度、公开边界和最终声音都要回到创作者手里。</p>
         </section>
         <aside class="principle-side">
-          <h3>两道门</h3>
+          <h3>先问四件事</h3>
           <ul>
-            <li><b>01</b><span>事实校对：时间、身份、主办方、合作边界、引用来源。</span></li>
-            <li><b>02</b><span>声音守门：空话、套话、过度顺滑和不像人的表达。</span></li>
+            <li><b>01</b><span>我想让 AI 帮我省哪类力？</span></li>
+            <li><b>02</b><span>哪些判断必须由人来做？</span></li>
+            <li><b>03</b><span>哪些信息不能进入公开输出？</span></li>
+            <li><b>04</b><span>最后这篇内容要像谁在说话？</span></li>
           </ul>
         </aside>
       </div>
@@ -1699,6 +1829,57 @@
         <h2>工作流清单</h2>
         <p>每条工作流都可以轻量使用，也可以进入 GitHub 获取完整 Skill。轻量使用适合马上跑一篇稿；完整 Skill 适合放进自己的 AI 工具和内容工作台里长期复用。</p>
       </div>
+
+      <section class="gate method-gate" id="workflow-human-ai" data-workflow-card>
+        <div>
+          <span class="tag">Method Layer</span>
+          <h2>人机协作边界与内容判断方法</h2>
+          <p class="summary">这是所有工作流前面的底层方法。它帮助内容创作者在使用 AI 前先分清：哪些劳动可以交给工具，哪些判断、关系、证据和公开责任必须留在人手里。</p>
+          <div class="actions">
+            <button class="button use-now" type="button" data-copy-workflow="workflow-human-ai"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
+            <details>
+              <summary>查看完整工作流说明</summary>
+              <pre>打开人机协作边界与内容判断方法。
+
+我现在要处理的内容是：[活动稿 / 人物稿 / 口述材料 / 演讲 PPT / 作品集 / 商业合作稿 / 其他]
+原始材料在这里：[粘贴材料、链接或文件路径]
+发布或使用场景：[公众号 / 作品集 / 客户交付 / 内部整理 / 公开分享 / 不确定]
+我最担心的问题：[事实错误 / 太像 AI / 边界不清 / 判断被写偏 / 关系风险 / 其他]
+
+请先不要直接写正文，先帮我做一张人机协作边界卡：
+1. 这次 AI 可以帮我省哪些力：整理、提取、比对、生成候选、校对、复盘。
+2. 哪些判断必须留给我：角度、取舍、公开边界、关系分寸、最终声音、是否发布。
+3. 哪些信息需要保护：隐私、未确认事实、合作方内部口径、未授权图片、敏感关系。
+4. 哪些事实需要校对：时间、地点、身份、机构、引用、数字、链接、授权。
+5. 哪些表达容易出现 AI 味：空泛总结、过度顺滑、万能转折、替读者下判断、议程排列。
+6. 最后给我一个执行建议：现在适合继续写、先补材料、先做调研，还是先确认边界。</pre>
+            </details>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/moon-ai-toolkit/product-library/09_human-ai-collaboration-boundary" target="_blank" rel="noreferrer">查看方法卡</a>
+          </div>
+        </div>
+        <div class="info">
+          <section class="line">
+            <strong>什么时候用</strong>
+            <p>开始任何内容工作流前、AI 初稿让你觉得“不对劲”时、商业合作或公开发布风险较高时。</p>
+          </section>
+          <section class="line">
+            <strong>准备什么</strong>
+            <p>原始材料、发布场景、读者对象、公开边界，以及你最担心 AI 写错或写偏的地方。</p>
+          </section>
+          <section class="line">
+            <strong>会得到什么</strong>
+            <ol>
+              <li>AI 可代劳与人必须判断的分工。</li>
+              <li>事实、证据、关系和公开边界清单。</li>
+              <li>继续写、补材料或先确认的下一步建议。</li>
+            </ol>
+          </section>
+          <section class="line">
+            <strong>验证状态</strong>
+            <p>L2。已在 Moon 内容工作台、Datawhale AIEC 稿件和去 AI 味样本库中反复使用，下一步适合找外部创作者试跑。</p>
+          </section>
+        </div>
+      </section>
 
       <div class="grid">
         <article class="card" id="workflow-event" data-workflow-card>
@@ -2057,6 +2238,53 @@
   <footer>
     <div class="wrap">月亮的 AI 工作台 · 公开使用页 · 2026</div>
   </footer>
+  <script>
+    (function () {
+      const expectedHash = "9f26ffd9902098a70d4b5c5730035d4f40cb724a299c7630e3cde4a04e610595";
+      const storageKey = "moon-ai-workbench-access";
+      const form = document.querySelector("[data-password-form]");
+      const error = document.querySelector("[data-password-error]");
+
+      function unlock() {
+        document.body.classList.remove("is-locked");
+      }
+
+      async function sha256(text) {
+        const data = new TextEncoder().encode(text);
+        const digest = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(digest))
+          .map((byte) => byte.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      if (window.localStorage.getItem(storageKey) === expectedHash) {
+        unlock();
+        return;
+      }
+
+      form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const input = form.elements.password;
+        const value = String(input?.value || "").trim();
+
+        if (!window.crypto?.subtle) {
+          if (error) error.textContent = "当前浏览器不支持本地口令校验，请使用公开网页地址打开。";
+          return;
+        }
+
+        const hash = await sha256(value);
+        if (hash === expectedHash) {
+          window.localStorage.setItem(storageKey, hash);
+          unlock();
+          return;
+        }
+
+        if (error) error.textContent = "口令不对，再试一次。";
+        input?.focus();
+        input?.select();
+      });
+    })();
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>

@@ -63,6 +63,92 @@
       z-index: 80;
     }
 
+    body.is-locked {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    body.is-locked .topbar,
+    body.is-locked main,
+    body.is-locked footer {
+      display: none;
+    }
+
+    .password-gate {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        linear-gradient(rgba(255, 254, 250, .94), rgba(255, 254, 250, .98)),
+        repeating-linear-gradient(90deg, rgba(23, 63, 31, .05) 0 1px, transparent 1px 72px),
+        repeating-linear-gradient(0deg, rgba(23, 63, 31, .035) 0 1px, transparent 1px 72px);
+    }
+
+    body.is-locked .password-gate {
+      display: flex;
+    }
+
+    .password-panel {
+      width: min(100%, 520px);
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: var(--paper-2);
+      box-shadow: 8px 8px 0 var(--poster-green);
+    }
+
+    .password-panel h1 {
+      max-width: none;
+      font-size: clamp(34px, 7vw, 54px);
+    }
+
+    .password-panel p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .password-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .password-form label {
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .password-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+    }
+
+    .password-row input {
+      width: 100%;
+      min-height: 42px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      font-size: 15px;
+      padding: 8px 10px;
+    }
+
+    .password-error {
+      min-height: 20px;
+      color: #a3311f;
+      font-size: 13px;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -1590,7 +1676,22 @@
     }
   </style>
 </head>
-<body>
+<body class="is-locked">
+  <section class="password-gate" aria-label="内测访问">
+    <div class="password-panel">
+      <p class="eyebrow">Moon AI Workbench</p>
+      <h1>月亮的 AI 工作台</h1>
+      <p>这是一个小范围内测入口。输入访问口令后，可以查看月亮已经封装好的内容工作流和方法卡。</p>
+      <form class="password-form" data-password-form>
+        <label for="workbench-password">访问口令</label>
+        <div class="password-row">
+          <input id="workbench-password" name="password" type="password" autocomplete="current-password" placeholder="输入口令">
+          <button class="button" type="submit">进入</button>
+        </div>
+        <div class="password-error" data-password-error aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
   <header class="topbar">
     <div class="wrap top">
       <a class="brand" href="index.html">
@@ -2137,6 +2238,53 @@
   <footer>
     <div class="wrap">月亮的 AI 工作台 · 公开使用页 · 2026</div>
   </footer>
+  <script>
+    (function () {
+      const expectedHash = "9f26ffd9902098a70d4b5c5730035d4f40cb724a299c7630e3cde4a04e610595";
+      const storageKey = "moon-ai-workbench-access";
+      const form = document.querySelector("[data-password-form]");
+      const error = document.querySelector("[data-password-error]");
+
+      function unlock() {
+        document.body.classList.remove("is-locked");
+      }
+
+      async function sha256(text) {
+        const data = new TextEncoder().encode(text);
+        const digest = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(digest))
+          .map((byte) => byte.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+      if (window.localStorage.getItem(storageKey) === expectedHash) {
+        unlock();
+        return;
+      }
+
+      form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const input = form.elements.password;
+        const value = String(input?.value || "").trim();
+
+        if (!window.crypto?.subtle) {
+          if (error) error.textContent = "当前浏览器不支持本地口令校验，请使用公开网页地址打开。";
+          return;
+        }
+
+        const hash = await sha256(value);
+        if (hash === expectedHash) {
+          window.localStorage.setItem(storageKey, hash);
+          unlock();
+          return;
+        }
+
+        if (error) error.textContent = "口令不对，再试一次。";
+        input?.focus();
+        input?.select();
+      });
+    })();
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   <script>
