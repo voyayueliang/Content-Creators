@@ -1,0 +1,7 @@
+interface:
+  display_name: "口述转 HTML 演讲 PPT"
+  short_description: "把口述思路转成网页演讲 PPT"
+  default_prompt: "Use $spoken-to-html-deck to turn my spoken talk notes into an HTML presentation."
+
+policy:
+  allow_implicit_invocation: true

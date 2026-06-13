@@ -42,6 +42,15 @@
     "localFolder": "product-library/05_audio-to-wechat-article"
   },
   {
+    "id": "spoken-to-html-deck",
+    "title": "口述转 HTML 演讲 PPT Skill",
+    "type": "演讲准备 / HTML 网页 PPT",
+    "useWhen": "需要把口述思路、录音转写、飞书文档和图片素材整理成可演讲的 HTML 网页 PPT",
+    "entry": "tools.html#deck",
+    "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/spoken-to-html-deck",
+    "localFolder": "product-library/07_spoken-to-html-deck"
+  },
+  {
     "id": "public-profile-lab",
     "title": "公开资料人物深度侧写工作流",
     "type": "人物报道 / 公开资料研究型写作",

@@ -19,7 +19,7 @@
 | --- | --- | --- |
 | 方法 | AI 协作原则、去 AI 味、活动报道方法、对谈整理方法、商业合作审核门 | 已在多个项目中验证 |
 | 频道 | 公众号、视频号、播客、直播、社群、newsletter 候选 | 部分已在运行 |
-| Skills | Datawhale 内容传播、活动复盘、对谈转公众号、播客音视频转公众号等 Codex skills | 已有多个可用包 |
+| Skills | Datawhale 内容传播、活动复盘、对谈转公众号、播客音视频转公众号、口述转 HTML 演讲 PPT 等 Codex skills | 已有多个可用包 |
 | 产品 | 已产品化产品库，包括社区活动传播工作台和活动复盘 Skill | 已整理成产品货架 |
 | Radar | 工作流雷达：从对话、项目和复盘中发现可封装候选，但必须经月亮确认 | 内部试运行 |
 | 故事与经历 | 田野、活动、采访、社区现场、AI 教育、开发者生态、个人路径 | 待整理成可读页面 |
@@ -63,6 +63,19 @@ Datawhale 是第一个试点案例，不是产品边界。
 
 - `../../04_产品与工具/已产品化产品库/02_event-recap-to-wechat-md/产品卡.md`
 - GitHub: https://github.com/voyayueliang/event-recap-to-wechat-md-skill
+
+### 口述转 HTML 演讲 PPT
+
+把演讲录音、口述思路、AI 追问、飞书文档和图片素材，整理成适合现场表达的 HTML 网页 PPT。
+
+适合：内容创作者、讲师、社区主理人、独立工作者、需要快速准备分享或工作坊的人。
+
+这个工作流来自月亮自己的高效演讲准备方式：先口述理清逻辑，再与 AI 互动打磨结构，放入飞书文档，补充图片和素材，最后进入合适的 HTML PPT 模板。
+
+关联位置：
+
+- `skills/spoken-to-html-deck/SKILL.md`
+- GitHub: https://github.com/voyayueliang/Content-Creators/tree/main/skills/spoken-to-html-deck
 
 ### 工作流雷达
 
