@@ -10,8 +10,8 @@
 
 ## 网页入口
 
-- `index.html`：月亮的 AI 工作台首页。目标是让第一次看到的人快速判断自己该用哪个小产品或工具。
-- `tools.html`：封装后的工具使用页。首页按钮不再直接跳到内部 md，而是先进入工具说明：适合什么、准备什么、产出什么、启动句怎么写，再按需查看模板源文件。
+- `index.html`：月亮的 AI 工作台主入口。打开后直接看到完整工作流说明：适合什么、准备什么、产出什么、启动句怎么写，再按需查看模板源文件。
+- `tools.html`：保留同版内容，兼容旧链接；主入口仍然使用 `index.html`。
 
 ## Studio 里有什么
 
@@ -51,7 +51,7 @@ AI 时代个人内容工作台。
 关联位置：
 
 - `product-library/09_human-ai-collaboration-boundary/产品卡.md`
-- `tools.html#workflow-human-ai`
+- `index.html#workflow-human-ai`
 
 ### 社区活动内容传播工作台
 
