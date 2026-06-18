@@ -1,7 +1,7 @@
 interface:
   display_name: "去 AI 味与声音守门"
-  short_description: "检查 AI 初稿里过度顺滑、空泛判断和不像人的表达。"
-  default_prompt: "打开去 AI 味与声音守门工作流。当前稿在这里：[粘贴稿件]。请标出不像人的地方、为什么不稳，并给出更像我的改法。"
+  short_description: "发布前检查事实边界、AI 味和创作者声音。"
+  default_prompt: "Use $creator-voice-guardian to run a final gate on this draft: [paste draft and source materials]."
 
 policy:
   allow_implicit_invocation: true

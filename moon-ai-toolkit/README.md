@@ -88,6 +88,8 @@ Datawhale 是第一个试点案例，不是产品边界。
 关联位置：
 
 - `product-library/04_qa-gates/产品卡.md`
+- `skills/creator-voice-guardian/SKILL.md`
+- GitHub: https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian
 
 ### 口述转 HTML 演讲 PPT
 
