@@ -55,6 +55,7 @@
     "type": "发布前审核 / 风格守门",
     "useWhen": "发布前需要检查事实、口径、授权、边界和不像人的表达",
     "entry": "index.html#workflow-voice",
+    "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian",
     "localFolder": "product-library/04_qa-gates"
   },
   {
