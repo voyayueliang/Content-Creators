@@ -1,0 +1,7 @@
+interface:
+  display_name: "Moon Content OS Lite"
+  short_description: "搭建个人内容工作台，把素材变成可持续内容资产。"
+  default_prompt: "Use $moon-content-os to set up a lightweight content workbench from these materials: [paste materials and goals]."
+
+policy:
+  allow_implicit_invocation: true

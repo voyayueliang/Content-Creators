@@ -1,0 +1,4 @@
+interface:
+  display_name: "人机协作边界与内容判断方法"
+  short_description: "开始写作前先划清 AI 劳动、人工判断和公开边界。"
+  default_prompt: "Use $human-ai-collaboration-boundary to create a boundary card before drafting this content: [paste task and materials]."

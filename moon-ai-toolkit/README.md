@@ -39,6 +39,8 @@ AI 时代个人内容工作台。
 
 - `../../04_产品与工具/已产品化产品库/00_moon-content-os/产品卡.md`
 - `../../04_产品与工具/已产品化产品库/00_moon-content-os/产品定义-v0.1.md`
+- `skills/moon-content-os/SKILL.md`
+- GitHub: https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os
 
 ### 人机协作边界与内容判断方法
 
@@ -52,6 +54,8 @@ AI 时代个人内容工作台。
 
 - `product-library/09_human-ai-collaboration-boundary/产品卡.md`
 - `index.html#workflow-human-ai`
+- `skills/human-ai-collaboration-boundary/SKILL.md`
+- GitHub: https://github.com/voyayueliang/Content-Creators/tree/main/skills/human-ai-collaboration-boundary
 
 ### 社区活动内容传播工作台
 
