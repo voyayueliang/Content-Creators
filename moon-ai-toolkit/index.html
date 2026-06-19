@@ -1704,6 +1704,10 @@
           <button class="mini-button" type="button" data-show-all>查看全部</button>
         </div>
         <div class="choice-grid" aria-label="选择你的内容任务">
+          <button class="choice-button" type="button" data-choice-target="workflow-content-os" aria-pressed="false">
+            <strong>搭内容工作台</strong>
+            <span>素材很多、方向分散，需要一套长期复用的内容中台</span>
+          </button>
           <button class="choice-button" type="button" data-choice-target="workflow-event" aria-pressed="false">
             <strong>活动预告</strong>
             <span>会前传播、分论坛介绍、商业合作稿</span>
@@ -1763,6 +1767,58 @@
         <h2>工作流清单</h2>
         <p>每条工作流都可以轻量使用，也可以进入 GitHub 获取完整 Skill。轻量使用适合马上跑一篇稿；完整 Skill 适合放进自己的 AI 工具和内容工作台里长期复用。</p>
       </div>
+
+      <section class="gate method-gate" id="workflow-content-os" data-workflow-card>
+        <div>
+          <span class="tag">Mother System</span>
+          <h2>Moon Content OS Lite</h2>
+          <p class="summary">这是月亮 AI 工作台的母产品。它不是帮你写一篇稿，而是帮内容创作者把素材入口、选题判断、AI 协作边界、发布前检查和发布后回收，搭成一套可以长期复用的内容中台。</p>
+          <div class="actions">
+            <button class="button use-now" type="button" data-copy-workflow="workflow-content-os"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
+            <details>
+              <summary>查看完整工作流说明</summary>
+              <pre>打开 Moon Content OS Lite。
+
+我想搭建一个轻量内容工作台，用来长期整理和生产内容。
+我的身份或使用场景是：[内容创作者 / 社区运营者 / 活动组织者 / 自由职业者 / 小团队 / 其他]
+我现在最常处理的内容有：[活动稿 / 音视频转文章 / 公众号 / 小红书 / 演讲 PPT / 作品集 / 合作稿 / 其他]
+我已有的材料散落在：[文件夹路径 / 飞书文档 / 录音 / 聊天记录 / 初稿 / 网页链接 / 其他]
+我希望这个工作台帮我解决：[素材太散 / 选题太多 / AI 写得不像我 / 发布前怕出错 / 做完项目没有沉淀 / 其他]
+
+请先不要直接写文章，先帮我搭一个最小可运行的内容工作台：
+1. 给我一张材料地图：已有材料、缺口、优先处理顺序。
+2. 给我一个文件夹结构：素材收件箱、素材卡、选题池、发布队列、AI 协作原则、事实校对、发布后反馈回收。
+3. 给我一套命名和入库规则，让以后新增材料能继续放进去。
+4. 给我一张人机协作边界卡：AI 负责整理、提取、候选生成；人负责角度、判断、关系边界和最终声音。
+5. 给我一套发布前检查：去 AI 味、事实校对、公开边界、引用授权。
+6. 最后给我一个 7 天启动计划，让我可以从一篇真实内容开始跑起来。</pre>
+            </details>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os" target="_blank" rel="noreferrer">获取完整 Skill</a>
+          </div>
+        </div>
+        <div class="info">
+          <section class="line">
+            <strong>什么时候用</strong>
+            <p>材料越来越多、内容方向开始分散、想把一次次写稿变成可复用系统时。</p>
+          </section>
+          <section class="line">
+            <strong>准备什么</strong>
+            <p>现有内容文件夹、常见内容类型、近期要交付的真实任务，以及你对 AI 协作的边界要求。</p>
+          </section>
+          <section class="line">
+            <strong>会得到什么</strong>
+            <ol>
+              <li>一个最小可运行的内容工作台结构。</li>
+              <li>素材入库、选题判断、发布检查和反馈回收规则。</li>
+              <li>适合继续扩展成个人内容中台的 Skill 使用说明。</li>
+            </ol>
+          </section>
+          <section class="line">
+            <strong>验证状态</strong>
+            <p>L1-L2。已从月亮自己的内容工作台、活动传播、音视频转文章、作品集和 AI 协作边界中抽象出来，适合先给内容创作者和社区组织者小范围试用。</p>
+          </section>
+        </div>
+      </section>
 
       <section class="gate method-gate" id="workflow-human-ai" data-workflow-card>
         <div>
