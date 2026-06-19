@@ -5,6 +5,7 @@
     "type": "母产品 / 内容工作台",
     "useWhen": "素材很多、内容方向不清、需要把项目和反馈沉淀成可持续资产",
     "entry": "index.html#start",
+    "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os",
     "localFolder": "product-library/00_moon-content-os"
   },
   {
@@ -13,6 +14,7 @@
     "type": "底层方法 / AI 协作边界",
     "useWhen": "开始任何内容工作流前，需要先分清 AI 可代劳的劳动、人必须保留的判断、事实和公开边界",
     "entry": "index.html#workflow-human-ai",
+    "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/human-ai-collaboration-boundary",
     "localFolder": "product-library/09_human-ai-collaboration-boundary"
   },
   {
