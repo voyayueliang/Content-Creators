@@ -1,9 +1,9 @@
 [
   {
     "id": "moon-content-os",
-    "title": "Moon Content OS Lite",
-    "type": "母产品 / 内容工作台",
-    "useWhen": "素材很多、内容方向不清、需要把项目和反馈沉淀成可持续资产",
+    "title": "内容材料分流器",
+    "type": "开始入口 / 材料分流",
+    "useWhen": "手上有一份材料，但不知道该写文章、做 PPT、进作品集、入库还是先补信息",
     "entry": "index.html#start",
     "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os",
     "localFolder": "product-library/00_moon-content-os"
