@@ -1,10 +1,10 @@
 [
   {
     "id": "moon-content-os",
-    "title": "内容材料分流器",
-    "type": "开始入口 / 材料分流",
-    "useWhen": "手上有一份材料，但不知道该写文章、做 PPT、进作品集、入库还是先补信息",
-    "entry": "index.html#start",
+    "title": "稿件材料组装器",
+    "type": "写稿入口 / 材料组装",
+    "useWhen": "已经有一篇稿要写，也有背景材料、会议纪要、录音转写、旧稿或参考链接，需要先把材料组合清楚再下笔",
+    "entry": "index.html#workflow-content-os",
     "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os",
     "localFolder": "product-library/00_moon-content-os"
   },

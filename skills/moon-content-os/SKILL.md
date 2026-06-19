@@ -1,86 +1,91 @@
 ---
 name: moon-content-os
-description: 内容材料分流与工作台启动器。Use when the user has a draft, transcript, event packet, meeting note, portfolio material, published link, or scattered content material and does not know whether to turn it into an article, short post, presentation, portfolio case, source card, archive item, or fact-checking task. Also use for Moon Content OS, 搭建内容工作台, 内容材料分流, 不知道材料怎么用, 不知道该写什么, 素材系统, 内容资产库, 个人内容操作系统, 创作者工作台, 发布队列, 反馈回收, 产品化回收.
+description: 稿件材料组装器。Use when the user needs to write a piece of content and has context materials such as briefs, meeting notes, transcripts, old drafts, links, screenshots, partner requirements, audience notes, or reference styles, and needs help combining them into a writing plan before drafting. Supports WeChat articles, event articles, recaps, interview articles, short posts, presentation outlines, portfolio cases, commercial collaboration drafts, internal docs, and content repurposing. Also use for context 组装, 写稿前整理材料, 稿件材料组合, 有一篇稿子要写, 内容产出方式, Moon Content OS, 内容工作台.
 ---
 
-# Content Material Router / Moon Content OS
+# Draft Material Builder / Moon Content OS
 
-Use this skill first as a concrete material router. Help the user decide what one piece of material can become and what the next AI instruction should be.
+Use this skill before drafting. Help the user combine writing materials into a usable writing plan: communication task, audience, available evidence, material placement, missing material, output format, and next instruction.
 
-Only upgrade to a lightweight content workbench after the first material route is useful. Do not start by organizing everything the user has.
+Do not start by building a workbench. Do not immediately write the draft unless the user explicitly asks to skip planning.
 
 ## Core Promise
 
-Turn one uncertain material into a clear next step: write, shorten, make a deck, build a portfolio case, create a source card, archive, fill gaps, or fact-check.
+Turn a writing task plus scattered materials into a clear draft plan.
 
-The longer-term workbench is an upgrade path, not the first promise.
+The first output should answer: what is this piece trying to do, which materials matter, where they fit, what is missing, and what instruction should start drafting.
 
 Do not promise viral growth, automation, or one-click publishing. The value is clarity, continuity, judgment, and asset recovery.
 
-The first session should feel usable in 5-10 minutes: inspect one material, choose a route, name missing information, and give the user one copyable next instruction.
+The first session should feel usable in 5-10 minutes: organize materials well enough that drafting becomes possible.
 
 ## Required Inputs
 
 Ask for or infer:
 
-- One pilot task: a draft, transcript, event material pack, portfolio case, meeting note, published link set, or content folder.
+- Desired output: WeChat article, event article, recap, interview article, short post, presentation outline, portfolio case, commercial draft, internal doc, or uncertain.
+- Communication task: invite, explain, recap, persuade, document, showcase, teach, align, or convert.
+- Audience: public readers, community members, event attendees, partner/editor/client, hiring reviewer, internal team, or uncertain.
+- Writing materials: briefs, meeting notes, transcripts, old drafts, links, screenshots, references, partner requirements, facts, images, quotes.
+- Must-keep and must-avoid information: names, facts, partner口径, privacy, unconfirmed details, commercial boundaries.
 - User role: creator, researcher, community operator, educator, founder, freelancer, or small team.
-- Current material sources: chats, notes, recordings, interviews, event documents, drafts, links, screenshots, feedback.
-- Current publishing surfaces: WeChat, video, podcast, newsletter, social posts, portfolio, internal docs, workshops.
-- Pain point: too much material, no queue, no feedback recovery, AI voice drift, weak portfolio, unclear productization.
+- Voice or style requirement: platform style, creator voice, partner tone, enthusiastic, restrained, professional, field-based, or uncertain.
 - Available tool surface: local folders, GitHub, Notion, Feishu, Markdown, Codex, Claude Code, or another AI workspace.
 
-If the user only wants a single deliverable, route them to a narrower skill before building a full OS.
-If the user wants an OS but has not chosen a pilot task, ask them to choose one material first.
+If the user only gives raw materials but no output goal, first ask what they are trying to produce.
+If the output goal is clear and a narrower skill is more appropriate, route to it after building the draft plan.
 
 ## Workflow
 
-1. Read one material.
-   - Accept a draft, transcript, event pack, meeting note, portfolio case, content folder, public link set, or pasted fragment.
-   - Do not ask for a full archive first.
-2. Name what it is.
-   - Classify it as transcript, event material, old draft, meeting note, portfolio material, community feedback, fragment, or another plain category.
-3. Route it to the next use.
-   - Route to long article, short post, presentation, portfolio case, source card, archive, fact-check, or gap-filling.
-   - Explain why in ordinary language, using the material itself as evidence.
-4. Name the missing inputs.
-   - List up to 3 questions that most affect the next step.
-   - If enough information exists, say it can start.
-5. Give one next instruction.
+1. Name the real writing task.
+   - Do not stop at format labels like article, post, or deck.
+   - State what the piece must accomplish for the reader or stakeholder.
+2. Build a material inventory.
+   - List each material, where it can be used, what it supports, whether it needs fact-checking, and whether it should be excluded.
+3. Propose material placement.
+   - Suggest what belongs in the opening, body, evidence/examples, transition, ending, call to action, or appendix.
+   - Mark what should be left out.
+4. Check output format fit.
+   - If the user specified a format, say whether it fits the available materials.
+   - If uncertain, recommend WeChat article, short post, deck, portfolio case, internal doc, or gap-filling.
+5. Name missing material.
+   - List at most 5 questions that affect drafting.
+   - If enough material exists, say drafting can begin.
+6. Give one next instruction.
    - Make it copyable.
-   - The instruction should continue to writing, shortening, deck outlining, case distilling, fact-checking, or source-card creation.
-6. Create the minimum workbench only if useful.
+   - The instruction should begin drafting, fill material gaps, fact-check, confirm boundaries, or route to a narrower skill.
+7. Create the minimum workbench only if useful.
    - Use the folders and templates in `references/lite-workbench-templates.md`.
-   - Keep the first version small enough for this material.
-   - Do not output folders if the user only needs routing and a next instruction.
-7. Add the intake protocol.
+   - Only do this if the same content workflow will repeat.
+   - Do not output folders if the user only needs one draft.
+8. Add the intake protocol.
    - Define how new notes, transcripts, feedback, drafts, screenshots, and project files enter.
    - Give the user short intent tags such as `入库`, `参考拆解`, `产品化`, `验证`, `发布`, `复盘`.
-8. Add content judgment.
+9. Add content judgment.
    - Decide whether each material should become a source card, topic, draft, public post, portfolio case, product signal, or archive item.
-9. Add human-AI boundaries.
+10. Add human-AI boundaries.
    - Use `$human-ai-collaboration-boundary` before any high-risk content work.
    - Use `$creator-voice-guardian` before publication.
-10. Add publishing and recovery.
+11. Add publishing and recovery.
    - Create a publishing queue.
    - Create a feedback recovery habit for comments, private messages, referrals, saved posts, and collaboration leads.
-11. Add productization recovery.
+12. Add productization recovery.
    - After projects or repeated tasks, decide whether the work becomes a case, method, skill, template, workshop, offer, or product line.
 
 ## Output Contract
 
 Return:
 
-1. `这份材料现在属于什么`
-   - plain category, no jargon.
-2. `它最适合走哪条路`
-   - long article, short post, presentation, portfolio case, source card, archive, fact-check, or gap-filling.
-3. `为什么`
-   - ordinary-language reason based on the material.
-4. `还缺哪 3 个关键信息`
-   - only the highest-impact questions.
-5. `下一步可以复制给 AI 的一句话`
-   - one clear instruction.
+1. `这篇稿的真实任务`
+   - one plain sentence.
+2. `材料使用清单`
+   - material, where to use it, what it supports, check needed, exclude or not.
+3. `文章组合方式`
+   - opening, body, evidence, ending, and what to leave out.
+4. `适合的产出形态`
+   - fit check for the requested format or a recommendation.
+5. `下一步指令`
+   - draft, fill gaps, fact-check, boundary check, or route to a narrower skill.
 
 ## Load References
 
@@ -106,7 +111,7 @@ Prefer this minimum structure:
 ```
 
 Keep names understandable. The workbench should invite use, not admiration.
-For a first run, do not output this full structure unless the user asks to build a workbench. Introduce it as an upgrade path only after routing one real material.
+For a first draft-planning run, do not output this full structure unless the user asks to build a recurring workbench. Introduce it as an upgrade path only after repeated similar drafting tasks.
 
 ## Boundaries
 
@@ -133,6 +138,8 @@ The human must decide:
 Before presenting a workbench, check:
 
 - Did the work start from one real task rather than an abstract complete system?
+- Did the output make it easier to write one piece immediately?
+- Did it combine audience, purpose, materials, format, and boundaries?
 - Did the output avoid abstract terms such as OS, content asset, middle platform, methodology, or productization unless the user already uses them?
 - Can the user know where to put a new material today?
 - Can the user see which item to act on next?
