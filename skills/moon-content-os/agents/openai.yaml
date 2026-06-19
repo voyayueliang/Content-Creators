@@ -1,5 +1,5 @@
 interface:
-  display_name: "稿件材料组装器"
+  display_name: "写稿前材料整理助手"
   short_description: "把写作任务、读者、材料、口径和边界组合成一版可写方案。"
   default_prompt: "Use $moon-content-os to organize the materials for this draft before writing: [output goal, audience, materials, constraints]."
 

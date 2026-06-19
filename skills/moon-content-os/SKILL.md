@@ -1,6 +1,6 @@
 ---
 name: moon-content-os
-description: 稿件材料组装器。Use when the user needs to write a piece of content and has context materials such as briefs, meeting notes, transcripts, old drafts, links, screenshots, partner requirements, audience notes, or reference styles, and needs help combining them into a writing plan before drafting. Supports WeChat articles, event articles, recaps, interview articles, short posts, presentation outlines, portfolio cases, commercial collaboration drafts, internal docs, and content repurposing. Also use for context 组装, 写稿前整理材料, 稿件材料组合, 有一篇稿子要写, 内容产出方式, Moon Content OS, 内容工作台.
+description: 写稿前材料整理助手。Use when the user needs to write a piece of content and has background materials such as briefs, meeting notes, transcripts, old drafts, links, screenshots, partner requirements, audience notes, or reference styles, and needs help combining them into a writing plan before drafting. Supports WeChat articles, event articles, recaps, interview articles, short posts, presentation outlines, portfolio cases, commercial collaboration drafts, internal docs, and content repurposing. Also use for 背景材料组合, 写稿前整理材料, 稿件材料组合, 有一篇稿子要写, 内容产出方式, Moon Content OS, 内容工作台.
 ---
 
 # Draft Material Builder / Moon Content OS
