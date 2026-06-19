@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>月亮的 AI 工作台</title>
-  <meta name="description" content="月亮的 AI 工作台：给内容创作者、深度社区活动组织者使用的个性化内容工作流。">
+  <title>月亮的 AI 工作台｜写稿前先把材料理清楚</title>
+  <meta name="description" content="月亮的 AI 工作台：把策划案、录音、会议纪要、旧稿和合作方要求，整理成一版能直接开写的稿件方案。">
   <link rel="icon" href="assets/04-moon-gate-avatar-mark.svg" type="image/svg+xml">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;650;750&display=swap');
@@ -202,6 +202,36 @@
       line-height: 1.7;
     }
 
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      max-width: 860px;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .hero-proof span {
+      display: block;
+      min-height: 64px;
+      padding: 10px 12px;
+      background: rgba(255, 254, 250, .94);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .hero-proof b {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
@@ -310,7 +340,8 @@
     }
 
     .principle-panel,
-    .use-guide {
+    .use-guide,
+    .sample-result {
       display: grid;
       gap: 1px;
       margin-bottom: 14px;
@@ -326,21 +357,29 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    .sample-result {
+      grid-template-columns: minmax(220px, .44fr) minmax(0, 1fr);
+      margin-bottom: 28px;
+    }
+
     .principle-main,
     .principle-side,
-    .use-guide > section {
+    .use-guide > section,
+    .sample-result > section {
       padding: 16px;
       background: var(--paper-2);
     }
 
     .principle-side,
-    .use-guide > section:nth-child(2) {
+    .use-guide > section:nth-child(2),
+    .sample-result > section:first-child {
       background: var(--mint);
     }
 
     .principle-main h2,
     .principle-side h3,
-    .use-guide h3 {
+    .use-guide h3,
+    .sample-result h3 {
       margin: 0 0 8px;
       color: var(--teal);
       font-family: var(--serif);
@@ -351,13 +390,15 @@
     }
 
     .principle-side h3,
-    .use-guide h3 {
+    .use-guide h3,
+    .sample-result h3 {
       font-size: 23px;
     }
 
     .principle-main p,
     .principle-side p,
-    .use-guide p {
+    .use-guide p,
+    .sample-result p {
       margin: 0;
       color: var(--muted);
       font-size: 14px;
@@ -370,7 +411,8 @@
     }
 
     .principle-side ul,
-    .use-guide ol {
+    .use-guide ol,
+    .sample-result ol {
       display: grid;
       gap: 8px;
       margin: 10px 0 0;
@@ -379,7 +421,8 @@
     }
 
     .principle-side li,
-    .use-guide li {
+    .use-guide li,
+    .sample-result li {
       display: grid;
       grid-template-columns: 26px 1fr;
       gap: 8px;
@@ -389,7 +432,8 @@
     }
 
     .principle-side b,
-    .use-guide b {
+    .use-guide b,
+    .sample-result b {
       width: 26px;
       height: 26px;
       border: 1px solid var(--line);
@@ -1055,7 +1099,9 @@
       .card,
       .gate,
       .principle-panel,
-      .use-guide {
+      .use-guide,
+      .sample-result,
+      .hero-proof {
         grid-template-columns: 1fr;
       }
 
@@ -1168,7 +1214,7 @@
       }
 
       .steps {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
       }
 
       .section-head h2,
@@ -1185,7 +1231,7 @@
 
       .hero-actions {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         margin-top: 16px;
       }
 
@@ -1201,7 +1247,7 @@
       }
 
       .hero-actions .button {
-        width: auto;
+        width: 100%;
       }
 
       .finder-row {
@@ -1225,6 +1271,10 @@
       .section-head {
         gap: 10px;
         margin-bottom: 16px;
+      }
+
+      .hero-proof span {
+        min-height: 0;
       }
 
       .choice-panel {
@@ -1549,7 +1599,9 @@
       .task-journey,
       .principle-panel,
       .card,
-      .gate {
+      .gate,
+      .sample-result,
+      .hero-proof {
         grid-template-columns: 1fr;
       }
 
@@ -1602,7 +1654,8 @@
       }
 
       .card,
-      .gate {
+      .gate,
+      .sample-result > section {
         padding: 18px 0;
       }
 
@@ -1620,8 +1673,8 @@
         月亮的 AI 工作台
       </a>
       <div class="top-actions">
-        <a class="repo" href="#start">直接使用</a>
-        <a class="repo" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">GitHub 完整包</a>
+        <a class="repo" href="#start">开始整理</a>
+        <a class="repo" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">完整工作流包</a>
       </div>
     </div>
   </header>
@@ -1629,128 +1682,123 @@
   <main>
     <section class="wrap hero">
       <div>
-        <p class="eyebrow">Human in the loop · Humanity in the loop</p>
-        <h1>月亮的 AI 工作台</h1>
-        <p class="lead">给深度内容创作者、社区运营者和活动组织者使用的内容工作台。你可以带着一场活动、一段录音、一篇初稿或一组个人经历进来，选一个场景，把说明复制给 Claude Code 或 Codex，再放入自己的材料。</p>
-        <p class="hero-note">月亮把自己的内容判断力拆成一套可以给别人使用的工作流。它会先帮你整理材料、发现缺口、生成候选稿；事实、角度、关系边界和最终声音，仍然由创作者决定。</p>
+        <p class="eyebrow">写稿前 10 分钟</p>
+        <h1>有稿要写？先把材料理清楚</h1>
+        <p class="lead">把策划案、会议纪要、录音转写、旧稿、参考链接和合作方要求，整理成一版能直接开写的稿件方案。先看任务、读者、材料、缺口和边界，再决定怎么写。</p>
+        <p class="hero-note">这不是自动代写器。月亮把自己的内容判断力拆成一套工作流，让 AI 先把材料摊开，人再决定事实、角度、公开边界和最终声音。</p>
+        <div class="hero-proof" aria-label="你会得到什么">
+          <span><b>你带来</b>策划案、录音、会议纪要、旧稿、参考链接。</span>
+          <span><b>AI 先做</b>整理材料、标缺口、列风险、建议结构。</span>
+          <span><b>你决定</b>哪些能写、怎么表达、是否进入成稿。</span>
+        </div>
         <div class="hero-actions">
-          <a class="button" href="#start">选择你的任务</a>
-          <a class="button secondary" href="#workflows">查看全部工作流</a>
+          <button class="button" type="button" data-copy-workflow data-clipboard-target="#draft-context-prompt">复制写稿前整理指令</button>
+          <a class="button secondary" href="#start">看看怎么用</a>
         </div>
       </div>
       <aside class="hero-card">
         <img src="assets/03-bilingual-lockup.svg" alt="Moon workbench lockup">
-        <h2>5 分钟上手</h2>
+        <h2>第一次这样用</h2>
         <ol class="steps">
-          <li><b>1</b><span>选一个最接近的场景</span></li>
-          <li><b>2</b><span>复制工作流说明</span></li>
-          <li><b>3</b><span>粘贴到 Claude Code 或 Codex</span></li>
-          <li><b>4</b><span>放入材料，先看缺口</span></li>
-          <li><b>5</b><span>再进入成稿和校对</span></li>
+          <li><b>1</b><span>复制整理指令</span></li>
+          <li><b>2</b><span>粘贴到 Claude Code 或 Codex</span></li>
+          <li><b>3</b><span>把你的材料放进去</span></li>
+          <li><b>4</b><span>先看方案，再让它写正文</span></li>
         </ol>
       </aside>
     </section>
 
     <section class="wrap" id="start">
       <div class="section-head">
-        <h2>从你手上的内容开始</h2>
-        <p>不用先学会整套系统。你只要判断自己现在要处理哪类内容，选一条工作流，把说明复制给 AI，再把真实材料补进去。</p>
+        <h2>从今天这篇稿开始</h2>
+        <p>不用先理解整套工作台。你只要带着一篇要交付的内容和一堆材料进来，先把材料组装清楚，再进入写作、改稿或发布前检查。</p>
       </div>
       <div class="task-journey" aria-label="使用路线">
         <div>
           <span class="status">Start Here</span>
-          <h3>先让 AI 看材料，再决定怎么写</h3>
-          <p>这套工作台会把顺序固定下来：先整理材料，找出缺口，标出需要人工确认的地方，再进入写作、改稿和发布前检查。</p>
+          <h3>先得到一张稿件方案</h3>
+          <p>第一轮不要急着让 AI 写正文。先让它说明：这篇稿到底要完成什么任务，哪些材料能用，哪些事实要核对，哪种结构更合适。</p>
         </div>
         <ol class="journey-steps">
-          <li><b>01</b><span>选一个最接近的任务。</span></li>
-          <li><b>02</b><span>复制工作流说明，粘贴到 Claude Code 或 Codex。</span></li>
-          <li><b>03</b><span>把方括号里的内容换成你的材料、链接或文件路径。</span></li>
-          <li><b>04</b><span>先看材料地图、事实缺口和追问清单，再让它写初稿。</span></li>
+          <li><b>01</b><span>复制“写稿前整理指令”。</span></li>
+          <li><b>02</b><span>粘贴到 Claude Code 或 Codex，也可以放进你熟悉的 AI 对话里。</span></li>
+          <li><b>03</b><span>把方括号替换成真实材料、链接或文件路径。</span></li>
+          <li><b>04</b><span>先看它给出的稿件方案，确认后再让它写第一版。</span></li>
         </ol>
       </div>
       <div class="use-guide" aria-label="使用说明">
         <section>
-          <h3>你要准备什么</h3>
+          <h3>你可以带来什么</h3>
           <ol>
-            <li><b>01</b><span>背景材料：策划案、录音文字、会议纪要、初稿、网页链接或文件路径。</span></li>
-            <li><b>02</b><span>交付目标：公众号、活动报道、人物稿、演讲稿、作品集页面或内部整理。</span></li>
-            <li><b>03</b><span>边界要求：哪些信息不能公开，哪些事实必须核对，最终要像谁在说话。</span></li>
+            <li><b>01</b><span>材料：策划案、录音转写、会议纪要、旧稿、网页链接、图片说明。</span></li>
+            <li><b>02</b><span>任务：公众号、活动稿、人物稿、演讲 PPT、作品集案例、商业合作稿。</span></li>
+            <li><b>03</b><span>边界：哪些必须保留，哪些不能公开，哪些事实要先确认。</span></li>
           </ol>
         </section>
         <section>
-          <h3>页面按钮怎么用</h3>
+          <h3>第一轮会得到什么</h3>
           <ol>
-            <li><b>01</b><span>点场景按钮，页面会把最相关的工作流提到前面。</span></li>
-            <li><b>02</b><span>点“复制给 AI 的工作流说明”，直接粘贴到 Claude Code 或 Codex。</span></li>
-            <li><b>03</b><span>需要长期复用时，再打开 GitHub 完整包，把 Skill 加进自己的 AI 工作台。</span></li>
+            <li><b>01</b><span>这篇稿真正要完成的沟通任务。</span></li>
+            <li><b>02</b><span>材料使用清单：能用在哪里、支撑什么、哪些要核对。</span></li>
+            <li><b>03</b><span>下一步指令：可以写第一版，还是先补材料、先校对边界。</span></li>
           </ol>
         </section>
         <section>
-          <h3>AI 输出后看什么</h3>
+          <h3>拿到结果后怎么走</h3>
           <ol>
-            <li><b>01</b><span>先看它列出的缺口和追问，补齐关键材料。</span></li>
-            <li><b>02</b><span>再看初稿是否有事实错误、空泛表达和不属于你的声音。</span></li>
-            <li><b>03</b><span>最后过一遍去 AI 味、信息校对和发布边界。</span></li>
+            <li><b>01</b><span>材料够：让 AI 根据方案写第一版。</span></li>
+            <li><b>02</b><span>材料不够：先回答它列出的 3-5 个关键问题。</span></li>
+            <li><b>03</b><span>要发布：最后过事实校对、去 AI 味和公开边界。</span></li>
+          </ol>
+        </section>
+      </div>
+      <div class="sample-result" aria-label="示例结果">
+        <section>
+          <h3>一个真实使用场景</h3>
+          <p>你手上有一场活动的策划案、会议纪要、嘉宾名单和合作方要求，但还不知道公众号文章应该怎么写。</p>
+        </section>
+        <section>
+          <h3>第一轮不要生成正文，而是先得到这个</h3>
+          <ol>
+            <li><b>01</b><span>这篇稿的任务：报名召集、合作价值说明、会后记录，还是项目解释。</span></li>
+            <li><b>02</b><span>材料怎么用：哪些放开头，哪些支撑主体，哪些只能作为背景。</span></li>
+            <li><b>03</b><span>风险和缺口：时间地点、嘉宾身份、合作方口径、未确认信息。</span></li>
+            <li><b>04</b><span>下一步：直接写初稿，或先补 3 个问题，再进入成稿。</span></li>
           </ol>
         </section>
       </div>
       <div class="choice-panel" data-choice-panel>
         <div>
           <div>
-            <h3>你现在要处理哪件事？</h3>
-            <p>点一下最接近的场景，下面只保留对应工作流。拿不准，就先看全部。</p>
+            <h3>你现在是哪一种情况？</h3>
+            <p>先选一个最接近的入口。后面的完整工作流还在下面，不会丢。</p>
           </div>
           <button class="mini-button" type="button" data-show-all>查看全部</button>
         </div>
         <div class="choice-grid" aria-label="选择你的内容任务">
-          <button class="choice-button" type="button" data-choice-target="workflow-content-os" aria-pressed="false">
-            <strong>我要写一篇稿</strong>
-            <span>有背景和材料，需要先组合清楚</span>
+          <button class="choice-button" type="button" data-choice-targets="workflow-content-os" aria-pressed="false">
+            <strong>我有材料，要写一篇新稿</strong>
+            <span>先把读者、任务、材料、缺口和边界整理成一张稿件方案。</span>
           </button>
-          <button class="choice-button" type="button" data-choice-target="workflow-event" aria-pressed="false">
-            <strong>活动预告</strong>
-            <span>会前传播、分论坛介绍、商业合作稿</span>
+          <button class="choice-button" type="button" data-choice-targets="workflow-voice" aria-pressed="false">
+            <strong>我有初稿，要修改校对</strong>
+            <span>检查事实、AI 味、空泛表达、公开边界和不像自己的地方。</span>
           </button>
-          <button class="choice-button" type="button" data-choice-target="workflow-recap" aria-pressed="false">
-            <strong>会后报道</strong>
-            <span>活动复盘、照片反馈、社区记忆</span>
-          </button>
-          <button class="choice-button" type="button" data-choice-target="workflow-audio" aria-pressed="false">
-            <strong>音视频转文章</strong>
-            <span>播客、直播、访谈、圆桌逐字稿</span>
-          </button>
-          <button class="choice-button" type="button" data-choice-target="workflow-deck" aria-pressed="false">
-            <strong>演讲网页 PPT</strong>
-            <span>口述思路、飞书文档、图片素材、HTML deck</span>
-          </button>
-          <button class="choice-button" type="button" data-choice-target="workflow-profile" aria-pressed="false">
-            <strong>人物深度稿</strong>
-            <span>公开访谈、创始人、Builder Profile</span>
-          </button>
-          <button class="choice-button" type="button" data-choice-target="workflow-creator-system" aria-pressed="false">
-            <strong>简历作品集</strong>
-            <span>求职申请、个人网站、作品系统搭建</span>
-          </button>
-          <button class="choice-button" type="button" data-choice-target="workflow-human-ai" aria-pressed="false">
-            <strong>人机协作方法</strong>
-            <span>先分清判断、边界、证据和 AI 可以代劳的部分</span>
-          </button>
-          <button class="choice-button" type="button" data-choice-target="workflow-voice" aria-pressed="false">
-            <strong>发布前检查</strong>
-            <span>已有初稿，做声音守门和事实校对</span>
+          <button class="choice-button" type="button" data-choice-targets="workflow-event,workflow-recap,workflow-audio" aria-pressed="false">
+            <strong>我有录音或活动资料，要整理成文章</strong>
+            <span>活动预告、会后报道、播客访谈和直播回放，都从材料地图开始。</span>
           </button>
         </div>
-        <p class="choice-feedback" data-choice-feedback>选一个最接近的任务，页面会把对应工作流提出来。</p>
+        <p class="choice-feedback" data-choice-feedback>选一个最接近的情况，页面会把对应工作流提出来。</p>
       </div>
 
       <div class="principle-panel" aria-label="工作台理念">
         <section class="principle-main">
-          <h2>先设边界，再让 AI 进入流程</h2>
-          <p>Human in the loop 解决“人要参与哪一步”，Humanity in the loop 继续追问：人的判断、关系分寸、现场感和最终责任怎样被保留下来。这里的 AI 负责把材料摊开、整理缺口、生成候选，事实、角度、公开边界和最终声音都要回到创作者手里。</p>
+          <h2>为什么还要讲人机边界</h2>
+          <p>这套工作流承接 Human in the loop，也继续强调 Humanity in the loop：AI 可以帮你摊开材料、生成候选和发现缺口，但人的判断、关系分寸、现场感和最终责任要被保留下来。尤其是商业合作稿、活动报道和人物稿，事实与边界不能交给模型自己决定。</p>
         </section>
         <aside class="principle-side">
-          <h3>先问四件事</h3>
+          <h3>每次开写前先问</h3>
           <ul>
             <li><b>01</b><span>我想让 AI 帮我省哪类力？</span></li>
             <li><b>02</b><span>哪些判断必须由人来做？</span></li>
@@ -1764,20 +1812,20 @@
 
     <section class="wrap" id="workflows">
       <div class="section-head">
-        <h2>工作流清单</h2>
-        <p>每条工作流都可以轻量使用，也可以进入 GitHub 获取完整 Skill。轻量使用适合马上跑一篇稿；完整 Skill 适合放进自己的 AI 工具和内容工作台里长期复用。</p>
+        <h2>更多可直接复制的场景</h2>
+        <p>前面那条适合大多数写稿场景。下面这些是已经拆出来的专项工作流：活动、会后复盘、音视频、演讲、人物稿、作品集和发布前检查。先轻量复制使用，熟悉后再打开完整工作流包长期复用。</p>
       </div>
 
       <section class="gate method-gate" id="workflow-content-os" data-workflow-card>
         <div>
           <span class="tag">Draft Context Builder</span>
           <h2>有一篇稿要写？先把材料理清楚</h2>
-          <p class="summary">适合你已经有一个交付目标，也有一些背景材料、会议纪要、录音转写、旧稿或参考链接，但还不知道这些材料该怎么组合。它不急着写正文，而是先帮你整理：这篇稿写给谁、要传达什么、哪些材料能用、哪些缺口要补、适合输出成什么形态。</p>
+          <p class="summary">适合你已经有一个交付目标，也有一些背景材料、会议纪要、录音转写、旧稿或参考链接，但还不知道怎么组合。第一轮先不写正文，只整理任务、读者、材料、缺口和下一步。</p>
           <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-content-os"><span class="button-icon" data-lucide="copy"></span>复制写稿前整理指令</button>
+            <button class="button use-now" type="button" data-copy-workflow="workflow-content-os"><span class="button-icon" data-lucide="copy"></span>复制这段话，开始整理材料</button>
             <details>
               <summary>查看完整工作流说明</summary>
-              <pre>我现在要写一篇稿，请先帮我整理材料和写作背景，不要直接写正文。
+              <pre id="draft-context-prompt">我现在要写一篇稿，请先帮我整理材料和写作背景，不要直接写正文。
 
 交付形式是：[公众号文章 / 活动报道 / 会后复盘 / 访谈整理 / 人物稿 / 小红书 / 演讲 PPT / 作品集案例 / 商业合作稿 / 其他]
 这篇内容要给谁看：[目标读者 / 平台 / 客户 / 社群 / 编辑 / 不确定]
@@ -1809,7 +1857,7 @@
 - 如果材料不够，给我最多 5 个必须补的问题。
 - 如果风险较高，先给我事实校对和边界确认清单。</pre>
             </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os" target="_blank" rel="noreferrer">进阶：完整 Skill</a>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os" target="_blank" rel="noreferrer">打开完整工作流包</a>
           </div>
         </div>
         <div class="info">
@@ -1865,7 +1913,7 @@
 5. 哪些表达容易出现 AI 味：空泛总结、过度顺滑、万能转折、替读者下判断、议程排列。
 6. 最后给我一个执行建议：现在适合继续写、先补材料、先做调研，还是先确认边界。</pre>
             </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/human-ai-collaboration-boundary" target="_blank" rel="noreferrer">获取完整 Skill</a>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/human-ai-collaboration-boundary" target="_blank" rel="noreferrer">打开完整工作流包</a>
           </div>
         </div>
         <div class="info">
@@ -1886,8 +1934,8 @@
             </ol>
           </section>
           <section class="line">
-            <strong>验证状态</strong>
-            <p>L2。已在 Moon 内容工作台、Datawhale AIEC 稿件和去 AI 味样本库中反复使用，并封装成 human-ai-collaboration-boundary Skill。</p>
+            <strong>使用状态</strong>
+            <p>已在月亮自己的内容项目、Datawhale AIEC 稿件和去 AI 味样本库中反复使用，适合作为所有公开内容的开写前检查。</p>
           </section>
         </div>
       </section>
@@ -1915,8 +1963,8 @@
               </ol>
             </section>
             <section class="line">
-              <strong>验证状态</strong>
-              <p>L2。已在 Datawhale AIEC 连续稿中验证，下一步测试社区伙伴或实习生能否按流程独立跑稿。</p>
+              <strong>使用状态</strong>
+              <p>已在 Datawhale AIEC 连续稿中使用，适合社区活动、分论坛介绍和商业合作稿的前期整理。</p>
             </section>
           </div>
           <div class="actions">
@@ -1938,7 +1986,7 @@
 4. 先给我文章结构和信息缺口，不要直接写完整稿。
 5. 成稿前必须过两道门：事实校对门、去 AI 味与声音门。</pre>
             </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">获取完整 Skill</a>
+            <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">打开完整工作流包</a>
           </div>
         </article>
 
@@ -1964,8 +2012,8 @@
               </ol>
             </section>
             <section class="line">
-              <strong>验证状态</strong>
-              <p>L2。已有 2050、AMD、Datawhale 等活动经验和 GitHub skill，下一步补公开前后对照案例。</p>
+              <strong>使用状态</strong>
+              <p>已有 2050、AMD、Datawhale 等活动经验，适合活动结束后的报道、复盘和社区记忆整理。</p>
             </section>
           </div>
           <div class="actions">
@@ -1986,7 +2034,7 @@
 4. 如果材料不足，先向我追问，不要用漂亮话补空。
 5. 成稿后做事实校对、图片公开边界检查和去 AI 味检查。</pre>
             </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">获取完整 Skill</a>
+            <a class="button secondary" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">打开完整工作流包</a>
           </div>
         </article>
 
@@ -2012,8 +2060,8 @@
               </ol>
             </section>
             <section class="line">
-              <strong>验证状态</strong>
-              <p>L1-L2。Skill 已具备结构，下一步用播客、直播和访谈各跑一个真实素材验证。</p>
+              <strong>使用状态</strong>
+              <p>工作流结构已经成型，适合用播客、直播和访谈素材继续试跑。</p>
             </section>
           </div>
           <div class="actions">
@@ -2034,7 +2082,7 @@
 4. 如果要写公众号文章，先给我结构和选题角度，再写正文。
 5. 成稿后检查：是否过度总结、是否替别人下结论、是否丢失现场语气。</pre>
             </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">获取完整 Skill</a>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">打开完整工作流包</a>
           </div>
         </article>
 
@@ -2060,8 +2108,8 @@
               </ol>
             </section>
             <section class="line">
-              <strong>验证状态</strong>
-              <p>这是月亮已长期自用的演讲准备方式，正在从个人方法进入可复用 skill。下一步需要用完整真实演讲跑出一组可展示案例。</p>
+              <strong>使用状态</strong>
+              <p>这是月亮已长期自用的演讲准备方式，正在从个人方法整理成可复用流程。下一步需要用完整真实演讲跑出一组可展示案例。</p>
             </section>
           </div>
           <div class="actions">
@@ -2089,7 +2137,7 @@
 7. 如果进入 HTML deck 生成，请使用固定 16:9 舞台，保证桌面和手机打开都不变形。
 8. 发布前检查：逻辑门、演讲门、素材门、事实门、视觉门、去 AI 味门。</pre>
             </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/spoken-to-html-deck" target="_blank" rel="noreferrer">获取完整 Skill</a>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/spoken-to-html-deck" target="_blank" rel="noreferrer">打开完整工作流包</a>
           </div>
         </article>
 
@@ -2115,8 +2163,8 @@
               </ol>
             </section>
             <section class="line">
-              <strong>验证状态</strong>
-              <p>L2。已有葛小川公开资料人物稿案例，下一步适合用工作坊或第二个人物样本验证复用性。</p>
+              <strong>使用状态</strong>
+              <p>已有公开资料人物稿案例，适合继续用第二个人物样本或工作坊验证复用性。</p>
             </section>
           </div>
           <div class="actions">
@@ -2137,7 +2185,7 @@
 4. 先给人物主线和三个可能角度，由我选择后再进入成稿。
 5. 写作时避免百科腔、PR 腔和心理揣测；没有证据的地方必须留白或标注。</pre>
             </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/public-profile-deep-report-workflow" target="_blank" rel="noreferrer">获取完整 Skill</a>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/public-profile-deep-report-workflow" target="_blank" rel="noreferrer">打开完整工作流包</a>
           </div>
         </article>
 
@@ -2163,8 +2211,8 @@
               </ol>
             </section>
             <section class="line">
-              <strong>验证状态</strong>
-              <p>L2。已用于月亮自己的简历、作品集和个人网站实践，下一步找 1-2 个创作者试跑。</p>
+              <strong>使用状态</strong>
+              <p>已用于月亮自己的简历、作品集和个人网站实践，下一步适合找 1-2 个创作者试跑。</p>
             </section>
           </div>
           <div class="actions">
@@ -2187,7 +2235,7 @@
 5. 标出证据不足、容易夸大、容易让读者看不懂的地方。
 6. 先给建议和结构，不要一上来整篇重写。最后再进入文案、页面或简历版本。</pre>
             </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/creator-work-system-builder" target="_blank" rel="noreferrer">获取完整 Skill</a>
+            <a class="button secondary" href="https://github.com/voyayueliang/creator-work-system-builder" target="_blank" rel="noreferrer">打开完整工作流包</a>
           </div>
         </article>
       </div>
@@ -2216,7 +2264,7 @@
 3. 有没有把合作方想表达的战略价值说偏，或把读者不关心的内部视角写得太重。
 4. 请先给问题清单和修改建议，不要一上来整篇重写。</pre>
             </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">获取完整 Skill</a>
+            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">打开完整工作流包</a>
           </div>
         </div>
         <div class="info">
@@ -2237,8 +2285,8 @@
             </ol>
           </section>
           <section class="line">
-            <strong>验证状态</strong>
-            <p>L2。已在 Datawhale AIEC 稿件中验证，并封装成 creator-voice-guardian Skill，是所有内容工作流的默认 Final Gate。</p>
+            <strong>使用状态</strong>
+            <p>已在 Datawhale AIEC 稿件中使用，适合作为所有内容工作流发布前的最后一轮检查。</p>
           </section>
         </div>
       </section>
@@ -2255,7 +2303,7 @@
     (function () {
       const workflowCards = Array.from(document.querySelectorAll("[data-workflow-card]"));
       const showAllButton = document.querySelector("[data-show-all]");
-      const choiceButtons = Array.from(document.querySelectorAll("[data-choice-target]"));
+      const choiceButtons = Array.from(document.querySelectorAll("[data-choice-target], [data-choice-targets]"));
       const choiceFeedback = document.querySelector("[data-choice-feedback]");
       const noResults = document.querySelector("[data-no-results]");
 
@@ -2295,22 +2343,25 @@
         }
       }
 
-      function chooseWorkflow(id) {
-        const target = workflows.find((item) => item.id === id);
-        if (!target) return;
+      function chooseWorkflow(ids, trigger) {
+        const idList = Array.isArray(ids) ? ids : String(ids || "").split(",");
+        const targetIds = idList.map((id) => id.trim()).filter(Boolean);
+        const matched = workflows.filter((item) => targetIds.includes(item.id));
+        if (!matched.length) return;
 
-        setVisibility(new Set([id]));
+        setVisibility(new Set(matched.map((item) => item.id)));
         choiceButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", button.dataset.choiceTarget === id ? "true" : "false");
+          button.setAttribute("aria-pressed", button === trigger ? "true" : "false");
         });
         if (noResults) noResults.hidden = true;
         if (choiceFeedback) {
-          choiceFeedback.textContent = `已为你选出：${target.title}。可以直接往下看工作流说明。`;
+          const titles = matched.map((item) => item.title).join("、");
+          choiceFeedback.textContent = `已为你选出：${titles}。可以直接往下看工作流说明。`;
         }
       }
 
       choiceButtons.forEach((button) => {
-        button.addEventListener("click", () => chooseWorkflow(button.dataset.choiceTarget));
+        button.addEventListener("click", () => chooseWorkflow(button.dataset.choiceTargets || button.dataset.choiceTarget, button));
       });
 
       if (showAllButton) {
