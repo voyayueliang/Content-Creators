@@ -806,6 +806,55 @@
       background: transparent;
     }
 
+    .case-category {
+      padding: 28px 0 4px;
+      border-top: 1px solid var(--line);
+    }
+
+    .case-category:first-of-type {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .category-head {
+      display: grid;
+      grid-template-columns: minmax(220px, .38fr) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      margin-bottom: 14px;
+    }
+
+    .category-head h3 {
+      margin: 0;
+      color: var(--teal);
+      font-family: var(--serif);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 500;
+      line-height: 1.02;
+    }
+
+    .category-head p {
+      margin: 0;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.68;
+    }
+
+    .category-label {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 4px 8px;
+      border: 1px solid currentColor;
+      color: var(--teal);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
     .subsection-title {
       margin: 30px 0 10px;
       color: var(--teal);
@@ -1101,6 +1150,7 @@
       .principle-panel,
       .use-guide,
       .sample-result,
+      .category-head,
       .hero-proof {
         grid-template-columns: 1fr;
       }
@@ -1601,6 +1651,7 @@
       .card,
       .gate,
       .sample-result,
+      .category-head,
       .hero-proof {
         grid-template-columns: 1fr;
       }
@@ -1812,20 +1863,29 @@
 
     <section class="wrap" id="workflows">
       <div class="section-head">
-        <h2>更多可直接复制的场景</h2>
-        <p>前面那条适合大多数写稿场景。下面这些是已经拆出来的专项工作流：活动、会后复盘、音视频、演讲、人物稿、作品集和发布前检查。先轻量复制使用，熟悉后再打开完整工作流包长期复用。</p>
+        <h2>拆解优质案例</h2>
+        <p>这里不只是陈列工具，而是把 4 大类内容 Skill 拆给你看。每个案例都用三个问题说明：它帮谁解决什么痛点，它要你给什么、怎么处理、给你什么，以及它的设计方法哪里值得学走。</p>
       </div>
 
-      <section class="gate method-gate" id="workflow-content-os" data-workflow-card>
-        <div>
-          <span class="tag">Draft Context Builder</span>
-          <h2>有一篇稿要写？先把材料理清楚</h2>
-          <p class="summary">适合你已经有一个交付目标，也有一些背景材料、会议纪要、录音转写、旧稿或参考链接，但还不知道怎么组合。第一轮先不写正文，只整理任务、读者、材料、缺口和下一步。</p>
-          <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-content-os"><span class="button-icon" data-lucide="copy"></span>复制这段话，开始整理材料</button>
-            <details>
-              <summary>查看完整工作流说明</summary>
-              <pre id="draft-context-prompt">我现在要写一篇稿，请先帮我整理材料和写作背景，不要直接写正文。
+      <section class="case-category" data-case-category>
+        <div class="category-head">
+          <div>
+            <span class="category-label">01 / Before Writing</span>
+            <h3>写稿前：先把材料和边界理清楚</h3>
+          </div>
+          <p>适合手上已经有材料，但不知道怎么开写的人。重点不是马上生成正文，而是先建立一张可判断、可追问、可审核的稿件地图。</p>
+        </div>
+        <div class="grid">
+          <section class="gate method-gate" id="workflow-content-os" data-workflow-card>
+            <div>
+              <span class="tag">Draft Context Builder</span>
+              <h2>写稿前材料整理助手</h2>
+              <p class="summary">把一堆材料先整理成稿件方案，让创作者知道这篇内容该写给谁、要完成什么任务、哪些材料能用、哪些还要补。</p>
+              <div class="actions">
+                <button class="button use-now" type="button" data-copy-workflow="workflow-content-os"><span class="button-icon" data-lucide="copy"></span>复制这段话，开始整理材料</button>
+                <details>
+                  <summary>查看完整工作流说明</summary>
+                  <pre id="draft-context-prompt">我现在要写一篇稿，请先帮我整理材料和写作背景，不要直接写正文。
 
 交付形式是：[公众号文章 / 活动报道 / 会后复盘 / 访谈整理 / 人物稿 / 小红书 / 演讲 PPT / 作品集案例 / 商业合作稿 / 其他]
 这篇内容要给谁看：[目标读者 / 平台 / 客户 / 社群 / 编辑 / 不确定]
@@ -1836,69 +1896,41 @@
 我希望的语气是：[像公众号 / 像我自己 / 更热情 / 更克制 / 更专业 / 更有现场感 / 不确定]
 
 请先输出一版“稿件组装方案”，只做下面 5 件事：
-
-1. 这篇稿的真实任务
-- 它不是在写“内容类型”，而是在完成什么沟通任务。
-- 用一句话说清楚。
-
-2. 材料使用清单
-- 表格列出：已有材料、能放进哪里、支撑什么判断、是否需要核对、哪些不该写。
-
-3. 文章组合方式
-- 建议开头用什么材料，主体用什么材料，结尾留下什么动作或判断。
-- 标出哪些材料应该舍弃，不要为了用材料而用材料。
-
-4. 适合的产出形态
-- 判断更适合公众号长文、短内容、PPT、作品集案例、内部文档，还是先补材料。
-- 如果我已经指定了形式，也请判断这个形式是否合适。
-
-5. 下一步指令
-- 如果材料足够，给我一条“开始写第一版”的指令。
-- 如果材料不够，给我最多 5 个必须补的问题。
-- 如果风险较高，先给我事实校对和边界确认清单。</pre>
-            </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os" target="_blank" rel="noreferrer">打开完整工作流包</a>
-          </div>
-        </div>
-        <div class="info">
-          <section class="line">
-            <strong>适合你什么时候用</strong>
-            <p>你已经知道“要交付一篇东西”，但材料很多、背景复杂，还没想清楚怎么组合。</p>
+1. 这篇稿的真实任务。
+2. 材料使用清单。
+3. 文章组合方式。
+4. 适合的产出形态。
+5. 下一步指令：开始写、补材料，或先做事实和边界校对。</pre>
+                </details>
+                <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os" target="_blank" rel="noreferrer">打开完整工作流包</a>
+              </div>
+            </div>
+            <div class="info">
+              <section class="line">
+                <strong>它帮谁、解决了什么痛点？</strong>
+                <p>帮已经要交一篇稿、但材料散在策划案、录音、会议纪要、旧稿和链接里的人。它解决的是“不知道从哪里开始写、不知道哪些材料该用、不知道缺什么”的麻烦。</p>
+              </section>
+              <section class="line">
+                <strong>它是怎么一步步做的？</strong>
+                <p>输入：交付形式、读者、材料、必须保留和不能写的信息。步骤：判断真实任务，列材料表，组合开头/主体/结尾，判断产出形态，给下一步。输出：一张稿件组装方案和补问清单。</p>
+              </section>
+              <section class="line">
+                <strong>它的设计思路里，有哪些值得我学习？</strong>
+                <p>好处在于它先不写正文，而是先固定判断顺序。值得学的是：把输入做成方括号，把输出写成清晰合同，把“缺口、事实、边界”放进第一轮，而不是等写完再补救。</p>
+              </section>
+            </div>
           </section>
-          <section class="line">
-            <strong>你只要准备四样东西</strong>
-            <ol>
-              <li>交付形式：公众号、活动稿、PPT、作品集、小红书等。</li>
-              <li>背景材料：会议纪要、录音转写、旧稿、链接或文件路径。</li>
-              <li>读者和目的：写给谁看，希望对方看完做什么。</li>
-              <li>边界要求：哪些要保留、哪些不能写、哪些必须核对。</li>
-            </ol>
-          </section>
-          <section class="line">
-            <strong>第一轮会得到什么</strong>
-            <ol>
-              <li>这篇稿真正要完成的沟通任务。</li>
-              <li>材料怎么放进开头、主体和结尾。</li>
-              <li>哪些信息缺失、哪些事实和边界要先确认。</li>
-            </ol>
-          </section>
-          <section class="line">
-            <strong>跑完之后你只做一件事</strong>
-            <p>看它给出的下一步：材料够就写第一版；材料不够就补问题；风险高就先过事实和边界校对。</p>
-          </section>
-        </div>
-      </section>
 
-      <section class="gate method-gate" id="workflow-human-ai" data-workflow-card>
-        <div>
-          <span class="tag">Method Layer</span>
-          <h2>人机协作边界与内容判断方法</h2>
-          <p class="summary">这是所有工作流前面的底层方法。它帮助内容创作者在使用 AI 前先分清：哪些劳动可以交给工具，哪些判断、关系、证据和公开责任必须留在人手里。</p>
-          <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-human-ai"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
-            <details>
-              <summary>查看完整工作流说明</summary>
-              <pre>打开人机协作边界与内容判断方法。
+          <section class="gate method-gate" id="workflow-human-ai" data-workflow-card>
+            <div>
+              <span class="tag">Method Layer</span>
+              <h2>人机协作边界与内容判断方法</h2>
+              <p class="summary">在让 AI 进入内容生产前，先分清哪些能交给工具，哪些必须留给人判断。</p>
+              <div class="actions">
+                <button class="button use-now" type="button" data-copy-workflow="workflow-human-ai"><span class="button-icon" data-lucide="copy"></span>复制这个 Skill 的说明</button>
+                <details>
+                  <summary>查看完整工作流说明</summary>
+                  <pre>打开人机协作边界与内容判断方法。
 
 我现在要处理的内容是：[活动稿 / 人物稿 / 口述材料 / 演讲 PPT / 作品集 / 商业合作稿 / 其他]
 原始材料在这里：[粘贴材料、链接或文件路径]
@@ -1906,72 +1938,66 @@
 我最担心的问题：[事实错误 / 太像 AI / 边界不清 / 判断被写偏 / 关系风险 / 其他]
 
 请先不要直接写正文，先帮我做一张人机协作边界卡：
-1. 这次 AI 可以帮我省哪些力：整理、提取、比对、生成候选、校对、复盘。
-2. 哪些判断必须留给我：角度、取舍、公开边界、关系分寸、最终声音、是否发布。
-3. 哪些信息需要保护：隐私、未确认事实、合作方内部口径、未授权图片、敏感关系。
-4. 哪些事实需要校对：时间、地点、身份、机构、引用、数字、链接、授权。
-5. 哪些表达容易出现 AI 味：空泛总结、过度顺滑、万能转折、替读者下判断、议程排列。
-6. 最后给我一个执行建议：现在适合继续写、先补材料、先做调研，还是先确认边界。</pre>
-            </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/human-ai-collaboration-boundary" target="_blank" rel="noreferrer">打开完整工作流包</a>
-          </div>
-        </div>
-        <div class="info">
-          <section class="line">
-            <strong>什么时候用</strong>
-            <p>开始任何内容工作流前、AI 初稿让你觉得“不对劲”时、商业合作或公开发布风险较高时。</p>
-          </section>
-          <section class="line">
-            <strong>准备什么</strong>
-            <p>原始材料、发布场景、读者对象、公开边界，以及你最担心 AI 写错或写偏的地方。</p>
-          </section>
-          <section class="line">
-            <strong>会得到什么</strong>
-            <ol>
-              <li>AI 可代劳与人必须判断的分工。</li>
-              <li>事实、证据、关系和公开边界清单。</li>
-              <li>继续写、补材料或先确认的下一步建议。</li>
-            </ol>
-          </section>
-          <section class="line">
-            <strong>使用状态</strong>
-            <p>已在月亮自己的内容项目、Datawhale AIEC 稿件和去 AI 味样本库中反复使用，适合作为所有公开内容的开写前检查。</p>
+1. AI 可以帮我省哪些力。
+2. 哪些判断必须留给我。
+3. 哪些信息需要保护。
+4. 哪些事实需要校对。
+5. 哪些表达容易出现 AI 味。
+6. 现在适合继续写、补材料、做调研，还是先确认边界。</pre>
+                </details>
+                <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/human-ai-collaboration-boundary" target="_blank" rel="noreferrer">打开完整工作流包</a>
+              </div>
+            </div>
+            <div class="info">
+              <section class="line">
+                <strong>它帮谁、解决了什么痛点？</strong>
+                <p>帮正在用 AI 写公开内容、商业合作稿或人物稿的人。它解决的是“AI 很会写，但事实、关系、公开边界和最终责任不清楚”的风险。</p>
+              </section>
+              <section class="line">
+                <strong>它是怎么一步步做的？</strong>
+                <p>输入：内容类型、原始材料、发布场景、最担心的问题。步骤：拆出 AI 可代劳、人必须判断、需要保护的信息、需要校对的事实和容易 AI 味的表达。输出：一张人机协作边界卡。</p>
+              </section>
+              <section class="line">
+                <strong>它的设计思路里，有哪些值得我学习？</strong>
+                <p>它把“人要参与”说具体了，不停在口号上。值得学的是：先设边界再生成，先写责任分工再写正文，让 Human in the loop 和 Humanity in the loop 都落到可执行步骤里。</p>
+              </section>
+            </div>
           </section>
         </div>
       </section>
 
-      <div class="grid">
-        <article class="card" id="workflow-event" data-workflow-card>
-          <span class="tag">活动预告 / 分论坛介绍 / 商业合作稿</span>
-          <h3>社区活动内容传播工作台</h3>
-          <p class="summary">把策划案、会议纪要、议程和合作方口径，整理成可审核的活动传播稿。</p>
-          <div class="info">
-            <section class="line">
-              <strong>什么时候用</strong>
-              <p>社区活动预告、论坛介绍、合作方发布稿、商业合作内容交付。</p>
-            </section>
-            <section class="line">
-              <strong>准备什么</strong>
-              <p>策划案、议程、嘉宾信息、合作方口径，以及不能公开或需要确认的信息。</p>
-            </section>
-            <section class="line">
-              <strong>会得到什么</strong>
-              <ol>
-                <li>需求收口和事实缺口。</li>
-                <li>适合公众号的文章结构。</li>
-                <li>可继续交给编辑审核的初稿。</li>
-              </ol>
-            </section>
-            <section class="line">
-              <strong>使用状态</strong>
-              <p>已在 Datawhale AIEC 连续稿中使用，适合社区活动、分论坛介绍和商业合作稿的前期整理。</p>
-            </section>
+      <section class="case-category" data-case-category>
+        <div class="category-head">
+          <div>
+            <span class="category-label">02 / Community Events</span>
+            <h3>活动传播：把现场和合作变成可审核稿件</h3>
           </div>
-          <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-event"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
-            <details>
-              <summary>查看完整工作流说明</summary>
-              <pre>打开社区活动内容传播工作流。
+          <p>适合社区、活动、会议、生态合作场景。它们共同解决的问题是：信息很多、口径复杂、合作方敏感，必须先校准事实和传播任务。</p>
+        </div>
+        <div class="grid">
+          <article class="card" id="workflow-event" data-workflow-card>
+            <span class="tag">活动预告 / 分论坛介绍 / 商业合作稿</span>
+            <h3>社区活动内容传播工作台</h3>
+            <p class="summary">把策划案、会议纪要、议程和合作方口径，整理成可审核的活动传播稿。</p>
+            <div class="info">
+              <section class="line">
+                <strong>它帮谁、解决了什么痛点？</strong>
+                <p>帮社区运营者、DevRel、活动负责人和临时接手稿件的实习生。它解决的是“材料有了，但不知道活动稿到底要召集、解释价值，还是给合作方交付 proof”的问题。</p>
+              </section>
+              <section class="line">
+                <strong>它是怎么一步步做的？</strong>
+                <p>输入：策划案、议程、嘉宾信息、会议纪要、合作方要求。步骤：先做材料地图，再判断传播任务，检查已有报道和伙伴口径，给结构与缺口。输出：可继续交给编辑审核的活动稿方案或初稿。</p>
+              </section>
+              <section class="line">
+                <strong>它的设计思路里，有哪些值得我学习？</strong>
+                <p>它没有把活动信息按议程罗列，而是先问“这篇稿在帮谁完成什么沟通任务”。值得学的是：商业合作稿要把战略价值、事实边界和读者价值同时放进流程。</p>
+              </section>
+            </div>
+            <div class="actions">
+              <button class="button use-now" type="button" data-copy-workflow="workflow-event"><span class="button-icon" data-lucide="copy"></span>复制这个 Skill 的说明</button>
+              <details>
+                <summary>查看完整工作流说明</summary>
+                <pre>打开社区活动内容传播工作流。
 
 活动类型：[会前预告 / 分论坛介绍 / 商业合作稿]
 材料在这里：[粘贴策划案、会议纪要、嘉宾信息或文件路径]
@@ -1981,46 +2007,38 @@
 
 请按这个顺序工作：
 1. 先做材料地图，区分确定事实、合作方口径、可引用信息、需要确认的信息。
-2. 再判断这篇稿的传播任务：召集报名、解释活动价值、呈现生态号召力，还是给合作方交付 proof。
-3. 如果已有前期报道、主办方报道、伙伴报道或公开讨论，请先整理可参考信息，但不要自动写入正文，判断权交给我。
-4. 先给我文章结构和信息缺口，不要直接写完整稿。
-5. 成稿前必须过两道门：事实校对门、去 AI 味与声音门。</pre>
-            </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">打开完整工作流包</a>
-          </div>
-        </article>
+2. 判断传播任务：召集报名、解释活动价值、呈现生态号召力，还是交付合作 proof。
+3. 如有前期报道或伙伴报道，先整理参考信息，但不要自动写入正文。
+4. 先给文章结构和信息缺口，不要直接写完整稿。
+5. 成稿前过事实校对门和去 AI 味门。</pre>
+              </details>
+              <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">打开完整工作流包</a>
+            </div>
+          </article>
 
-        <article class="card" id="workflow-recap" data-workflow-card>
-          <span class="tag">会后报道 / 活动复盘 / 社区记忆</span>
-          <h3>活动复盘转公众号</h3>
-          <p class="summary">把照片、群聊反馈、口述复盘、公开报道和伙伴记录，整理成会后传播包。</p>
-          <div class="info">
-            <section class="line">
-              <strong>什么时候用</strong>
-              <p>活动结束后 24-72 小时内的报道、复盘、伙伴 proof 和社区记忆整理。</p>
-            </section>
-            <section class="line">
-              <strong>准备什么</strong>
-              <p>复盘口述、照片说明、群聊反馈、公开报道链接、伙伴记录和图片公开边界。</p>
-            </section>
-            <section class="line">
-              <strong>会得到什么</strong>
-              <ol>
-                <li>活动素材地图。</li>
-                <li>报道、观察稿或传播包建议。</li>
-                <li>一版可继续修改的会后稿。</li>
-              </ol>
-            </section>
-            <section class="line">
-              <strong>使用状态</strong>
-              <p>已有 2050、AMD、Datawhale 等活动经验，适合活动结束后的报道、复盘和社区记忆整理。</p>
-            </section>
-          </div>
-          <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-recap"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
-            <details>
-              <summary>查看完整工作流说明</summary>
-              <pre>打开活动复盘转公众号工作流。
+          <article class="card" id="workflow-recap" data-workflow-card>
+            <span class="tag">会后报道 / 活动复盘 / 社区记忆</span>
+            <h3>活动复盘转公众号</h3>
+            <p class="summary">把照片、群聊反馈、口述复盘、公开报道和伙伴记录，整理成会后传播包。</p>
+            <div class="info">
+              <section class="line">
+                <strong>它帮谁、解决了什么痛点？</strong>
+                <p>帮活动组织者、社区主理人和需要给伙伴交付回顾材料的人。它解决的是“活动结束后素材散在照片、群聊、口述和公开报道里，很难快速变成一篇可信回顾”的问题。</p>
+              </section>
+              <section class="line">
+                <strong>它是怎么一步步做的？</strong>
+                <p>输入：复盘口述、照片说明、群聊反馈、公开报道、伙伴记录和图片边界。步骤：整理时间线、人物、现场画面和反馈，标注来源可靠度，判断适合报道、观察稿还是传播包。输出：会后稿和素材地图。</p>
+              </section>
+              <section class="line">
+                <strong>它的设计思路里，有哪些值得我学习？</strong>
+                <p>它最值得学的是“来源意识”。群聊感受不能直接写成事实，照片也要有公开边界。好的活动复盘不是把热闹写满，而是把可信素材、现场价值和后续资产回收串起来。</p>
+              </section>
+            </div>
+            <div class="actions">
+              <button class="button use-now" type="button" data-copy-workflow="workflow-recap"><span class="button-icon" data-lucide="copy"></span>复制这个 Skill 的说明</button>
+              <details>
+                <summary>查看完整工作流说明</summary>
+                <pre>打开活动复盘转公众号工作流。
 
 活动已经结束，复盘材料在这里：[粘贴或给路径]
 同场公开报道 / 伙伴记录：[链接或说明]
@@ -2028,47 +2046,50 @@
 交付目标：[会后报道 / 现场观察 / 伙伴传播包 / 社区记忆包 / 不确定]
 
 请按这个顺序工作：
-1. 先整理素材地图：时间线、人物、现场画面、关键反馈、公开报道、可引用素材。
-2. 标出每条素材的来源和可靠程度，不要把群聊感受写成确定事实。
-3. 先判断这次活动最值得被记住的是什么，再判断适合写成报道、观察稿还是传播包。
-4. 如果材料不足，先向我追问，不要用漂亮话补空。
-5. 成稿后做事实校对、图片公开边界检查和去 AI 味检查。</pre>
-            </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">打开完整工作流包</a>
-          </div>
-        </article>
+1. 整理素材地图：时间线、人物、现场画面、关键反馈、公开报道、可引用素材。
+2. 标出每条素材的来源和可靠程度。
+3. 判断这次活动最值得被记住的是什么。
+4. 材料不足时先追问，不要用漂亮话补空。
+5. 成稿后做事实、图片公开边界和去 AI 味检查。</pre>
+              </details>
+              <a class="button secondary" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">打开完整工作流包</a>
+            </div>
+          </article>
+        </div>
+      </section>
 
-        <article class="card" id="workflow-audio" data-workflow-card>
-          <span class="tag">播客 / 录音 / 视频回放 / 直播</span>
-          <h3>播客音视频转公众号</h3>
-          <p class="summary">把音视频内容转成公众号文章、对谈稿、短观察或可继续复用的素材资产。</p>
-          <div class="info">
-            <section class="line">
-              <strong>什么时候用</strong>
-              <p>播客、访谈、直播回放、圆桌逐字稿、长视频内容再分发。</p>
-            </section>
-            <section class="line">
-              <strong>准备什么</strong>
-              <p>逐字稿、摘要、关键片段、说话人身份、发布平台和授权边界。</p>
-            </section>
-            <section class="line">
-              <strong>会得到什么</strong>
-              <ol>
-                <li>适合的内容形态判断。</li>
-                <li>公众号长文、对谈稿或短观察。</li>
-                <li>可继续复用的素材卡。</li>
-              </ol>
-            </section>
-            <section class="line">
-              <strong>使用状态</strong>
-              <p>工作流结构已经成型，适合用播客、直播和访谈素材继续试跑。</p>
-            </section>
+      <section class="case-category" data-case-category>
+        <div class="category-head">
+          <div>
+            <span class="category-label">03 / Source To Output</span>
+            <h3>长素材再生产：把录音、口述和思路变成内容</h3>
           </div>
-          <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-audio"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
-            <details>
-              <summary>查看完整工作流说明</summary>
-              <pre>打开播客音视频转公众号文章工作流。
+          <p>适合播客、直播、访谈、圆桌、演讲准备。核心不是把长材料压缩成摘要，而是判断它更适合变成哪种公开形态。</p>
+        </div>
+        <div class="grid">
+          <article class="card" id="workflow-audio" data-workflow-card>
+            <span class="tag">播客 / 录音 / 视频回放 / 直播</span>
+            <h3>播客音视频转公众号</h3>
+            <p class="summary">把音视频内容转成公众号文章、对谈稿、短观察或可继续复用的素材资产。</p>
+            <div class="info">
+              <section class="line">
+                <strong>它帮谁、解决了什么痛点？</strong>
+                <p>帮播客主、直播组织者、访谈者和内容团队。它解决的是“长音视频有价值，但二次整理太费人，直接丢给 AI 又容易变成空泛总结”的问题。</p>
+              </section>
+              <section class="line">
+                <strong>它是怎么一步步做的？</strong>
+                <p>输入：逐字稿、摘要、关键片段、说话人身份、发布平台和授权边界。步骤：先做话题地图和人物观点地图，再判断适合对谈稿、观察文、知识整理还是素材卡。输出：公众号稿或可复用素材包。</p>
+              </section>
+              <section class="line">
+                <strong>它的设计思路里，有哪些值得我学习？</strong>
+                <p>它不强迫所有素材都变成长文章。值得学的是：先判断内容形态，再进入写作；保留有信息量的原话；把身份、引用和授权边界写进流程。</p>
+              </section>
+            </div>
+            <div class="actions">
+              <button class="button use-now" type="button" data-copy-workflow="workflow-audio"><span class="button-icon" data-lucide="copy"></span>复制这个 Skill 的说明</button>
+              <details>
+                <summary>查看完整工作流说明</summary>
+                <pre>打开播客音视频转公众号文章工作流。
 
 素材类型：[播客 / 录音 / 视频回放 / 直播 / 访谈 / 圆桌]
 素材、逐字稿或摘要在这里：[粘贴内容、链接或文件路径]
@@ -2076,47 +2097,39 @@
 公开边界：[可公开 / 需匿名 / 需确认 / 不外发]
 
 请按这个顺序工作：
-1. 先做话题地图和人物观点地图，保留有信息量的原话，不要过早改写。
-2. 判断最适合的输出形态：对谈稿、观察文、知识整理、人物稿、短内容素材，或组合包。
-3. 标出需要我确认的事实、身份、引用和敏感表达。
-4. 如果要写公众号文章，先给我结构和选题角度，再写正文。
-5. 成稿后检查：是否过度总结、是否替别人下结论、是否丢失现场语气。</pre>
-            </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">打开完整工作流包</a>
-          </div>
-        </article>
+1. 先做话题地图和人物观点地图，保留有信息量的原话。
+2. 判断最适合的输出形态。
+3. 标出需要确认的事实、身份、引用和敏感表达。
+4. 如果要写公众号文章，先给结构和选题角度，再写正文。
+5. 成稿后检查是否过度总结、替别人下结论或丢失现场语气。</pre>
+              </details>
+              <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">打开完整工作流包</a>
+            </div>
+          </article>
 
-        <article class="card" id="workflow-deck" data-workflow-card>
-          <span class="tag">演讲 / 口述思路 / HTML 网页 PPT</span>
-          <h3>口述转 HTML 演讲 PPT</h3>
-          <p class="summary">把一段口述思路，经过 AI 追问、飞书整理、图片入场和 HTML 模板生成，变成可以现场讲、可以浏览器打开的网页 PPT。</p>
-          <div class="info">
-            <section class="line">
-              <strong>什么时候用</strong>
-              <p>适合准备公开分享、工作坊、课程导入、项目路演、个人方法展示。尤其适合脑子里已经有判断，但还没有整理成演讲结构的时候。</p>
-            </section>
-            <section class="line">
-              <strong>准备什么</strong>
-              <p>一段录音或转写、飞书文档、听众画像、演讲时长、想让听众记住的判断、图片/截图/logo/案例，以及喜欢的视觉方向。</p>
-            </section>
-            <section class="line">
-              <strong>会得到什么</strong>
-              <ol>
-                <li>演讲主线地图：核心问题、听众张力、主要判断、结构节奏。</li>
-                <li>飞书可继续编辑的 slide outline：屏幕内容、口头讲述、视觉素材、待确认。</li>
-                <li>HTML 网页 PPT 生成 brief，以及发布前的逻辑、演讲、素材、事实、视觉和去 AI 味检查。</li>
-              </ol>
-            </section>
-            <section class="line">
-              <strong>使用状态</strong>
-              <p>这是月亮已长期自用的演讲准备方式，正在从个人方法整理成可复用流程。下一步需要用完整真实演讲跑出一组可展示案例。</p>
-            </section>
-          </div>
-          <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-deck"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
-            <details>
-              <summary>查看完整工作流说明</summary>
-              <pre>打开口述转 HTML 演讲 PPT 工作流。
+          <article class="card" id="workflow-deck" data-workflow-card>
+            <span class="tag">演讲 / 口述思路 / HTML 网页 PPT</span>
+            <h3>口述转 HTML 演讲 PPT</h3>
+            <p class="summary">把一段口述思路，整理成能现场讲、能浏览器打开的 HTML 网页 PPT。</p>
+            <div class="info">
+              <section class="line">
+                <strong>它帮谁、解决了什么痛点？</strong>
+                <p>帮经常要演讲、做分享、带工作坊的人。它解决的是“脑子里有逻辑，但做 PPT 要从空白页开始，既慢又容易丢掉表达节奏”的问题。</p>
+              </section>
+              <section class="line">
+                <strong>它是怎么一步步做的？</strong>
+                <p>输入：口述录音或转写、飞书文档、听众画像、演讲时长、图片素材和视觉参考。步骤：先做演讲主线地图，再整理 slide outline，最后进入 HTML deck。输出：可讲述的网页 PPT 和发布前检查清单。</p>
+              </section>
+              <section class="line">
+                <strong>它的设计思路里，有哪些值得我学习？</strong>
+                <p>它把“屏幕上出现什么”和“口头讲什么”分开。值得学的是：从听众张力出发搭结构，不急着做页面；先确定主线、节奏和素材，再生成视觉载体。</p>
+              </section>
+            </div>
+            <div class="actions">
+              <button class="button use-now" type="button" data-copy-workflow="workflow-deck"><span class="button-icon" data-lucide="copy"></span>复制这个 Skill 的说明</button>
+              <details>
+                <summary>查看完整工作流说明</summary>
+                <pre>打开口述转 HTML 演讲 PPT 工作流。
 
 我这次要准备的是：[公开演讲 / 工作坊 / 路演 / 课程 / 分享 / 其他]
 我现在处在：[只有口述想法 / 已有录音转写 / 已有飞书文档 / 已有 outline / 已有 HTML deck 要修改]
@@ -2128,98 +2141,50 @@
 视觉参考：[已有模板 / 喜欢的风格 / 暂无]
 
 请按这个顺序工作：
-1. 先判断我处在哪个入口：口述理清、飞书整理、网页生成，还是演讲修订。
-2. 如果我还在口述理清阶段，请先做演讲主线地图，不要直接生成 PPT。
-3. 主线地图要包括：核心问题、听众张力、主要判断、3-5 个结构节奏、可用图片或例子、待我判断的问题。
-4. 标出哪些内容适合出现在屏幕上，哪些只适合放进讲稿或 speaker notes。
-5. 向我追问会改变结构、例子或公开边界的问题，不要问泛泛的问题。
-6. 生成适合放进飞书文档的 slide outline：每页包含屏幕内容、口头讲述、视觉素材、需要确认。
-7. 如果进入 HTML deck 生成，请使用固定 16:9 舞台，保证桌面和手机打开都不变形。
-8. 发布前检查：逻辑门、演讲门、素材门、事实门、视觉门、去 AI 味门。</pre>
-            </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/spoken-to-html-deck" target="_blank" rel="noreferrer">打开完整工作流包</a>
-          </div>
-        </article>
+1. 判断入口：口述理清、飞书整理、网页生成，还是演讲修订。
+2. 先做演讲主线地图，不要直接生成 PPT。
+3. 区分屏幕内容、口头讲述、视觉素材和待确认。
+4. 生成 slide outline 后，再进入 HTML deck。
+5. 发布前检查逻辑、演讲、素材、事实、视觉和去 AI 味。</pre>
+              </details>
+              <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/spoken-to-html-deck" target="_blank" rel="noreferrer">打开完整工作流包</a>
+            </div>
+          </article>
+        </div>
+      </section>
 
-        <article class="card" id="workflow-profile" data-workflow-card>
-          <span class="tag">公众人物 / 创始人 / Builder Profile</span>
-          <h3>公众人物深度报道工作台</h3>
-          <p class="summary">基于公开访谈、播客、演讲、文章和社媒资料，写有事实约束的人物深度报道。</p>
-          <div class="info">
-            <section class="line">
-              <strong>什么时候用</strong>
-              <p>公众人物、创始人、开发者、创作者、行业人物的资料研究型长文。</p>
-            </section>
-            <section class="line">
-              <strong>准备什么</strong>
-              <p>人物姓名、公开访谈、播客、演讲、文章、社媒链接和不能推断的边界。</p>
-            </section>
-            <section class="line">
-              <strong>会得到什么</strong>
-              <ol>
-                <li>人物资料查看台。</li>
-                <li>事实、引用、推断和缺口分层。</li>
-                <li>文章角度和逐节草稿。</li>
-              </ol>
-            </section>
-            <section class="line">
-              <strong>使用状态</strong>
-              <p>已有公开资料人物稿案例，适合继续用第二个人物样本或工作坊验证复用性。</p>
-            </section>
+      <section class="case-category" data-case-category>
+        <div class="category-head">
+          <div>
+            <span class="category-label">04 / Public Proof</span>
+            <h3>公开呈现：把人、作品和初稿讲清楚</h3>
           </div>
-          <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-profile"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
-            <details>
-              <summary>查看完整工作流说明</summary>
-              <pre>打开公众人物深度报道工作台。
-
-对象：[人物姓名]
-模式：[第三方无采访 / 当事人自述 / 三方协作]
-已有素材：[链接 / 文件 / 暂无，请帮我搜集]
-发布渠道：[公众号 / Substack / 作品集 / 机构投稿 / 不确定]
-
-请按这个顺序工作：
-1. 先建立人物资料查看台，列出资料来源、发布时间、信息类型和可信程度。
-2. 区分事实、原话、外部评价、我的判断、你的推断和材料缺口。
-3. 如果需要调研公开资料，先给我资料清单和可用性判断，不要把搜索结果直接写成结论。
-4. 先给人物主线和三个可能角度，由我选择后再进入成稿。
-5. 写作时避免百科腔、PR 腔和心理揣测；没有证据的地方必须留白或标注。</pre>
-            </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/public-profile-deep-report-workflow" target="_blank" rel="noreferrer">打开完整工作流包</a>
-          </div>
-        </article>
-
-        <article class="card" id="workflow-creator-system" data-workflow-card>
-          <span class="tag">个人简历 / 作品集 / 公开呈现</span>
-          <h3>创作者作品系统搭建</h3>
-          <p class="summary">从求职、申请、合作或个人品牌目标出发，把经历、作品、证据和叙事整理成可被外部读者看懂的作品系统。</p>
-          <div class="info">
-            <section class="line">
-              <strong>什么时候用</strong>
-              <p>准备个人简历、作品集、个人网站、求职申请页、合作介绍页或公开作品系统。</p>
-            </section>
-            <section class="line">
-              <strong>准备什么</strong>
-              <p>目标读者、申请或合作场景、已有简历、作品链接、项目经历、数据证据、截图和想保留的个人表达。</p>
-            </section>
-            <section class="line">
-              <strong>会得到什么</strong>
-              <ol>
-                <li>外部读者视角的优势判断。</li>
-                <li>作品、证据、场景和关系地图。</li>
-                <li>简历、作品集或个人网站结构建议。</li>
-              </ol>
-            </section>
-            <section class="line">
-              <strong>使用状态</strong>
-              <p>已用于月亮自己的简历、作品集和个人网站实践，下一步适合找 1-2 个创作者试跑。</p>
-            </section>
-          </div>
-          <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-creator-system"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
-            <details>
-              <summary>查看完整工作流说明</summary>
-              <pre>打开创作者作品系统搭建工作流。
+          <p>适合需要对外展示自己、交付作品、修改初稿的人。这里的重点是让外部读者看懂你做过什么，也让最终稿过一遍事实和声音守门。</p>
+        </div>
+        <div class="grid">
+          <article class="card" id="workflow-creator-system" data-workflow-card>
+            <span class="tag">个人简历 / 作品集 / 公开呈现</span>
+            <h3>创作者作品系统搭建</h3>
+            <p class="summary">从求职、申请、合作或个人品牌目标出发，把经历、作品、证据和叙事整理成可被外部读者看懂的作品系统。</p>
+            <div class="info">
+              <section class="line">
+                <strong>它帮谁、解决了什么痛点？</strong>
+                <p>帮创作者、自由职业者、求职者和个人品牌主理人。它解决的是“我做了很多事，但别人打开简历或作品集还是看不懂我到底擅长什么”的问题。</p>
+              </section>
+              <section class="line">
+                <strong>它是怎么一步步做的？</strong>
+                <p>输入：目标读者、申请或合作场景、简历、作品链接、项目经历、截图和数据。步骤：先判断外部读者关心什么，再建立证据地图，把作品按读者能理解的类型分类。输出：简历、作品集或个人网站结构建议。</p>
+              </section>
+              <section class="line">
+                <strong>它的设计思路里，有哪些值得我学习？</strong>
+                <p>它不是从“我是谁”开始，而是从“别人为什么要信任我”开始。值得学的是：先整理证据，再写叙事；先考虑外部读者的理解成本，再决定页面结构。</p>
+              </section>
+            </div>
+            <div class="actions">
+              <button class="button use-now" type="button" data-copy-workflow="workflow-creator-system"><span class="button-icon" data-lucide="copy"></span>复制这个 Skill 的说明</button>
+              <details>
+                <summary>查看完整工作流说明</summary>
+                <pre>打开创作者作品系统搭建工作流。
 
 我这次要做的是：[个人简历 / 作品集 / 个人网站 / 求职申请 / 合作介绍页 / 不确定]
 目标读者：[HR / 编辑 / 合作方 / 创始人 / 投资人 / 社区伙伴 / 其他]
@@ -2228,29 +2193,26 @@
 公开边界：[哪些可以公开 / 哪些需要弱化 / 哪些不能写]
 
 请按这个顺序工作：
-1. 先判断外部读者最关心什么，不要直接从自我介绍开始写。
+1. 先判断外部读者最关心什么。
 2. 建立证据地图：作品、数据、角色、场景、关系、反馈和可核对链接。
-3. 把材料按读者能理解的工作类型分类，项目名可以放在类型下面。
-4. 先给我 20 秒内能看懂的首页 / 简历 / 作品集结构，再说明哪些材料应该放前面。
-5. 标出证据不足、容易夸大、容易让读者看不懂的地方。
-6. 先给建议和结构，不要一上来整篇重写。最后再进入文案、页面或简历版本。</pre>
-            </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/creator-work-system-builder" target="_blank" rel="noreferrer">打开完整工作流包</a>
-          </div>
-        </article>
-      </div>
-      <p class="no-results" data-no-results hidden>没有找到完全匹配的入口。可以换一个关键词，或先从“社区活动内容传播工作台”开始试。</p>
+3. 把材料按读者能理解的工作类型分类。
+4. 给出 20 秒内能看懂的首页 / 简历 / 作品集结构。
+5. 标出证据不足、容易夸大、容易让读者看不懂的地方。</pre>
+              </details>
+              <a class="button secondary" href="https://github.com/voyayueliang/creator-work-system-builder" target="_blank" rel="noreferrer">打开完整工作流包</a>
+            </div>
+          </article>
 
-      <section class="gate" id="workflow-voice" data-workflow-card>
-        <div>
-          <span class="tag">Final Gate</span>
-          <h2>去 AI 味与声音守门</h2>
-          <p class="summary">发布前最后一轮：把 AI 初稿里过度顺滑、空泛判断、硬凑转折和不像人的表达挑出来，改回具体、克制、有边界的人的声音。</p>
-          <div class="actions">
-            <button class="button use-now" type="button" data-copy-workflow="workflow-voice"><span class="button-icon" data-lucide="copy"></span>复制给 AI 的工作流说明</button>
-            <details>
-              <summary>查看完整工作流说明</summary>
-              <pre>打开去 AI 味与声音守门工作流。
+          <section class="gate" id="workflow-voice" data-workflow-card>
+            <div>
+              <span class="tag">Final Gate</span>
+              <h2>去 AI 味与声音守门</h2>
+              <p class="summary">发布前最后一轮：把 AI 初稿里过度顺滑、空泛判断、硬凑转折和不像人的表达挑出来。</p>
+              <div class="actions">
+                <button class="button use-now" type="button" data-copy-workflow="workflow-voice"><span class="button-icon" data-lucide="copy"></span>复制这个 Skill 的说明</button>
+                <details>
+                  <summary>查看完整工作流说明</summary>
+                  <pre>打开去 AI 味与声音守门工作流。
 
 当前稿在这里：[粘贴稿件]
 原始材料在这里：[粘贴材料或文件路径]
@@ -2263,33 +2225,29 @@
 2. 有没有事实、时间、身份、主办方、协办方、标题、地点、报名信息错误。
 3. 有没有把合作方想表达的战略价值说偏，或把读者不关心的内部视角写得太重。
 4. 请先给问题清单和修改建议，不要一上来整篇重写。</pre>
-            </details>
-            <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">打开完整工作流包</a>
-          </div>
-        </div>
-        <div class="info">
-          <section class="line">
-            <strong>什么时候用</strong>
-            <p>公众号发布前、商业合作稿审核、AI 初稿改稿、人物稿和活动稿最后一轮校对。</p>
-          </section>
-          <section class="line">
-            <strong>准备什么</strong>
-            <p>当前稿、原始材料、发布平台、读者对象，以及最担心出错的事实或表达。</p>
-          </section>
-          <section class="line">
-            <strong>会得到什么</strong>
-            <ol>
-              <li>不像人的表达标注。</li>
-              <li>事实和边界风险提醒。</li>
-              <li>更像人的逐句改法。</li>
-            </ol>
-          </section>
-          <section class="line">
-            <strong>使用状态</strong>
-            <p>已在 Datawhale AIEC 稿件中使用，适合作为所有内容工作流发布前的最后一轮检查。</p>
+                </details>
+                <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">打开完整工作流包</a>
+              </div>
+            </div>
+            <div class="info">
+              <section class="line">
+                <strong>它帮谁、解决了什么痛点？</strong>
+                <p>帮已经有 AI 初稿、商业合作稿、公众号稿或人物稿的人。它解决的是“稿子看起来完整，但有 AI 味、事实风险、关系边界不稳、不像自己说话”的问题。</p>
+              </section>
+              <section class="line">
+                <strong>它是怎么一步步做的？</strong>
+                <p>输入：当前稿、原始材料、发布平台、读者对象、最担心的问题。步骤：标注不像人的表达，检查事实和边界风险，给出逐句改法。输出：问题清单、风险提醒和更像人的修改建议。</p>
+              </section>
+              <section class="line">
+                <strong>它的设计思路里，有哪些值得我学习？</strong>
+                <p>它把“去 AI 味”从审美偏好变成可检查规则。值得学的是：不要只说“自然一点”，而要标出哪句话空泛、哪里没有材料支撑、哪里替读者下判断，再给具体改法。</p>
+              </section>
+            </div>
           </section>
         </div>
       </section>
+
+      <p class="no-results" data-no-results hidden>没有找到完全匹配的入口。可以换一个关键词，或先从“写稿前材料整理助手”开始试。</p>
 
     </section>
   </main>
@@ -2323,6 +2281,10 @@
         workflows.forEach((item) => {
           const visible = ids.has(item.id);
           if (item.card) item.card.hidden = !visible;
+        });
+        document.querySelectorAll("[data-case-category]").forEach((category) => {
+          const cards = Array.from(category.querySelectorAll("[data-workflow-card]"));
+          category.hidden = cards.length > 0 && cards.every((card) => card.hidden);
         });
       }
 
