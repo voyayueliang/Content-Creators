@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>月亮的 AI 工作台｜有稿要写时这样用</title>
+  <meta name="description" content="月亮的 AI 工作台：当你要写稿、发活动、整理录音、校对文章或整理作品时，可以直接复制给 AI 使用的说明。">
+  <link rel="icon" href="assets/04-moon-gate-avatar-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #fafaf8;
+      --ink: #0a0a0a;
+      --grey-1: #f0f0ee;
+      --grey-2: #d4d4d2;
+      --grey-3: #737373;
+      --accent: #002fa7;
+      --accent-on: #ffffff;
+      --mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+      --sans: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a.button {
+      appearance: none;
+      border: 1px solid currentColor;
+      border-radius: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font: 700 15px/1 var(--sans);
+      min-height: 48px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background .18s ease, color .18s ease, transform .18s ease;
+    }
+
+    button:hover,
+    a.button:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .accent button:hover,
+    .accent a.button:hover,
+    .dark button:hover,
+    .dark a.button:hover {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    canvas#field {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: .45;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    body.low-power canvas#field {
+      display: none;
+    }
+
+    #deck {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      height: 100vh;
+      z-index: 1;
+      transition: transform .72s cubic-bezier(.77, 0, .175, 1);
+      will-change: transform;
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      flex: 0 0 100vw;
+      padding: 5.2vh 5vw 7.2vh;
+      position: relative;
+      overflow: hidden;
+      background: rgba(250, 250, 248, .94);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 3vh;
+    }
+
+    .slide.grey {
+      background: var(--grey-1);
+    }
+
+    .slide.dark {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .slide.accent {
+      background: var(--accent);
+      color: var(--accent-on);
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: auto 5vw 4.6vh 5vw;
+      height: 1px;
+      background: currentColor;
+      opacity: .28;
+      pointer-events: none;
+    }
+
+    .chrome {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: currentColor;
+      opacity: .72;
+      min-height: 22px;
+    }
+
+    .stage {
+      min-height: 0;
+      display: grid;
+      gap: 4vh;
+      align-content: center;
+    }
+
+    .stage.top {
+      align-content: start;
+    }
+
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2vw;
+      align-items: stretch;
+    }
+
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .kicker,
+    .meta {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .kicker {
+      color: var(--accent);
+    }
+
+    .accent .kicker,
+    .dark .kicker {
+      color: currentColor;
+      opacity: .8;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    .display {
+      font-size: min(9.5vw, 17vh);
+      line-height: .94;
+      font-weight: 200;
+      letter-spacing: -.035em;
+      max-width: 11ch;
+    }
+
+    .headline {
+      font-size: min(6.6vw, 11vh);
+      line-height: 1.02;
+      font-weight: 200;
+      letter-spacing: -.03em;
+      max-width: 13ch;
+    }
+
+    .statement {
+      font-size: min(5.4vw, 9.2vh);
+      line-height: 1.08;
+      font-weight: 200;
+      letter-spacing: -.025em;
+    }
+
+    .lead {
+      font-size: clamp(20px, 1.7vw, 34px);
+      line-height: 1.42;
+      font-weight: 400;
+      max-width: 32em;
+    }
+
+    .body {
+      font-size: clamp(17px, 1.08vw, 22px);
+      line-height: 1.65;
+      color: var(--grey-3);
+    }
+
+    .dark .body,
+    .accent .body {
+      color: rgba(255, 255, 255, .78);
+    }
+
+    .hairline {
+      height: 1px;
+      background: currentColor;
+      opacity: .28;
+    }
+
+    .accent-block {
+      background: var(--accent);
+      color: var(--accent-on);
+      padding: clamp(22px, 3vw, 48px);
+      min-height: 100%;
+      display: grid;
+      align-content: space-between;
+      gap: 5vh;
+    }
+
+    .ink-block {
+      background: var(--ink);
+      color: var(--paper);
+      padding: clamp(22px, 3vw, 48px);
+      min-height: 100%;
+      display: grid;
+      gap: 4vh;
+    }
+
+    .quiet-block {
+      border: 1px solid var(--grey-2);
+      background: rgba(255, 255, 255, .46);
+      padding: clamp(20px, 2.4vw, 36px);
+      min-height: 100%;
+    }
+
+    .row-list {
+      display: grid;
+      border-top: 1px solid currentColor;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 20px;
+      align-items: start;
+      border-bottom: 1px solid currentColor;
+      padding: clamp(16px, 1.7vw, 26px) 0;
+    }
+
+    .row .nb {
+      width: 42px;
+      height: 42px;
+      border: 1px solid currentColor;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: .08em;
+    }
+
+    .row strong {
+      display: block;
+      font-size: clamp(17px, 1.15vw, 22px);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .row span {
+      display: block;
+      font-size: clamp(16px, 1vw, 19px);
+      line-height: 1.55;
+      color: var(--grey-3);
+    }
+
+    .dark .row span,
+    .accent .row span {
+      color: rgba(255, 255, 255, .72);
+    }
+
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: 1px solid currentColor;
+    }
+
+    .task {
+      min-height: 24vh;
+      padding: clamp(18px, 2vw, 30px);
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      display: grid;
+      align-content: space-between;
+      gap: 24px;
+    }
+
+    .task:nth-child(3n) {
+      border-right: 0;
+    }
+
+    .task:nth-last-child(-n + 3) {
+      border-bottom: 0;
+    }
+
+    .task h3 {
+      font-size: clamp(22px, 2vw, 34px);
+      line-height: 1.15;
+      font-weight: 300;
+      letter-spacing: -.02em;
+    }
+
+    .task p {
+      font-size: clamp(15px, .95vw, 18px);
+      line-height: 1.55;
+      color: var(--grey-3);
+    }
+
+    .skill-chip {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid currentColor;
+      padding: 7px 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .quote-line {
+      font-size: min(4.8vw, 8vh);
+      line-height: 1.08;
+      font-weight: 200;
+      letter-spacing: -.025em;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border: 1px solid currentColor;
+    }
+
+    .flow-step {
+      min-height: 34vh;
+      padding: clamp(18px, 2vw, 30px);
+      border-right: 1px solid currentColor;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .flow-step:last-child {
+      border-right: 0;
+    }
+
+    .flow-step .nb {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: var(--accent);
+    }
+
+    .flow-step h3 {
+      font-size: clamp(22px, 2.2vw, 38px);
+      line-height: 1.1;
+      font-weight: 300;
+      letter-spacing: -.02em;
+    }
+
+    .flow-step p {
+      font-size: clamp(15px, 1vw, 18px);
+      line-height: 1.5;
+      color: var(--grey-3);
+    }
+
+    .codebox {
+      border: 1px solid currentColor;
+      background: var(--ink);
+      color: var(--paper);
+      padding: clamp(20px, 2.3vw, 36px);
+      font-size: clamp(15px, 1vw, 18px);
+      line-height: 1.75;
+      white-space: pre-wrap;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .68;
+    }
+
+    #nav {
+      position: fixed;
+      z-index: 10;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 10px;
+      background: rgba(250, 250, 248, .82);
+      border: 1px solid rgba(10, 10, 10, .22);
+      backdrop-filter: blur(10px);
+    }
+
+    .dot {
+      width: 26px;
+      height: 10px;
+      min-height: 0;
+      padding: 0;
+      border: 1px solid var(--ink);
+      background: transparent;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    #hint {
+      position: fixed;
+      z-index: 10;
+      right: 20px;
+      bottom: 18px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .1em;
+      color: var(--grey-3);
+      background: rgba(250, 250, 248, .82);
+      padding: 10px 12px;
+      border: 1px solid rgba(10, 10, 10, .18);
+    }
+
+    @media (max-width: 900px) {
+      .slide {
+        padding: 28px 24px 76px;
+        overflow-y: auto;
+      }
+
+      .chrome {
+        font-size: 11px;
+      }
+
+      .grid-12,
+      .task-grid,
+      .flow {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .span-4,
+      .span-5,
+      .span-6,
+      .span-7,
+      .span-8,
+      .span-12 {
+        grid-column: auto;
+      }
+
+      .display {
+        font-size: clamp(58px, 18vw, 110px);
+      }
+
+      .headline,
+      .statement,
+      .quote-line {
+        font-size: clamp(34px, 10vw, 64px);
+      }
+
+      .task,
+      .task:nth-child(3n),
+      .task:nth-last-child(-n + 3),
+      .flow-step {
+        border-right: 0;
+        border-bottom: 1px solid currentColor;
+        min-height: auto;
+      }
+
+      .task:last-child,
+      .flow-step:last-child {
+        border-bottom: 0;
+      }
+
+      .button-row {
+        align-items: stretch;
+      }
+
+      button,
+      a.button {
+        width: 100%;
+      }
+
+      #hint {
+        display: none;
+      }
+
+      #nav {
+        bottom: 12px;
+        width: calc(100% - 32px);
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="field" aria-hidden="true"></canvas>
+
+  <main id="deck" aria-label="月亮的 AI 工作台">
+    <section class="slide accent" data-layout="S01" data-title="封面">
+      <div class="chrome">
+        <span>月亮的 AI 工作台</span>
+        <span>01 / 07</span>
+      </div>
+      <div class="stage">
+        <div class="kicker">有稿要写时</div>
+        <h1 class="display">先别急着<br>让 AI 写</h1>
+        <p class="lead">这里放着几套我自己常用的写稿说明。你不用研究 AI，也不用先搭工作台。看哪种情况像你，把最后一页那段话复制给 Codex 或 Claude Code，再把材料贴进去。</p>
+      </div>
+      <div class="footer-note">
+        <span>先整理材料</span>
+        <span>再进入成稿</span>
+      </div>
+    </section>
+
+    <section class="slide" data-layout="S03" data-title="真实入口">
+      <div class="chrome">
+        <span>先看你是哪种情况</span>
+        <span>02 / 07</span>
+      </div>
+      <div class="stage">
+        <div class="grid-12">
+          <div class="span-5 accent-block">
+            <div class="kicker">入口</div>
+            <h2 class="headline">如果你现在有这些麻烦</h2>
+            <p class="body">不用先想“我要用哪个工具”。先看哪句话最像你现在的处境，然后照着后面的说明走。</p>
+          </div>
+          <div class="span-7 quiet-block">
+            <div class="row-list">
+              <div class="row">
+                <span class="nb">01</span>
+                <div><strong>活动快开始了，要写一篇预告</strong><span>你有主题、嘉宾、时间地点和报名链接，但不知道怎么写得像给人看的邀请。</span></div>
+              </div>
+              <div class="row">
+                <span class="nb">02</span>
+                <div><strong>录音很长，要变成一篇文章</strong><span>你有逐字稿，但聊天太散，不知道哪些内容值得留下。</span></div>
+              </div>
+              <div class="row">
+                <span class="nb">03</span>
+                <div><strong>稿子快发了，但你不太放心</strong><span>你想再查一遍事实、口径、引用、授权，以及哪些句子太像 AI。</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>先选情况</span>
+        <span>再复制说明</span>
+      </div>
+    </section>
+
+    <section class="slide grey" id="start" data-layout="S08" data-title="使用方式">
+      <div class="chrome">
+        <span>怎么开始</span>
+        <span>03 / 07</span>
+      </div>
+      <div class="stage top">
+        <h2 class="statement">第一次用，先让 AI 帮你看材料，不要一上来写正文。</h2>
+        <div class="grid-12">
+          <div class="span-4 quiet-block">
+            <div class="kicker">你给它</div>
+            <div class="row-list">
+              <div class="row"><span class="nb">01</span><div><strong>原始材料</strong><span>活动策划案、嘉宾名单、报名链接、会议纪要、录音逐字稿、旧文章。</span></div></div>
+              <div class="row"><span class="nb">02</span><div><strong>一句任务</strong><span>例如：我要写一篇活动预告，发在公众号，明天给编辑审核。</span></div></div>
+              <div class="row"><span class="nb">03</span><div><strong>担心的事</strong><span>例如：怕写错嘉宾身份，怕像广告，怕 AI 味太重。</span></div></div>
+            </div>
+          </div>
+          <div class="span-4 accent-block">
+            <div class="kicker">它先回你</div>
+            <div class="row-list">
+              <div class="row"><span class="nb">01</span><div><strong>这篇稿的写法</strong><span>它应该是召集、报道、回顾、人物，还是作品说明。</span></div></div>
+              <div class="row"><span class="nb">02</span><div><strong>材料使用清单</strong><span>哪些放正文，哪些做背景，哪些先别写。</span></div></div>
+              <div class="row"><span class="nb">03</span><div><strong>还要补问的问题</strong><span>比如时间地点、嘉宾身份、合作方口径、图片授权。</span></div></div>
+            </div>
+          </div>
+          <div class="span-4 quiet-block">
+            <div class="kicker">你再决定</div>
+            <div class="row-list">
+              <div class="row"><span class="nb">01</span><div><strong>能不能开写</strong><span>材料够，就让 AI 写第一版；不够，先补材料。</span></div></div>
+              <div class="row"><span class="nb">02</span><div><strong>用哪一种说明</strong><span>活动预告、会后回顾、录音文章、人物稿、发布前检查。</span></div></div>
+              <div class="row"><span class="nb">03</span><div><strong>谁来最后拍板</strong><span>事实、不能公开的内容、语气和合作方风险，最后还是人来确认。</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>先看清楚，再写正文</span>
+        <span>03</span>
+      </div>
+    </section>
+
+    <section class="slide" data-layout="S11" data-title="第一轮流程">
+      <div class="chrome">
+        <span>第一轮怎么跑</span>
+        <span>04 / 07</span>
+      </div>
+      <div class="stage">
+        <div>
+          <div class="kicker">照着做</div>
+          <h2 class="headline">你可以这样开始</h2>
+        </div>
+        <div class="flow">
+          <div class="flow-step">
+            <span class="nb">01</span>
+            <h3>先说你要做什么</h3>
+            <p>例如：我要写活动预告、活动回顾、招募文、人物稿或演讲 PPT。</p>
+          </div>
+          <div class="flow-step">
+            <span class="nb">02</span>
+            <h3>把材料都贴进去</h3>
+            <p>不用整理得很漂亮。策划案、录音、旧稿、链接都可以先放进去。</p>
+          </div>
+          <div class="flow-step">
+            <span class="nb">03</span>
+            <h3>让它先挑问题</h3>
+            <p>先让 AI 告诉你：还缺什么、哪里可能写错、哪些内容先别公开。</p>
+          </div>
+          <div class="flow-step">
+            <span class="nb">04</span>
+            <h3>你来删和确认</h3>
+            <p>哪些能写，哪些删掉，哪些要问主办方、嘉宾或合作方，由你决定。</p>
+          </div>
+          <div class="flow-step">
+            <span class="nb">05</span>
+            <h3>最后再写第一版</h3>
+            <p>这时候再让 AI 起草，文章会更稳，也更容易改。</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>第一轮先拿清单</span>
+        <span>04</span>
+      </div>
+    </section>
+
+    <section class="slide grey" data-layout="S16" data-title="任务选择">
+      <div class="chrome">
+        <span>按你要做的事选</span>
+        <span>05 / 07</span>
+      </div>
+      <div class="stage top">
+        <div>
+          <div class="kicker">选择</div>
+          <h2 class="headline">哪一句像你，就从哪一句开始</h2>
+        </div>
+        <div class="task-grid">
+          <div class="task">
+            <h3>我有一堆材料，但不知道怎么写</h3>
+            <p>把资料都给它，让它先分出：能写的、要核对的、只能做背景的。</p>
+            <span class="skill-chip">先整理材料</span>
+          </div>
+          <div class="task">
+            <h3>我要写活动预告或招募</h3>
+            <p>把时间地点、嘉宾、报名链接、适合谁来给它，让它先整理成邀请逻辑。</p>
+            <span class="skill-chip">活动预告 / 招募</span>
+          </div>
+          <div class="task">
+            <h3>活动结束了，我要写回顾</h3>
+            <p>把照片说明、复盘口述、群聊反馈给它，让它先整理发生了什么。</p>
+            <span class="skill-chip">活动复盘</span>
+          </div>
+          <div class="task">
+            <h3>我有录音、播客或对谈</h3>
+            <p>把逐字稿给它，让它先找主线、好句子、故事和可以展开的段落。</p>
+            <span class="skill-chip">音视频转文章</span>
+          </div>
+          <div class="task">
+            <h3>我要做演讲或作品展示</h3>
+            <p>把口述、飞书文档、图片素材给它，让它先排出演讲顺序和每页要讲什么。</p>
+            <span class="skill-chip">演讲 PPT / 作品集</span>
+          </div>
+          <div class="task">
+            <h3>稿子快发了，我怕有问题</h3>
+            <p>把当前稿给它，让它只做最后检查：事实、语气、引用、不能公开的内容。</p>
+            <span class="skill-chip">发布前检查</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>从真实任务开始</span>
+        <span>05</span>
+      </div>
+    </section>
+
+    <section class="slide dark" data-layout="S12" data-title="发布前检查">
+      <div class="chrome">
+        <span>发布前一定要看</span>
+        <span>06 / 07</span>
+      </div>
+      <div class="stage">
+        <div class="grid-12">
+          <div class="span-7">
+            <div class="kicker">最后一遍</div>
+            <h2 class="quote-line">这些事，要人自己看一遍。</h2>
+          </div>
+          <div class="span-5">
+            <div class="row-list">
+              <div class="row"><span class="nb">01</span><div><strong>事实</strong><span>时间、地点、姓名、职务、机构名、产品名、金额、报名链接。</span></div></div>
+              <div class="row"><span class="nb">02</span><div><strong>不能写的内容</strong><span>哪些内容不能公开，哪些话需要合作方确认，哪些图片没有授权。</span></div></div>
+              <div class="row"><span class="nb">03</span><div><strong>语气</strong><span>哪些表达太像广告，哪些句子不像你，哪些判断越界了。</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="ink-block" style="border:1px solid rgba(255,255,255,.26)">
+          <p class="lead">AI 可以帮你整理和起草，但它不知道哪些话会影响关系，哪些内容不能公开。发出去之前，一定要自己看一遍。</p>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>事实、语气、授权</span>
+        <span>06</span>
+      </div>
+    </section>
+
+    <section class="slide" data-layout="S21" data-title="开始使用">
+      <div class="chrome">
+        <span>复制这一段</span>
+        <span>07 / 07</span>
+      </div>
+      <div class="stage">
+        <div class="grid-12">
+          <div class="span-5">
+            <div class="kicker">开始使用</div>
+            <h2 class="headline">最简单的用法：复制，替换，贴材料</h2>
+            <p class="body" style="margin-top:2vh">把方括号里的内容换成你的情况，再把材料贴在后面。先让 AI 整理，不要让它直接写正文。</p>
+          </div>
+          <div class="span-7">
+            <pre class="codebox" id="starter">我现在要做一篇[活动预告/活动回顾/录音整理/招募文章/人物稿/作品介绍]。
+发布位置是：[公众号/社群/作品集/合作方审核]。
+读者是：[谁会看这篇内容]。
+我担心的问题是：[事实出错/太像广告/AI 味/材料太散/合作方口径]。
+
+请先不要写正文。请先帮我整理：
+1. 这篇内容应该完成什么任务；
+2. 我给的材料哪些能直接写，哪些只能做背景；
+3. 哪些事实、身份、图片或引用需要核对；
+4. 还缺哪 3 个关键信息；
+5. 如果材料够，请给我一版文章结构。</pre>
+          </div>
+        </div>
+        <div class="button-row">
+          <button type="button" data-copy="#starter">复制启动句</button>
+          <a class="button" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">打开完整工作流包</a>
+          <a class="button" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills" target="_blank" rel="noreferrer">查看可复制说明</a>
+          <a class="button" href="./飞书文档-月亮AI工作台Skills说明-2026-06-22.md" target="_blank" rel="noreferrer">打开飞书编辑版</a>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>复制说明，再贴材料</span>
+        <span>07</span>
+      </div>
+    </section>
+  </main>
+
+  <nav id="nav" aria-label="幻灯片导航"></nav>
+  <div id="hint">← → 翻页 · 滑动 · B 静态</div>
+
+  <script>
+    const deck = document.querySelector("#deck");
+    const slides = [...document.querySelectorAll(".slide")];
+    const nav = document.querySelector("#nav");
+    let current = 0;
+    let locked = false;
+    let touchStart = 0;
+
+    deck.style.width = `${slides.length * 100}vw`;
+
+    slides.forEach((slide, index) => {
+      const dot = document.createElement("button");
+      dot.className = "dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `跳到第 ${index + 1} 页`);
+      dot.addEventListener("click", () => go(index));
+      nav.appendChild(dot);
+    });
+
+    function go(index) {
+      if (locked) return;
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      deck.style.transform = `translateX(${-current * 100}vw)`;
+      document.querySelectorAll(".dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === current);
+      });
+      locked = true;
+      window.setTimeout(() => locked = false, 520);
+    }
+
+    window.addEventListener("keydown", event => {
+      const key = event.key.toLowerCase();
+      if (key === "arrowright" || key === "pagedown" || key === " ") go(current + 1);
+      if (key === "arrowleft" || key === "pageup") go(current - 1);
+      if (key === "b") {
+        document.body.classList.toggle("low-power");
+        if (!document.body.classList.contains("low-power")) {
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(draw);
+        }
+      }
+    });
+
+    window.addEventListener("wheel", event => {
+      if (Math.abs(event.deltaY) < 32 && Math.abs(event.deltaX) < 32) return;
+      const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      go(current + (delta > 0 ? 1 : -1));
+    }, { passive: true });
+
+    window.addEventListener("touchstart", event => {
+      touchStart = event.touches[0].clientX;
+    }, { passive: true });
+
+    window.addEventListener("touchend", event => {
+      const diff = touchStart - event.changedTouches[0].clientX;
+      if (Math.abs(diff) > 42) go(current + (diff > 0 ? 1 : -1));
+    }, { passive: true });
+
+    document.querySelectorAll("[data-copy]").forEach(button => {
+      button.addEventListener("click", async () => {
+        const target = document.querySelector(button.dataset.copy);
+        if (!target) return;
+        const text = target.innerText.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+          const old = button.textContent;
+          button.textContent = "已复制";
+          window.setTimeout(() => button.textContent = old, 1200);
+        } catch {
+          button.textContent = "请手动复制";
+        }
+      });
+    });
+
+    const canvas = document.querySelector("#field");
+    const ctx = canvas.getContext("2d");
+    let raf = 0;
+
+    function resize() {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * ratio;
+      canvas.height = window.innerHeight * ratio;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    function draw(time) {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = "rgba(0,47,167,.13)";
+      ctx.lineWidth = 1;
+      const gap = 32;
+      const offset = (time / 80) % gap;
+      for (let x = -gap + offset; x < w + gap; x += gap) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = -gap + offset; y < h + gap; y += gap) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+      if (!document.body.classList.contains("low-power")) {
+        raf = requestAnimationFrame(draw);
+      }
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    raf = requestAnimationFrame(draw);
+    go(0);
+  </script>
+</body>
+</html>
