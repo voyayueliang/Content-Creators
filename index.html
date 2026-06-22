@@ -1772,7 +1772,7 @@
         </div>
         <ol class="journey-steps">
           <li><b>01</b><span>复制“写稿前整理指令”。</span></li>
-          <li><b>02</b><span>粘贴到 Claude Code 或 Codex，也可以放进你熟悉的 AI 对话里。</span></li>
+          <li><b>02</b><span>粘贴到 Claude Code 或 Codex。</span></li>
           <li><b>03</b><span>把方括号里的示例换成你的真实材料、链接或文件路径。</span></li>
           <li><b>04</b><span>先看稿件方案，确认方向后再让它写第一版。</span></li>
         </ol>
@@ -1818,18 +1818,18 @@
           </ol>
         </section>
       </div>
-      <div class="use-guide" aria-label="两种使用方式">
+      <div class="use-guide" aria-label="三种使用方式">
         <section>
-          <h3>只想先把稿写出来</h3>
-          <p>复制首屏的整理指令，把你的材料放进去。拿到稿件方案后，直接让 AI 按方案写第一版。</p>
+          <h3>只想先推进一篇稿</h3>
+          <p>复制首屏的整理指令，把材料放进去。第一轮先看 AI 帮你整理出的任务、材料、缺口和风险，再决定要不要写正文。</p>
         </section>
         <section>
-          <h3>想找更贴近的场景</h3>
-          <p>下面选一个入口：新稿、改稿、录音或活动资料。页面会只保留最相关的工作流。</p>
+          <h3>不知道该用哪一个</h3>
+          <p>从下面三个情况里选一个：新稿、改稿、录音或活动资料。页面会把最接近你当前任务的说明提出来。</p>
         </section>
         <section>
-          <h3>想学习这些工作流怎么设计</h3>
-          <p>继续往下看“拆解优质案例”。那一部分会告诉你每个 Skill（可复制的工作流）帮谁、怎么做、哪些设计方法可以学走。</p>
+          <h3>想直接复制完整流程</h3>
+          <p>每个场景下面都有一段可复制给 AI 的说明。你只需要把方括号里的内容换成自己的材料。</p>
         </section>
       </div>
       <div class="choice-panel" data-choice-panel>
@@ -1877,9 +1877,10 @@
 
     <section class="wrap" id="workflows">
       <div class="section-head">
-        <h2>拆解优质案例</h2>
-        <p>如果你只是想先完成一篇稿，到这里已经够用了。下面这部分更适合想继续学习的人：我把 4 类内容工作流拆开，看看每个 Skill（可复制的工作流）帮谁、怎么一步步做，以及哪些设计方法可以迁移到你自己的场景里。</p>
+        <h2>按你的任务来用</h2>
+        <p>下面不是产品目录。你可以直接按自己手上的材料来选：有一堆资料要写新稿、有初稿要改、有录音或活动资料要整理，或者要把作品和经历讲清楚。每个入口都会说明你要准备什么、复制后怎么跑、第一轮能拿到什么，以及哪些判断必须由你自己决定。</p>
       </div>
+      <p class="subsection-note"><strong>状态说明：</strong>已验证代表已经在真实内容项目或完整交付里跑过；可试跑代表场景清楚，但还需要更多外部样本；方法层适合所有内容工作前置检查；试点中代表月亮自己跑通过，暂时先用于个人或小范围验证。</p>
 
       <section class="case-category" data-case-category>
         <div class="category-head">
@@ -1887,12 +1888,12 @@
             <span class="category-label">01 / Before Writing</span>
             <h3>写稿前：先把材料和边界理清楚</h3>
           </div>
-          <p>适合手上已经有材料，但不知道怎么开写的人。重点不是马上生成正文，而是先建立一张能判断方向、追问缺口、检查事实的稿件地图。</p>
+          <p>如果你已经有材料，但还不知道怎么开写，先从这里开始。第一轮不要急着要正文，先让 AI 帮你把读者、任务、材料、缺口和风险说清楚。</p>
         </div>
         <div class="grid">
           <section class="gate method-gate" id="workflow-content-os" data-workflow-card>
             <div>
-              <span class="tag">Draft Context Builder</span>
+              <span class="tag">已验证 / Draft Context Builder</span>
               <h2>写稿前材料整理助手</h2>
               <p class="summary">把一堆材料先整理成稿件方案，让你知道这篇内容该写给谁、要完成什么任务、哪些材料能用、哪些还要补。</p>
               <div class="actions">
@@ -1921,23 +1922,27 @@
             </div>
             <div class="info">
               <section class="line">
-                <strong>它帮谁、解决了什么痛点？</strong>
-                <p>帮已经要交一篇稿、但材料散在策划案、录音、会议纪要、旧稿和链接里的人。它解决的是“不知道从哪里开始写、不知道哪些材料该用、不知道缺什么”的麻烦。</p>
+                <strong>什么时候用</strong>
+                <p>你要写一篇稿，但材料散在策划案、录音、会议纪要、旧稿和链接里，还不确定从哪里开头，也不知道哪些材料能用。</p>
               </section>
               <section class="line">
-                <strong>它是怎么一步步做的？</strong>
-                <p>输入：交付形式、读者、材料、必须保留和不能写的信息。步骤：判断真实任务，列材料表，组合开头/主体/结尾，判断产出形态，给下一步。输出：一张稿件组装方案和补问清单。</p>
+                <strong>你要准备什么</strong>
+                <p>交付形式、目标读者、已有材料、必须保留的信息、不能写的信息，以及你希望的语气。信息不完整也可以先放进去，AI 会标出缺口。</p>
               </section>
               <section class="line">
-                <strong>它的设计思路里，有哪些值得我学习？</strong>
-                <p>好处在于它先不写正文，而是先固定判断顺序。值得学的是：把输入做成方括号，把输出写成清晰合同，把“缺口、事实、边界”放进第一轮，而不是等写完再补救。</p>
+                <strong>第一轮会得到什么</strong>
+                <p>你会先拿到一份稿件方案：这篇稿要完成什么任务，材料分别能放在哪里，哪些事实要核对，下一步是写初稿、补材料，还是先做校对。</p>
+              </section>
+              <section class="line">
+                <strong>你需要判断什么</strong>
+                <p>你要决定这篇稿真正写给谁看、哪些信息可以公开、哪些口径必须保留，以及最终是否进入正文。</p>
               </section>
             </div>
           </section>
 
           <section class="gate method-gate" id="workflow-human-ai" data-workflow-card>
             <div>
-              <span class="tag">Method Layer</span>
+              <span class="tag">方法层 / Human In The Loop</span>
               <h2>人机协作边界与内容判断方法</h2>
               <p class="summary">在让 AI 进入内容生产前，先分清哪些能交给工具，哪些必须留给人判断。</p>
               <div class="actions">
@@ -1951,7 +1956,7 @@
 发布或使用场景：[公众号 / 作品集 / 客户交付 / 内部整理 / 公开分享 / 不确定]
 我最担心的问题：[事实错误 / 太像 AI / 边界不清 / 判断被写偏 / 关系风险 / 其他]
 
-请先不要直接写正文，先帮我做一张人机协作边界卡：
+请先不要直接写正文，先帮我做一份人机协作边界说明：
 1. AI 可以帮我省哪些力。
 2. 哪些判断必须留给我。
 3. 哪些信息需要保护。
@@ -1964,16 +1969,20 @@
             </div>
             <div class="info">
               <section class="line">
-                <strong>它帮谁、解决了什么痛点？</strong>
-                <p>帮正在用 AI 写公开内容、商业合作稿或人物稿的人。它解决的是“AI 很会写，但事实、关系、公开边界和最终责任没有被提前说清楚”的风险。</p>
+                <strong>什么时候用</strong>
+                <p>你准备让 AI 处理公开内容、商业合作稿、人物稿或项目材料，但担心它写得太顺、说错事实，或者越过关系和公开边界。</p>
               </section>
               <section class="line">
-                <strong>它是怎么一步步做的？</strong>
-                <p>输入：内容类型、原始材料、发布场景、最担心的问题。步骤：拆出 AI 可代劳、人必须判断、需要保护的信息、需要校对的事实和容易 AI 味的表达。输出：一张人机协作边界卡。</p>
+                <strong>你要准备什么</strong>
+                <p>内容类型、原始材料、发布场景，以及你最担心的问题：事实错误、太像 AI、边界不清、判断被写偏，或关系风险。</p>
               </section>
               <section class="line">
-                <strong>它的设计思路里，有哪些值得我学习？</strong>
-                <p>它把“人要参与”说具体了，不停在口号上。值得学的是：先设边界再生成，先写责任分工再写正文，让 Human in the loop 和 Humanity in the loop 都落到可执行步骤里。</p>
+                <strong>第一轮会得到什么</strong>
+                <p>AI 会先告诉你哪些工作可以交给它，哪些判断必须由你做，哪些信息不能公开，哪些事实要校对，哪些表达容易出现 AI 味。</p>
+              </section>
+              <section class="line">
+                <strong>你需要判断什么</strong>
+                <p>你要决定哪些材料能进入公开稿、哪些关系需要保护、哪些判断代表你本人，以及这篇内容是否可以继续成稿。</p>
               </section>
             </div>
           </section>
@@ -1986,25 +1995,29 @@
             <span class="category-label">02 / Community Events</span>
             <h3>活动传播：把现场和合作变成可审核稿件</h3>
           </div>
-          <p>适合社区、活动、会议和生态合作场景。共同问题是：信息很多、口径复杂、合作方敏感，写之前必须先弄清楚哪些能写、为什么写、写给谁看。</p>
+          <p>如果你要写活动预告、分论坛介绍、会后报道或合作稿，先用这里。它会先帮你把活动材料、合作口径、读者价值和待确认信息分开。</p>
         </div>
         <div class="grid">
           <article class="card" id="workflow-event" data-workflow-card>
-            <span class="tag">活动预告 / 分论坛介绍 / 商业合作稿</span>
+            <span class="tag">已验证 / 活动预告 / 商业合作稿</span>
             <h3>社区活动内容传播工作台</h3>
-            <p class="summary">把策划案、会议纪要、议程和合作方口径，整理成可审核的活动传播稿。</p>
+            <p class="summary">把策划案、会议纪要、议程和合作方口径，整理成可审核的活动传播稿。已在 Datawhale / AIEC 场景验证，可迁移到社区活动传播。</p>
             <div class="info">
               <section class="line">
-                <strong>它帮谁、解决了什么痛点？</strong>
-                <p>帮社区运营者、DevRel、活动负责人和临时接手稿件的实习生。它解决的是“材料有了，但不知道活动稿到底要召集、解释价值，还是给合作方交付 proof”的问题。</p>
+                <strong>什么时候用</strong>
+                <p>你要写活动预告、分论坛介绍、合作发布或商业合作稿。材料已经有了，但不知道这篇稿到底是为了报名、解释价值、呈现伙伴，还是交付合作证明。</p>
               </section>
               <section class="line">
-                <strong>它是怎么一步步做的？</strong>
-                <p>输入：策划案、议程、嘉宾信息、会议纪要、合作方要求。步骤：先做材料地图，再判断传播任务，检查已有报道和伙伴口径，给结构与缺口。输出：可继续交给编辑审核的活动稿方案或初稿。</p>
+                <strong>你要准备什么</strong>
+                <p>策划案、议程、嘉宾信息、会议纪要、合作方要求、发布平台、目标读者，以及哪些信息必须出现或不能公开。</p>
               </section>
               <section class="line">
-                <strong>它的设计思路里，有哪些值得我学习？</strong>
-                <p>它没有把活动信息按议程罗列，而是先问“这篇稿在帮谁完成什么沟通任务”。值得学的是：商业合作稿不能只堆信息，要同时照顾合作方价值、事实边界和读者是否真的关心。</p>
+                <strong>第一轮会得到什么</strong>
+                <p>你会先拿到材料地图、传播任务判断、文章结构、信息缺口和发布前确认项。材料够时，再进入初稿。</p>
+              </section>
+              <section class="line">
+                <strong>你需要判断什么</strong>
+                <p>你要确认活动口径、合作方价值、哪些细节能公开，以及读者是否真的需要这部分背景。</p>
               </section>
             </div>
             <div class="actions">
@@ -2031,21 +2044,25 @@
           </article>
 
           <article class="card" id="workflow-recap" data-workflow-card>
-            <span class="tag">会后报道 / 活动复盘 / 社区记忆</span>
+            <span class="tag">已验证 / 会后报道 / 活动复盘</span>
             <h3>活动复盘转公众号</h3>
             <p class="summary">把照片、群聊反馈、口述复盘、公开报道和伙伴记录，整理成会后传播包。</p>
             <div class="info">
               <section class="line">
-                <strong>它帮谁、解决了什么痛点？</strong>
-                <p>帮活动组织者、社区主理人和需要给伙伴交付回顾材料的人。它解决的是“活动结束后素材散在照片、群聊、口述和公开报道里，很难快速变成一篇可信回顾”的问题。</p>
+                <strong>什么时候用</strong>
+                <p>活动已经结束，你手上有照片、群聊反馈、口述复盘、伙伴记录或公开报道，需要整理成一篇会后内容。</p>
               </section>
               <section class="line">
-                <strong>它是怎么一步步做的？</strong>
-                <p>输入：复盘口述、照片说明、群聊反馈、公开报道、伙伴记录和图片边界。步骤：整理时间线、人物、现场画面和反馈，标注来源可靠度，判断适合报道、观察稿还是传播包。输出：会后稿和素材地图。</p>
+                <strong>你要准备什么</strong>
+                <p>复盘口述、照片说明、群聊反馈、公开报道链接、伙伴记录、图片能否公开，以及你想要会后报道、现场观察还是伙伴传播包。</p>
               </section>
               <section class="line">
-                <strong>它的设计思路里，有哪些值得我学习？</strong>
-                <p>它最值得学的是“来源意识”。群聊感受不能直接写成事实，照片也要有公开边界。好的活动复盘不是把热闹写满，而是把可信素材、现场价值和后续资产回收串起来。</p>
+                <strong>第一轮会得到什么</strong>
+                <p>AI 会先整理时间线、人物、现场画面、关键反馈和可引用素材，并标出哪些只是感受，哪些能写成事实。</p>
+              </section>
+              <section class="line">
+                <strong>你需要判断什么</strong>
+                <p>你要确认图片和原话能否公开、哪些反馈可以引用、这次活动最值得被记住的是什么。</p>
               </section>
             </div>
             <div class="actions">
@@ -2078,25 +2095,29 @@
             <span class="category-label">03 / Source To Output</span>
             <h3>长素材再生产：把录音、口述和思路变成内容</h3>
           </div>
-          <p>适合播客、直播、访谈、圆桌和演讲准备。关键不是把长材料压缩成摘要，而是先判断它更适合变成文章、对谈稿、短观察、素材卡，还是演讲结构。</p>
+          <p>如果你有播客、直播、访谈、圆桌逐字稿，或者一段还没整理的口述思路，用这里。先判断它适合变成文章、对谈稿、短观察，还是演讲结构。</p>
         </div>
         <div class="grid">
           <article class="card" id="workflow-audio" data-workflow-card>
-            <span class="tag">播客 / 录音 / 视频回放 / 直播</span>
+            <span class="tag">可试跑 / 播客 / 视频回放</span>
             <h3>播客音视频转公众号</h3>
-            <p class="summary">把音视频内容转成公众号文章、对谈稿、短观察或可继续复用的素材资产。</p>
+            <p class="summary">把音视频内容转成公众号文章、对谈稿、短观察或可继续复用的素材资产。建议先拿一条真实播客、直播或访谈试跑。</p>
             <div class="info">
               <section class="line">
-                <strong>它帮谁、解决了什么痛点？</strong>
-                <p>帮播客主、直播组织者、访谈者和内容团队。它解决的是“长音视频有价值，但二次整理太费人，直接丢给 AI 又容易变成空泛总结”的问题。</p>
+                <strong>什么时候用</strong>
+                <p>你有播客、直播、访谈、圆桌或视频回放，里面有真实交流和好内容，但太长、太散，不知道应该整理成什么。</p>
               </section>
               <section class="line">
-                <strong>它是怎么一步步做的？</strong>
-                <p>输入：逐字稿、摘要、关键片段、说话人身份、发布平台和授权边界。步骤：先做话题地图和人物观点地图，再判断适合对谈稿、观察文、知识整理还是素材卡。输出：公众号稿或可复用素材包。</p>
+                <strong>你要准备什么</strong>
+                <p>逐字稿、摘要、关键片段、说话人身份、发布平台，以及哪些内容可公开、需匿名或需确认。</p>
               </section>
               <section class="line">
-                <strong>它的设计思路里，有哪些值得我学习？</strong>
-                <p>它不强迫所有素材都变成长文章。值得学的是：先判断内容形态，再进入写作；保留有信息量的原话；把身份、引用和授权边界提前写进流程。</p>
+                <strong>第一轮会得到什么</strong>
+                <p>你会先看到话题地图、人物观点、适合的输出形式，以及事实、身份、引用和敏感表达的确认项。</p>
+              </section>
+              <section class="line">
+                <strong>你需要判断什么</strong>
+                <p>你要决定保留对谈、改成文章、提炼短观察，还是只先做内部整理；也要确认哪些原话可以公开。</p>
               </section>
             </div>
             <div class="actions">
@@ -2107,7 +2128,7 @@
 
 素材类型：[播客 / 录音 / 视频回放 / 直播 / 访谈 / 圆桌]
 素材、逐字稿或摘要在这里：[粘贴内容、链接或文件路径]
-我希望输出：[公众号文章 / 对谈稿 / 短观察 / 素材卡 / 不确定]
+我希望输出：[公众号文章 / 对谈稿 / 短观察 / 素材整理 / 不确定]
 公开边界：[可公开 / 需匿名 / 需确认 / 不外发]
 
 请按这个顺序工作：
@@ -2122,21 +2143,25 @@
           </article>
 
           <article class="card" id="workflow-deck" data-workflow-card>
-            <span class="tag">演讲 / 口述思路 / HTML 网页 PPT</span>
+            <span class="tag">试点中 / 演讲 / HTML 网页 PPT</span>
             <h3>口述转 HTML 演讲 PPT</h3>
-            <p class="summary">把一段口述思路，整理成能现场讲、能浏览器打开的 HTML 网页 PPT。</p>
+            <p class="summary">把一段口述思路，整理成能现场讲、能浏览器打开的 HTML 网页 PPT。目前是月亮自用验证过的试点，更适合先用于个人演讲准备。</p>
             <div class="info">
               <section class="line">
-                <strong>它帮谁、解决了什么痛点？</strong>
-                <p>帮经常要演讲、做分享、带工作坊的人。它解决的是“脑子里有逻辑，但做 PPT 要从空白页开始，既慢又容易丢掉表达节奏”的问题。</p>
+                <strong>什么时候用</strong>
+                <p>你要准备演讲、分享、工作坊或路演，脑子里已经有一套逻辑，但还没变成可以讲的 PPT。</p>
               </section>
               <section class="line">
-                <strong>它是怎么一步步做的？</strong>
-                <p>输入：口述录音或转写、飞书文档、听众画像、演讲时长、图片素材和视觉参考。步骤：先做演讲主线地图，再整理 slide outline，最后进入 HTML deck。输出：可讲述的网页 PPT 和发布前检查清单。</p>
+                <strong>你要准备什么</strong>
+                <p>口述录音或转写、飞书文档、听众是谁、演讲时长、图片素材、视觉参考，以及你希望听众最后记住什么。</p>
               </section>
               <section class="line">
-                <strong>它的设计思路里，有哪些值得我学习？</strong>
-                <p>它把“屏幕上出现什么”和“口头讲什么”分开。值得学的是：从听众张力出发搭结构，不急着做页面；先确定主线、节奏和素材，再生成视觉载体。</p>
+                <strong>第一轮会得到什么</strong>
+                <p>AI 会先整理演讲主线、听众可能卡住的地方、适合上屏的内容、适合口头讲的内容，以及需要你判断的问题。</p>
+              </section>
+              <section class="line">
+                <strong>你需要判断什么</strong>
+                <p>你要决定这场演讲真正要让听众记住什么、哪些内容适合放屏幕上、哪些应该留在口头表达里。</p>
               </section>
             </div>
             <div class="actions">
@@ -2173,25 +2198,29 @@
             <span class="category-label">04 / Public Proof</span>
             <h3>公开呈现：把人、作品和初稿讲清楚</h3>
           </div>
-          <p>适合需要对外展示自己、交付作品、修改初稿的人。重点是让外部读者快速看懂你做过什么，也让最终稿在发布前过一遍事实和声音守门。</p>
+          <p>如果你要做简历、作品集、个人主页，或者准备发布一篇重要稿件，用这里。重点是降低外部读者的理解成本，也让最终内容在发布前过一遍事实和声音检查。</p>
         </div>
         <div class="grid">
           <article class="card" id="workflow-creator-system" data-workflow-card>
-            <span class="tag">个人简历 / 作品集 / 公开呈现</span>
+            <span class="tag">已验证 / 简历 / 作品集</span>
             <h3>创作者作品系统搭建</h3>
             <p class="summary">从求职、申请、合作或个人品牌目标出发，把经历、作品、证据和叙事整理成可被外部读者看懂的作品系统。</p>
             <div class="info">
               <section class="line">
-                <strong>它帮谁、解决了什么痛点？</strong>
-                <p>帮创作者、自由职业者、求职者和个人品牌主理人。它解决的是“我做了很多事，但别人打开简历或作品集还是看不懂我到底擅长什么”的问题。</p>
+                <strong>什么时候用</strong>
+                <p>你做过很多项目、写过很多内容、参与过很多活动，但别人打开简历、作品集或个人主页时，仍然看不懂你擅长什么。</p>
               </section>
               <section class="line">
-                <strong>它是怎么一步步做的？</strong>
-                <p>输入：目标读者、申请或合作场景、简历、作品链接、项目经历、截图和数据。步骤：先判断外部读者关心什么，再建立证据地图，把作品按读者能理解的类型分类。输出：简历、作品集或个人网站结构建议。</p>
+                <strong>你要准备什么</strong>
+                <p>目标读者、申请或合作场景、简历、作品链接、项目经历、截图、数据，以及你希望别人信任你的方向。</p>
               </section>
               <section class="line">
-                <strong>它的设计思路里，有哪些值得我学习？</strong>
-                <p>它不是从“我是谁”开始，而是从“别人为什么要信任我”开始。值得学的是：先整理证据，再写叙事；先考虑外部读者的理解成本，再决定页面结构。</p>
+                <strong>第一轮会得到什么</strong>
+                <p>你会先拿到外部读者视角的判断：哪些经历最能证明你，哪些材料不够清楚，首页、简历或作品集应该怎样组织。</p>
+              </section>
+              <section class="line">
+                <strong>你需要判断什么</strong>
+                <p>你要确认自己想被哪类人看见、哪些经历可以公开、哪些项目最能代表你，以及哪些证据需要补齐。</p>
               </section>
             </div>
             <div class="actions">
@@ -2219,7 +2248,7 @@
 
           <section class="gate" id="workflow-voice" data-workflow-card>
             <div>
-              <span class="tag">Final Gate</span>
+              <span class="tag">已验证 / Final Gate</span>
               <h2>去 AI 味与声音守门</h2>
               <p class="summary">发布前最后一轮：把 AI 初稿里过度顺滑、空泛判断、硬凑转折和不像人的表达挑出来。</p>
               <div class="actions">
@@ -2245,16 +2274,20 @@
             </div>
             <div class="info">
               <section class="line">
-                <strong>它帮谁、解决了什么痛点？</strong>
-                <p>帮已经有 AI 初稿、商业合作稿、公众号稿或人物稿的人。它解决的是“稿子看起来完整，但有 AI 味、事实风险、关系边界不稳、不像自己说话”的问题。</p>
+                <strong>什么时候用</strong>
+                <p>你已经有一版稿子，准备发给编辑、客户、合作方或公开发布，但担心它有 AI 味、事实错误、宣传腔，或者不像自己说话。</p>
               </section>
               <section class="line">
-                <strong>它是怎么一步步做的？</strong>
-                <p>输入：当前稿、原始材料、发布平台、读者对象、最担心的问题。步骤：标注不像人的表达，检查事实和边界风险，给出逐句改法。输出：问题清单、风险提醒和更像人的修改建议。</p>
+                <strong>你要准备什么</strong>
+                <p>当前稿、原始材料、发布平台、读者对象，以及你最担心的问题：事实错误、太像 AI、太宣传、太啰嗦或边界不清。</p>
               </section>
               <section class="line">
-                <strong>它的设计思路里，有哪些值得我学习？</strong>
-                <p>它把“去 AI 味”从审美偏好变成可检查规则。值得学的是：不要只说“自然一点”，而要标出哪句话空泛、哪里没有材料支撑、哪里替读者下判断，再给具体改法。</p>
+                <strong>第一轮会得到什么</strong>
+                <p>AI 会先给问题清单：哪些句子不像人，哪里事实不稳，哪里没有材料支撑，哪里可能越过公开边界，并给出修改建议。</p>
+              </section>
+              <section class="line">
+                <strong>你需要判断什么</strong>
+                <p>你要决定哪些表达代表你本人、哪些事实必须再核对、哪些建议可以采纳，以及最终是否可以交付或发布。</p>
               </section>
             </div>
           </section>
