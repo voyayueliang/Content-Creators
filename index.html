@@ -3,64 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>月亮的 AI 工作台｜写稿前先把材料理清楚</title>
-  <meta name="description" content="月亮的 AI 工作台：把策划案、录音、会议纪要、旧稿和合作方要求，整理成一版能直接开写的稿件方案。">
+  <title>月亮的 AI 工作台｜内容创作者的工作流工具箱</title>
+  <meta name="description" content="月亮的 AI 工作台：把内容判断力拆成可复用的 AI 协作工作流，适合写稿、活动传播、音视频转文章、发布前校对和作品系统整理。">
   <link rel="icon" href="assets/04-moon-gate-avatar-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@500;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;650;750&display=swap');
-
     :root {
-      --ink: #070807;
-      --muted: #46463f;
-      --paper: #fffefa;
-      --paper-2: #ffffff;
-      --paper-3: #effde9;
-      --line: #173f1f;
-      --line-soft: rgba(23, 63, 31, .18);
-      --teal: #173f1f;
-      --coral: #59ef63;
-      --ochre: #6ff176;
-      --sage: #99f19b;
-      --mint: #e8fbe1;
-      --poster-black: #050505;
-      --poster-green: #72ef75;
-      --charcoal: #06110a;
-      --max: 1120px;
-      --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
-      --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, "Times New Roman", "Songti SC", "STSong", serif;
-      --sans: "Work Sans", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --paper: #fafaf8;
+      --ink: #0a0a0a;
+      --grey-1: #f0f0ee;
+      --grey-2: #d4d4d2;
+      --grey-3: #737373;
+      --accent: #002fa7;
+      --accent-on: #ffffff;
+      --mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+      --sans: "Inter", "Noto Sans SC", "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html,
     body {
       margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--paper);
       color: var(--ink);
-      background:
-        linear-gradient(rgba(255, 254, 250, .97), rgba(255, 254, 250, .97)),
-        radial-gradient(circle at 18% 8%, rgba(114, 239, 117, .10), transparent 28%),
-        radial-gradient(circle at 84% 0%, rgba(23, 63, 31, .045), transparent 34%),
-        repeating-linear-gradient(0deg, rgba(7, 8, 7, .018) 0 1px, transparent 1px 5px),
-        var(--paper);
       font-family: var(--sans);
-      line-height: 1.65;
       letter-spacing: 0;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      border: 4px solid var(--poster-green);
-      box-shadow: inset -5px -5px 0 var(--line);
-      pointer-events: none;
-      z-index: 80;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     a {
@@ -68,2420 +45,891 @@
       text-decoration: none;
     }
 
-    .wrap {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-bottom: 1px solid var(--line);
-      background: rgba(251, 251, 246, .96);
-      backdrop-filter: blur(14px);
-    }
-
-    .top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 0;
-    }
-
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 760;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .brand img {
-      width: 28px;
-      height: 28px;
-      border: 2px solid var(--ink);
-      display: block;
-    }
-
-    .repo,
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 10px 14px;
-      border: 2px solid var(--ink);
-      border-radius: 0;
-      background: var(--ink);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 720;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .repo {
-      min-height: 34px;
-      padding: 7px 10px;
-      background: transparent;
-      color: var(--ink);
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: .06em;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .repo:hover,
-    .button.secondary:hover {
-      background: var(--mint);
-    }
-
-    main {
-      padding: 0 0 44px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      align-items: start;
-      min-height: auto;
-      padding: 34px 0 28px;
-      border-bottom: 1px solid var(--line);
-      background:
-        linear-gradient(rgba(255, 254, 250, .92), rgba(255, 254, 250, .96)),
-        repeating-linear-gradient(90deg, rgba(23, 63, 31, .045) 0 1px, transparent 1px calc((100vw - 40px) / 12)),
-        repeating-linear-gradient(0deg, rgba(23, 63, 31, .028) 0 1px, transparent 1px 64px);
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      max-width: 760px;
-      font-family: var(--serif);
-      font-size: clamp(36px, 6vw, 60px);
-      font-weight: 500;
-      line-height: 1.02;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      max-width: 860px;
-      margin: 16px 0 0;
-      color: var(--muted);
-      font-size: clamp(15px, 1.4vw, 18px);
-      line-height: 1.68;
-    }
-
-    .hero-note {
-      max-width: 790px;
-      margin: 12px 0 0;
-      color: var(--ink);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .hero-proof {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
-      max-width: 860px;
-      margin-top: 18px;
-      border: 1px solid var(--line);
-      background: var(--line);
-    }
-
-    .hero-proof span {
-      display: block;
-      min-height: 64px;
-      padding: 10px 12px;
-      background: rgba(255, 254, 250, .94);
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .hero-proof b {
-      display: block;
-      margin-bottom: 3px;
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .button.secondary {
-      background: transparent;
-      color: var(--ink);
-    }
-
-    .button.secondary:hover {
-      background: var(--mint);
-    }
-
-    .hero > div {
-      align-self: start;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 20px 0 22px;
-    }
-
-    .hero-card {
-      align-self: start;
-      min-height: auto;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 0;
-      background: var(--mint);
-      color: var(--ink);
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .hero-card img {
-      display: none;
-    }
-
-    .hero-card h2 {
-      margin: 0;
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 760;
-      line-height: 1;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .steps li {
-      display: grid;
-      grid-template-columns: 24px 1fr;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .steps b {
-      width: 24px;
-      height: 24px;
-      border: 1px solid var(--teal);
-      background: rgba(23, 63, 31, .08);
-      text-align: center;
-      line-height: 23px;
-      font-size: 12px;
-      color: var(--teal);
-    }
-
-    .status {
-      display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      min-height: 24px;
-      padding: 3px 7px;
+    button,
+    a.button {
+      appearance: none;
       border: 1px solid currentColor;
-      color: var(--teal);
-      background: rgba(114, 239, 117, .18);
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 760;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .status.pilot {
-      background: var(--mint);
-    }
-
-    .status.soon {
-      color: var(--muted);
-      background: #fff;
-    }
-
-    .principle-panel,
-    .use-guide,
-    .sample-result {
-      display: grid;
-      gap: 1px;
-      margin-bottom: 14px;
-      border: 1px solid var(--line);
-      background: var(--line);
-    }
-
-    .principle-panel {
-      grid-template-columns: minmax(0, .86fr) minmax(280px, .44fr);
-    }
-
-    .use-guide {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .sample-result {
-      grid-template-columns: minmax(220px, .44fr) minmax(0, 1fr);
-      margin-bottom: 28px;
-    }
-
-    .principle-main,
-    .principle-side,
-    .use-guide > section,
-    .sample-result > section {
-      padding: 16px;
-      background: var(--paper-2);
-    }
-
-    .principle-side,
-    .use-guide > section:nth-child(2),
-    .sample-result > section:first-child {
-      background: var(--mint);
-    }
-
-    .principle-main h2,
-    .principle-side h3,
-    .use-guide h3,
-    .sample-result h3 {
-      margin: 0 0 8px;
-      color: var(--teal);
-      font-family: var(--serif);
-      font-size: clamp(24px, 3vw, 34px);
-      font-weight: 500;
-      line-height: 1.05;
-      letter-spacing: 0;
-    }
-
-    .principle-side h3,
-    .use-guide h3,
-    .sample-result h3 {
-      font-size: 23px;
-    }
-
-    .principle-main p,
-    .principle-side p,
-    .use-guide p,
-    .sample-result p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.68;
-    }
-
-    .principle-main strong,
-    .use-guide strong {
-      color: var(--ink);
-    }
-
-    .principle-side ul,
-    .use-guide ol,
-    .sample-result ol {
-      display: grid;
-      gap: 8px;
-      margin: 10px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .principle-side li,
-    .use-guide li,
-    .sample-result li {
-      display: grid;
-      grid-template-columns: 26px 1fr;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .principle-side b,
-    .use-guide b,
-    .sample-result b {
-      width: 26px;
-      height: 26px;
-      border: 1px solid var(--line);
-      background: rgba(23, 63, 31, .08);
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 11px;
-      line-height: 25px;
-      text-align: center;
-    }
-
-    .fit-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      margin-top: 0;
-      border: 1px solid var(--line);
-      background: var(--line);
-    }
-
-    .fit-card {
-      min-height: 108px;
-      padding: 14px;
-      border: 0;
       border-radius: 0;
-      background: var(--paper-2);
-    }
-
-    .fit-card:nth-child(2),
-    .fit-card:nth-child(4) {
-      background: var(--mint);
-    }
-
-    .fit-card h3 {
-      margin: 0 0 6px;
-      color: var(--teal);
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 1.02;
-      letter-spacing: 0;
-    }
-
-    .fit-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .route-list {
-      display: grid;
-      gap: 8px;
-    }
-
-    .choice-panel {
-      display: grid;
-      gap: 12px;
-      margin: 0 0 14px;
-      padding: 14px;
-      border: 1px solid var(--line);
-      background: var(--mint);
-    }
-
-    .choice-panel > div:first-child {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 14px;
-      align-items: end;
-    }
-
-    .choice-panel h3 {
-      margin: 0;
-      color: var(--teal);
-      font-family: var(--serif);
-      font-size: clamp(24px, 3vw, 34px);
-      font-weight: 500;
-      line-height: 1.05;
-    }
-
-    .choice-panel p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.58;
-    }
-
-    .choice-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
-      gap: 8px;
-    }
-
-    .choice-button {
-      display: grid;
-      gap: 6px;
-      min-height: 116px;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 0;
-      background: var(--paper);
-      color: var(--ink);
-      text-align: left;
-      cursor: pointer;
-      font: inherit;
-    }
-
-    .choice-button:hover,
-    .choice-button[aria-pressed="true"] {
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .choice-button[aria-pressed="true"] {
-      box-shadow: inset 0 -5px 0 var(--poster-green);
-    }
-
-    .choice-button strong {
-      font-family: var(--serif);
-      font-size: 21px;
-      font-weight: 500;
-      line-height: 1.05;
-    }
-
-    .choice-button span {
+      background: transparent;
       color: inherit;
-      font-size: 12px;
-      line-height: 1.45;
-      opacity: .78;
-    }
-
-    .lane-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin: 16px 0 0;
-    }
-
-    .lane {
-      display: grid;
-      gap: 8px;
-      padding: 12px;
-      border: 1px solid var(--line);
-      background: var(--paper-2);
-    }
-
-    .lane:nth-child(2) {
-      background: var(--mint);
-    }
-
-    .lane h4 {
-      margin: 0;
-      color: var(--teal);
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 500;
-      line-height: 1.05;
-    }
-
-    .lane p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .finder {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 10px 0 0;
-      border: 1px solid var(--line);
-      border-width: 1px 0 0;
-      background: transparent;
-    }
-
-    .finder > summary {
-      width: fit-content;
-      padding: 6px 0;
-      color: var(--teal);
-    }
-
-    .finder[open] {
-      padding-bottom: 2px;
-    }
-
-    .finder label {
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 760;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .finder-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 8px;
-    }
-
-    .finder input {
-      width: 100%;
-      min-height: 42px;
-      border: 2px solid var(--ink);
-      border-radius: 0;
-      background: #fff;
-      color: var(--ink);
-      font: inherit;
-      font-size: 15px;
-      padding: 8px 10px;
-    }
-
-    .finder input:focus-visible,
-    .button:focus-visible,
-    .repo:focus-visible,
-    .choice-button:focus-visible,
-    .route-card a:focus-visible,
-    summary:focus-visible,
-    .copy-prompt:focus-visible {
-      outline: 3px solid var(--poster-green);
-      outline-offset: 3px;
-    }
-
-    .mini-button,
-    .copy-prompt {
+      cursor: pointer;
+      font: 700 15px/1 var(--sans);
+      min-height: 48px;
+      padding: 0 18px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 34px;
-      padding: 7px 10px;
-      border: 1px solid var(--line);
-      border-radius: 0;
+      gap: 10px;
+      transition: background .18s ease, color .18s ease, transform .18s ease;
+    }
+
+    button:hover,
+    a.button:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .accent button:hover,
+    .accent a.button:hover,
+    .dark button:hover,
+    .dark a.button:hover {
       background: var(--paper);
       color: var(--ink);
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 760;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      cursor: pointer;
-      white-space: nowrap;
     }
 
-    .mini-button:hover,
-    .copy-prompt:hover {
-      background: var(--ink);
-      color: #fff;
-    }
-
-    .finder p,
-    .choice-feedback,
-    .no-results {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .route-card {
-      display: grid;
-      grid-template-columns: minmax(210px, .72fr) minmax(0, 1fr) auto;
-      gap: 14px;
-      align-items: center;
-      padding: 12px;
-      border: 1px solid var(--line);
-      background: var(--paper-2);
-    }
-
-    .route-card:nth-child(even) {
-      background: var(--mint);
-    }
-
-    .route-card .status {
-      margin-bottom: 6px;
-    }
-
-    .route-card strong {
-      color: var(--teal);
-      font-family: var(--serif);
-      font-size: 23px;
-      font-weight: 500;
-      line-height: 1.05;
-    }
-
-    .route-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .route-card a {
-      min-height: 34px;
-      padding: 7px 10px;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--ink);
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 760;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .route-card a:hover {
-      background: var(--ink);
-      color: #fff;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 18px;
-      align-items: start;
-      margin: 0 0 24px;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-head h2 {
-      grid-column: 1 / span 4;
-      margin: 0;
-      color: var(--teal);
-      font-family: var(--serif);
-      font-size: clamp(28px, 3.8vw, 40px);
-      font-weight: 500;
-      letter-spacing: 0;
-      line-height: .92;
-    }
-
-    .section-head h2::after {
-      content: "";
-      display: block;
-      width: 54px;
-      height: 1px;
-      margin-top: 14px;
-      background: var(--line);
-    }
-
-    .section-head p {
-      grid-column: 5 / span 8;
-      margin: 0;
-      color: var(--muted);
-      max-width: 760px;
-      font-size: 15px;
-    }
-
-    .wrap:not(.hero) {
-      padding: 44px 0 0;
-    }
-
-    .wrap + .wrap {
-      border-top: 0;
-    }
-
-    .wrap > .section-head + .fit-grid,
-    .wrap > .section-head + .grid {
-      margin-top: 0;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      border: 0;
-      background: transparent;
-    }
-
-    .case-category {
-      padding: 28px 0 4px;
-      border-top: 1px solid var(--line);
-    }
-
-    .case-category:first-of-type {
-      padding-top: 0;
-      border-top: 0;
-    }
-
-    .category-head {
-      display: grid;
-      grid-template-columns: minmax(220px, .38fr) minmax(0, 1fr);
-      gap: 22px;
-      align-items: start;
-      margin-bottom: 14px;
-    }
-
-    .category-head h3 {
-      margin: 0;
-      color: var(--teal);
-      font-family: var(--serif);
-      font-size: clamp(26px, 3vw, 38px);
-      font-weight: 500;
-      line-height: 1.02;
-    }
-
-    .category-head p {
-      margin: 0;
-      max-width: 780px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.68;
-    }
-
-    .category-label {
-      display: inline-flex;
-      width: fit-content;
-      margin-bottom: 10px;
-      padding: 4px 8px;
-      border: 1px solid currentColor;
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 760;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .subsection-title {
-      margin: 30px 0 10px;
-      color: var(--teal);
-      font-family: var(--serif);
-      font-size: clamp(26px, 3vw, 36px);
-      font-weight: 500;
-      line-height: 1.05;
-    }
-
-    .subsection-note {
-      margin: -2px 0 14px;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .card {
-      position: relative;
-      scroll-margin-top: 82px;
-      min-height: 100%;
-      display: grid;
-      grid-template-columns: minmax(260px, .74fr) minmax(0, 1.26fr);
-      gap: 16px;
-      align-items: start;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 0;
-      background: var(--paper-2);
-      box-shadow: none;
-      overflow: hidden;
-    }
-
-    .card:nth-child(2),
-    .card:nth-child(3) {
-      background: var(--paper-2);
-    }
-
-    .card::before {
-      content: "";
-      display: none;
-    }
-
-    .tag {
-      display: inline-flex;
-      width: fit-content;
-      margin-bottom: 12px;
-      padding: 4px 8px;
-      border: 1px solid currentColor;
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 760;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .card h3,
-    .gate h2 {
-      margin: 0;
-      font-family: var(--serif);
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-
-    .card h3 {
-      max-width: 560px;
-      font-size: clamp(24px, 2.7vw, 34px);
-      line-height: 1.04;
-    }
-
-    .summary {
-      margin: 9px 0 14px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .info {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
-      border: 1px solid var(--line);
-      background: var(--line);
-      grid-column: 2;
-      grid-row: 1 / span 5;
-    }
-
-    .card > .tag,
-    .card > h3,
-    .card > .summary,
-    .card > .actions {
-      grid-column: 1;
-    }
-
-    .line {
-      min-height: 0;
-      padding: 12px;
-      border-radius: 0;
-      background: rgba(255, 254, 250, .9);
-    }
-
-    .line.sample {
-      background: rgba(114, 239, 117, .12);
-      border: 0;
-    }
-
-    .line strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-
-    .line p,
-    .line ol {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.58;
-    }
-
-    .line ol {
-      padding-left: 18px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .use-now {
-      min-width: 170px;
-    }
-
-    .button-icon {
-      width: 16px;
-      height: 16px;
-      margin-right: 7px;
-      flex: 0 0 auto;
+    canvas#field {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      opacity: .45;
+      mix-blend-mode: multiply;
       pointer-events: none;
     }
 
-    details {
-      color: var(--muted);
-      font-size: 14px;
+    body.low-power canvas#field {
+      display: none;
     }
 
-    .actions details {
-      order: -1;
+    #deck {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      height: 100vh;
+      z-index: 1;
+      transition: transform .72s cubic-bezier(.77, 0, .175, 1);
+      will-change: transform;
     }
 
-    summary {
-      cursor: pointer;
-      color: var(--ink);
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      flex: 0 0 100vw;
+      padding: 5.2vh 5vw 7.2vh;
+      position: relative;
+      overflow: hidden;
+      background: rgba(250, 250, 248, .94);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 3vh;
+    }
+
+    .slide.grey {
+      background: var(--grey-1);
+    }
+
+    .slide.dark {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .slide.accent {
+      background: var(--accent);
+      color: var(--accent-on);
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: auto 5vw 4.6vh 5vw;
+      height: 1px;
+      background: currentColor;
+      opacity: .28;
+      pointer-events: none;
+    }
+
+    .chrome {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
       font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 760;
-      letter-spacing: .06em;
+      font-size: 13px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: currentColor;
+      opacity: .72;
+      min-height: 22px;
+    }
+
+    .stage {
+      min-height: 0;
+      display: grid;
+      gap: 4vh;
+      align-content: center;
+    }
+
+    .stage.top {
+      align-content: start;
+    }
+
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2vw;
+      align-items: stretch;
+    }
+
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+
+    .kicker,
+    .meta {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .18em;
       text-transform: uppercase;
     }
 
-    pre {
-      margin: 10px 0 0;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: 0;
-      background: #fff;
-      color: #2b2924;
-      white-space: pre-wrap;
-      overflow: auto;
-      font-family: var(--mono);
-      font-size: 13px;
-      line-height: 1.55;
+    .kicker {
+      color: var(--accent);
     }
 
-    .copy-prompt {
-      margin-top: 10px;
-      background: var(--mint);
+    .accent .kicker,
+    .dark .kicker {
+      color: currentColor;
+      opacity: .8;
     }
 
-    .gate {
-      display: grid;
-      scroll-margin-top: 82px;
-      grid-template-columns: minmax(260px, .74fr) minmax(0, 1.26fr);
-      gap: 16px;
-      margin-top: 12px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 0;
-      background: var(--poster-black);
-      color: var(--paper);
-      box-shadow: none;
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
     }
 
-    .gate.method-gate {
-      margin: 0 0 12px;
-      background: var(--mint);
-      color: var(--ink);
+    .display {
+      font-size: min(9.5vw, 17vh);
+      line-height: .94;
+      font-weight: 200;
+      letter-spacing: -.035em;
+      max-width: 11ch;
     }
 
-    .gate .tag {
-      color: var(--poster-green);
+    .headline {
+      font-size: min(6.6vw, 11vh);
+      line-height: 1.02;
+      font-weight: 200;
+      letter-spacing: -.03em;
+      max-width: 13ch;
     }
 
-    .gate.method-gate .tag,
-    .gate.method-gate h2,
-    .gate.method-gate summary {
-      color: var(--teal);
+    .statement {
+      font-size: min(5.4vw, 9.2vh);
+      line-height: 1.08;
+      font-weight: 200;
+      letter-spacing: -.025em;
     }
 
-    .gate p,
-    .gate .line p,
-    .gate .line ol {
+    .lead {
+      font-size: clamp(20px, 1.7vw, 34px);
+      line-height: 1.42;
+      font-weight: 400;
+      max-width: 32em;
+    }
+
+    .body {
+      font-size: clamp(17px, 1.08vw, 22px);
+      line-height: 1.65;
+      color: var(--grey-3);
+    }
+
+    .dark .body,
+    .accent .body {
       color: rgba(255, 255, 255, .78);
     }
 
-    .gate.method-gate p,
-    .gate.method-gate .line p,
-    .gate.method-gate .line ol {
-      color: var(--muted);
+    .hairline {
+      height: 1px;
+      background: currentColor;
+      opacity: .28;
     }
 
-    .gate h2 {
-      color: var(--poster-green);
-      font-size: clamp(28px, 3.8vw, 42px);
-      line-height: 1;
-    }
-
-    .gate .line {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .gate.method-gate .line {
-      background: rgba(255, 254, 250, .9);
-      border: 0;
-    }
-
-    .gate summary {
-      color: #fff;
-    }
-
-    .gate .button.secondary {
-      border-color: rgba(255, 255, 255, .88);
-      background: rgba(255, 255, 255, .94);
-      color: var(--poster-black);
-    }
-
-    .gate .button.secondary:hover {
-      border-color: var(--poster-green);
-      background: var(--poster-green);
-      color: var(--poster-black);
-    }
-
-    .gate.method-gate .button.secondary {
-      border-color: var(--ink);
-      background: transparent;
-      color: var(--ink);
-    }
-
-    .gate.method-gate .button.secondary:hover {
-      background: #fff;
-    }
-
-    .gate pre {
-      background: #fffefb;
-      color: var(--ink);
-    }
-
-    footer {
-      padding: 24px 0 34px;
-      border-top: 1px solid var(--line);
-      background: var(--charcoal);
-      color: rgba(245, 240, 230, .78);
-      font-size: 14px;
-    }
-
-    #start,
-    #workflows {
-      scroll-margin-top: 82px;
-    }
-
-    @media (max-width: 900px) {
-      .hero,
-      .section-head,
-      .card,
-      .gate,
-      .principle-panel,
-      .use-guide,
-      .sample-result,
-      .category-head,
-      .hero-proof {
-        grid-template-columns: 1fr;
-      }
-
-      .hero > div,
-      .hero-card,
-      .section-head h2,
-      .section-head p,
-      .principle-main,
-      .principle-side,
-      .use-guide > section,
-      .card > .tag,
-      .card > h3,
-      .card > .summary,
-      .card > .actions,
-      .info {
-        grid-column: auto;
-        grid-row: auto;
-      }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-card {
-        min-height: auto;
-        grid-template-columns: 1fr;
-      }
-
-      .hero-card img {
-        display: none;
-      }
-
-      h1 {
-        font-size: clamp(36px, 8.5vw, 56px);
-      }
-
-      .fit-grid,
-      .info,
-      .route-card,
-      .lane-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .choice-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .steps {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 560px) {
-      .wrap {
-        width: min(100% - 24px, var(--max));
-      }
-
-      .top {
-        align-items: center;
-        flex-direction: row;
-        gap: 8px;
-      }
-
-      .brand {
-        gap: 7px;
-        font-size: 11px;
-      }
-
-      .hero {
-        padding: 18px 0 16px;
-      }
-
-      .hero > div {
-        padding: 14px 0 16px;
-      }
-
-      h1 {
-        font-size: clamp(30px, 8.6vw, 40px);
-        line-height: 1.02;
-      }
-
-      .lead {
-        font-size: 15px;
-        line-height: 1.55;
-        margin-top: 12px;
-      }
-
-      .hero-note,
-      .principle-main p,
-      .principle-side p,
-      .use-guide p {
-        font-size: 13px;
-      }
-
-      .fit-grid,
-      .info,
-      .route-card,
-      .lane-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .choice-panel > div:first-child,
-      .choice-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .choice-button {
-        min-height: auto;
-        padding: 10px;
-      }
-
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head h2,
-      .gate h2 {
-        font-size: clamp(28px, 8vw, 36px);
-        line-height: 1;
-      }
-
-      .hero-actions,
-      .actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .hero-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-        margin-top: 16px;
-      }
-
-      .button,
-      .repo {
-        width: 100%;
-      }
-
-      .top .repo {
-        width: auto;
-        padding-inline: 8px;
-        font-size: 10px;
-      }
-
-      .hero-actions .button {
-        width: 100%;
-      }
-
-      .finder-row {
-        grid-template-columns: 1fr;
-      }
-
-      .card,
-      .gate,
-      .fit-card,
-      .hero-card,
-      .principle-main,
-      .principle-side,
-      .use-guide > section {
-        padding: 12px;
-      }
-
-      .wrap:not(.hero) {
-        padding-top: 26px;
-      }
-
-      .section-head {
-        gap: 10px;
-        margin-bottom: 16px;
-      }
-
-      .hero-proof span {
-        min-height: 0;
-      }
-
-      .choice-panel {
-        padding: 12px;
-      }
-
-    }
-
-    /* Task-first redesign: less cabinet, more workbench. */
-    .hero {
-      grid-template-columns: minmax(0, 1fr) minmax(290px, .36fr);
-      gap: 34px;
-      padding: 46px 0 34px;
-    }
-
-    .hero > div {
-      border: 0;
-      padding: 0;
-    }
-
-    .hero-card {
-      display: block;
-      min-height: 0;
-      padding: 6px 0 0 22px;
-      border: 0;
-      border-left: 1px solid var(--line);
-      background: transparent;
-    }
-
-    .hero-card h2 {
-      margin-bottom: 12px;
-    }
-
-    .steps {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .steps li {
-      min-height: 44px;
-      padding: 9px 0;
-      border-top: 1px solid var(--line-soft);
-      align-items: center;
-    }
-
-    .task-journey {
+    .accent-block {
+      background: var(--accent);
+      color: var(--accent-on);
+      padding: clamp(22px, 3vw, 48px);
+      min-height: 100%;
       display: grid;
-      grid-template-columns: minmax(0, .78fr) minmax(320px, .56fr);
-      gap: 34px;
+      align-content: space-between;
+      gap: 5vh;
+    }
+
+    .ink-block {
+      background: var(--ink);
+      color: var(--paper);
+      padding: clamp(22px, 3vw, 48px);
+      min-height: 100%;
+      display: grid;
+      gap: 4vh;
+    }
+
+    .quiet-block {
+      border: 1px solid var(--grey-2);
+      background: rgba(255, 255, 255, .46);
+      padding: clamp(20px, 2.4vw, 36px);
+      min-height: 100%;
+    }
+
+    .row-list {
+      display: grid;
+      border-top: 1px solid currentColor;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 20px;
       align-items: start;
-      margin-bottom: 28px;
-      padding: 24px 0 26px;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid currentColor;
+      padding: clamp(16px, 1.7vw, 26px) 0;
     }
 
-    .task-journey h3 {
-      margin: 12px 0 8px;
-      color: var(--teal);
-      font-family: var(--serif);
-      font-size: clamp(26px, 3vw, 38px);
-      font-weight: 500;
-      line-height: 1.04;
-    }
-
-    .task-journey p {
-      margin: 0;
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.74;
-    }
-
-    .journey-steps {
-      display: grid;
-      gap: 0;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .journey-steps li {
-      display: grid;
-      grid-template-columns: 44px minmax(0, 1fr);
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--line-soft);
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.58;
-    }
-
-    .journey-steps b {
-      color: var(--teal);
-      font-family: var(--mono);
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    .choice-panel {
-      margin: 0 0 28px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-    }
-
-    .choice-panel > div:first-child {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: end;
-      gap: 18px;
-      margin-bottom: 14px;
-    }
-
-    .choice-panel h3 {
-      font-size: clamp(24px, 3vw, 36px);
-    }
-
-    .choice-grid {
-      counter-reset: task-choice;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .choice-button {
-      counter-increment: task-choice;
-      position: relative;
-      display: grid;
-      grid-template-columns: 46px minmax(150px, .52fr) minmax(0, 1fr);
-      gap: 14px;
+    .row .nb {
+      width: 42px;
+      height: 42px;
+      border: 1px solid currentColor;
+      display: inline-flex;
       align-items: center;
-      min-height: 0;
-      padding: 15px 0;
-      border: 0;
-      border-bottom: 1px solid var(--line-soft);
-      background: transparent;
-    }
-
-    .choice-button:last-child {
-      border-bottom: 0;
-    }
-
-    .choice-button::before {
-      content: "0" counter(task-choice);
-      color: var(--teal);
+      justify-content: center;
       font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 760;
+      font-weight: 700;
+      font-size: 14px;
       letter-spacing: .08em;
     }
 
-    .choice-button strong {
-      font-size: clamp(20px, 2vw, 26px);
+    .row strong {
+      display: block;
+      font-size: clamp(17px, 1.15vw, 22px);
+      line-height: 1.35;
+      margin-bottom: 6px;
     }
 
-    .choice-button span {
-      max-width: 560px;
-      color: var(--muted);
-      opacity: 1;
-      font-size: 13px;
+    .row span {
+      display: block;
+      font-size: clamp(16px, 1vw, 19px);
+      line-height: 1.55;
+      color: var(--grey-3);
     }
 
-    .choice-button:hover,
-    .choice-button[aria-pressed="true"] {
-      background: transparent;
-      color: var(--ink);
+    .dark .row span,
+    .accent .row span {
+      color: rgba(255, 255, 255, .72);
     }
 
-    .choice-button:hover strong,
-    .choice-button[aria-pressed="true"] strong {
-      color: var(--teal);
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: 1px solid currentColor;
     }
 
-    .choice-button[aria-pressed="true"] {
-      box-shadow: inset 4px 0 0 var(--poster-green);
-      padding-left: 12px;
-    }
-
-    .choice-feedback {
-      margin-top: 10px;
-    }
-
-    .principle-panel {
-      grid-template-columns: minmax(0, .9fr) minmax(260px, .42fr);
-      gap: 32px;
-      margin-bottom: 0;
-      padding: 24px 0 0;
-      border: 0;
-      border-top: 1px solid var(--line);
-      background: transparent;
-    }
-
-    .principle-main,
-    .principle-side {
-      padding: 0;
-      background: transparent;
-    }
-
-    .principle-main h2 {
-      max-width: 660px;
-    }
-
-    .principle-main p {
-      max-width: 780px;
-      font-size: 15px;
-    }
-
-    .principle-side {
-      padding-left: 22px;
-      border-left: 1px solid var(--line-soft);
-    }
-
-    .principle-side ul {
-      gap: 0;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .principle-side li {
-      padding: 10px 0;
-      border-bottom: 1px solid var(--line-soft);
-    }
-
-    .principle-side b {
-      border: 0;
-      background: transparent;
-      text-align: left;
-    }
-
-    .grid {
-      gap: 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .card {
-      grid-template-columns: minmax(250px, .48fr) minmax(0, 1fr);
-      gap: 28px;
-      padding: 24px 0;
-      border: 0;
-      border-bottom: 1px solid var(--line);
-      background: transparent;
-    }
-
-    .card:nth-child(2),
-    .card:nth-child(3),
-    .route-card:nth-child(even) {
-      background: transparent;
-    }
-
-    .card h3 {
-      max-width: 430px;
-    }
-
-    .summary {
-      max-width: 460px;
-      line-height: 1.65;
-    }
-
-    .info {
-      grid-template-columns: 1fr;
-      gap: 0;
-      border: 0;
-      border-top: 1px solid var(--line-soft);
-      background: transparent;
-    }
-
-    .line {
-      padding: 11px 0;
-      border-bottom: 1px solid var(--line-soft);
-      background: transparent;
-    }
-
-    .line strong {
-      margin-bottom: 3px;
-    }
-
-    .line p,
-    .line ol {
-      max-width: 680px;
-    }
-
-    .actions {
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    .actions details {
-      flex-basis: 100%;
-      order: 3;
-    }
-
-    summary {
-      width: fit-content;
-      padding-bottom: 2px;
+    .task {
+      min-height: 24vh;
+      padding: clamp(18px, 2vw, 30px);
+      border-right: 1px solid currentColor;
       border-bottom: 1px solid currentColor;
+      display: grid;
+      align-content: space-between;
+      gap: 24px;
     }
 
-    .gate {
-      grid-template-columns: minmax(250px, .48fr) minmax(0, 1fr);
-      margin-top: 26px;
-      padding: 24px;
-      border: 0;
-      background:
-        linear-gradient(135deg, rgba(114, 239, 117, .12), transparent 32%),
-        var(--poster-black);
+    .task:nth-child(3n) {
+      border-right: 0;
     }
 
-    .gate .info {
-      border-top-color: rgba(255, 255, 255, .18);
+    .task:nth-last-child(-n + 3) {
+      border-bottom: 0;
     }
 
-    .gate .line {
-      border-bottom-color: rgba(255, 255, 255, .14);
+    .task h3 {
+      font-size: clamp(22px, 2vw, 34px);
+      line-height: 1.15;
+      font-weight: 300;
+      letter-spacing: -.02em;
+    }
+
+    .task p {
+      font-size: clamp(15px, .95vw, 18px);
+      line-height: 1.55;
+      color: var(--grey-3);
+    }
+
+    .skill-chip {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid currentColor;
+      padding: 7px 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .quote-line {
+      font-size: min(4.8vw, 8vh);
+      line-height: 1.08;
+      font-weight: 200;
+      letter-spacing: -.025em;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      border: 1px solid currentColor;
+    }
+
+    .flow-step {
+      min-height: 34vh;
+      padding: clamp(18px, 2vw, 30px);
+      border-right: 1px solid currentColor;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .flow-step:last-child {
+      border-right: 0;
+    }
+
+    .flow-step .nb {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: var(--accent);
+    }
+
+    .flow-step h3 {
+      font-size: clamp(22px, 2.2vw, 38px);
+      line-height: 1.1;
+      font-weight: 300;
+      letter-spacing: -.02em;
+    }
+
+    .flow-step p {
+      font-size: clamp(15px, 1vw, 18px);
+      line-height: 1.5;
+      color: var(--grey-3);
+    }
+
+    .codebox {
+      border: 1px solid currentColor;
+      background: var(--ink);
+      color: var(--paper);
+      padding: clamp(20px, 2.3vw, 36px);
+      font-size: clamp(15px, 1vw, 18px);
+      line-height: 1.75;
+      white-space: pre-wrap;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .68;
+    }
+
+    #nav {
+      position: fixed;
+      z-index: 10;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 10px;
+      background: rgba(250, 250, 248, .82);
+      border: 1px solid rgba(10, 10, 10, .22);
+      backdrop-filter: blur(10px);
+    }
+
+    .dot {
+      width: 26px;
+      height: 10px;
+      min-height: 0;
+      padding: 0;
+      border: 1px solid var(--ink);
       background: transparent;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    #hint {
+      position: fixed;
+      z-index: 10;
+      right: 20px;
+      bottom: 18px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .1em;
+      color: var(--grey-3);
+      background: rgba(250, 250, 248, .82);
+      padding: 10px 12px;
+      border: 1px solid rgba(10, 10, 10, .18);
     }
 
     @media (max-width: 900px) {
-      .hero,
-      .task-journey,
-      .principle-panel,
-      .card,
-      .gate,
-      .sample-result,
-      .category-head,
-      .hero-proof {
+      .slide {
+        padding: 28px 24px 76px;
+        overflow-y: auto;
+      }
+
+      .chrome {
+        font-size: 11px;
+      }
+
+      .grid-12,
+      .task-grid,
+      .flow {
+        display: grid;
         grid-template-columns: 1fr;
       }
 
-      .hero-card,
-      .principle-side {
-        padding-left: 0;
-        border-left: 0;
+      .span-4,
+      .span-5,
+      .span-6,
+      .span-7,
+      .span-8,
+      .span-12 {
+        grid-column: auto;
       }
 
-      .choice-button {
-        grid-template-columns: 42px minmax(0, .62fr) minmax(0, 1fr);
-      }
-    }
-
-    @media (max-width: 560px) {
-      body::before {
-        border-width: 3px;
-        box-shadow: inset -3px -3px 0 var(--line);
+      .display {
+        font-size: clamp(58px, 18vw, 110px);
       }
 
-      .hero {
-        padding-top: 26px;
+      .headline,
+      .statement,
+      .quote-line {
+        font-size: clamp(34px, 10vw, 64px);
       }
 
-      .hero-actions {
-        grid-template-columns: 1fr;
+      .task,
+      .task:nth-child(3n),
+      .task:nth-last-child(-n + 3),
+      .flow-step {
+        border-right: 0;
+        border-bottom: 1px solid currentColor;
+        min-height: auto;
       }
 
-      .task-journey {
-        gap: 18px;
-        padding: 18px 0;
+      .task:last-child,
+      .flow-step:last-child {
+        border-bottom: 0;
       }
 
-      .choice-panel > div:first-child {
-        grid-template-columns: 1fr;
+      .button-row {
+        align-items: stretch;
       }
 
-      .choice-button {
-        grid-template-columns: 38px minmax(0, 1fr);
-        gap: 10px;
-        padding: 13px 0;
+      button,
+      a.button {
+        width: 100%;
       }
 
-      .choice-button span {
-        grid-column: 2;
+      #hint {
+        display: none;
       }
 
-      .choice-button[aria-pressed="true"] {
-        padding-left: 9px;
-      }
-
-      .card,
-      .gate,
-      .sample-result > section {
-        padding: 18px 0;
-      }
-
-      .gate {
-        padding-inline: 14px;
+      #nav {
+        bottom: 12px;
+        width: calc(100% - 32px);
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap top">
-      <a class="brand" href="index.html">
-        <img src="assets/04-moon-gate-avatar-mark.svg" alt="月亮的 AI 工作台">
-        月亮的 AI 工作台
-      </a>
-      <div class="top-actions">
-        <a class="repo" href="#start">开始整理</a>
-        <a class="repo" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">完整工作流包</a>
-      </div>
-    </div>
-  </header>
+  <canvas id="field" aria-hidden="true"></canvas>
 
-  <main>
-    <section class="wrap hero">
-      <div>
-        <p class="eyebrow">写稿前 10 分钟</p>
-        <h1>有稿要写？先把材料理清楚</h1>
-        <p class="lead">如果你手上有策划案、会议纪要、录音转写、旧稿、参考链接或合作方要求，但还不知道怎么写，可以先让 AI 帮你整理成一版“稿件方案”。先看任务、读者、材料、缺口和边界，再决定要不要进入正文。</p>
-        <p class="hero-note">这个页面不是让 AI 直接替你写完，而是把月亮日常写稿前的判断步骤拆出来：AI 负责摊开材料和发现缺口，创作者负责事实、角度、公开边界和最后的声音。</p>
-        <div class="hero-proof" aria-label="你会得到什么">
-          <span><b>你带来</b>策划案、录音、会议纪要、旧稿或参考链接。</span>
-          <span><b>AI 先做</b>整理材料、标出缺口、提醒风险、建议结构。</span>
-          <span><b>你决定</b>哪些能写、怎么表达、什么时候进入成稿。</span>
-        </div>
-        <div class="hero-actions">
-          <button class="button" type="button" data-copy-workflow data-clipboard-target="#draft-context-prompt">复制写稿前整理指令</button>
-          <a class="button secondary" href="#start">看看怎么用</a>
-        </div>
+  <main id="deck" aria-label="月亮的 AI 工作台">
+    <section class="slide accent" data-layout="S01" data-title="封面">
+      <div class="chrome">
+        <span>Moon AI Workbench</span>
+        <span>01 / 07</span>
       </div>
-      <aside class="hero-card">
-        <img src="assets/03-bilingual-lockup.svg" alt="Moon workbench lockup">
-        <h2>第一次这样用</h2>
-        <ol class="steps">
-          <li><b>1</b><span>复制整理指令</span></li>
-          <li><b>2</b><span>粘贴到 Claude Code 或 Codex</span></li>
-          <li><b>3</b><span>把你的材料放进去</span></li>
-          <li><b>4</b><span>先看方案，再让它写正文</span></li>
-        </ol>
-      </aside>
+      <div class="stage">
+        <div class="kicker">For Content Creators</div>
+        <h1 class="display">月亮的<br>AI 工作台</h1>
+        <p class="lead">把内容判断力拆成一套可以被别人使用的工作流。服务写稿、活动传播、音视频整理、发布前校对和作品系统搭建。</p>
+      </div>
+      <div class="footer-note">
+        <span>Human in the loop</span>
+        <span>Humanity in the loop</span>
+      </div>
     </section>
 
-    <section class="wrap" id="start">
-      <div class="section-head">
-        <h2>从今天这篇稿开始</h2>
-        <p>你不需要先理解整套工作台。先选一个最接近的任务，把材料放进去，第一轮只拿方案：这篇稿写给谁、要完成什么、材料怎么用、哪些事实和边界要确认。</p>
+    <section class="slide" data-layout="S03" data-title="真实入口">
+      <div class="chrome">
+        <span>Start From A Real Task</span>
+        <span>02 / 07</span>
       </div>
-      <div class="task-journey" aria-label="使用路线">
-        <div>
-          <span class="status">Start Here</span>
-          <h3>先别急着写正文</h3>
-          <p>把 AI 当成写稿前的整理台。第一轮只让它帮你摊开任务、材料、缺口和风险，确认方向以后再进入正文。</p>
-        </div>
-        <ol class="journey-steps">
-          <li><b>01</b><span><strong>选任务</strong>：新稿、改稿、招募、活动、录音，选最接近的一项。</span></li>
-          <li><b>02</b><span><strong>复制说明</strong>：粘贴到 Claude Code 或 Codex。</span></li>
-          <li><b>03</b><span><strong>放材料</strong>：第一轮只看方案，不急着要正文。</span></li>
-        </ol>
-      </div>
-      <div class="choice-panel" data-choice-panel>
-        <div>
-          <div>
-            <h3>你现在要处理什么？</h3>
-            <p>选一个最接近的任务，页面会直接把对应工作流提出来。</p>
+      <div class="stage">
+        <div class="grid-12">
+          <div class="span-5 accent-block">
+            <div class="kicker">User Entry</div>
+            <h2 class="headline">从一篇要交付的稿开始</h2>
+            <p class="body">用户真正关心的不是“搭工作台”，而是：我现在有一篇稿要写，手里有一些材料，怎样组合才不会乱、不会错、不会像 AI 写的。</p>
           </div>
-          <button class="mini-button" type="button" data-show-all>查看全部</button>
+          <div class="span-7 quiet-block">
+            <div class="row-list">
+              <div class="row">
+                <span class="nb">01</span>
+                <div><strong>先判断这篇稿的沟通任务</strong><span>报名召集、活动报道、会后复盘、人物侧写、合作交付，写法完全不同。</span></div>
+              </div>
+              <div class="row">
+                <span class="nb">02</span>
+                <div><strong>再整理材料的可用边界</strong><span>哪些能放开头，哪些只能做背景，哪些事实必须回去确认。</span></div>
+              </div>
+              <div class="row">
+                <span class="nb">03</span>
+                <div><strong>最后才进入起草和修改</strong><span>第一轮先要方案和风险，不急着让 AI 直接写正文。</span></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="choice-grid" aria-label="选择你的内容任务">
-          <button class="choice-button" type="button" data-choice-targets="workflow-content-os" aria-pressed="false">
-            <strong>我有材料，要写一篇新稿</strong>
-            <span>先把读者、任务、材料、缺口和边界整理成一张稿件方案。</span>
-          </button>
-          <button class="choice-button" type="button" data-choice-targets="workflow-voice" aria-pressed="false">
-            <strong>我有初稿，要修改校对</strong>
-            <span>检查事实、AI 味、空泛表达、公开边界和不像自己的地方。</span>
-          </button>
-          <button class="choice-button" type="button" data-choice-targets="workflow-recruitment" aria-pressed="false">
-            <strong>我要发招募或报名文章</strong>
-            <span>把目标人群、门槛、收益、承诺边界和行动路径讲清楚。</span>
-          </button>
-          <button class="choice-button" type="button" data-choice-targets="workflow-event,workflow-recap,workflow-audio" aria-pressed="false">
-            <strong>我有录音或活动资料，要整理成文章</strong>
-            <span>活动预告、会后报道、播客访谈和直播回放，都从材料地图开始。</span>
-          </button>
-        </div>
-        <p class="choice-feedback" data-choice-feedback>选一个最接近的情况，页面会把对应工作流提出来。</p>
       </div>
-
-      <div class="principle-panel" aria-label="工作台理念">
-        <section class="principle-main">
-          <h2>为什么还要讲人机边界</h2>
-          <p>内容不是越快生成越好。尤其是商业合作稿、活动报道和人物稿，事实、关系分寸和公开边界都需要人来判断。这里的 Human in the loop，不只是“人最后检查一下”，而是从一开始就把人的判断放进流程里。</p>
-        </section>
-        <aside class="principle-side">
-          <h3>每次开写前先问</h3>
-          <ul>
-            <li><b>01</b><span>我想让 AI 帮我省哪类力？</span></li>
-            <li><b>02</b><span>哪些判断必须由人来做？</span></li>
-            <li><b>03</b><span>哪些信息不能进入公开输出？</span></li>
-            <li><b>04</b><span>最后这篇内容要像谁在说话？</span></li>
-          </ul>
-        </aside>
+      <div class="footer-note">
+        <span>Scenario First</span>
+        <span>No Prompt Shelf</span>
       </div>
-
     </section>
 
-    <section class="wrap" id="workflows">
-      <div class="section-head">
-        <h2>按你的任务来用</h2>
-        <p>下面不是产品目录。你可以直接按自己手上的材料来选：有一堆资料要写新稿、有初稿要改、有录音或活动资料要整理，或者要把作品和经历讲清楚。每个入口都会说明你要准备什么、复制后怎么跑、第一轮能拿到什么，以及哪些判断必须由你自己决定。</p>
+    <section class="slide grey" id="start" data-layout="S08" data-title="使用方式">
+      <div class="chrome">
+        <span>How To Use</span>
+        <span>03 / 07</span>
       </div>
-      <p class="subsection-note"><strong>状态说明：</strong>已验证代表已经在真实内容项目或完整交付里跑过；可试跑代表场景清楚，但还需要更多外部样本；方法层适合所有内容工作前置检查；试点中代表月亮自己跑通过，暂时先用于个人或小范围验证。</p>
-
-      <section class="case-category" data-case-category>
-        <div class="category-head">
-          <div>
-            <span class="category-label">01 / Before Writing</span>
-            <h3>写稿前：先把材料和边界理清楚</h3>
+      <div class="stage top">
+        <h2 class="statement">你先带来材料和任务，工作台先帮你判断该怎么写。</h2>
+        <div class="grid-12">
+          <div class="span-4 quiet-block">
+            <div class="kicker">Bring</div>
+            <div class="row-list">
+              <div class="row"><span class="nb">01</span><div><strong>材料</strong><span>策划案、录音转写、会议纪要、旧稿、网页链接、图片说明。</span></div></div>
+              <div class="row"><span class="nb">02</span><div><strong>任务</strong><span>公众号、活动稿、招募报名、人物稿、演讲 PPT、作品集案例。</span></div></div>
+              <div class="row"><span class="nb">03</span><div><strong>边界</strong><span>不能公开的内容、必须保留的表达、需要核对的事实。</span></div></div>
+            </div>
           </div>
-          <p>如果你已经有材料，但还不知道怎么开写，先从这里开始。第一轮不要急着要正文，先让 AI 帮你把读者、任务、材料、缺口和风险说清楚。</p>
-        </div>
-        <div class="grid">
-          <section class="gate method-gate" id="workflow-content-os" data-workflow-card>
-            <div>
-              <span class="tag">已验证 / Draft Context Builder</span>
-              <h2>写稿前材料整理助手</h2>
-              <p class="summary">把一堆材料先整理成稿件方案，让你知道这篇内容该写给谁、要完成什么任务、哪些材料能用、哪些还要补。</p>
-              <div class="actions">
-                <button class="button use-now" type="button" data-copy-workflow="workflow-content-os"><span class="button-icon" data-lucide="copy"></span>复制这段话，开始整理材料</button>
-                <details>
-                  <summary>查看完整工作流说明</summary>
-                  <pre id="draft-context-prompt">我现在要写一篇稿，请先帮我整理材料和写作背景，不要直接写正文。
-
-交付形式是：[公众号文章 / 活动报道 / 会后复盘 / 访谈整理 / 人物稿 / 小红书 / 演讲 PPT / 作品集案例 / 商业合作稿 / 其他]
-这篇内容要给谁看：[目标读者 / 平台 / 客户 / 社群 / 编辑 / 不确定]
-我希望它完成什么任务：[报名转化 / 解释项目 / 记录现场 / 传达合作价值 / 展示案例 / 梳理观点 / 不确定]
-已有材料在这里：[粘贴材料 / 文件路径 / 飞书文档 / 录音转写 / 会议纪要 / 旧稿 / 参考链接]
-必须保留的信息：[核心事实 / 合作方口径 / 关键人物 / 价值判断 / 标题要求 / 无]
-不能写或要谨慎的信息：[隐私 / 未确认事实 / 内部信息 / 合作边界 / 不确定]
-我希望的语气是：[像公众号 / 像我自己 / 更热情 / 更克制 / 更专业 / 更有现场感 / 不确定]
-
-请先输出一版“稿件组装方案”，只做下面 5 件事：
-1. 这篇稿的真实任务。
-2. 材料使用清单。
-3. 文章组合方式。
-4. 适合的产出形态。
-5. 下一步指令：开始写、补材料，或先做事实和边界校对。</pre>
-                </details>
-                <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os" target="_blank" rel="noreferrer">打开完整工作流包</a>
-              </div>
+          <div class="span-4 accent-block">
+            <div class="kicker">First Run</div>
+            <div class="row-list">
+              <div class="row"><span class="nb">01</span><div><strong>任务判断</strong><span>这篇稿到底要完成什么沟通动作。</span></div></div>
+              <div class="row"><span class="nb">02</span><div><strong>材料地图</strong><span>哪些材料支撑主体，哪些只是背景，哪些还不够。</span></div></div>
+              <div class="row"><span class="nb">03</span><div><strong>下一步</strong><span>现在能起稿，还是先补问题、补事实、补口径。</span></div></div>
             </div>
-            <div class="info">
-              <section class="line">
-                <strong>什么时候用</strong>
-                <p>你要写一篇稿，但材料散在策划案、录音、会议纪要、旧稿和链接里，还不确定从哪里开头，也不知道哪些材料能用。</p>
-              </section>
-              <section class="line">
-                <strong>你要准备什么</strong>
-                <p>交付形式、目标读者、已有材料、必须保留的信息、不能写的信息，以及你希望的语气。信息不完整也可以先放进去，AI 会标出缺口。</p>
-              </section>
-              <section class="line">
-                <strong>第一轮会得到什么</strong>
-                <p>你会先拿到一份稿件方案：这篇稿要完成什么任务，材料分别能放在哪里，哪些事实要核对，下一步是写初稿、补材料，还是先做校对。</p>
-              </section>
-              <section class="line">
-                <strong>你需要判断什么</strong>
-                <p>你要决定这篇稿真正写给谁看、哪些信息可以公开、哪些口径必须保留，以及最终是否进入正文。</p>
-              </section>
-            </div>
-          </section>
-
-          <section class="gate method-gate" id="workflow-human-ai" data-workflow-card>
-            <div>
-              <span class="tag">方法层 / Human In The Loop</span>
-              <h2>人机协作边界与内容判断方法</h2>
-              <p class="summary">在让 AI 进入内容生产前，先分清哪些能交给工具，哪些必须留给人判断。</p>
-              <div class="actions">
-                <button class="button use-now" type="button" data-copy-workflow="workflow-human-ai"><span class="button-icon" data-lucide="copy"></span>复制这套使用说明</button>
-                <details>
-                  <summary>查看完整工作流说明</summary>
-                  <pre>打开人机协作边界与内容判断方法。
-
-我现在要处理的内容是：[活动稿 / 人物稿 / 口述材料 / 演讲 PPT / 作品集 / 商业合作稿 / 其他]
-原始材料在这里：[粘贴材料、链接或文件路径]
-发布或使用场景：[公众号 / 作品集 / 客户交付 / 内部整理 / 公开分享 / 不确定]
-我最担心的问题：[事实错误 / 太像 AI / 边界不清 / 判断被写偏 / 关系风险 / 其他]
-
-请先不要直接写正文，先帮我做一份人机协作边界说明：
-1. AI 可以帮我省哪些力。
-2. 哪些判断必须留给我。
-3. 哪些信息需要保护。
-4. 哪些事实需要校对。
-5. 哪些表达容易出现 AI 味。
-6. 现在适合继续写、补材料、做调研，还是先确认边界。</pre>
-                </details>
-                <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/human-ai-collaboration-boundary" target="_blank" rel="noreferrer">打开完整工作流包</a>
-              </div>
-            </div>
-            <div class="info">
-              <section class="line">
-                <strong>什么时候用</strong>
-                <p>你准备让 AI 处理公开内容、商业合作稿、人物稿或项目材料，但担心它写得太顺、说错事实，或者越过关系和公开边界。</p>
-              </section>
-              <section class="line">
-                <strong>你要准备什么</strong>
-                <p>内容类型、原始材料、发布场景，以及你最担心的问题：事实错误、太像 AI、边界不清、判断被写偏，或关系风险。</p>
-              </section>
-              <section class="line">
-                <strong>第一轮会得到什么</strong>
-                <p>AI 会先告诉你哪些工作可以交给它，哪些判断必须由你做，哪些信息不能公开，哪些事实要校对，哪些表达容易出现 AI 味。</p>
-              </section>
-              <section class="line">
-                <strong>你需要判断什么</strong>
-                <p>你要决定哪些材料能进入公开稿、哪些关系需要保护、哪些判断代表你本人，以及这篇内容是否可以继续成稿。</p>
-              </section>
-            </div>
-          </section>
-        </div>
-      </section>
-
-      <section class="case-category" data-case-category>
-        <div class="category-head">
-          <div>
-            <span class="category-label">02 / Community Events</span>
-            <h3>活动传播：把现场、招募和合作变成可审核稿件</h3>
           </div>
-          <p>如果你要写活动预告、分论坛介绍、招募报名、会后报道或合作稿，先用这里。它会先帮你把活动材料、合作口径、读者价值、行动路径和待确认信息分开。</p>
-        </div>
-        <div class="grid">
-          <article class="card" id="workflow-event" data-workflow-card>
-            <span class="tag">已验证 / 活动预告 / 商业合作稿</span>
-            <h3>社区活动内容传播工作台</h3>
-            <p class="summary">把策划案、会议纪要、议程和合作方口径，整理成可审核的活动传播稿。已在 Datawhale / AIEC 场景验证，可迁移到社区活动传播。</p>
-            <div class="info">
-              <section class="line">
-                <strong>什么时候用</strong>
-                <p>你要写活动预告、分论坛介绍、合作发布或商业合作稿。材料已经有了，但不知道这篇稿到底是为了报名、解释价值、呈现伙伴，还是交付合作证明。</p>
-              </section>
-              <section class="line">
-                <strong>你要准备什么</strong>
-                <p>策划案、议程、嘉宾信息、会议纪要、合作方要求、发布平台、目标读者，以及哪些信息必须出现或不能公开。</p>
-              </section>
-              <section class="line">
-                <strong>第一轮会得到什么</strong>
-                <p>你会先拿到材料地图、传播任务判断、文章结构、信息缺口和发布前确认项。材料够时，再进入初稿。</p>
-              </section>
-              <section class="line">
-                <strong>你需要判断什么</strong>
-                <p>你要确认活动口径、合作方价值、哪些细节能公开，以及读者是否真的需要这部分背景。</p>
-              </section>
+          <div class="span-4 quiet-block">
+            <div class="kicker">Then</div>
+            <div class="row-list">
+              <div class="row"><span class="nb">01</span><div><strong>材料够</strong><span>进入对应 Skill 写第一版。</span></div></div>
+              <div class="row"><span class="nb">02</span><div><strong>材料不够</strong><span>先回答 3 到 5 个关键问题。</span></div></div>
+              <div class="row"><span class="nb">03</span><div><strong>准备发布</strong><span>最后过事实校对和去 AI 味。</span></div></div>
             </div>
-            <div class="actions">
-              <button class="button use-now" type="button" data-copy-workflow="workflow-event"><span class="button-icon" data-lucide="copy"></span>复制这套使用说明</button>
-              <details>
-                <summary>查看完整工作流说明</summary>
-                <pre>打开社区活动内容传播工作流。
-
-活动类型：[会前预告 / 分论坛介绍 / 商业合作稿]
-材料在这里：[粘贴策划案、会议纪要、嘉宾信息或文件路径]
-发布平台：[公众号 / 官网 / 社群]
-受众：[开发者 / 学习者 / 企业客户 / 社区伙伴 / 其他]
-合作边界：[哪些必须出现 / 哪些不能公开 / 哪些需要确认]
-
-请按这个顺序工作：
-1. 先做材料地图，区分确定事实、合作方口径、可引用信息、需要确认的信息。
-2. 判断传播任务：召集报名、解释活动价值、呈现生态号召力，还是交付合作 proof。
-3. 如有前期报道或伙伴报道，先整理参考信息，但不要自动写入正文。
-4. 先给文章结构和信息缺口，不要直接写完整稿。
-5. 成稿前过事实校对门和去 AI 味门。</pre>
-              </details>
-              <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">打开完整工作流包</a>
-            </div>
-          </article>
-
-          <article class="card" id="workflow-recruitment" data-workflow-card>
-            <span class="tag">可试跑 / 招募 / 报名召集</span>
-            <h3>招募文章工作流</h3>
-            <p class="summary">把岗位、社群、研究对象、志愿者、实习生或活动报名材料，整理成目标人群清楚、门槛清楚、行动路径清楚的招募文章。</p>
-            <div class="info">
-              <section class="line">
-                <strong>什么时候用</strong>
-                <p>你要写招聘、实习生招募、志愿者招募、研究/访谈对象招募、社群招募、活动报名或项目加入说明。</p>
-              </section>
-              <section class="line">
-                <strong>你要准备什么</strong>
-                <p>招募对象、发布主体、为什么现在招、对方要做什么、会得到什么、时间投入、筛选方式、报名方式和不能过度承诺的内容。</p>
-              </section>
-              <section class="line">
-                <strong>第一轮会得到什么</strong>
-                <p>你会先拿到一张招募简报：适合谁、为什么值得来、你提供什么、你期待对方做什么、哪些条件还要确认。</p>
-              </section>
-              <section class="line">
-                <strong>你需要判断什么</strong>
-                <p>你要确认薪资、名额、截止时间、筛选规则、隐私授权、研究同意和贡献边界，不能让 AI 替你编承诺。</p>
-              </section>
-            </div>
-            <div class="actions">
-              <button class="button use-now" type="button" data-copy-workflow="workflow-recruitment"><span class="button-icon" data-lucide="copy"></span>复制这套使用说明</button>
-              <details>
-                <summary>查看完整工作流说明</summary>
-                <pre>打开招募文章工作流。
-
-招募类型：[岗位招聘 / 实习生 / 志愿者 / 社群成员 / 研究对象 / 访谈对象 / 活动报名 / 项目参与者]
-发布主体：[组织、社区、个人或项目名称]
-目标人群：[你想找到什么样的人]
-为什么现在招：[项目背景、阶段需求、活动目标或研究问题]
-对方要做什么：[具体任务、参与方式、产出或时间投入]
-对方会得到什么：[薪资、学习、资源、作品、关系、曝光、合作机会或其他价值]
-门槛和不适合人群：[必须具备什么 / 哪些人暂时不适合]
-报名或申请方式：[表单、邮箱、微信、截止时间、筛选流程]
-必须确认或不能公开的信息：[薪资、名额、隐私、研究同意、未成年人、内部信息、未确认承诺]
-
-请先不要直接写正文，先输出一版招募简报：
-1. 这次招募真正要完成什么任务。
-2. 适合谁，谁不适合。
-3. 读者为什么会关心。
-4. 我们提供什么，对方需要投入什么。
-5. 缺失或需要确认的信息。
-6. 建议文章结构和 CTA。
-7. 下一步是补信息、写初稿、先做表单，还是先确认边界。</pre>
-              </details>
-              <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/recruitment-article-workflow" target="_blank" rel="noreferrer">打开完整工作流包</a>
-            </div>
-          </article>
-
-          <article class="card" id="workflow-recap" data-workflow-card>
-            <span class="tag">已验证 / 会后报道 / 活动复盘</span>
-            <h3>活动复盘转公众号</h3>
-            <p class="summary">把照片、群聊反馈、口述复盘、公开报道和伙伴记录，整理成会后传播包。</p>
-            <div class="info">
-              <section class="line">
-                <strong>什么时候用</strong>
-                <p>活动已经结束，你手上有照片、群聊反馈、口述复盘、伙伴记录或公开报道，需要整理成一篇会后内容。</p>
-              </section>
-              <section class="line">
-                <strong>你要准备什么</strong>
-                <p>复盘口述、照片说明、群聊反馈、公开报道链接、伙伴记录、图片能否公开，以及你想要会后报道、现场观察还是伙伴传播包。</p>
-              </section>
-              <section class="line">
-                <strong>第一轮会得到什么</strong>
-                <p>AI 会先整理时间线、人物、现场画面、关键反馈和可引用素材，并标出哪些只是感受，哪些能写成事实。</p>
-              </section>
-              <section class="line">
-                <strong>你需要判断什么</strong>
-                <p>你要确认图片和原话能否公开、哪些反馈可以引用、这次活动最值得被记住的是什么。</p>
-              </section>
-            </div>
-            <div class="actions">
-              <button class="button use-now" type="button" data-copy-workflow="workflow-recap"><span class="button-icon" data-lucide="copy"></span>复制这套使用说明</button>
-              <details>
-                <summary>查看完整工作流说明</summary>
-                <pre>打开活动复盘转公众号工作流。
-
-活动已经结束，复盘材料在这里：[粘贴或给路径]
-同场公开报道 / 伙伴记录：[链接或说明]
-图片边界：[可公开 / 需确认 / 不可公开]
-交付目标：[会后报道 / 现场观察 / 伙伴传播包 / 社区记忆包 / 不确定]
-
-请按这个顺序工作：
-1. 整理素材地图：时间线、人物、现场画面、关键反馈、公开报道、可引用素材。
-2. 标出每条素材的来源和可靠程度。
-3. 判断这次活动最值得被记住的是什么。
-4. 材料不足时先追问，不要用漂亮话补空。
-5. 成稿后做事实、图片公开边界和去 AI 味检查。</pre>
-              </details>
-              <a class="button secondary" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">打开完整工作流包</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="case-category" data-case-category>
-        <div class="category-head">
-          <div>
-            <span class="category-label">03 / Source To Output</span>
-            <h3>长素材再生产：把录音、口述和思路变成内容</h3>
           </div>
-          <p>如果你有播客、直播、访谈、圆桌逐字稿，或者一段还没整理的口述思路，用这里。先判断它适合变成文章、对谈稿、短观察，还是演讲结构。</p>
         </div>
-        <div class="grid">
-          <article class="card" id="workflow-audio" data-workflow-card>
-            <span class="tag">可试跑 / 播客 / 视频回放</span>
-            <h3>播客音视频转公众号</h3>
-            <p class="summary">把音视频内容转成公众号文章、对谈稿、短观察或可继续复用的素材资产。建议先拿一条真实播客、直播或访谈试跑。</p>
-            <div class="info">
-              <section class="line">
-                <strong>什么时候用</strong>
-                <p>你有播客、直播、访谈、圆桌或视频回放，里面有真实交流和好内容，但太长、太散，不知道应该整理成什么。</p>
-              </section>
-              <section class="line">
-                <strong>你要准备什么</strong>
-                <p>逐字稿、摘要、关键片段、说话人身份、发布平台，以及哪些内容可公开、需匿名或需确认。</p>
-              </section>
-              <section class="line">
-                <strong>第一轮会得到什么</strong>
-                <p>你会先看到话题地图、人物观点、适合的输出形式，以及事实、身份、引用和敏感表达的确认项。</p>
-              </section>
-              <section class="line">
-                <strong>你需要判断什么</strong>
-                <p>你要决定保留对谈、改成文章、提炼短观察，还是只先做内部整理；也要确认哪些原话可以公开。</p>
-              </section>
-            </div>
-            <div class="actions">
-              <button class="button use-now" type="button" data-copy-workflow="workflow-audio"><span class="button-icon" data-lucide="copy"></span>复制这套使用说明</button>
-              <details>
-                <summary>查看完整工作流说明</summary>
-                <pre>打开播客音视频转公众号文章工作流。
+      </div>
+      <div class="footer-note">
+        <span>Input → Diagnose → Draft → Gate</span>
+        <span>03</span>
+      </div>
+    </section>
 
-素材类型：[播客 / 录音 / 视频回放 / 直播 / 访谈 / 圆桌]
-素材、逐字稿或摘要在这里：[粘贴内容、链接或文件路径]
-我希望输出：[公众号文章 / 对谈稿 / 短观察 / 素材整理 / 不确定]
-公开边界：[可公开 / 需匿名 / 需确认 / 不外发]
-
-请按这个顺序工作：
-1. 先做话题地图和人物观点地图，保留有信息量的原话。
-2. 判断最适合的输出形态。
-3. 标出需要确认的事实、身份、引用和敏感表达。
-4. 如果要写公众号文章，先给结构和选题角度，再写正文。
-5. 成稿后检查是否过度总结、替别人下结论或丢失现场语气。</pre>
-              </details>
-              <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/audio-to-wechat-article" target="_blank" rel="noreferrer">打开完整工作流包</a>
-            </div>
-          </article>
-
-          <article class="card" id="workflow-deck" data-workflow-card>
-            <span class="tag">试点中 / 演讲 / HTML 网页 PPT</span>
-            <h3>口述转 HTML 演讲 PPT</h3>
-            <p class="summary">把一段口述思路，整理成能现场讲、能浏览器打开的 HTML 网页 PPT。目前是月亮自用验证过的试点，更适合先用于个人演讲准备。</p>
-            <div class="info">
-              <section class="line">
-                <strong>什么时候用</strong>
-                <p>你要准备演讲、分享、工作坊或路演，脑子里已经有一套逻辑，但还没变成可以讲的 PPT。</p>
-              </section>
-              <section class="line">
-                <strong>你要准备什么</strong>
-                <p>口述录音或转写、飞书文档、听众是谁、演讲时长、图片素材、视觉参考，以及你希望听众最后记住什么。</p>
-              </section>
-              <section class="line">
-                <strong>第一轮会得到什么</strong>
-                <p>AI 会先整理演讲主线、听众可能卡住的地方、适合上屏的内容、适合口头讲的内容，以及需要你判断的问题。</p>
-              </section>
-              <section class="line">
-                <strong>你需要判断什么</strong>
-                <p>你要决定这场演讲真正要让听众记住什么、哪些内容适合放屏幕上、哪些应该留在口头表达里。</p>
-              </section>
-            </div>
-            <div class="actions">
-              <button class="button use-now" type="button" data-copy-workflow="workflow-deck"><span class="button-icon" data-lucide="copy"></span>复制这套使用说明</button>
-              <details>
-                <summary>查看完整工作流说明</summary>
-                <pre>打开口述转 HTML 演讲 PPT 工作流。
-
-我这次要准备的是：[公开演讲 / 工作坊 / 路演 / 课程 / 分享 / 其他]
-我现在处在：[只有口述想法 / 已有录音转写 / 已有飞书文档 / 已有 outline / 已有 HTML deck 要修改]
-原始材料在这里：[录音转写、口述笔记、飞书文档、图片素材或文件路径]
-听众是：[他们是谁 / 他们已经知道什么 / 他们最关心什么]
-演讲时长：[例如 10 分钟 / 30 分钟 / 60 分钟]
-我希望听众听完后记住或愿意行动的是：[一句话写出来]
-输出目标：[先整理主线 / 生成飞书 slide outline / 生成 HTML 网页 PPT / 导出 PDF]
-视觉参考：[已有模板 / 喜欢的风格 / 暂无]
-
-请按这个顺序工作：
-1. 判断入口：口述理清、飞书整理、网页生成，还是演讲修订。
-2. 先做演讲主线地图，不要直接生成 PPT。
-3. 区分屏幕内容、口头讲述、视觉素材和待确认。
-4. 生成 slide outline 后，再进入 HTML deck。
-5. 发布前检查逻辑、演讲、素材、事实、视觉和去 AI 味。</pre>
-              </details>
-              <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/spoken-to-html-deck" target="_blank" rel="noreferrer">打开完整工作流包</a>
-            </div>
-          </article>
+    <section class="slide" data-layout="S11" data-title="第一轮流程">
+      <div class="chrome">
+        <span>Workflow Before Draft</span>
+        <span>04 / 07</span>
+      </div>
+      <div class="stage">
+        <div>
+          <div class="kicker">Do This First</div>
+          <h2 class="headline">第一轮先要方案，不急着写正文</h2>
         </div>
-      </section>
-
-      <section class="case-category" data-case-category>
-        <div class="category-head">
-          <div>
-            <span class="category-label">04 / Public Proof</span>
-            <h3>公开呈现：把人、作品和初稿讲清楚</h3>
+        <div class="flow">
+          <div class="flow-step">
+            <span class="nb">01</span>
+            <h3>交代任务</h3>
+            <p>发在哪里，给谁看，要完成什么动作，什么时候交。</p>
           </div>
-          <p>如果你要做简历、作品集、个人主页，或者准备发布一篇重要稿件，用这里。重点是降低外部读者的理解成本，也让最终内容在发布前过一遍事实和声音检查。</p>
+          <div class="flow-step">
+            <span class="nb">02</span>
+            <h3>投放材料</h3>
+            <p>把策划案、录音、会议纪要、旧稿、链接和图片说明放进去。</p>
+          </div>
+          <div class="flow-step">
+            <span class="nb">03</span>
+            <h3>整理缺口</h3>
+            <p>让 AI 先列出事实风险、材料缺口和可写角度。</p>
+          </div>
+          <div class="flow-step">
+            <span class="nb">04</span>
+            <h3>人来判断</h3>
+            <p>确认哪些能写，哪些要删，哪些必须找对方核实。</p>
+          </div>
+          <div class="flow-step">
+            <span class="nb">05</span>
+            <h3>进入成稿</h3>
+            <p>选用对应 Skill 起草，再过校对和去 AI 味。</p>
+          </div>
         </div>
-        <div class="grid">
-          <article class="card" id="workflow-creator-system" data-workflow-card>
-            <span class="tag">已验证 / 简历 / 作品集</span>
-            <h3>创作者作品系统搭建</h3>
-            <p class="summary">从求职、申请、合作或个人品牌目标出发，把经历、作品、证据和叙事整理成可被外部读者看懂的作品系统。</p>
-            <div class="info">
-              <section class="line">
-                <strong>什么时候用</strong>
-                <p>你做过很多项目、写过很多内容、参与过很多活动，但别人打开简历、作品集或个人主页时，仍然看不懂你擅长什么。</p>
-              </section>
-              <section class="line">
-                <strong>你要准备什么</strong>
-                <p>目标读者、申请或合作场景、简历、作品链接、项目经历、截图、数据，以及你希望别人信任你的方向。</p>
-              </section>
-              <section class="line">
-                <strong>第一轮会得到什么</strong>
-                <p>你会先拿到外部读者视角的判断：哪些经历最能证明你，哪些材料不够清楚，首页、简历或作品集应该怎样组织。</p>
-              </section>
-              <section class="line">
-                <strong>你需要判断什么</strong>
-                <p>你要确认自己想被哪类人看见、哪些经历可以公开、哪些项目最能代表你，以及哪些证据需要补齐。</p>
-              </section>
-            </div>
-            <div class="actions">
-              <button class="button use-now" type="button" data-copy-workflow="workflow-creator-system"><span class="button-icon" data-lucide="copy"></span>复制这套使用说明</button>
-              <details>
-                <summary>查看完整工作流说明</summary>
-                <pre>打开创作者作品系统搭建工作流。
+      </div>
+      <div class="footer-note">
+        <span>First Output Is A Plan</span>
+        <span>04</span>
+      </div>
+    </section>
 
-我这次要做的是：[个人简历 / 作品集 / 个人网站 / 求职申请 / 合作介绍页 / 不确定]
-目标读者：[HR / 编辑 / 合作方 / 创始人 / 投资人 / 社区伙伴 / 其他]
-已有材料：[粘贴简历、作品链接、项目清单、截图、数据或文件路径]
-我想被信任的方向：[内容创作 / 社区运营 / 研究分析 / 产品叙事 / 生态连接 / 其他]
-公开边界：[哪些可以公开 / 哪些需要弱化 / 哪些不能写]
-
-请按这个顺序工作：
-1. 先判断外部读者最关心什么。
-2. 建立证据地图：作品、数据、角色、场景、关系、反馈和可核对链接。
-3. 把材料按读者能理解的工作类型分类。
-4. 给出 20 秒内能看懂的首页 / 简历 / 作品集结构。
-5. 标出证据不足、容易夸大、容易让读者看不懂的地方。</pre>
-              </details>
-              <a class="button secondary" href="https://github.com/voyayueliang/creator-work-system-builder" target="_blank" rel="noreferrer">打开完整工作流包</a>
-            </div>
-          </article>
-
-          <section class="gate" id="workflow-voice" data-workflow-card>
-            <div>
-              <span class="tag">已验证 / Final Gate</span>
-              <h2>去 AI 味与声音守门</h2>
-              <p class="summary">发布前最后一轮：把 AI 初稿里过度顺滑、空泛判断、硬凑转折和不像人的表达挑出来。</p>
-              <div class="actions">
-                <button class="button use-now" type="button" data-copy-workflow="workflow-voice"><span class="button-icon" data-lucide="copy"></span>复制这套使用说明</button>
-                <details>
-                  <summary>查看完整工作流说明</summary>
-                  <pre>打开去 AI 味与声音守门工作流。
-
-当前稿在这里：[粘贴稿件]
-原始材料在这里：[粘贴材料或文件路径]
-发布平台：[公众号 / 小红书 / 视频号 / 作品集 / 商业交付]
-我最担心的问题：[事实错误 / 太像 AI / 太宣传 / 太啰嗦 / 边界不清]
-
-请标出不像人的地方、为什么不稳，并给出更像我的改法。
-同时检查：
-1. 有没有空泛判断、硬凑转折、过度顺滑和没有材料支撑的漂亮话。
-2. 有没有事实、时间、身份、主办方、协办方、标题、地点、报名信息错误。
-3. 有没有把合作方想表达的战略价值说偏，或把读者不关心的内部视角写得太重。
-4. 请先给问题清单和修改建议，不要一上来整篇重写。</pre>
-                </details>
-                <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">打开完整工作流包</a>
-              </div>
-            </div>
-            <div class="info">
-              <section class="line">
-                <strong>什么时候用</strong>
-                <p>你已经有一版稿子，准备发给编辑、客户、合作方或公开发布，但担心它有 AI 味、事实错误、宣传腔，或者不像自己说话。</p>
-              </section>
-              <section class="line">
-                <strong>你要准备什么</strong>
-                <p>当前稿、原始材料、发布平台、读者对象，以及你最担心的问题：事实错误、太像 AI、太宣传、太啰嗦或边界不清。</p>
-              </section>
-              <section class="line">
-                <strong>第一轮会得到什么</strong>
-                <p>AI 会先给问题清单：哪些句子不像人，哪里事实不稳，哪里没有材料支撑，哪里可能越过公开边界，并给出修改建议。</p>
-              </section>
-              <section class="line">
-                <strong>你需要判断什么</strong>
-                <p>你要决定哪些表达代表你本人、哪些事实必须再核对、哪些建议可以采纳，以及最终是否可以交付或发布。</p>
-              </section>
-            </div>
-          </section>
+    <section class="slide grey" data-layout="S16" data-title="任务选择">
+      <div class="chrome">
+        <span>Choose By Task</span>
+        <span>05 / 07</span>
+      </div>
+      <div class="stage top">
+        <div>
+          <div class="kicker">Skill Map</div>
+          <h2 class="headline">别从产品名开始，从你手上的任务开始</h2>
         </div>
-      </section>
+        <div class="task-grid">
+          <div class="task">
+            <h3>有一堆材料，不知道怎么写</h3>
+            <p>先用写稿前材料整理助手，拿到任务判断、材料地图、缺口和风险。</p>
+            <span class="skill-chip">Moon Content OS</span>
+          </div>
+          <div class="task">
+            <h3>活动要发稿或招募</h3>
+            <p>把策划案、嘉宾信息、合作方口径和报名路径整理成清楚的传播稿。</p>
+            <span class="skill-chip">Event / Recruitment</span>
+          </div>
+          <div class="task">
+            <h3>活动结束，要做复盘</h3>
+            <p>从复盘口述、照片、群聊、公开报道里整理会后传播包和社区记忆。</p>
+            <span class="skill-chip">Event Recap</span>
+          </div>
+          <div class="task">
+            <h3>录音、播客、对谈要成文</h3>
+            <p>把逐字稿变成有主线的公众号文章，保留人物关系、现场感和判断。</p>
+            <span class="skill-chip">Audio / Dialogue</span>
+          </div>
+          <div class="task">
+            <h3>准备演讲或公开呈现</h3>
+            <p>用口述和文档整理演讲主线，再生成可继续打磨的 HTML 网页 PPT。</p>
+            <span class="skill-chip">Spoken To Deck</span>
+          </div>
+          <div class="task">
+            <h3>发布前最后一轮</h3>
+            <p>检查事实、口径、授权、边界和不像人的表达，把风险关在发布前。</p>
+            <span class="skill-chip">Voice Guardian</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>11 Skills, 6 User Tasks</span>
+        <span>05</span>
+      </div>
+    </section>
 
-      <p class="no-results" data-no-results hidden>没有找到完全匹配的入口。可以换一个关键词，或先从“写稿前材料整理助手”开始试。</p>
+    <section class="slide dark" data-layout="S12" data-title="人机边界">
+      <div class="chrome">
+        <span>Humanity In The Loop</span>
+        <span>06 / 07</span>
+      </div>
+      <div class="stage">
+        <div class="grid-12">
+          <div class="span-7">
+            <div class="kicker">Boundary</div>
+            <h2 class="quote-line">AI 负责重复整理，内容创作者保留判断力。</h2>
+          </div>
+          <div class="span-5">
+            <div class="row-list">
+              <div class="row"><span class="nb">01</span><div><strong>事实和授权</strong><span>时间、身份、机构、合作口径、图片和引用，都需要人确认。</span></div></div>
+              <div class="row"><span class="nb">02</span><div><strong>声音和关系</strong><span>哪些话能说，哪些要含蓄处理，哪些不能替别人下判断。</span></div></div>
+              <div class="row"><span class="nb">03</span><div><strong>价值和取舍</strong><span>这篇内容为什么值得发，留给读者什么，不交给模型自动决定。</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="ink-block" style="border:1px solid rgba(255,255,255,.26)">
+          <p class="lead">Human in the loop 管流程，Humanity in the loop 管边界。这个工作台真正要复用的，是内容创作者在真实场景里形成的判断。</p>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>Facts / Voice / Boundary / Judgment</span>
+        <span>06</span>
+      </div>
+    </section>
 
+    <section class="slide" data-layout="S21" data-title="开始使用">
+      <div class="chrome">
+        <span>Get The Skills</span>
+        <span>07 / 07</span>
+      </div>
+      <div class="stage">
+        <div class="grid-12">
+          <div class="span-5">
+            <div class="kicker">Start Sentence</div>
+            <h2 class="headline">第一次使用，先复制这段话</h2>
+            <p class="body" style="margin-top:2vh">发给 Codex 或 Claude Code，再把你的材料贴进去。它会先整理任务，不会一上来写正文。</p>
+          </div>
+          <div class="span-7">
+            <pre class="codebox" id="starter">我现在有一篇内容要交付。请先不要写正文，先帮我整理：
+1. 这篇稿真正要完成的沟通任务；
+2. 我已经给你的材料分别能支持什么；
+3. 还缺哪些关键信息或事实核对；
+4. 最适合进入哪个内容工作流；
+5. 下一步是先补材料，还是可以开始写第一版。</pre>
+          </div>
+        </div>
+        <div class="button-row">
+          <button type="button" data-copy="#starter">复制启动句</button>
+          <a class="button" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">打开完整 Skill 包</a>
+          <a class="button" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills" target="_blank" rel="noreferrer">查看 Skills 文件夹</a>
+          <a class="button" href="./飞书文档-月亮AI工作台Skills说明-2026-06-22.md" target="_blank" rel="noreferrer">打开飞书编辑版</a>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>Copy → Add Context → First Run</span>
+        <span>07</span>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">月亮的 AI 工作台 · 公开使用页 · 2026</div>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <nav id="nav" aria-label="幻灯片导航"></nav>
+  <div id="hint">← → 翻页 · 滑动 · B 静态</div>
+
   <script>
-    (function () {
-      const workflowCards = Array.from(document.querySelectorAll("[data-workflow-card]"));
-      const showAllButton = document.querySelector("[data-show-all]");
-      const choiceButtons = Array.from(document.querySelectorAll("[data-choice-target], [data-choice-targets]"));
-      const choiceFeedback = document.querySelector("[data-choice-feedback]");
-      const noResults = document.querySelector("[data-no-results]");
+    const deck = document.querySelector("#deck");
+    const slides = [...document.querySelectorAll(".slide")];
+    const nav = document.querySelector("#nav");
+    let current = 0;
+    let locked = false;
+    let touchStart = 0;
 
-      const workflows = workflowCards.map((card) => {
-        const id = card.id;
-        const text = card.textContent || "";
-        return {
-          id,
-          card,
-          title: card.querySelector("h2, h3")?.textContent || "",
-          text,
-          compactText: text.replace(/\s+/g, "").toLowerCase()
-        };
+    deck.style.width = `${slides.length * 100}vw`;
+
+    slides.forEach((slide, index) => {
+      const dot = document.createElement("button");
+      dot.className = "dot";
+      dot.type = "button";
+      dot.setAttribute("aria-label", `跳到第 ${index + 1} 页`);
+      dot.addEventListener("click", () => go(index));
+      nav.appendChild(dot);
+    });
+
+    function go(index) {
+      if (locked) return;
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      deck.style.transform = `translateX(${-current * 100}vw)`;
+      document.querySelectorAll(".dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === current);
       });
+      locked = true;
+      window.setTimeout(() => locked = false, 520);
+    }
 
-      function setVisibility(ids) {
-        workflows.forEach((item) => {
-          const visible = ids.has(item.id);
-          if (item.card) item.card.hidden = !visible;
-        });
-        document.querySelectorAll("[data-case-category]").forEach((category) => {
-          const cards = Array.from(category.querySelectorAll("[data-workflow-card]"));
-          category.hidden = cards.length > 0 && cards.every((card) => card.hidden);
-        });
-      }
-
-      function clearChoiceState() {
-        choiceButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", "false");
-        });
-      }
-
-      function showAll(isInitial) {
-        setVisibility(new Set(workflows.map((item) => item.id)));
-        clearChoiceState();
-        if (noResults) noResults.hidden = true;
-        if (choiceFeedback) {
-          choiceFeedback.textContent = isInitial
-            ? "选一个最接近的任务。下面会只保留对应工作流。"
-            : "已显示全部工作流。你也可以重新选择一个更接近的场景。";
+    window.addEventListener("keydown", event => {
+      const key = event.key.toLowerCase();
+      if (key === "arrowright" || key === "pagedown" || key === " ") go(current + 1);
+      if (key === "arrowleft" || key === "pageup") go(current - 1);
+      if (key === "b") {
+        document.body.classList.toggle("low-power");
+        if (!document.body.classList.contains("low-power")) {
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(draw);
         }
       }
+    });
 
-      function chooseWorkflow(ids, trigger) {
-        const idList = Array.isArray(ids) ? ids : String(ids || "").split(",");
-        const targetIds = idList.map((id) => id.trim()).filter(Boolean);
-        const matched = workflows.filter((item) => targetIds.includes(item.id));
-        if (!matched.length) return;
+    window.addEventListener("wheel", event => {
+      if (Math.abs(event.deltaY) < 32 && Math.abs(event.deltaX) < 32) return;
+      const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      go(current + (delta > 0 ? 1 : -1));
+    }, { passive: true });
 
-        setVisibility(new Set(matched.map((item) => item.id)));
-        choiceButtons.forEach((button) => {
-          button.setAttribute("aria-pressed", button === trigger ? "true" : "false");
-        });
-        if (noResults) noResults.hidden = true;
-        if (choiceFeedback) {
-          const titles = matched.map((item) => item.title).join("、");
-          choiceFeedback.textContent = `已为你选出：${titles}。可以直接往下看工作流说明。`;
-        }
-      }
+    window.addEventListener("touchstart", event => {
+      touchStart = event.touches[0].clientX;
+    }, { passive: true });
 
-      choiceButtons.forEach((button) => {
-        button.addEventListener("click", () => chooseWorkflow(button.dataset.choiceTargets || button.dataset.choiceTarget, button));
-      });
+    window.addEventListener("touchend", event => {
+      const diff = touchStart - event.changedTouches[0].clientX;
+      if (Math.abs(diff) > 42) go(current + (diff > 0 ? 1 : -1));
+    }, { passive: true });
 
-      if (showAllButton) {
-        showAllButton.addEventListener("click", () => {
-          showAll();
-        });
-      }
-
-      document.querySelectorAll("details pre").forEach((pre, index) => {
-        if (!pre.id) pre.id = `workflow-instruction-${index + 1}`;
-        const workflowCard = pre.closest("[data-workflow-card]");
-        const useNowButton = workflowCard?.querySelector("[data-copy-workflow]");
-        if (useNowButton) {
-          useNowButton.setAttribute("data-clipboard-target", `#${pre.id}`);
-          useNowButton.setAttribute("aria-label", "复制这个工作流说明给 AI 使用");
-        }
-        const copyButton = document.createElement("button");
-        copyButton.className = "copy-prompt";
-        copyButton.type = "button";
-        copyButton.textContent = "复制工作流说明";
-        copyButton.setAttribute("data-clipboard-target", `#${pre.id}`);
-        copyButton.setAttribute("aria-label", "复制这个工作流说明");
-        pre.insertAdjacentElement("beforebegin", copyButton);
-      });
-
-      function getButtonLabel(button) {
-        const label = button.querySelector("[data-button-label]");
-        return label ? label.textContent : button.textContent;
-      }
-
-      function setButtonLabel(button, text) {
-        const label = button.querySelector("[data-button-label]");
-        if (label) {
-          label.textContent = text;
-          return;
-        }
-        button.textContent = text;
-      }
-
-      document.querySelectorAll("[data-copy-workflow]").forEach((button) => {
-        const icon = button.querySelector(".button-icon");
-        if (!icon || button.querySelector("[data-button-label]")) return;
-        const labelText = Array.from(button.childNodes)
-          .filter((node) => node.nodeType === Node.TEXT_NODE)
-          .map((node) => node.textContent)
-          .join("")
-          .trim();
-        Array.from(button.childNodes).forEach((node) => {
-          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) node.remove();
-        });
-        const label = document.createElement("span");
-        label.setAttribute("data-button-label", "");
-        label.textContent = labelText || button.textContent.trim();
-        button.appendChild(label);
-      });
-
-      function revealCopyTarget(button) {
-        const target = document.querySelector(button.getAttribute("data-clipboard-target"));
-        const details = target?.closest("details");
-        if (details) details.open = true;
-        return Boolean(target);
-      }
-
-      function markCopied(button, state) {
-        const original = button.dataset.originalLabel || getButtonLabel(button);
-        button.dataset.originalLabel = original;
-        const label = state === "copied"
-          ? "已复制"
-          : state === "revealed"
-            ? "已展开，请复制"
-            : "请手动复制";
-        setButtonLabel(button, label);
-        window.setTimeout(() => {
-          setButtonLabel(button, original);
-        }, 1600);
-      }
-
-      async function copyWithNative(button) {
-        const target = document.querySelector(button.getAttribute("data-clipboard-target"));
-        if (!target || !navigator.clipboard) {
-          markCopied(button, revealCopyTarget(button) ? "revealed" : "failed");
-          return;
-        }
+    document.querySelectorAll("[data-copy]").forEach(button => {
+      button.addEventListener("click", async () => {
+        const target = document.querySelector(button.dataset.copy);
+        if (!target) return;
+        const text = target.innerText.trim();
         try {
-          await navigator.clipboard.writeText(target.innerText);
-          markCopied(button, "copied");
-        } catch (error) {
-          markCopied(button, revealCopyTarget(button) ? "revealed" : "failed");
+          await navigator.clipboard.writeText(text);
+          const old = button.textContent;
+          button.textContent = "已复制";
+          window.setTimeout(() => button.textContent = old, 1200);
+        } catch {
+          button.textContent = "请手动复制";
         }
-      }
+      });
+    });
 
-      if (window.ClipboardJS) {
-        const clipboard = new ClipboardJS(".copy-prompt, [data-copy-workflow]", {
-          text: (trigger) => {
-            const target = document.querySelector(trigger.getAttribute("data-clipboard-target"));
-            return target ? target.innerText : "";
-          }
-        });
-        clipboard.on("success", (event) => {
-          markCopied(event.trigger, "copied");
-          event.clearSelection();
-        });
-        clipboard.on("error", (event) => copyWithNative(event.trigger));
-      } else {
-        document.querySelectorAll(".copy-prompt, [data-copy-workflow]").forEach((button) => {
-          button.addEventListener("click", () => copyWithNative(button));
-        });
-      }
+    const canvas = document.querySelector("#field");
+    const ctx = canvas.getContext("2d");
+    let raf = 0;
 
-      showAll(true);
-      if (window.lucide) window.lucide.createIcons();
-    })();
+    function resize() {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * ratio;
+      canvas.height = window.innerHeight * ratio;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    function draw(time) {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = "rgba(0,47,167,.13)";
+      ctx.lineWidth = 1;
+      const gap = 32;
+      const offset = (time / 80) % gap;
+      for (let x = -gap + offset; x < w + gap; x += gap) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, h);
+        ctx.stroke();
+      }
+      for (let y = -gap + offset; y < h + gap; y += gap) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+      if (!document.body.classList.contains("low-power")) {
+        raf = requestAnimationFrame(draw);
+      }
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    raf = requestAnimationFrame(draw);
+    go(0);
   </script>
 </body>
 </html>
