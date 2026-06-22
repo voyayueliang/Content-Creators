@@ -1,96 +1,96 @@
 [
   {
     "id": "moon-content-os",
-    "title": "材料很多，先帮我理清怎么写",
+    "title": "我有一堆材料，但不知道怎么写",
     "type": "写稿前准备",
-    "useWhen": "你已经有策划案、会议纪要、录音转写、旧稿或网页链接，但还不知道哪些能写进正文、哪些要核对、文章该怎么开头。",
+    "useWhen": "你已经有策划案、会议纪要、录音转写、旧稿或网页链接，但材料太散。用它先分清哪些能写、哪些要核对、哪些只能做背景。",
     "entry": "index.html#workflow-content-os",
     "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/moon-content-os",
     "localFolder": "product-library/00_moon-content-os"
   },
   {
     "id": "human-ai-collaboration-boundary",
-    "title": "开始前，先告诉 AI 哪些事不能乱写",
+    "title": "开始前，先告诉 AI 哪些不能乱写",
     "type": "和 AI 写作前先说清",
-    "useWhen": "你准备让 AI 帮你写内容，但需要先说清哪些事实不能编、哪些材料不能公开、哪些语气和判断必须由你决定。",
+    "useWhen": "你准备让 AI 帮你写内容，但有些事实不能编，有些材料不能公开，有些语气必须你自己决定。先用它把不能乱写的地方说清。",
     "entry": "index.html#workflow-human-ai",
     "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/human-ai-collaboration-boundary",
     "localFolder": "product-library/09_human-ai-collaboration-boundary"
   },
   {
     "id": "community-event-content-workbench",
-    "title": "活动预告、论坛介绍、合作稿",
+    "title": "我要写活动预告、论坛介绍或合作稿",
     "type": "活动传播",
-    "useWhen": "你要写一篇会前预告或合作介绍，手里有嘉宾、议程、时间地点、报名链接和合作方要求，需要整理成能发公众号、也能给编辑审核的稿子。",
+    "useWhen": "你手里有嘉宾、议程、时间地点、报名链接和合作方要求。用它先整理：这场活动适合谁来，为什么值得来，怎么报名。",
     "entry": "index.html#workflow-event",
     "github": "https://github.com/voyayueliang/datawhale-content-producer-agent-skill",
     "localFolder": "product-library/01_community-event-content-workbench"
   },
   {
     "id": "event-recap-to-wechat-md",
-    "title": "活动结束后，写一篇回顾",
+    "title": "活动结束了，我要写一篇回顾",
     "type": "会后报道",
-    "useWhen": "活动结束了，你手里有照片、现场记录、复盘口述、群聊反馈或其他报道，想写清楚这场活动发生了什么、留下了什么。",
+    "useWhen": "你手里有照片、现场记录、复盘口述、群聊反馈或其他报道。用它先整理：发生了什么、谁参与了、留下了什么。",
     "entry": "index.html#workflow-recap",
     "github": "https://github.com/voyayueliang/event-recap-to-wechat-md-skill",
     "localFolder": "product-library/02_event-recap-to-wechat-md"
   },
   {
     "id": "recruitment-article-workflow",
-    "title": "招人、招志愿者、招报名者",
+    "title": "我要招人、招志愿者或招报名者",
     "type": "招募和报名",
-    "useWhen": "你要招实习生、志愿者、社群成员、活动报名者或研究对象，需要写清楚适合谁、为什么值得来、有什么门槛、下一步怎么报名。",
+    "useWhen": "你要招实习生、志愿者、社群成员、活动报名者或研究对象。用它先写清楚：适合谁、为什么值得来、有什么门槛、怎么报名。",
     "entry": "index.html#workflow-recruitment",
     "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/recruitment-article-workflow",
     "localFolder": "product-library/10_recruitment-article-workflow"
   },
   {
     "id": "dialogue-wechat-article-workflow",
-    "title": "把一场对谈整理成文章",
+    "title": "我想把一场对谈整理成文章",
     "type": "访谈和直播整理",
-    "useWhen": "你有一场对谈、直播、圆桌或访谈逐字稿，聊天内容很多，需要从里面找出主线、观点、故事和适合发布的文章结构。",
+    "useWhen": "你有一场对谈、直播、圆桌或访谈逐字稿。用它先从聊天里找出主线、观点、故事和适合发布的文章结构。",
     "entry": "index.html#workflow-audio",
     "localFolder": "product-library/03_dialogue-wechat-article-workflow"
   },
   {
     "id": "audio-to-wechat-article",
-    "title": "把录音、播客或视频整理成公众号",
+    "title": "我想把录音、播客或视频整理成公众号",
     "type": "音视频转文章",
-    "useWhen": "你有播客、录音、视频回放、直播回放或圆桌转写，想整理成一篇有主线、有现场感、不会像 AI 总结的公众号文章。",
+    "useWhen": "你有播客、录音、视频回放、直播回放或圆桌转写。用它先找主线，再整理成有现场感的公众号文章。",
     "entry": "index.html#workflow-audio",
     "localFolder": "product-library/05_audio-to-wechat-article"
   },
   {
     "id": "qa-gates",
-    "title": "文章发布前，最后检查一遍",
+    "title": "文章快发了，最后帮我检查一遍",
     "type": "发布前检查",
-    "useWhen": "文章快发了，或者要发给编辑、合作方审核。你担心时间地点、嘉宾身份、合作口径、引用授权、语气或 AI 味有问题，需要最后一轮检查。",
+    "useWhen": "文章快发了，或者要发给编辑、合作方审核。用它最后查一遍：时间地点、嘉宾身份、合作口径、引用授权、语气和 AI 味。",
     "entry": "index.html#workflow-voice",
     "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian",
     "localFolder": "product-library/04_qa-gates"
   },
   {
     "id": "spoken-to-html-deck",
-    "title": "把口述想法整理成演讲 PPT",
+    "title": "我想把口述想法整理成演讲 PPT",
     "type": "演讲准备",
-    "useWhen": "你准备分享或演讲，已经录了一段自己的想法，或者有飞书文档、图片素材，需要整理出演讲主线、页码安排和网页 PPT 结构。",
+    "useWhen": "你准备分享或演讲，已经录了一段自己的想法，或者有飞书文档、图片素材。用它先排出演讲顺序和每页要讲什么。",
     "entry": "index.html#workflow-deck",
     "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/spoken-to-html-deck",
     "localFolder": "product-library/07_spoken-to-html-deck"
   },
   {
     "id": "public-profile-lab",
-    "title": "用公开资料写人物稿",
+    "title": "我想用公开资料写一篇人物稿",
     "type": "人物稿",
-    "useWhen": "你要基于公开播客、访谈、演讲、文章或社媒材料写一个人物，希望写出有事实依据、有人物判断的稿子。",
+    "useWhen": "你要基于公开播客、访谈、演讲、文章或社媒材料写一个人物。用它先整理事实、经历、关键表达和人物线索。",
     "entry": "index.html#workflow-profile",
     "localFolder": "product-library/06_public-profile-lab"
   },
   {
     "id": "creator-work-system-builder",
-    "title": "整理作品集、个人介绍或简历",
+    "title": "我想整理作品集、个人介绍或简历",
     "type": "作品和个人介绍",
-    "useWhen": "你要整理简历、作品集、个人网站或公开介绍，手里有经历、项目、文章、截图和证明材料，需要让外部读者快速看懂你做过什么。",
+    "useWhen": "你手里有经历、项目、文章、截图和证明材料。用它先帮你整理出别人一眼能看懂的作品结构。",
     "entry": "index.html#workflow-creator-system",
     "github": "https://github.com/voyayueliang/creator-work-system-builder",
     "localFolder": "product-library/08_creator-work-system-builder"
