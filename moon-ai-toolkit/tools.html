@@ -1782,7 +1782,7 @@
           <h3>你可以带来什么</h3>
           <ol>
             <li><b>01</b><span>材料：策划案、录音转写、会议纪要、旧稿、网页链接、图片说明。</span></li>
-            <li><b>02</b><span>任务：公众号、活动稿、人物稿、演讲 PPT、作品集案例、商业合作稿。</span></li>
+            <li><b>02</b><span>任务：公众号、活动稿、招募报名、人物稿、演讲 PPT、作品集案例、商业合作稿。</span></li>
             <li><b>03</b><span>边界：哪些必须保留，哪些不能公开，哪些事实要先确认。</span></li>
           </ol>
         </section>
@@ -1848,6 +1848,10 @@
           <button class="choice-button" type="button" data-choice-targets="workflow-voice" aria-pressed="false">
             <strong>我有初稿，要修改校对</strong>
             <span>检查事实、AI 味、空泛表达、公开边界和不像自己的地方。</span>
+          </button>
+          <button class="choice-button" type="button" data-choice-targets="workflow-recruitment" aria-pressed="false">
+            <strong>我要发招募或报名文章</strong>
+            <span>把目标人群、门槛、收益、承诺边界和行动路径讲清楚。</span>
           </button>
           <button class="choice-button" type="button" data-choice-targets="workflow-event,workflow-recap,workflow-audio" aria-pressed="false">
             <strong>我有录音或活动资料，要整理成文章</strong>
@@ -1993,9 +1997,9 @@
         <div class="category-head">
           <div>
             <span class="category-label">02 / Community Events</span>
-            <h3>活动传播：把现场和合作变成可审核稿件</h3>
+            <h3>活动传播：把现场、招募和合作变成可审核稿件</h3>
           </div>
-          <p>如果你要写活动预告、分论坛介绍、会后报道或合作稿，先用这里。它会先帮你把活动材料、合作口径、读者价值和待确认信息分开。</p>
+          <p>如果你要写活动预告、分论坛介绍、招募报名、会后报道或合作稿，先用这里。它会先帮你把活动材料、合作口径、读者价值、行动路径和待确认信息分开。</p>
         </div>
         <div class="grid">
           <article class="card" id="workflow-event" data-workflow-card>
@@ -2040,6 +2044,57 @@
 5. 成稿前过事实校对门和去 AI 味门。</pre>
               </details>
               <a class="button secondary" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">打开完整工作流包</a>
+            </div>
+          </article>
+
+          <article class="card" id="workflow-recruitment" data-workflow-card>
+            <span class="tag">可试跑 / 招募 / 报名召集</span>
+            <h3>招募文章工作流</h3>
+            <p class="summary">把岗位、社群、研究对象、志愿者、实习生或活动报名材料，整理成目标人群清楚、门槛清楚、行动路径清楚的招募文章。</p>
+            <div class="info">
+              <section class="line">
+                <strong>什么时候用</strong>
+                <p>你要写招聘、实习生招募、志愿者招募、研究/访谈对象招募、社群招募、活动报名或项目加入说明。</p>
+              </section>
+              <section class="line">
+                <strong>你要准备什么</strong>
+                <p>招募对象、发布主体、为什么现在招、对方要做什么、会得到什么、时间投入、筛选方式、报名方式和不能过度承诺的内容。</p>
+              </section>
+              <section class="line">
+                <strong>第一轮会得到什么</strong>
+                <p>你会先拿到一张招募简报：适合谁、为什么值得来、你提供什么、你期待对方做什么、哪些条件还要确认。</p>
+              </section>
+              <section class="line">
+                <strong>你需要判断什么</strong>
+                <p>你要确认薪资、名额、截止时间、筛选规则、隐私授权、研究同意和贡献边界，不能让 AI 替你编承诺。</p>
+              </section>
+            </div>
+            <div class="actions">
+              <button class="button use-now" type="button" data-copy-workflow="workflow-recruitment"><span class="button-icon" data-lucide="copy"></span>复制这套使用说明</button>
+              <details>
+                <summary>查看完整工作流说明</summary>
+                <pre>打开招募文章工作流。
+
+招募类型：[岗位招聘 / 实习生 / 志愿者 / 社群成员 / 研究对象 / 访谈对象 / 活动报名 / 项目参与者]
+发布主体：[组织、社区、个人或项目名称]
+目标人群：[你想找到什么样的人]
+为什么现在招：[项目背景、阶段需求、活动目标或研究问题]
+对方要做什么：[具体任务、参与方式、产出或时间投入]
+对方会得到什么：[薪资、学习、资源、作品、关系、曝光、合作机会或其他价值]
+门槛和不适合人群：[必须具备什么 / 哪些人暂时不适合]
+报名或申请方式：[表单、邮箱、微信、截止时间、筛选流程]
+必须确认或不能公开的信息：[薪资、名额、隐私、研究同意、未成年人、内部信息、未确认承诺]
+
+请先不要直接写正文，先输出一版招募简报：
+1. 这次招募真正要完成什么任务。
+2. 适合谁，谁不适合。
+3. 读者为什么会关心。
+4. 我们提供什么，对方需要投入什么。
+5. 缺失或需要确认的信息。
+6. 建议文章结构和 CTA。
+7. 下一步是补信息、写初稿、先做表单，还是先确认边界。</pre>
+              </details>
+              <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/recruitment-article-workflow" target="_blank" rel="noreferrer">打开完整工作流包</a>
             </div>
           </article>
 

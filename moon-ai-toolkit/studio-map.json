@@ -53,6 +53,7 @@
     "human-ai-collaboration-boundary",
     "community-event-content-workbench",
     "event-recap-to-wechat-md",
+    "recruitment-article-workflow",
     "qa-gates",
     "audio-to-wechat-article",
     "public-profile-lab",
@@ -63,6 +64,7 @@
     "找 2 个外部创作者试跑人机协作边界卡",
     "用真实演讲完整验证口述转 HTML 演讲 PPT",
     "用 3 个音视频素材验证播客音视频转公众号文章 Skill",
+    "用 1 篇真实招募稿验证招募文章工作流",
     "整理去 AI 味与事实校对门的样本库",
     "找 3 个真实用户试点 Moon Content OS Lite"
   ]

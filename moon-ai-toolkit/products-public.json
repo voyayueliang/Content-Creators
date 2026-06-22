@@ -36,6 +36,15 @@
     "localFolder": "product-library/02_event-recap-to-wechat-md"
   },
   {
+    "id": "recruitment-article-workflow",
+    "title": "招募文章工作流",
+    "type": "招募 / 招聘 / 报名召集",
+    "useWhen": "需要把岗位、社群、研究对象、志愿者、实习生、活动报名或项目加入材料，整理成目标人群清楚、门槛清楚、行动路径清楚的招募文章",
+    "entry": "index.html#workflow-recruitment",
+    "github": "https://github.com/voyayueliang/Content-Creators/tree/main/skills/recruitment-article-workflow",
+    "localFolder": "product-library/10_recruitment-article-workflow"
+  },
+  {
     "id": "dialogue-wechat-article-workflow",
     "title": "通用对谈转公众号工作流",
     "type": "访谈 / 播客 / 直播内容整理",

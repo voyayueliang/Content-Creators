@@ -1,0 +1,4 @@
+interface:
+  display_name: "招募文章工作流"
+  short_description: "把岗位、社群、研究或活动招募材料整理成可发布文章。"
+  default_prompt: "Use $recruitment-article-workflow to turn these recruitment materials into a reader-friendly article: [paste role, audience, requirements, benefits, process, and boundaries]."

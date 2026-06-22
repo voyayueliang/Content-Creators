@@ -18,6 +18,7 @@ https://voyayueliang.github.io/Content-Creators/
 | 有一版 AI 初稿，要改到能发 | [`skills/creator-voice-guardian`](skills/creator-voice-guardian) | 已验证，适合发布前 final gate |
 | 有播客、访谈、直播或视频回放 | [`skills/audio-to-wechat-article`](skills/audio-to-wechat-article) | 可试跑，适合先用一条真实素材验证 |
 | 有对谈或圆桌逐字稿 | [`skills/dialogue-wechat-article-workflow`](skills/dialogue-wechat-article-workflow) | 已封装，适合保留对话现场感 |
+| 要写招募、招聘、报名或加入类文章 | [`skills/recruitment-article-workflow`](skills/recruitment-article-workflow) | 可试跑，适合先把人群、门槛、收益和行动路径讲清楚 |
 | 要写公开人物或公司人物深度报道 | [`skills/public-profile-deep-report-workflow`](skills/public-profile-deep-report-workflow) | 已封装，适合公开资料研究和事实校对 |
 | 要把口述思路变成演讲 PPT | [`skills/spoken-to-html-deck`](skills/spoken-to-html-deck) | 试点中，适合先用于个人演讲准备 |
 | 想先建立人机协作边界 | [`skills/human-ai-collaboration-boundary`](skills/human-ai-collaboration-boundary) | 方法层，适合所有内容工作前置检查 |
@@ -68,6 +69,7 @@ skills/
   human-ai-collaboration-boundary/
   moon-content-os/
   public-profile-deep-report-workflow/
+  recruitment-article-workflow/
   spoken-to-html-deck/
 
 moon-ai-toolkit/
