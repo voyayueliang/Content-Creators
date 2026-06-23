@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>流浪月亮计划内容创作 Skills 大开箱海报</title>
+  <style>
+    :root {
+      --ink: #07100a;
+      --green: #163f20;
+      --fresh: #73f176;
+      --mint: #e8fddd;
+      --paper: #fffefa;
+      --line: rgba(22, 63, 32, .26);
+      --muted: #4b5149;
+      --serif: "Noto Serif SC", "Songti SC", "STSong", Georgia, serif;
+      --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 1080px;
+      height: 1920px;
+      margin: 0;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      letter-spacing: 0;
+    }
+
+    body {
+      background:
+        linear-gradient(rgba(255, 254, 250, .96), rgba(255, 254, 250, .96)),
+        repeating-linear-gradient(0deg, rgba(22, 63, 32, .035) 0 1px, transparent 1px 8px);
+    }
+
+    .poster {
+      position: relative;
+      width: 1080px;
+      height: 1920px;
+      padding: 64px 70px 58px;
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+    }
+
+    .poster::before {
+      content: "";
+      position: absolute;
+      inset: 28px;
+      border: 2px solid var(--green);
+      pointer-events: none;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 36px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      border: 2px solid var(--ink);
+    }
+
+    .audience {
+      padding: 10px 14px;
+      border: 2px solid var(--green);
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.18fr .82fr;
+      gap: 36px;
+      align-items: end;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--green);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 82px;
+      line-height: 1.08;
+      font-weight: 700;
+    }
+
+    .lead {
+      margin: 24px 0 0;
+      max-width: 610px;
+      color: var(--muted);
+      font-size: 28px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .principle {
+      padding: 26px;
+      background: var(--mint);
+      border: 2px solid var(--green);
+      font-size: 26px;
+      line-height: 1.56;
+      font-weight: 700;
+    }
+
+    .principle b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font-family: var(--serif);
+      font-size: 36px;
+      line-height: 1.2;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 50px;
+      line-height: 1.15;
+    }
+
+    .section-head p {
+      width: 430px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      min-height: 210px;
+      padding: 18px;
+      border: 2px solid var(--green);
+      background: rgba(255, 254, 250, .94);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card:nth-child(odd) {
+      background: var(--mint);
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 10px;
+      padding: 4px 8px;
+      border: 1.5px solid var(--green);
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 31px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.48;
+      font-weight: 700;
+    }
+
+    .steps {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      padding: 18px;
+      border: 2px solid var(--green);
+      background: rgba(255, 254, 250, .95);
+      min-height: 148px;
+    }
+
+    .num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 10px;
+      border: 2px solid var(--green);
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1.45;
+      font-weight: 800;
+    }
+
+    .footer {
+      margin-top: auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 2px solid var(--green);
+    }
+
+    .footer strong {
+      display: block;
+      font-size: 25px;
+      line-height: 1.4;
+    }
+
+    .footer span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .stamp {
+      padding: 12px 16px;
+      border: 2px solid var(--green);
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: var(--mint);
+    }
+  </style>
+</head>
+<body>
+  <main class="poster">
+    <header class="top">
+      <div class="brand">
+        <img src="assets/04-moon-gate-avatar-mark.svg" alt="">
+        Moon AI Workbench
+      </div>
+      <div class="audience">Content Creators / Community Operators</div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>流浪月亮计划<br>内容创作 Skills<br>大开箱</h1>
+        <p class="lead">一张图看懂：把材料交给 AI，也把你的判断、风格和边界沉淀下来。</p>
+      </div>
+      <div class="principle">
+        <b>Humanity in the loop</b>
+        真正的护城河，是个人表达、语言风格、审美和判断。AI 负责整理、提问、起草和检查；人保留声音、边界和最终发布决定。
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>按功能拿走</h2>
+        <p>不用先理解 Skill。先看功能，打开网页复制启动句，再把材料放进去。</p>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="内容创作功能">
+      <article class="card">
+        <div>
+          <span class="tag">Audio</span>
+          <h3>播客 / 语音转文字</h3>
+          <p>录音、口播、主讲视频，转文字稿、摘要或公众号文章。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div>
+          <span class="tag">Dialogue</span>
+          <h3>访谈 / 圆桌整理</h3>
+          <p>多人对话、连麦、访谈，保留发言人和来回讨论。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div>
+          <span class="tag">Event</span>
+          <h3>活动材料转报道</h3>
+          <p>策划案、议程、纪要、现场复盘，变成预热稿或会后稿。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div>
+          <span class="tag">Recruit</span>
+          <h3>招募 / 报名文案</h3>
+          <p>社群招募、活动报名、项目加入说明，写清楚谁适合来。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div>
+          <span class="tag">Check</span>
+          <h3>AI 初稿去味校对</h3>
+          <p>检查 AI 味、事实风险、合作口径和发布边界。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div>
+          <span class="tag">Slides</span>
+          <h3>口述思路转 PPT</h3>
+          <p>录音、飞书大纲、图片素材，整理成 HTML 演示页。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div>
+          <span class="tag">Profile</span>
+          <h3>人物深度报道</h3>
+          <p>公开资料、访谈、作品和社媒，整理人物报道角度。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div>
+          <span class="tag">Portfolio</span>
+          <h3>简历 / 作品集整理</h3>
+          <p>经历、项目、作品和申请目标，整理成个人作品系统。</p>
+        </div>
+      </article>
+      <article class="card">
+        <div>
+          <span class="tag">DevRel</span>
+          <h3>社区合作稿校准</h3>
+          <p>给社区、开发者生态、商业合作稿做事实和口径检查。</p>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>怎么用</h2>
+        <p>第一次不用装工具。先打开网页，复制最接近自己任务的启动句。</p>
+      </div>
+    </section>
+
+    <section class="steps" aria-label="三步使用">
+      <div class="step">
+        <span class="num">01</span>
+        <p>找到最像你当前任务的功能。</p>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <p>复制启动句，把材料贴给 AI。</p>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <p>先要方案，再进入写稿和校对。</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>
+        <strong>完整网页：voyayueliang.github.io/Content-Creators/share.html</strong>
+        <span>流浪月亮计划 / 月亮的 AI 工作台</span>
+      </div>
+      <div class="stamp">Open The Skills</div>
+    </footer>
+  </main>
+</body>
+</html>
