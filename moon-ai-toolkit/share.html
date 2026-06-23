@@ -423,7 +423,7 @@
         <p class="eyebrow">For Content Creators / Community Operators</p>
         <h1>流浪月亮计划内容创作Skills大开箱</h1>
         <p class="lead">
-          这是月亮整理出来的一组内容创作 Skills。它们适合处理录音、播客、访谈、圆桌、活动报道和社区合作稿：先把材料、任务、读者和公开边界理清楚，再进入写稿。
+          这里按功能拆开：播客转文字稿、语音转文章、访谈圆桌整理、活动报道、招募报名稿、AI 初稿校对、口述转演讲 PPT、个人作品集整理。你不用先懂什么是 Skill，只要找到自己现在要做的那件事。
         </p>
         <div class="principle">
           AI 是第二工作台。它可以帮你整理、提问、起草和检查；但角度判断、声音、公开边界和最终发布决定，仍然要留在人手里。
@@ -439,7 +439,7 @@
       <div class="wrap">
         <div class="section-title">
           <h2>朋友第一次用，可以这样开始</h2>
-          <p>不需要先理解所有工作流。先把手上的材料放进来，让 AI 给你一张“怎么写这篇稿”的路线图。</p>
+          <p>不需要先理解所有工作流。先告诉 AI：你要做什么、手上有什么材料、最终想得到什么。</p>
         </div>
 
         <div class="steps">
@@ -450,26 +450,30 @@
           </article>
           <article class="step">
             <span class="num">02</span>
-            <h3>先让 AI 判断路线</h3>
-            <p>先要材料地图、缺口和边界，不要一上来写正文。这样更不容易写成流水账或通用稿。</p>
+            <h3>先让 AI 匹配功能</h3>
+            <p>先判断是转文字、写文章、做校对、做活动稿，还是整理作品集。不要一上来写正文。</p>
           </article>
           <article class="step">
             <span class="num">03</span>
-            <h3>再进入成稿与校对</h3>
-            <p>材料够，就写第一版；材料不够，就先补 3-5 个关键问题。发布前再过事实和去 AI 味两道门。</p>
+            <h3>再进入具体产出</h3>
+            <p>材料够，就进入第一版；材料不够，就先补关键问题。发布前再过事实和去 AI 味两道门。</p>
           </article>
         </div>
 
         <div class="prompt" style="margin-top:14px;">
           <pre id="routerPrompt">请作为我的内容工作流分诊台。我的材料是：[粘贴材料、链接、文件路径或简单说明]。
 
-请先判断这次应该走哪条工作流：
-1. 单人主讲 / 播客 / 录音 / 口播 -> 立论型公众号文章；
-2. 对谈 / 访谈 / 圆桌 / 连麦 -> 保留往来的对谈稿或摘要；
-3. 活动预热 / 活动复盘 / 会后报道 -> 活动稿或活动资产包；
-4. 材料太散或边界不清 -> 先做素材卡和补问清单。
+请先判断这次应该使用哪个功能：
+1. 播客 / 语音 / 录音 -> 转成文字稿、公众号文章或内容摘要；
+2. 访谈 / 圆桌 / 连麦 -> 整理成对谈稿、访谈稿或精华摘要；
+3. 活动策划案 / 会议纪要 / 现场复盘 -> 写活动预热、会后报道或传播包；
+4. 招募 / 报名 / 加入类内容 -> 写招募文章或报名文案；
+5. AI 初稿 / 旧稿 -> 去 AI 味、事实校对和发布前检查；
+6. 口述思路 / 飞书大纲 -> 生成演讲 PPT 或 HTML 演示页；
+7. 公开资料 / 人物信息 -> 写人物深度报道；
+8. 简历 / 经历 / 作品 -> 整理个人作品集或申请材料。
 
-先不要直接写正文。请先输出：推荐工作流、为什么、我还需要准备什么、第一轮会得到什么、下一步怎么推进。</pre>
+先不要直接写正文。请先输出：推荐功能、为什么、我还需要准备什么、第一轮会得到什么、下一步怎么推进。</pre>
         </div>
         <div class="actions" style="margin-top:10px;">
           <button class="copy" type="button" data-copy="routerPrompt">复制分诊启动句</button>
@@ -481,21 +485,21 @@
     <section id="flows">
       <div class="wrap">
         <div class="section-title">
-          <h2>按你现在的任务选择</h2>
-          <p>真正的入口通常不是“我要搭一个工作台”，而是“我现在有一篇稿要交”。下面每条都从这个场景出发。</p>
+          <h2>按功能选择</h2>
+          <p>你可以把它当成一组内容创作小工具。先找到最像你当前需求的功能，再复制启动句。</p>
         </div>
 
         <div class="flow-list">
           <article class="flow">
             <div>
-              <span class="flow-tag">Solo Source</span>
-              <h3>一段单人录音、播客或口播，想写成一篇文章</h3>
-              <p>适合从一个人的表达里提炼中心论点，而不是按时间顺序总结。</p>
+              <span class="flow-tag">Audio</span>
+              <h3>播客转文字稿 / 语音转文章</h3>
+              <p>适合处理单人播客、录音、口播笔记、主讲式视频。可以先转成内容摘要、文字稿结构，再改成公众号文章。</p>
             </div>
             <div class="flow-main">
               <div class="prompt"><pre id="audioPrompt">请用 audio-to-wechat-article 的方式处理这份材料。
 
-这是单人主讲 / 播客 / 录音 / 口播笔记。请先判断它是否值得写成公众号长文，提炼一个中心论点、可用素材、公开边界和需要补充的问题。
+这是单人主讲 / 播客 / 录音 / 口播笔记。请先判断它适合转成文字稿、内容摘要、公众号文章还是素材卡，并提炼中心论点、可用素材、公开边界和需要补充的问题。
 
 先不要直接写正文。</pre></div>
               <div class="actions">
@@ -508,8 +512,8 @@
           <article class="flow">
             <div>
               <span class="flow-tag">Dialogue</span>
-              <h3>一场访谈、连麦或圆桌，价值在来回讨论本身</h3>
-              <p>适合保留发言人、问题、追问和观点差异，不要硬改成一个人的观点文。</p>
+              <h3>访谈 / 圆桌 / 连麦转对谈稿</h3>
+              <p>适合把多人对话整理成对谈稿、访谈摘要或精华问答，保留发言人和来回讨论。</p>
             </div>
             <div class="flow-main">
               <div class="prompt"><pre id="dialoguePrompt">请用 dialogue-wechat-article-workflow 的方式处理这份材料。
@@ -527,8 +531,8 @@
           <article class="flow">
             <div>
               <span class="flow-tag">Event</span>
-              <h3>一场活动要预热、复盘，或写成会后报道</h3>
-              <p>适合有活动事实、议程、嘉宾、照片、外部报道、合作方口径和发布边界的情况。</p>
+              <h3>活动材料转公众号报道</h3>
+              <p>适合把活动策划案、议程、会议纪要、现场照片、复盘材料整理成预热稿、会后报道或传播包。</p>
             </div>
             <div class="flow-main">
               <div class="prompt"><pre id="eventPrompt">请用 event-recap-to-wechat-md 的方式处理这场活动材料。
@@ -546,8 +550,8 @@
           <article class="flow">
             <div>
               <span class="flow-tag">Community / DevRel</span>
-              <h3>社区、生态伙伴、商业合作稿，不能出事实错误</h3>
-              <p>适合 Datawhale 这类社区内容交付，也适合活动型组织、开发者生态和合作方稿件。</p>
+              <h3>社区合作稿 / 商业合作稿校准</h3>
+              <p>适合社区、开发者生态、活动型组织和合作方稿件，重点是事实准确、口径清楚、边界安全。</p>
             </div>
             <div class="flow-main">
               <div class="prompt"><pre id="producerPrompt">请用 Datawhale 内容制作人 Agent 的方式处理这次内容交付。
@@ -558,6 +562,105 @@
               <div class="actions">
                 <button class="copy" type="button" data-copy="producerPrompt">复制启动句</button>
                 <a class="repo" href="https://github.com/voyayueliang/datawhale-content-producer-agent-skill" target="_blank" rel="noreferrer">完整 Skill</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="flow">
+            <div>
+              <span class="flow-tag">Draft Check</span>
+              <h3>AI 初稿去味 / 发布前校对</h3>
+              <p>适合已经有一版稿，但觉得太像 AI、太顺、太空，或者担心事实、表达和公开边界有问题。</p>
+            </div>
+            <div class="flow-main">
+              <div class="prompt"><pre id="voicePrompt">请用 creator-voice-guardian 的方式检查这篇稿。
+
+请帮我做两道门：
+1. 去 AI 味与声音守门：找出过度总结、空泛判断、硬凑转折、不像人的表达；
+2. 信息校对与发布边界：检查事实、来源、称呼、隐私、合作方口径和需要确认的地方。
+
+请先给我“必须修改 / 建议修改 / 可以保留”的清单，再给一版修改稿。</pre></div>
+              <div class="actions">
+                <button class="copy" type="button" data-copy="voicePrompt">复制启动句</button>
+                <a class="repo" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">完整 Skill</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="flow">
+            <div>
+              <span class="flow-tag">Recruitment</span>
+              <h3>招募 / 报名 / 加入类文章</h3>
+              <p>适合写社群招募、活动报名、实习生招募、项目加入说明，重点是讲清楚谁适合来、来做什么、得到什么。</p>
+            </div>
+            <div class="flow-main">
+              <div class="prompt"><pre id="recruitmentPrompt">请用 recruitment-article-workflow 的方式帮我写这篇招募 / 报名 / 加入类文章。
+
+请先整理：目标人群、加入门槛、参与方式、能获得什么、不能承诺什么、行动路径和发布前需要确认的信息。
+
+先不要直接写正文，先给我一张招募文章方案。</pre></div>
+              <div class="actions">
+                <button class="copy" type="button" data-copy="recruitmentPrompt">复制启动句</button>
+                <a class="repo" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/recruitment-article-workflow" target="_blank" rel="noreferrer">完整 Skill</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="flow">
+            <div>
+              <span class="flow-tag">Slides</span>
+              <h3>口述思路转演讲 PPT</h3>
+              <p>适合把一段录音、口述大纲、飞书文档或演讲思路整理成 HTML 演示页和讲稿结构。</p>
+            </div>
+            <div class="flow-main">
+              <div class="prompt"><pre id="slidesPrompt">请用 spoken-to-html-deck 的方式处理这份演讲材料。
+
+我的输入是：口述思路 / 飞书大纲 / 图片素材 / 旧 PPT / AI 对话记录。
+请先整理演讲主线、听众是谁、每一页要讲什么、需要哪些图片或案例，再生成适合演讲的 HTML PPT 结构。
+
+先不要做成花哨页面，先确认内容结构。</pre></div>
+              <div class="actions">
+                <button class="copy" type="button" data-copy="slidesPrompt">复制启动句</button>
+                <a class="repo" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/spoken-to-html-deck" target="_blank" rel="noreferrer">完整 Skill</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="flow">
+            <div>
+              <span class="flow-tag">Profile</span>
+              <h3>公开资料转人物深度报道</h3>
+              <p>适合根据公开资料、访谈、作品、社媒和历史文章，整理一个人物、创作者或公众项目的深度报道。</p>
+            </div>
+            <div class="flow-main">
+              <div class="prompt"><pre id="profilePrompt">请用 public-profile-deep-report-workflow 的方式处理这个人物 / 项目材料。
+
+请先整理公开资料来源、人物时间线、核心作品、关键判断、可引用证据、事实风险和需要进一步确认的问题。
+
+先不要直接写成报道，先给我资料地图和报道角度。</pre></div>
+              <div class="actions">
+                <button class="copy" type="button" data-copy="profilePrompt">复制启动句</button>
+                <a class="repo" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/public-profile-deep-report-workflow" target="_blank" rel="noreferrer">完整 Skill</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="flow">
+            <div>
+              <span class="flow-tag">Portfolio</span>
+              <h3>简历 / 作品集 / 个人介绍整理</h3>
+              <p>适合把经历、项目、作品、申请目标和个人优势整理成简历、作品集页面、个人主页或合作介绍。</p>
+            </div>
+            <div class="flow-main">
+              <div class="prompt"><pre id="portfolioPrompt">请用 creator-work-system-builder 的方式帮我整理个人作品系统。
+
+我的材料包括：经历、项目、作品、申请目标、合作方向、旧简历或个人介绍。
+请先从外部读者视角整理：我是谁、我能解决什么问题、有哪些证据、适合放进作品集的案例、还缺什么材料。
+
+先不要直接写简历，先给我作品系统地图。</pre></div>
+              <div class="actions">
+                <button class="copy" type="button" data-copy="portfolioPrompt">复制启动句</button>
+                <a class="repo" href="https://github.com/voyayueliang/creator-work-system-builder" target="_blank" rel="noreferrer">完整 Skill</a>
               </div>
             </div>
           </article>
@@ -612,7 +715,7 @@
       <div class="wrap">
         <div class="closing-inner">
           <p>
-            你可以先把这页发给朋友。对方不需要懂“工作台”这个概念，只要知道：有材料、有任务、有边界，就可以先让 AI 帮忙整理出一张写稿路线图。
+            你可以先把这页发给朋友。对方不需要懂“工作台”这个概念，只要找到自己要做的功能，把材料放进去，让 AI 先整理出一张可执行的路线图。
           </p>
         </div>
       </div>
