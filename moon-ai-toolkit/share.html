@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>流浪月亮计划内容创作 Skills 大开箱</title>
-  <meta name="description" content="一套给内容创作者、社区运营者和活动组织者使用的 AI 写作工作流：先整理材料、判断边界，再进入写稿。">
+  <meta name="description" content="给内容创作者使用的问题入口式 AI 工作流：去 AI 味、活动回顾、事件深挖、播客转文章、访谈整理和发布前校对。">
   <link rel="icon" href="assets/04-moon-gate-avatar-mark.svg" type="image/svg+xml">
   <style>
     :root {
@@ -457,6 +457,77 @@
       font-weight: 900;
     }
 
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .problem-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 318px;
+      padding: 20px;
+      border: 2px solid var(--green);
+      background: rgba(255, 254, 250, .96);
+      min-width: 0;
+    }
+
+    .problem-card.featured {
+      background: var(--mint);
+    }
+
+    .problem-label {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 12px;
+      padding: 4px 8px;
+      border: 1px solid var(--green);
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .problem-card h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.18;
+    }
+
+    .problem-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.62;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    .problem-card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: #28342a;
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .problem-card li + li {
+      margin-top: 4px;
+    }
+
+    .problem-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
     .tool-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -550,6 +621,7 @@
       .steps,
       .notes,
       .poster-intro,
+      .problem-grid,
       .tool-grid {
         grid-template-columns: 1fr;
       }
@@ -572,7 +644,8 @@
         padding: 16px;
       }
 
-      .tool-card {
+      .tool-card,
+      .problem-card {
         min-height: auto;
       }
 
@@ -580,6 +653,7 @@
       .lead,
       .poster-panel,
       .tool-card,
+      .problem-card,
       .section-title,
       .use-line,
       .closing-inner {
@@ -598,9 +672,9 @@
         Moon AI Workbench
       </a>
       <nav class="nav" aria-label="页面导航">
-        <a href="#tools">功能海报</a>
-        <a href="#how">怎么用</a>
-        <a href="#install">完整 Skill</a>
+        <a href="#start">先选问题</a>
+        <a href="#router">总启动句</a>
+        <a href="#tools">完整工具箱</a>
       </nav>
     </div>
   </header>
@@ -608,15 +682,15 @@
   <main>
     <section class="hero">
       <div class="wrap">
-        <p class="eyebrow">For Content Creators / Community Operators</p>
-        <h1><span class="title-row"><span>流浪月亮计划</span><span>内容创作</span></span><span class="title-tail">Skills 大开箱</span></h1>
+        <p class="eyebrow">流浪月亮计划内容创作 Skills 大开箱</p>
+        <h1><span class="title-row"><span>你现在想解决</span><span>什么内容问题？</span></span></h1>
         <p class="lead">
-          这不是让 AI 代替你写，而是把内容创作者的判断、语言风格、审美和公开边界放进工作流里。你用得越多，AI 越能理解你的风格、原则和协作边界。
+          不用先研究每个 Skill 是什么。你只要说清楚：手上有什么材料，想得到什么结果，哪些内容不能乱写。AI 先帮你分诊，再把材料整理成稿件方案。
         </p>
         <div class="poster-intro">
           <div class="poster-panel">
-            <h2>你可能正需要</h2>
-            <p>播客转文字、录音转文章、访谈整理、活动报道、招募文案、AI 初稿校对、口述转 PPT、人物报道、作品集整理。</p>
+            <h2>先从问题开始</h2>
+            <p>比如：稿子太像 AI、活动材料太散、想把一个事件讲成故事，或者根本不知道该用哪个工具。先复制一个启动句，让 AI 帮你判断下一步。</p>
           </div>
           <div class="poster-panel">
             <h2>Humanity in the loop</h2>
@@ -624,8 +698,83 @@
           </div>
         </div>
         <div class="quick">
-          <a class="button" href="#tools">直接看功能</a>
-          <a class="button secondary" href="#router">不知道用哪个</a>
+          <a class="button" href="#start">看我现在该用哪个</a>
+          <button class="button secondary" type="button" data-copy="routerPrompt">复制总启动句</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="start">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>你现在想解决什么问题？</h2>
+          <p>如果你不确定，直接选最后一个“帮我判断”。真正好用的工作流，不应该让用户先做复杂选择。</p>
+        </div>
+
+        <div class="problem-grid">
+          <article class="problem-card featured">
+            <div>
+              <span class="problem-label">Final Gate</span>
+              <h3>我的稿子太 AI，想改得像人</h3>
+              <p>适合已经有一版草稿，但读起来太顺、太空、太像总结，或者担心事实、称呼和合作口径出错。</p>
+              <ul>
+                <li><b>你给：</b>草稿、原始材料、发布平台、最担心的风险。</li>
+                <li><b>会得到：</b>AI 味诊断、事实风险、必须修改清单、改稿版。</li>
+              </ul>
+            </div>
+            <div class="problem-actions">
+              <button class="copy" type="button" data-copy="voicePrompt">复制启动句</button>
+              <a class="repo" href="https://github.com/voyayueliang/Content-Creators/tree/main/skills/creator-voice-guardian" target="_blank" rel="noreferrer">完整 Skill</a>
+            </div>
+          </article>
+
+          <article class="problem-card">
+            <div>
+              <span class="problem-label">Event</span>
+              <h3>我有活动材料，想写活动回顾</h3>
+              <p>适合手上有策划案、议程、会议纪要、口述复盘、现场图片或合作方要求，需要变成预热稿、会后报道或传播包。</p>
+              <ul>
+                <li><b>你给：</b>活动事实、嘉宾信息、现场记录、图片说明。</li>
+                <li><b>会得到：</b>材料清单、传播角度、缺口提醒、可编辑初稿。</li>
+              </ul>
+            </div>
+            <div class="problem-actions">
+              <button class="copy" type="button" data-copy="eventPrompt">复制启动句</button>
+              <a class="repo" href="https://github.com/voyayueliang/event-recap-to-wechat-md-skill" target="_blank" rel="noreferrer">完整 Skill</a>
+            </div>
+          </article>
+
+          <article class="problem-card">
+            <div>
+              <span class="problem-label">Story</span>
+              <h3>我看到一个事件，想深挖成故事</h3>
+              <p>适合从一条推文、一个帖子、一个热议现象出发，想弄清楚它为什么发生、谁在参与、故事线怎么展开。</p>
+              <ul>
+                <li><b>你给：</b>帖子链接、截图、你的观察、想服务的读者。</li>
+                <li><b>会得到：</b>事件时间线、人物关系、争议点、可写角度和调研清单。</li>
+              </ul>
+            </div>
+            <div class="problem-actions">
+              <button class="copy" type="button" data-copy="storyPrompt">复制启动句</button>
+              <a class="repo" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">工具箱总仓库</a>
+            </div>
+          </article>
+
+          <article class="problem-card featured">
+            <div>
+              <span class="problem-label">Router</span>
+              <h3>我不知道该用哪个，让 AI 先判断</h3>
+              <p>适合材料很杂、目标还没想清楚，或者一次任务可能要同时用几个工作流。先别写正文，先让 AI 做分诊。</p>
+              <ul>
+                <li><b>你给：</b>当前目标、手头材料、想要的交付结果。</li>
+                <li><b>会得到：</b>推荐工作流组合、材料缺口、第一步怎么跑。</li>
+              </ul>
+            </div>
+            <div class="problem-actions">
+              <button class="copy" type="button" data-copy="routerPrompt">复制总启动句</button>
+              <a class="repo" href="#router">查看怎么问</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -633,8 +782,8 @@
     <section id="tools">
       <div class="wrap">
         <div class="section-title">
-          <h2>按功能拿走</h2>
-          <p>不用先理解“Skill”是什么。把它当成一组已经调过边界的内容工具：看功能，复制启动句，放入材料。</p>
+          <h2>完整工具箱</h2>
+          <p>如果你已经知道自己要处理哪类任务，再从这里直接拿走对应启动句。完整 Skill 适合装进 Claude Code / Codex 长期使用。</p>
         </div>
 
         <div class="tool-grid">
@@ -788,14 +937,15 @@
     <section id="how">
       <div class="wrap">
         <div class="section-title">
-          <h2>三步使用</h2>
-          <p>给朋友看的版本就到这里：不用解释方法论，先让他跑通一次。</p>
+          <h2>第一次怎么跑</h2>
+          <p>不要先追求“装好一整套系统”。先用一篇真实稿、一份真实材料，跑出一次可修改的结果。</p>
         </div>
 
         <div class="use-list">
-          <div class="use-line"><span>01</span><div>找到最像你当前任务的功能，比如“播客转文字”或“活动材料转报道”。</div></div>
-          <div class="use-line"><span>02</span><div>复制启动句，把自己的材料贴进去。材料可以是转写稿、策划案、旧稿、链接或截图说明。</div></div>
-          <div class="use-line"><span>03</span><div>先要方案和缺口清单，再让 AI 写正文。发布前一定过事实校对和去 AI 味。</div></div>
+          <div class="use-line"><span>01</span><div>告诉 AI 你的目标：要改稿、写活动回顾、深挖事件，还是只是想先整理材料。</div></div>
+          <div class="use-line"><span>02</span><div>把材料放进去：草稿、录音转写、策划案、会议纪要、链接、截图说明都可以。</div></div>
+          <div class="use-line"><span>03</span><div>先让 AI 给方案、缺口和风险，不要一上来写正文。等方向对了，再进入成稿。</div></div>
+          <div class="use-line"><span>04</span><div>发布前过两道门：事实校对，以及去 AI 味与声音守门。最后由人决定能不能公开。</div></div>
         </div>
       </div>
     </section>
@@ -803,8 +953,8 @@
     <section id="router">
       <div class="wrap">
         <div class="section-title">
-          <h2>不知道用哪个？</h2>
-          <p>复制这个总启动句，让 AI 先帮你分诊，不要一上来写正文。</p>
+          <h2>最省事的用法</h2>
+          <p>复制下面这句给 Claude Code / Codex，再把你的材料放进去。让 AI 自己判断该调用哪些工作流，而不是让你在工具列表里猜。</p>
         </div>
         <div class="actions">
           <button class="copy" type="button" data-copy="routerPrompt">复制总分诊句</button>
@@ -816,7 +966,7 @@
       <div class="wrap">
         <div class="section-title">
           <h2>想装完整 Skill</h2>
-          <p>轻量使用：复制启动句。进阶使用：打开 GitHub，把对应 Skill 加到自己的 Claude Code / Codex 工作流里。</p>
+          <p>轻量使用：复制启动句。长期使用：打开 GitHub，把整套 Skill 装进自己的 Claude Code / Codex，让它在你的具体任务里自动选择。</p>
         </div>
         <div class="actions">
           <a class="button secondary" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">打开工具箱总仓库</a>
@@ -832,25 +982,26 @@
       <div class="wrap">
         <div class="closing-inner">
           <p>
-            可以直接把这页发给朋友。对方不需要懂“工作台”，只要找到功能、复制启动句、放入材料，就能先跑出一版可继续修改的方案。
+            可以直接把这页发给朋友。对方不需要先懂“工作台”，只要带着一个真实问题和一份真实材料进来，就能先跑出一版可判断、可修改、可继续追问的内容方案。
           </p>
         </div>
       </div>
     </div>
 
-    <pre class="copy-source" id="routerPrompt">请作为我的内容工作流分诊台。我的材料是：[粘贴材料、链接、文件路径或简单说明]。
+    <pre class="copy-source" id="routerPrompt">请作为我的内容工作流调度器。你不需要让我自己选择 Skill，而是根据我的目标和材料，判断应该使用哪些工作流，可以组合使用。
 
-请先判断这次应该使用哪个功能：
-1. 播客 / 语音 / 录音 -> 转成文字稿、公众号文章或内容摘要；
-2. 访谈 / 圆桌 / 连麦 -> 整理成对谈稿、访谈稿或精华摘要；
-3. 活动策划案 / 会议纪要 / 现场复盘 -> 写活动预热、会后报道或传播包；
-4. 招募 / 报名 / 加入类内容 -> 写招募文章或报名文案；
-5. AI 初稿 / 旧稿 -> 去 AI 味、事实校对和发布前检查；
-6. 口述思路 / 飞书大纲 -> 生成演讲 PPT 或 HTML 演示页；
-7. 公开资料 / 人物信息 -> 写人物深度报道；
-8. 简历 / 经历 / 作品 -> 整理个人作品集或申请材料。
+我的目标是：[比如去 AI 味、写活动回顾、深挖一个事件、整理访谈、生成 PPT、写招募文案、做作品集等]
+我的材料是：[粘贴草稿、录音转写、策划案、会议纪要、帖子链接、截图说明、文件路径或简单背景]
+我的发布场景是：[公众号 / 小红书 / 视频号 / 朋友圈 / 内部文档 / 演讲 / 暂不确定]
+我最担心的是：[事实错误 / 太像 AI / 不知道角度 / 材料太散 / 合作方口径 / 隐私边界 / 不知道]
 
-先不要直接写正文。请先输出：推荐功能、为什么、我还需要准备什么、第一轮会得到什么、下一步怎么推进。</pre>
+请先不要直接写正文。请先输出：
+1. 这次任务到底是什么；
+2. 推荐使用哪些工作流，以及先后顺序；
+3. 现有材料够不够，不够还缺什么；
+4. 哪些事实、边界、授权或语气需要人工确认；
+5. 第一轮你会先交付什么；
+6. 如果方向没问题，再进入成稿。</pre>
 
     <pre class="copy-source" id="audioPrompt">请用 audio-to-wechat-article 的方式处理这份材料。
 
@@ -869,6 +1020,22 @@
 请先判断这次应该走“活动稿撰写”还是“资产包 / 社区基础设施”。然后整理活动事实、材料来源、可用图片、外部报道调研需求、公开边界和发布前确认。
 
 如果材料足够，再给我一版可编辑的公众号稿。</pre>
+
+    <pre class="copy-source" id="storyPrompt">请先把这个事件做成一张 Storytelling 调研地图，不要直接写成文章。
+
+事件入口是：[粘贴帖子、链接、截图说明或一句话背景]
+我想服务的读者是：[写给谁看]
+我目前的直觉是：[你为什么觉得它值得写，可空]
+
+请先输出：
+1. 这件事的核心问题是什么；
+2. 已知事实、未知事实和需要核查的来源；
+3. 关键人物 / 组织 / 平台 / 利益相关方；
+4. 时间线和争议点；
+5. 发帖人或参与者可能的困惑、处境和动机；
+6. 可以写成哪几种故事角度；
+7. 哪些地方容易误判、夸大或侵犯隐私；
+8. 下一步应该补哪些材料，再决定要不要成稿。</pre>
 
     <pre class="copy-source" id="recruitmentPrompt">请用 recruitment-article-workflow 的方式帮我写这篇招募 / 报名 / 加入类文章。
 
