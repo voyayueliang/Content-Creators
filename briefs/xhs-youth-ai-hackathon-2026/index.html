@@ -1,0 +1,1197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>超脑 x 小红书｜青少年 AI 黑客松合作团队分享页</title>
+  <meta name="description" content="基于 2026-06-25 超脑 x 小红书合作讨论记录整理的团队同步网页。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23151515'/%3E%3Crect x='10' y='10' width='20' height='44' fill='%23ee4d8b'/%3E%3Crect x='34' y='10' width='20' height='44' fill='%2315a9d2'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #151515;
+      --muted: #61615b;
+      --paper: #fffdf6;
+      --bg: #f3f1e8;
+      --line: #151515;
+      --yellow: #f7e84b;
+      --blue: #15a9d2;
+      --pink: #ee4d8b;
+      --green: #75b843;
+      --orange: #ff7c2e;
+      --soft-blue: #e9f7fb;
+      --soft-pink: #fff0f5;
+      --soft-green: #eff8ea;
+      --soft-orange: #fff3e9;
+      --shadow: 8px 8px 0 var(--ink);
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(21, 21, 21, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(21, 21, 21, 0.04) 1px, transparent 1px),
+        var(--bg);
+      background-size: 30px 30px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.66;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    p,
+    li,
+    td,
+    th,
+    .chip,
+    .stat,
+    .role-cell,
+    .quote-line {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .page {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 76px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .mark::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      border: 2px solid var(--ink);
+      background:
+        linear-gradient(90deg, var(--pink) 0 50%, var(--blue) 50% 100%);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.85fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .hero-main,
+    .hero-visual,
+    .section-head,
+    .panel,
+    .table-wrap,
+    .quote,
+    .source-strip {
+      border: 2px solid var(--line);
+      background: var(--paper);
+    }
+
+    .hero-main {
+      min-height: 560px;
+      padding: clamp(28px, 5vw, 56px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      width: 188px;
+      height: 188px;
+      right: 30px;
+      bottom: 30px;
+      border: 2px solid var(--ink);
+      background:
+        linear-gradient(135deg, transparent 0 48%, var(--ink) 48% 52%, transparent 52% 100%),
+        linear-gradient(90deg, var(--yellow) 0 35%, var(--green) 35% 68%, var(--blue) 68% 100%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+      font-weight: 900;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 3px;
+      background: var(--pink);
+      border: 1px solid var(--ink);
+    }
+
+    h1 {
+      max-width: 820px;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+
+    h1 span {
+      display: block;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-top: 26px;
+      font-size: clamp(18px, 2vw, 23px);
+      color: #252520;
+    }
+
+    .hero-bottom {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-right: 220px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 2px solid var(--ink);
+      background: var(--yellow);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .chip.alt {
+      background: var(--paper);
+    }
+
+    .hero-visual {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 560px;
+      background: var(--ink);
+      color: var(--paper);
+      overflow: hidden;
+    }
+
+    .visual-caption {
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 2px solid rgba(255, 253, 246, 0.2);
+    }
+
+    .visual-caption strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+
+    .visual-caption span {
+      display: block;
+      margin-top: 4px;
+      color: #d7d2c4;
+      font-size: 13px;
+    }
+
+    .signal-board {
+      min-height: 360px;
+      padding: 22px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      background:
+        linear-gradient(rgba(255, 253, 246, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 253, 246, 0.08) 1px, transparent 1px),
+        #151515;
+      background-size: 24px 24px;
+    }
+
+    .signal-node {
+      min-height: 148px;
+      padding: 16px;
+      border: 2px solid var(--paper);
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .signal-node strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.12;
+      font-weight: 950;
+    }
+
+    .signal-node span {
+      display: block;
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .signal-node.yellow {
+      background: var(--yellow);
+    }
+
+    .signal-node.blue {
+      background: var(--blue);
+    }
+
+    .signal-node.pink {
+      background: var(--pink);
+      color: var(--paper);
+    }
+
+    .signal-node.green {
+      background: var(--green);
+    }
+
+    .visual-note {
+      padding: 18px 20px;
+      color: #d7d2c4;
+      font-size: 14px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 26px 0 30px;
+    }
+
+    nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    nav a:hover {
+      background: var(--yellow);
+    }
+
+    section {
+      margin-top: 30px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      margin-bottom: 14px;
+    }
+
+    .section-no {
+      display: grid;
+      place-items: center;
+      min-height: 92px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 34px;
+      font-weight: 950;
+    }
+
+    .section-title {
+      padding: 18px 22px;
+      min-width: 0;
+    }
+
+    .section-title h2 {
+      font-size: clamp(26px, 3.6vw, 46px);
+      line-height: 1.12;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+
+    .section-title p {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid.four {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .panel {
+      padding: 22px;
+      min-width: 0;
+      position: relative;
+    }
+
+    .panel h3 {
+      font-size: 21px;
+      line-height: 1.18;
+      letter-spacing: 0;
+      font-weight: 950;
+      margin-bottom: 9px;
+    }
+
+    .panel p,
+    .panel li {
+      font-size: 15.5px;
+      color: #262620;
+    }
+
+    .panel.dark {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .panel.dark p,
+    .panel.dark li,
+    .panel.dark .mini {
+      color: #ece8d9;
+    }
+
+    .panel.yellow {
+      background: var(--yellow);
+    }
+
+    .panel.blue {
+      background: var(--soft-blue);
+      border-color: var(--blue);
+    }
+
+    .panel.pink {
+      background: var(--soft-pink);
+      border-color: var(--pink);
+    }
+
+    .panel.green {
+      background: var(--soft-green);
+      border-color: var(--green);
+    }
+
+    .panel.orange {
+      background: var(--soft-orange);
+      border-color: var(--orange);
+    }
+
+    .mini {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    .bigline {
+      font-size: clamp(26px, 4vw, 50px);
+      line-height: 1.08;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .highlight {
+      background: var(--yellow);
+      color: var(--ink);
+      padding: 0 5px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .stat {
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      padding: 18px;
+      min-height: 134px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stat b {
+      display: block;
+      font-size: clamp(32px, 5vw, 58px);
+      line-height: 0.95;
+      font-weight: 950;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .stat:nth-child(2) {
+      background: var(--soft-blue);
+    }
+
+    .stat:nth-child(3) {
+      background: var(--soft-pink);
+    }
+
+    .stat:nth-child(4) {
+      background: var(--yellow);
+    }
+
+    .list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .list li + li {
+      margin-top: 8px;
+    }
+
+    .source-strip {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      margin-top: 14px;
+      overflow: hidden;
+    }
+
+    .source-label {
+      padding: 16px;
+      background: var(--pink);
+      color: #fff;
+      font-weight: 950;
+      display: flex;
+      align-items: center;
+    }
+
+    .source-body {
+      padding: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      background: var(--paper);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 860px;
+      border-collapse: collapse;
+      background: var(--paper);
+    }
+
+    th,
+    td {
+      padding: 14px 16px;
+      border-right: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      text-align: left;
+      vertical-align: top;
+      font-size: 15px;
+    }
+
+    th:last-child,
+    td:last-child {
+      border-right: 0;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    th {
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 3px 8px;
+      border: 2px solid var(--ink);
+      background: var(--yellow);
+      font-size: 12px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .status.todo {
+      background: #ffd7e7;
+    }
+
+    .status.check {
+      background: #dff2d2;
+    }
+
+    .status.watch {
+      background: #e5f7ff;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .timebox {
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      min-height: 174px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .timebox strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1.16;
+      font-weight: 950;
+    }
+
+    .timebox span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    .timebox:nth-child(2) {
+      background: var(--soft-blue);
+    }
+
+    .timebox:nth-child(3) {
+      background: var(--soft-pink);
+    }
+
+    .timebox:nth-child(4) {
+      background: var(--soft-green);
+    }
+
+    .timebox:nth-child(5) {
+      background: var(--soft-orange);
+    }
+
+    .timebox:nth-child(6) {
+      background: var(--yellow);
+    }
+
+    .quote {
+      padding: clamp(22px, 4vw, 36px);
+      box-shadow: var(--shadow);
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .quote-line {
+      font-size: clamp(25px, 4vw, 48px);
+      line-height: 1.13;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .quote p:not(.quote-line) {
+      margin-top: 14px;
+      color: #d7d2c4;
+      font-size: 15px;
+    }
+
+    .footer {
+      margin-top: 44px;
+      padding-top: 18px;
+      border-top: 2px solid var(--ink);
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .grid.two,
+      .grid.three,
+      .grid.four,
+      .timeline,
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main,
+      .hero-visual {
+        min-height: auto;
+      }
+
+      .hero-bottom {
+        padding-right: 0;
+      }
+
+      .hero-main::after {
+        width: 110px;
+        height: 110px;
+        opacity: 0.82;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: calc(100vw - 20px);
+        padding-top: 16px;
+      }
+
+      .topbar,
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-main {
+        padding: 24px;
+      }
+
+      .hero-main::after {
+        display: none;
+      }
+
+      .section-head,
+      .source-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .section-no,
+      .source-label {
+        min-height: 56px;
+        place-items: initial;
+        align-items: center;
+        padding-left: 18px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .page {
+        width: auto;
+        padding: 0;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero-main,
+      .quote {
+        box-shadow: none;
+      }
+
+      section,
+      .panel,
+      .timebox {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <span class="mark">Team Share Page</span>
+      <span>来源：2026-06-25 合作讨论记录 · 整理：2026-06-26</span>
+    </div>
+
+    <header class="hero">
+      <div class="hero-main">
+        <div>
+          <p class="eyebrow">SuperMind x Xiaohongshu</p>
+          <h1><span>青少年 AI</span><span>黑客松合作</span><span>团队分享页</span></h1>
+          <p class="lead">这次讨论的重点不是只办一场活动，而是用一个暑期 MVP，把青少年 AI 创造、小红书的新表达形态、AI 时代的人文与教育议题放到同一张桌面上。</p>
+        </div>
+        <div class="hero-bottom">
+          <span class="chip">合作意向：成立</span>
+          <span class="chip alt">目标窗口：2026 年 8 月底</span>
+          <span class="chip alt">当前阶段：资料包与红线对齐</span>
+          <span class="chip alt">外部传播前需二次确认</span>
+        </div>
+      </div>
+
+      <aside class="hero-visual">
+        <div class="visual-caption">
+          <div>
+          <strong>合作坐标</strong>
+          <span>把三条线放到同一张桌面</span>
+          </div>
+          <span class="chip">参考素材</span>
+        </div>
+        <div class="signal-board" aria-label="合作坐标信息板">
+          <div class="signal-node yellow">
+            <strong>AI 人文议题</strong>
+            <span>从技术讨论走向问题意识、意义感和社会影响。</span>
+          </div>
+          <div class="signal-node blue">
+            <strong>青少年创造</strong>
+            <span>让 10 后 AI 原住民的作品、判断和成长被看见。</span>
+          </div>
+          <div class="signal-node pink">
+            <strong>平台新表达</strong>
+            <span>app、游戏、skill、小组件都可能成为新的笔记。</span>
+          </div>
+          <div class="signal-node green">
+            <strong>8 月底 MVP</strong>
+            <span>先跑通小规模预览版，再沉淀明年正式版。</span>
+          </div>
+        </div>
+        <p class="visual-note">这里不再使用旧活动海报，避免团队误以为这是既有直播的延展。新版视觉只服务于本次合作 brief。</p>
+      </aside>
+    </header>
+
+    <nav aria-label="页面导航">
+      <a href="#snapshot">一屏结论</a>
+      <a href="#logic">合作逻辑</a>
+      <a href="#meeting">会议要点</a>
+      <a href="#framework">合作框架</a>
+      <a href="#timeline">时间线</a>
+      <a href="#actions">行动清单</a>
+      <a href="#boundaries">边界</a>
+      <a href="#message">群内版本</a>
+    </nav>
+
+    <section id="snapshot">
+      <div class="section-head">
+        <div class="section-no">01</div>
+        <div class="section-title">
+          <h2>一屏结论</h2>
+          <p>给团队快速建立共同画面：哪些已经明确，哪些还需要确认。</p>
+        </div>
+      </div>
+
+      <div class="grid three">
+        <article class="panel yellow">
+          <span class="mini">Current Status</span>
+          <h3>小红书愿意进入合作讨论</h3>
+          <p>对方明确表示合作意向没问题，联合发起大概率也问题不大，传播上可在声量和线上曝光层面提供支持。</p>
+        </article>
+        <article class="panel dark">
+          <span class="mini">Near-Term Goal</span>
+          <h3>先跑一个 8 月底 MVP</h3>
+          <p>今年先做预览版，把青少年 AI 创造的事实推到台前。明年再升级为更正式、更完整的版本。</p>
+        </article>
+        <article class="panel pink">
+          <span class="mini">Key Constraint</span>
+          <h3>小红书暑期执行时间很紧</h3>
+          <p>对方近期忙于世界杯项目，能否深度共创取决于具体时间。超脑侧需要先整理上下文、提出方案，降低对方投入成本。</p>
+        </article>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat">
+          <b>2</b>
+          <span>两个落地节点：7 月 WAIC 青少年板块传播物料，8 月底青少年 AI 黑客松。</span>
+        </div>
+        <div class="stat">
+          <b>3</b>
+          <span>三条主线：AI 人文议题、青少年创造、平台新表达形态。</span>
+        </div>
+        <div class="stat">
+          <b>MVP</b>
+          <span>先做小规模预览版，重点跑通场地、赞助、传播、案例沉淀和安全机制。</span>
+        </div>
+        <div class="stat">
+          <b>待确认</b>
+          <span>品牌露出、红线、资源清单、可公开案例、未成年人授权与作品权益。</span>
+        </div>
+      </div>
+
+      <div class="source-strip">
+        <div class="source-label">信息边界</div>
+        <div class="source-body">本页基于 2026 年 6 月 25 日 12:16-13:37 的合作讨论记录整理。凡涉及“可能、建议、待确认”的内容，均不应直接视作对外承诺。</div>
+      </div>
+    </section>
+
+    <section id="logic">
+      <div class="section-head">
+        <div class="section-no">02</div>
+        <div class="section-title">
+          <h2>为什么这件事值得推进</h2>
+          <p>团队内部最好先统一这套逻辑，否则容易把它做成普通活动执行。</p>
+        </div>
+      </div>
+
+      <div class="grid four">
+        <article class="panel blue">
+          <span class="mini">Why Now</span>
+          <h3>时间点已经到了</h3>
+          <p>三年前，青少年用 AI 做作品还会被质疑；现在小红书巅峰赛、营地作品和真实案例开始出现，社会认知正处在被改写的窗口。</p>
+        </article>
+        <article class="panel green">
+          <span class="mini">Why SuperMind</span>
+          <h3>超脑有真实教育现场</h3>
+          <p>过去三年已积累数百名学员、营地案例、学生持续创作经验和教练式陪伴方法，不只是讲概念。</p>
+        </article>
+        <article class="panel pink">
+          <span class="mini">Why Xiaohongshu</span>
+          <h3>小红书在寻找新表达格式</h3>
+          <p>对方关注 app、游戏、skill、小组件等新一代表达形态，希望让创作不再只被图文视频格式限制。</p>
+        </article>
+        <article class="panel orange">
+          <span class="mini">Why It Matters</span>
+          <h3>教育目标正在变化</h3>
+          <p>AI 时代不只是学习工具，而是重新提出“孩子如何构建意义感、如何被看见、如何把独特性变成作品”的问题。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="meeting">
+      <div class="section-head">
+        <div class="section-no">03</div>
+        <div class="section-title">
+          <h2>会议要点压缩成七张卡</h2>
+          <p>从长讨论中抽出团队后续会反复用到的内容。</p>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <article class="panel">
+          <span class="mini">AI Humanities</span>
+          <h3>AI 人文与伦理夜场有合作空间</h3>
+          <p>小红书希望推动国内更多 AI 伦理、人文、社科讨论。双方提到世界人工智能大会前，可以做一个 Social Science、人文与 AI 结合的小型夜场活动。</p>
+        </article>
+        <article class="panel">
+          <span class="mini">Question First</span>
+          <h3>AI 时代更重要的是提出问题</h3>
+          <p>讨论中反复出现一个判断：不要用新方法解决旧问题。KPI、效率、提效只是旧游戏规则的一部分，教育需要转向意义感和问题意识。</p>
+        </article>
+        <article class="panel">
+          <span class="mini">AI for Good</span>
+          <h3>公益、教育与商业可以形成闭环</h3>
+          <p>超脑今年以 AI for good 为主题，带中学生、志愿者和老师用 AI 帮助特殊儿童、事实孤儿等群体，让参与者在助人中建立意义感。</p>
+        </article>
+        <article class="panel">
+          <span class="mini">Organization</span>
+          <h3>超脑正在探索新组织形态</h3>
+          <p>团队吸引力来自共同教育公益愿景，而不是传统工资、股份和层级管理。后续商业价值分配机制仍需继续探索。</p>
+        </article>
+        <article class="panel yellow">
+          <span class="mini">Hackathon MVP</span>
+          <h3>8 月底做青少年 AI 黑客松预览版</h3>
+          <p>今年先小规模做起来，参考 Adventure X 第一届的早期状态。核心需求是场地、赞助商、媒体支持和清晰的联合发起机制。</p>
+        </article>
+        <article class="panel blue">
+          <span class="mini">Education Evidence</span>
+          <h3>学生案例是最强证据</h3>
+          <p>会议中提到酸黄瓜、马月涵、邓子翔、金志宏等案例。重点不是筛选天才，而是通过教练陪伴、真实创造和被看见，让孩子在营后继续发生变化。</p>
+        </article>
+        <article class="panel green">
+          <span class="mini">Platform Fit</span>
+          <h3>小红书可以成为青少年作品窗口</h3>
+          <p>对方表示鼓励孩子把小红书作为对外展示和与大众对话的窗口，也在探索 skill hub、端内体验、版权确权和收益问题。</p>
+        </article>
+        <article class="panel pink">
+          <span class="mini">Next Collaboration Mode</span>
+          <h3>先给上下文，再让对方给红线和需求</h3>
+          <p>双方约定：超脑侧先提供资料，小红书侧反馈能提供什么、需要避免什么、希望达成什么，再由超脑出具体方案继续讨论。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="framework">
+      <div class="section-head">
+        <div class="section-no">04</div>
+        <div class="section-title">
+          <h2>合作框架草案</h2>
+          <p>先把各方位置说清楚，后续方案、赞助包和传播口径才不会混乱。</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>角色</th>
+              <th>可能承担的功能</th>
+              <th>当前确定程度</th>
+              <th>下一步要问清楚</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>超脑</td>
+              <td>发起活动、提供教育现场、学生案例、方法论、赞助与协办方拓展、活动方案执行。</td>
+              <td><span class="status check">主责明确</span></td>
+              <td>内部谁负责总推进，谁负责活动执行，谁负责安全合规与授权文件。</td>
+            </tr>
+            <tr>
+              <td>小红书</td>
+              <td>联合发起、平台背书、线上曝光、传播资源、青少年创作案例与端内表达场景。</td>
+              <td><span class="status watch">意向明确</span></td>
+              <td>能否正式联合发起，何时可以露出品牌，可提供哪些资源，红线是什么。</td>
+            </tr>
+            <tr>
+              <td>协办或联名伙伴</td>
+              <td>导师、社区、研究支持、工具支持、内容观察、作品展示或赛题共创。</td>
+              <td><span class="status todo">待筛选</span></td>
+              <td>哪些伙伴加入会增强项目，哪些只会稀释主品牌和执行效率。</td>
+            </tr>
+            <tr>
+              <td>赞助方</td>
+              <td>活动预算、场地、奖品、技术资源、品牌合作或后续展示支持。</td>
+              <td><span class="status todo">待开拓</span></td>
+              <td>赞助权益能承诺到什么程度，是否可以使用小红书资源作为赞助权益的一部分。</td>
+            </tr>
+            <tr>
+              <td>观察与内容团队</td>
+              <td>记录学生作品与成长证据，沉淀活动报告、案例卡、影像素材和下一轮传播资产。</td>
+              <td><span class="status watch">建议前置</span></td>
+              <td>哪些内容可公开，哪些需匿名或仅内部使用，学生与家长授权如何处理。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <div class="section-head">
+        <div class="section-no">05</div>
+        <div class="section-title">
+          <h2>建议时间线</h2>
+          <p>日期来自会议记录与自然推进节奏，具体排期仍需二次确认。</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timebox">
+          <strong>6 月 25 日</strong>
+          <span>完成首次深度沟通，确认价值观同频与 8 月底黑客松合作意向。</span>
+        </div>
+        <div class="timebox">
+          <strong>6 月底</strong>
+          <span>整理上下文资料包：超脑案例、活动设想、WAIC 节点、小红书需要判断的清单。</span>
+        </div>
+        <div class="timebox">
+          <strong>7 月上旬</strong>
+          <span>与小红书二次对齐，确认接口人、可提供资源、品牌红线和可公开口径。</span>
+        </div>
+        <div class="timebox">
+          <strong>7 月 17-20 日</strong>
+          <span>世界人工智能大会节点，优先推进超脑青少年板块宣传物料和小红书可配合事项。</span>
+        </div>
+        <div class="timebox">
+          <strong>7 月下旬至 8 月</strong>
+          <span>确定活动结构、赛题、招募、导师、场地、赞助、授权与传播计划。</span>
+        </div>
+        <div class="timebox">
+          <strong>8 月底</strong>
+          <span>目标举办青少年 AI 黑客松 MVP 预览版，为明年正式版积累样本和方法。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="actions">
+      <div class="section-head">
+        <div class="section-no">06</div>
+        <div class="section-title">
+          <h2>下一步行动清单</h2>
+          <p>建议先做这些具体动作，再扩展为完整方案。</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>优先级</th>
+              <th>行动</th>
+              <th>建议主责</th>
+              <th>产出</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>P0</td>
+              <td>整理发给小红书的合作上下文资料。</td>
+              <td>超脑侧牵头，Moon 可协助结构化</td>
+              <td>一份 5-8 页的合作资料包，包含背景、活动设想、案例、资源需求、时间线。</td>
+              <td><span class="status todo">待做</span></td>
+            </tr>
+            <tr>
+              <td>P0</td>
+              <td>列出给小红书的确认问题：能给什么、不能说什么、希望达到什么、需要避免什么。</td>
+              <td>Moon 初版，Michael 确认</td>
+              <td>小红书二次对齐问题清单。</td>
+              <td><span class="status todo">待做</span></td>
+            </tr>
+            <tr>
+              <td>P0</td>
+              <td>做青少年 AI 黑客松 MVP 方案 v0.1。</td>
+              <td>超脑项目负责人</td>
+              <td>活动定位、对象、规模、赛题、导师评审、场地、赞助、传播、授权与预算框架。</td>
+              <td><span class="status todo">待做</span></td>
+            </tr>
+            <tr>
+              <td>P1</td>
+              <td>盘点可作为合作证据的学生案例与作品。</td>
+              <td>超脑教育团队</td>
+              <td>案例清单，标注公开权限、家长授权状态、适合出现在何种传播场景。</td>
+              <td><span class="status watch">需授权</span></td>
+            </tr>
+            <tr>
+              <td>P1</td>
+              <td>明确 WAIC 节点可先落地的物料配合。</td>
+              <td>超脑志愿者团队 / 小红书接口人</td>
+              <td>7 月 17-20 日前可执行的宣传物料清单与提交时间。</td>
+              <td><span class="status todo">待接口人</span></td>
+            </tr>
+            <tr>
+              <td>P1</td>
+              <td>建立未成年人活动安全与授权模板。</td>
+              <td>项目执行负责人，必要时请法律或教育活动经验伙伴检查</td>
+              <td>监护人同意、肖像使用、作品展示、采访授权、撤回机制与现场安全预案。</td>
+              <td><span class="status todo">必须补</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="boundaries">
+      <div class="section-head">
+        <div class="section-no">07</div>
+        <div class="section-title">
+          <h2>风险、边界与需要提前保护的东西</h2>
+          <p>这里不是给项目降温，而是让合作更稳。</p>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <article class="panel pink">
+          <span class="mini">Minor Safety</span>
+          <h3>未成年人安全不能后补</h3>
+          <ul class="list">
+            <li>监护人授权、现场照护、交通住宿、餐饮、城市责任边界要提前确认。</li>
+            <li>学生照片、视频、访谈、作品展示和数据采集都需要明确用途与撤回机制。</li>
+            <li>对外叙事要保护孩子原生想法，不把个体案例过度包装成单一成功模板。</li>
+          </ul>
+        </article>
+        <article class="panel blue">
+          <span class="mini">Brand Boundary</span>
+          <h3>小红书品牌露出要等确认</h3>
+          <ul class="list">
+            <li>“联合发起”是否可对外使用，需要小红书内部最终确认。</li>
+            <li>招募、赞助、媒体沟通中能否出现小红书名称，要有清晰时间点。</li>
+            <li>不要把“意向没问题”写成已经正式官宣。</li>
+          </ul>
+        </article>
+        <article class="panel green">
+          <span class="mini">Ownership</span>
+          <h3>方法论、案例和项目成果要分开</h3>
+          <ul class="list">
+            <li>超脑教育方法、活动策划框架、问题集与沉淀机制属于可复用系统资产。</li>
+            <li>学生作品与个人故事属于学生及家庭，必须按授权范围使用。</li>
+            <li>合作方可讲参与故事，但不应默认拥有整体项目案例权。</li>
+          </ul>
+        </article>
+        <article class="panel orange">
+          <span class="mini">Execution</span>
+          <h3>不要让活动变成纯传播任务</h3>
+          <ul class="list">
+            <li>活动要留下可复用样本：学生作品、成长证据、赛题方法、组织流程、内容资产。</li>
+            <li>小红书的价值不只是曝光，也包括平台对新创造格式的判断和用户反馈。</li>
+            <li>超脑侧需要保留主叙事和教育现场的判断权。</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="message">
+      <div class="section-head">
+        <div class="section-no">08</div>
+        <div class="section-title">
+          <h2>可以直接发给团队的版本</h2>
+          <p>适合放在群里作为同步开场。</p>
+        </div>
+      </div>
+
+      <div class="quote">
+        <p class="quote-line">我们和小红书围绕青少年 AI 黑客松、AI 人文议题、平台新表达形态做了一次深度沟通。现在比较明确的是：8 月底可以先跑一个青少年 AI 黑客松 MVP，小红书有联合发起和传播支持意向，但还需要二次确认品牌露出、资源清单、红线和执行投入。</p>
+        <p>团队下一步先做三件事：第一，整理发给小红书的上下文资料包；第二，列清楚我们需要对方确认的问题；第三，做 MVP 方案 v0.1，并同步补上未成年人授权、作品权益和现场安全边界。</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>内部分享页。外部传播前，请再次确认小红书授权、活动名称、品牌露出、案例授权与未成年人安全边界。</span>
+      <span>整理：Moon / Codex</span>
+    </footer>
+  </main>
+</body>
+</html>
