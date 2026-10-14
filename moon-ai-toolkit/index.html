@@ -1715,6 +1715,26 @@
       }
     }
   </style>
+  <style>
+    .skill-map-intro { max-width: 760px; }
+    .skill-map-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+    .skill-family { border-top: 1px solid var(--line); padding: 22px 0 8px; }
+    .skill-family-head { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; align-items: start; margin-bottom: 14px; }
+    .skill-family-no { color: var(--accent); font: 700 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; }
+    .skill-family h3 { margin: 0 0 6px; }
+    .skill-family-head p { margin: 0; color: var(--muted); }
+    .skill-list { display: grid; gap: 8px; }
+    .skill-chip { display: grid; grid-template-columns: minmax(180px, .8fr) minmax(0, 1.2fr); gap: 12px; padding: 12px 0; border-top: 1px solid color-mix(in srgb, var(--line) 65%, transparent); }
+    .skill-chip:first-child { border-top: 0; }
+    .skill-chip strong { font-size: 14px; overflow-wrap: anywhere; }
+    .skill-chip span { color: var(--muted); font-size: 14px; }
+    .skill-callout { margin-top: 24px; padding: 18px 20px; border: 1px solid var(--line); background: var(--paper-2); }
+    .skill-callout p { margin: 0; }
+    @media (max-width: 760px) {
+      .skill-map-grid { grid-template-columns: 1fr; }
+      .skill-chip { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
 </head>
 <body>
   <header class="topbar">
@@ -1725,6 +1745,7 @@
       </a>
       <div class="top-actions">
         <a class="repo" href="#start">开始整理</a>
+        <a class="repo" href="#skills-map">Skills 地图</a>
         <a class="repo" href="ppt.html">PPT 版</a>
         <a class="repo" href="https://github.com/voyayueliang/Content-Creators" target="_blank" rel="noreferrer">完整工作流包</a>
       </div>
@@ -1734,14 +1755,14 @@
   <main>
     <section class="wrap hero">
       <div>
-        <p class="eyebrow">写稿前 10 分钟</p>
-        <h1>有稿要写？先把材料理清楚</h1>
-        <p class="lead">如果你手上有策划案、会议纪要、录音转写、旧稿、参考链接或合作方要求，但还不知道怎么写，可以先让 AI 帮你整理成一版“稿件方案”。先看任务、读者、材料、缺口和边界，再决定要不要进入正文。</p>
-        <p class="hero-note">这个页面不是让 AI 直接替你写完，而是把月亮日常写稿前的判断步骤拆出来：AI 负责摊开材料和发现缺口，创作者负责事实、角度、公开边界和最后的声音。</p>
+        <p class="eyebrow">内容创作者的第二工作台</p>
+        <h1>让 AI 越来越懂你怎么创作</h1>
+        <p class="lead">真正难的不是让 AI 写出一篇稿，而是让它理解：你在为谁写、什么值得保留、哪些事实不能编、哪些关系不能越界，以及最后什么才像你的声音。</p>
+        <p class="hero-note">这套工作台把月亮在真实项目里的内容判断，拆成可以反复调用的创作流程。你可以从今天的一篇稿开始，也可以沿着完整 Skills 地图，把材料、选题、写作、审稿、分发和复盘串起来。</p>
         <div class="hero-proof" aria-label="你会得到什么">
-          <span><b>你带来</b>策划案、录音、会议纪要、旧稿或参考链接。</span>
-          <span><b>AI 先做</b>整理材料、标出缺口、提醒风险、建议结构。</span>
-          <span><b>你决定</b>哪些能写、怎么表达、什么时候进入成稿。</span>
+          <span><b>AI 负责</b>整理、提问、起草、检查和生成备选方案。</span>
+          <span><b>人来判断</b>角度、事实、审美、关系边界和最终发布。</span>
+          <span><b>持续沉淀</b>把每次反馈变成下一次仍能调用的方法。</span>
         </div>
         <div class="hero-actions">
           <button class="button" type="button" data-copy-workflow data-clipboard-target="#draft-context-prompt">复制写稿前整理指令</button>
@@ -1763,8 +1784,8 @@
 
     <section class="wrap" id="start">
       <div class="section-head">
-        <h2>从今天这篇稿开始</h2>
-        <p>你不需要先理解整套工作台。先选一个最接近的任务，把材料放进去，第一轮只拿方案：这篇稿写给谁、要完成什么、材料怎么用、哪些事实和边界要确认。</p>
+        <h2>从一项真实任务开始</h2>
+        <p>你不需要先学会整套系统。选一个最接近的任务，把真实材料放进去：先让 AI 理解任务、读者、材料和边界，再决定是否进入正文。</p>
       </div>
       <div class="task-journey" aria-label="使用路线">
         <div>
@@ -2297,6 +2318,88 @@
 
       <p class="no-results" data-no-results hidden>没有找到完全匹配的入口。可以换一个关键词，或先从“写稿前材料整理助手”开始试。</p>
 
+    </section>
+
+    <section class="wrap" id="skills-map">
+      <div class="section-head skill-map-intro">
+        <p class="eyebrow">Moon's Content Skills · 2026.07</p>
+        <h2>完整内容创作技能地图</h2>
+        <p>这不是 30 个彼此孤立的 prompts，而是一套创作者判断系统：从保护原始材料开始，经过选题、写作、校准和平台转译，再把反馈、作品与产品信号收回来。上面保留最容易上手的入口，这里呈现完整链路。</p>
+      </div>
+
+      <div class="skill-map-grid">
+        <section class="skill-family">
+          <div class="skill-family-head"><span class="skill-family-no">01</span><div><h3>材料进入与现场保真</h3><p>先保护来源、人物、场景和公开边界，再谈写作。</p></div></div>
+          <div class="skill-list">
+            <div class="skill-chip"><strong>material-intake-steward</strong><span>把访谈、田野笔记、聊天和碎片整理成可追溯素材卡。</span></div>
+            <div class="skill-chip"><strong>canghe-url-to-markdown</strong><span>把网页完整转存为可引用、可归档的 Markdown 材料。</span></div>
+            <div class="skill-chip"><strong>wechat-article-extractor</strong><span>提取公众号文章，进入调研、参考与证据库。</span></div>
+            <div class="skill-chip"><strong>audio-to-wechat-article</strong><span>把播客、直播、访谈或回放转成文章与素材资产。</span></div>
+            <div class="skill-chip"><strong>anthropological-field-note-review</strong><span>用田野笔记视角检查人物、场景、关系与观察位置。</span></div>
+          </div>
+        </section>
+
+        <section class="skill-family">
+          <div class="skill-family-head"><span class="skill-family-no">02</span><div><h3>选题、判断与内容启动</h3><p>先决定真实任务、读者和证据，再选择内容形态。</p></div></div>
+          <div class="skill-list">
+            <div class="skill-chip"><strong>topic-incubator</strong><span>把素材、反馈和困惑打磨成值得写、能传播的选题。</span></div>
+            <div class="skill-chip"><strong>moon-agents-workbench</strong><span>调动读者、田野、逻辑、声音、平台与商业视角共同判断。</span></div>
+            <div class="skill-chip"><strong>ai-draft-logic-audit</strong><span>审核核心主张、推理链与逻辑闭环。</span></div>
+            <div class="skill-chip"><strong>evidence-calibration</strong><span>逐项校准判断是否被原始材料与事实支撑。</span></div>
+            <div class="skill-chip"><strong>content-workbench-autopilot</strong><span>把收件、孵化、审稿、改写和复盘串成持续工作流。</span></div>
+          </div>
+        </section>
+
+        <section class="skill-family">
+          <div class="skill-family-head"><span class="skill-family-no">03</span><div><h3>文章、活动与人物写作</h3><p>根据材料来源和交付场景，进入对应的专用工作流。</p></div></div>
+          <div class="skill-list">
+            <div class="skill-chip"><strong>commercial-event-proof-writer</strong><span>用证据密度和真实机制重构商业活动稿主轴。</span></div>
+            <div class="skill-chip"><strong>datawhale-event-wechat-article</strong><span>把活动需求、海报、会议与草稿校准成公众号成稿。</span></div>
+            <div class="skill-chip"><strong>datawhale-content-producer-agent</strong><span>承接 Datawhale 活动内容从材料到交付的完整制作。</span></div>
+            <div class="skill-chip"><strong>event-recap-to-wechat-md</strong><span>把活动回放、报道、反馈与图片整合成可发复盘。</span></div>
+            <div class="skill-chip"><strong>interview-to-substack</strong><span>把人物访谈转成适合海外读者的 Substack 叙事。</span></div>
+            <div class="skill-chip"><strong>vitality-guest-share-kit</strong><span>把嘉宾资料、现场内容和图片整理成对外分享包。</span></div>
+          </div>
+        </section>
+
+        <section class="skill-family">
+          <div class="skill-family-head"><span class="skill-family-no">04</span><div><h3>改稿、审稿与声音守门</h3><p>把修改从“润色句子”推进到主轴、证据、读者和发布判断。</p></div></div>
+          <div class="skill-list">
+            <div class="skill-chip"><strong>moon-draft-revision-agent</strong><span>先给可执行修改方案，再进入删、并、补、改。</span></div>
+            <div class="skill-chip"><strong>article-suggestion-coach</strong><span>为他人文章生成具体、可转发的编辑建议。</span></div>
+            <div class="skill-chip"><strong>creator-voice-guardian</strong><span>去 AI 味、守住个人声音、事实与公开边界。</span></div>
+            <div class="skill-chip"><strong>ai-draft-logic-audit</strong><span>定位空泛主张、因果跳跃和没有闭环的论证。</span></div>
+            <div class="skill-chip"><strong>evidence-calibration</strong><span>把稿件中的事实、推断和感受重新分层。</span></div>
+          </div>
+        </section>
+
+        <section class="skill-family">
+          <div class="skill-family-head"><span class="skill-family-no">05</span><div><h3>多平台转译与内容形态</h3><p>不是简单缩写或翻译，而是重做平台角度、密度、语气与行动入口。</p></div></div>
+          <div class="skill-list">
+            <div class="skill-chip"><strong>platform-rewrite-map</strong><span>同一内容转译到公众号、小红书、视频号、朋友圈与 newsletter。</span></div>
+            <div class="skill-chip"><strong>overseas-content-distribution</strong><span>为 LinkedIn、X、Substack、YouTube 建立海外分发组合。</span></div>
+            <div class="skill-chip"><strong>wechat-channel-video-script</strong><span>把长内容改造成适合视频号录制的口播脚本。</span></div>
+            <div class="skill-chip"><strong>spoken-to-html-deck</strong><span>把口述、飞书文档与图片整理成可演讲的 HTML PPT。</span></div>
+            <div class="skill-chip"><strong>youtube-to-ebook</strong><span>把公开视频内容转成结构清楚的电子书文章。</span></div>
+          </div>
+        </section>
+
+        <section class="skill-family">
+          <div class="skill-family-head"><span class="skill-family-no">06</span><div><h3>发布后反馈、资产与产品化</h3><p>内容完成不是终点；继续回收需求、增长证据、作品与可售卖方法。</p></div></div>
+          <div class="skill-list">
+            <div class="skill-chip"><strong>feedback-signal-reader</strong><span>从评论、私信、报名与咨询里识别真实需求和关系线索。</span></div>
+            <div class="skill-chip"><strong>growth-signal-attributor</strong><span>把传播后的数据、询问与转介绍归因成增长证据。</span></div>
+            <div class="skill-chip"><strong>portfolio-case-distiller</strong><span>把内容项目整理成对外可展示、可验证的作品集案例。</span></div>
+            <div class="skill-chip"><strong>productize-offer</strong><span>把高频内容方法转译成服务、工作坊、课程或工具雏形。</span></div>
+            <div class="skill-chip"><strong>project-closeout-review</strong><span>收回结项、回款、复盘、案例与下一次可复用资产。</span></div>
+            <div class="skill-chip"><strong>pending-loop-sweeper</strong><span>扫描待确认、待补证据、未回填与未收口的内容线头。</span></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="skill-callout">
+        <p><strong>怎么调用：</strong>在 Codex 里直接说“用 <code>skill-name</code> 帮我处理这份材料”，再附上文件、链接或目标即可。拿不准从哪条开始时，用 <code>moon-agents-workbench</code> 做一次轻量分诊。</p>
+      </div>
     </section>
   </main>
 
